@@ -129,3 +129,7 @@ loaders_IAM/bigFiles_CA/.classpath
 loaders_IAM/bigFiles_CA/.gitignore
 loaders_IAM/bigFiles_CA/.project
 loaders_IAM/bigFiles_CA/.settings/
+loaders_IAM/solrLoader_CA/.gitignore
+loaders_IAM/solrLoader_CA/.classpath
+loaders_IAM/solrLoader_CA/.project
+loaders_IAM/solrLoader_CA/.settings/

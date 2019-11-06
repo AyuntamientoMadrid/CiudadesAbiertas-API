@@ -1,0 +1,12 @@
+#Crear un nuevo Core
+sudo su - solr -c "/opt/solr/bin/solr create -c ciudadesAbiertas"
+
+#Creamos un campo para meter todas las cadenas para las busquedas globales
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+#Especificar tipo de un campo
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"telephone", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+
+#Eliminar core
+sudo su - solr -c "/opt/solr/bin/solr delete -c ciudadesAbiertas"
