@@ -1,11 +1,12 @@
-# API CIUDADES ABIERTAS
+# AYUNTAMIENTO DE MADRID - API CIUDADES ABIERTAS
 
-Este es el repositorio de la API de Datos Abiertos para el proyecto de **Ciudades Abiertas**.
+Este es el repositorio de la API de Datos Abiertos para el proyecto de **Ciudades Abiertas** para el Ayuntamiento de Madrid
 
 A continuacion se muestran las distintos directorios que existen en el repositorio y que contiene cada uno de ellos:
 
  - API_CA: proyecto que contiene la API para los diferentes conjuntos de datos del proyecto
  - liquibase_CA: proyecto que gestiona las versiones de los scripts de bases de datos necesarios para el funcionamiento de la API. Liquibase es compatible con distintos motores de bases de datos. Estos scripts se han probado con Oracle 11G, Microsoft SQL Server 2017 y MySQL 5.7.17
+ - loaders_IAM: cargadores para exportar la información de la API y cargarla en diferentes fuentes de datos.
 
 Dentro de cada uno de estos directorios, se encuentra más documentación.
 

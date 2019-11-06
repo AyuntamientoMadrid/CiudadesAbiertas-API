@@ -125,3 +125,7 @@ API_CA/.project
 /.metadata/
 *.log
 Servers/
+loaders_IAM/bigFiles_CA/.classpath
+loaders_IAM/bigFiles_CA/.gitignore
+loaders_IAM/bigFiles_CA/.project
+loaders_IAM/bigFiles_CA/.settings/
