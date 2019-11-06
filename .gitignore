@@ -133,3 +133,7 @@ loaders_IAM/solrLoader_CA/.gitignore
 loaders_IAM/solrLoader_CA/.classpath
 loaders_IAM/solrLoader_CA/.project
 loaders_IAM/solrLoader_CA/.settings/
+loaders_IAM/VirtuosoSync_CA/sync/.classpath
+loaders_IAM/VirtuosoSync_CA/sync/.gitignore
+loaders_IAM/VirtuosoSync_CA/sync/.project
+loaders_IAM/VirtuosoSync_CA/sync/.settings/
