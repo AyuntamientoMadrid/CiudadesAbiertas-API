@@ -34,6 +34,8 @@ import com.opencsv.bean.StatefulBeanToCsvBuilder;
 
 public class Util
 {
+	private static final String PLACEHOLDER = "placeholder";
+
 	private static final Logger log = LoggerFactory.getLogger(Main.class);
 	
 	private static ObjectMapper jsonMapper;
@@ -175,8 +177,11 @@ public class Util
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			   for (File child : directoryListing) {
-				   child.delete();
-				   counter++;
+				   if (child.getName().equals(PLACEHOLDER)==false)
+				   {
+					   child.delete();
+					   counter++;
+				   }
 			   }
 		}
 		if (counter>0)
