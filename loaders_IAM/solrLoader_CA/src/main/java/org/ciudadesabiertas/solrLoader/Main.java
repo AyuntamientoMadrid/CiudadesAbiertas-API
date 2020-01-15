@@ -92,6 +92,8 @@ public class Main
 					String datasetName=child.getName().replace(".json", "");
 					String URL=apiBaseURI+Util.urlForDataset(datasetName);
 					
+					log.info("Dataset: "+datasetName);
+					
 					client.setDatasetName(datasetName);
 					client.setPrefixURI(URL);					
 
@@ -118,16 +120,19 @@ public class Main
 		for (File child : directoryListing)
 		{
 			String name = child.getName();
-			name = name.replace(".json", "");
-			try
+			if (name.equals(Constants.PLACEHOLDER)==false)
 			{
-				if (datasets.getDataset(name))
+				name = name.replace(".json", "");
+				try
 				{
-					filesToLoad.add(child);
+					if (datasets.getDataset(name))
+					{
+						filesToLoad.add(child);
+					}
+				} catch (Exception e)
+				{
+					log.error("dataset not found", e);
 				}
-			} catch (Exception e)
-			{
-				log.error("dataset not found", e);
 			}
 		}
 		return filesToLoad;

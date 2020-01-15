@@ -4,15 +4,23 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.ParameterizedType;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -23,19 +31,9 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.log4j.Logger;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.net.ssl.X509TrustManager;
 
 public class Util
 {
@@ -47,8 +45,50 @@ public class Util
 	
 	private static Map<String,String> relacionDatasetURL= new HashMap<String,String>();
 	
+	private static List<String> datasetList=new ArrayList<String>();		
+	
 	static
 	{
+		datasetList.add(Constants.TRAMITE );
+		datasetList.add(Constants.ORGANIGRAMA );
+		datasetList.add(Constants.PUNTO_WIFI );
+		datasetList.add(Constants.INSTALACION_DEPORTIVA );
+		datasetList.add(Constants.CALLEJERO_VIA );
+		datasetList.add(Constants.CALLEJERO_TRAMO_VIA );
+		datasetList.add(Constants.CALLEJERO_PORTAL );
+		datasetList.add(Constants.CALIDAD_AIRE_OBSERVACION );
+		datasetList.add(Constants.CALIDAD_AIRE_ESTACION );
+		datasetList.add(Constants.MONUMENTO );
+		datasetList.add(Constants.PUNTO_INTERES_TURISTICO );
+		datasetList.add(Constants.LOCAL_COMERCIAL_TERRAZA );
+		datasetList.add(Constants.LOCAL_COMERCIAL_LICENCIA_ACTIVIDAD );
+		datasetList.add(Constants.LOCAL_COMERCIAL_AGRUPACION_COMERCIAL );
+		datasetList.add(Constants.LOCAL_COMERCIAL );
+		datasetList.add(Constants.AVISO_QUEJA_SUGERENCIA );
+		datasetList.add(Constants.EQUIPAMIENTO );
+		datasetList.add(Constants.APARCAMIENTO );
+		datasetList.add(Constants.ALOJAMIENTO );
+		datasetList.add(Constants.AGENDA_CULTURAL );
+		datasetList.add(Constants.SUBVENCION );
+		datasetList.add(Constants.CALIDAD_AIRE_SENSOR );
+		datasetList.add(Constants.DSD);
+		datasetList.add(Constants.DSD_DIMENSION);
+		datasetList.add(Constants.DSD_DIMENSION_VALUE);
+		datasetList.add(Constants.DSD_MEASURE);
+		datasetList.add(Constants.PADRON_CUBO_EDAD);
+		datasetList.add(Constants.PADRON_CUBO_ESTUDIOS);
+		datasetList.add(Constants.PADRON_CUBO_INDICADORES);
+		datasetList.add(Constants.PADRON_CUBO_NACIONALIDAD);
+		datasetList.add(Constants.PADRON_CUBO_PROCEDENCIA);
+		datasetList.add(Constants.TERRITORIO_PAIS);
+		datasetList.add(Constants.TERRITORIO_AUTONOMIA);
+		datasetList.add(Constants.TERRITORIO_PROVINCIA);
+		datasetList.add(Constants.TERRITORIO_MUNICIPIO);
+		datasetList.add(Constants.TERRITORIO_DISTRITO);
+		datasetList.add(Constants.TERRITORIO_BARRIO);
+		datasetList.add(Constants.TERRITORIO_SECCION);
+
+		
 		relacionDatasetURL.put(Constants.SUBVENCION, Constants.SUBVENCION_URI);
 		relacionDatasetURL.put(Constants.AGENDA_CULTURAL, Constants.AGENDA_URI);
 		relacionDatasetURL.put(Constants.ALOJAMIENTO, Constants.ALOJAMIENTO_URI);		
@@ -71,6 +111,26 @@ public class Util
 		relacionDatasetURL.put(Constants.PUNTO_WIFI, Constants.INSTALACION_DEPORTIVA_URI);
 		relacionDatasetURL.put(Constants.ORGANIGRAMA, Constants.ORGANIGRAMA_URI);
 		relacionDatasetURL.put(Constants.TRAMITE, Constants.TRAMITE_URI);
+		relacionDatasetURL.put(Constants.DSD, Constants.DSD_URI);
+		relacionDatasetURL.put(Constants.DSD_DIMENSION, Constants.DSD_DIMENSION_URI);
+		relacionDatasetURL.put(Constants.DSD_DIMENSION_VALUE, Constants.DSD_DIMENSION_VALUE_URI);
+		relacionDatasetURL.put(Constants.DSD_MEASURE, Constants.DSD_MEASURE_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_EDAD, Constants.PADRON_CUBO_EDAD_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_ESTUDIOS, Constants.PADRON_CUBO_ESTUDIOS_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_INDICADORES, Constants.PADRON_CUBO_INDICADORES_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_NACIONALIDAD, Constants.PADRON_CUBO_NACIONALIDAD_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_PROCEDENCIA, Constants.PADRON_CUBO_PROCEDENCIA_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_PAIS, Constants.TERRITORIO_PAIS_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_AUTONOMIA, Constants.TERRITORIO_AUTONOMIA_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_PROVINCIA, Constants.TERRITORIO_PROVINCIA_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_MUNICIPIO, Constants.TERRITORIO_MUNICIPIO_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_DISTRITO, Constants.TERRITORIO_DISTRITO_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_BARRIO, Constants.TERRITORIO_BARRIO_URI);
+		relacionDatasetURL.put(Constants.TERRITORIO_SECCION, Constants.TERRITORIO_SECCION_URI);
+		
+		
+		
+	
 	}
 	
 	
@@ -310,116 +370,17 @@ public class Util
 	public static Datasets readDatasetsToImport(Properties prop) throws Exception
 	{
 		Datasets datasets = new Datasets();
-
-		if ((prop.get(Constants.AGENDA_CULTURAL) != null) && (prop.get(Constants.AGENDA_CULTURAL).toString().toLowerCase().equals("true")))
+		
+		
+		
+		for (String name:datasetList)
 		{
-			datasets.setDataset(Constants.AGENDA_CULTURAL, true);
+			if ((prop.get(name) != null) && (prop.get(name).toString().toLowerCase().equals("true")))
+			{
+				datasets.setDataset(name, true);
+			}	
 		}
-
-		if ((prop.get(Constants.ALOJAMIENTO) != null) && (prop.get(Constants.ALOJAMIENTO).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.ALOJAMIENTO, true);
-		}
-
-		if ((prop.get(Constants.APARCAMIENTO) != null) && (prop.get(Constants.APARCAMIENTO).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.APARCAMIENTO, true);
-		}
-
-		if ((prop.get(Constants.AVISO_QUEJA_SUGERENCIA) != null) && (prop.get(Constants.AVISO_QUEJA_SUGERENCIA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.AVISO_QUEJA_SUGERENCIA, true);
-		}
-
-		if ((prop.get(Constants.CALIDAD_AIRE_ESTACION) != null) && (prop.get(Constants.CALIDAD_AIRE_ESTACION).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALIDAD_AIRE_ESTACION, true);
-		}
-
-		if ((prop.get(Constants.CALIDAD_AIRE_OBSERVACION) != null) && (prop.get(Constants.CALIDAD_AIRE_OBSERVACION).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALIDAD_AIRE_OBSERVACION, true);
-		}
-
-		if ((prop.get(Constants.CALIDAD_AIRE_SENSOR) != null) && (prop.get(Constants.CALIDAD_AIRE_SENSOR).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALIDAD_AIRE_SENSOR, true);
-		}
-
-		if ((prop.get(Constants.CALLEJERO_PORTAL) != null) && (prop.get(Constants.CALLEJERO_PORTAL).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALLEJERO_PORTAL, true);
-		}
-
-		if ((prop.get(Constants.CALLEJERO_TRAMO_VIA) != null) && (prop.get(Constants.CALLEJERO_TRAMO_VIA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALLEJERO_TRAMO_VIA, true);
-		}
-
-		if ((prop.get(Constants.CALLEJERO_VIA) != null) && (prop.get(Constants.CALLEJERO_VIA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.CALLEJERO_VIA, true);
-		}
-
-		if ((prop.get(Constants.EQUIPAMIENTO) != null) && (prop.get(Constants.EQUIPAMIENTO).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.EQUIPAMIENTO, true);
-		}
-
-		if ((prop.get(Constants.INSTALACION_DEPORTIVA) != null) && (prop.get(Constants.INSTALACION_DEPORTIVA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.INSTALACION_DEPORTIVA, true);
-		}
-
-		if ((prop.get(Constants.LOCAL_COMERCIAL_AGRUPACION_COMERCIAL) != null) && (prop.get(Constants.LOCAL_COMERCIAL_AGRUPACION_COMERCIAL).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.LOCAL_COMERCIAL_AGRUPACION_COMERCIAL, true);
-		}
-
-		if ((prop.get(Constants.LOCAL_COMERCIAL_LICENCIA_ACTIVIDAD) != null) && (prop.get(Constants.LOCAL_COMERCIAL_LICENCIA_ACTIVIDAD).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.LOCAL_COMERCIAL_LICENCIA_ACTIVIDAD, true);
-		}
-
-		if ((prop.get(Constants.LOCAL_COMERCIAL) != null) && (prop.get(Constants.LOCAL_COMERCIAL).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.LOCAL_COMERCIAL, true);
-		}
-
-		if ((prop.get(Constants.LOCAL_COMERCIAL_TERRAZA) != null) && (prop.get(Constants.LOCAL_COMERCIAL_TERRAZA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.LOCAL_COMERCIAL_TERRAZA, true);
-		}
-
-		if ((prop.get(Constants.MONUMENTO) != null) && (prop.get(Constants.MONUMENTO).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.MONUMENTO, true);
-		}
-
-		if ((prop.get(Constants.ORGANIGRAMA) != null) && (prop.get(Constants.ORGANIGRAMA).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.ORGANIGRAMA, true);
-		}
-
-		if ((prop.get(Constants.PUNTO_WIFI) != null) && (prop.get(Constants.PUNTO_WIFI).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.PUNTO_WIFI, true);
-		}
-
-		if ((prop.get(Constants.PUNTO_INTERES_TURISTICO) != null) && (prop.get(Constants.PUNTO_INTERES_TURISTICO).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.PUNTO_INTERES_TURISTICO, true);
-		}
-
-		if ((prop.get(Constants.SUBVENCION) != null) && (prop.get(Constants.SUBVENCION).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.SUBVENCION, true);
-		}
-
-		if ((prop.get(Constants.TRAMITE) != null) && (prop.get(Constants.TRAMITE).toString().toLowerCase().equals("true")))
-		{
-			datasets.setDataset(Constants.TRAMITE, true);
-		}
+	
 
 		return datasets;
 	}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 
 /**
  * @author localidata
@@ -43,6 +43,38 @@ public class Datasets
 		datasetsToLoad.put("puntoInteresTuristico", false);
 		datasetsToLoad.put("subvencion", false);
 		datasetsToLoad.put("tramite", false);
+		
+		datasetsToLoad.put("dsd", false);
+		datasetsToLoad.put("dsdDimension", false);
+		datasetsToLoad.put("dsdDimensionValue", false);
+		datasetsToLoad.put("dsdMeasure", false);
+		
+		datasetsToLoad.put("padronCuboEdad", false);
+		datasetsToLoad.put("padronCuboEstudios", false);
+		datasetsToLoad.put("padronCuboIndicadores", false);
+		datasetsToLoad.put("padronCuboNacionalidad", false);
+		datasetsToLoad.put("padronCuboProcedencia", false);
+
+		datasetsToLoad.put("territorioPais", false);
+		datasetsToLoad.put("territorioAutonomia", false);
+		datasetsToLoad.put("territorioProvincia", false);
+		datasetsToLoad.put("territorioMunicipio", false);
+		datasetsToLoad.put("territorioDistrito", false);
+		datasetsToLoad.put("territorioBarrio", false);
+		datasetsToLoad.put("territorioSeccion", false);
+
+		datasetsToLoad.put("agendaMunicipalEvento", false);
+		datasetsToLoad.put("agendaMunicipalDocumento", false);
+		datasetsToLoad.put("agendaMunicipalRolEvento", false);
+
+		datasetsToLoad.put("contratosAward", false);
+		datasetsToLoad.put("contratosItem", false);
+		datasetsToLoad.put("contratosLot", false);
+		datasetsToLoad.put("contratosLotRelItem", false);
+		datasetsToLoad.put("contratosOrganization", false);
+		datasetsToLoad.put("contratosProcess", false);
+		datasetsToLoad.put("contratosTender", false);
+		datasetsToLoad.put("contratosTenderRelItem", false);
 	}
 	
 	public List<String> getDatasetNames()
@@ -55,7 +87,7 @@ public class Datasets
 	{
 		if (datasetsToLoad.containsKey(name)==false)
 		{
-			throw new Exception("Dataset not Found");
+			throw new Exception("Dataset not Found: "+name);
 		}
 		return datasetsToLoad.get(name);		
 	}
@@ -64,7 +96,7 @@ public class Datasets
 	{
 		if (datasetsToLoad.containsKey(name)==false)
 		{
-			throw new Exception("Dataset not Found");
+			throw new Exception("Dataset not Found: "+name);
 		}
 		return datasetsToLoad.put(name,status);
 	}

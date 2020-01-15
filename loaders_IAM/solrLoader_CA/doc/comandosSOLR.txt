@@ -1,12 +1,27 @@
 #Crear un nuevo Core
-sudo su - solr -c "/opt/solr/bin/solr create -c ciudadesAbiertas"
+sudo su - solr -c "/opt/solr/bin/solr create -c ciudadesAbiertas -n data_driven_schema_configs"
 
 #Creamos un campo para meter todas las cadenas para las busquedas globales
 curl -X POST -H 'Content-type:application/json' --data-binary '{"add-copy-field" : {"source":"*","dest":"_text_"}}' http://localhost:8983/solr/ciudadesAbiertas/schema
 
-#Especificar tipo de un campo
+#Especificar tipo de un campo (para todos los que provocan error)
 curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"telephone", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"postalCode", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"autonomiaId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"provinciaId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"contactPointFaxNumber", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+
 
 
 #Eliminar core
 sudo su - solr -c "/opt/solr/bin/solr delete -c ciudadesAbiertas"
+
+
+# ¡¡¡NOTA!!!!
+# Para ejecutar estos comandos hay que desactivar la seguridad
+# Renombrado el fichero security.json en la ruta de los datos (por defecto /var/solr/data)

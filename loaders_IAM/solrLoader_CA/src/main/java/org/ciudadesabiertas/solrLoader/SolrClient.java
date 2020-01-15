@@ -550,6 +550,8 @@ public class SolrClient
 
 	private void addCustomFields(SolrInputDocument inputDocument, String datasetName)
 	{
+		
+		
 		if (Util.validValue(datasetName))
 		{
 			inputDocument.addField(DATASET_NAME, datasetName);
@@ -562,6 +564,44 @@ public class SolrClient
 				String calidadAirePrefixURI=prefixURI.replace("{isHostedBy}", estacion);
 				String id=inputDocument.get("observesId").getValue().toString();
 				inputDocument.addField(URI, calidadAirePrefixURI+"/"+id);
+			}
+			else if (datasetName.equals(Constants.DSD_DIMENSION_VALUE))
+			{	
+				String dimensionId=inputDocument.get("topConceptOf").getValue().toString();
+				String newDimensionId="";
+				dimensionId=dimensionId.substring(dimensionId.lastIndexOf("/")+1);
+				
+				if (dimensionId.contains("#"))
+				{
+					dimensionId=dimensionId.substring(dimensionId.lastIndexOf("#")+1);
+				}
+				
+				dimensionId=dimensionId.replace("-", " ");
+				String[] split = dimensionId.split(" ");
+				for (int i=0;i<split.length;i++)
+				{
+					 String w=split[i];
+					 if (i==0)
+					 {
+						 newDimensionId+=w;
+					 }
+					 else
+					 {
+						 String first=w.substring(0,1);  
+					     String afterfirst=w.substring(1);  
+					     newDimensionId+=first.toUpperCase()+afterfirst;
+					 }
+				}				
+				
+				log.info(newDimensionId);
+				
+				String dimensionValueURI=prefixURI.replace("{dimensionId}", newDimensionId);				
+				inputDocument.addField(URI, dimensionValueURI);
+			}
+			else if (datasetName.equals(Constants.TERRITORIO_PAIS)||datasetName.equals(Constants.TERRITORIO_AUTONOMIA)||datasetName.equals(Constants.TERRITORIO_PROVINCIA))
+			{	
+				String id=inputDocument.get("identifier").getValue().toString();
+				inputDocument.addField(URI, prefixURI+"/"+id);
 			}
 			else
 			{
