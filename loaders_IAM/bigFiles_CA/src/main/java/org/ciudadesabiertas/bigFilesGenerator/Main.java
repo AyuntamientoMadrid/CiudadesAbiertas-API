@@ -16,18 +16,34 @@ import java.util.Set;
 import org.ciudadesabiertas.dataset.model.Agenda;
 import org.ciudadesabiertas.dataset.model.AgrupacionComercial;
 import org.ciudadesabiertas.dataset.model.Alojamiento;
+import org.ciudadesabiertas.dataset.model.Autonomia;
 import org.ciudadesabiertas.dataset.model.AvisoQuejaSug;
+import org.ciudadesabiertas.dataset.model.Barrio;
 import org.ciudadesabiertas.dataset.model.CalidadAireEstacion;
 import org.ciudadesabiertas.dataset.model.CalidadAireObservacion;
 import org.ciudadesabiertas.dataset.model.CalidadAireSensor;
 import org.ciudadesabiertas.dataset.model.CallejeroPortal;
 import org.ciudadesabiertas.dataset.model.CallejeroTramoVia;
 import org.ciudadesabiertas.dataset.model.CallejeroVia;
+import org.ciudadesabiertas.dataset.model.CubeDsd;
+import org.ciudadesabiertas.dataset.model.CubeDsdDimension;
+import org.ciudadesabiertas.dataset.model.CubeDsdDimensionValue;
+import org.ciudadesabiertas.dataset.model.CubeDsdMeasure;
+import org.ciudadesabiertas.dataset.model.CuboEdad;
+import org.ciudadesabiertas.dataset.model.CuboEstudios;
+import org.ciudadesabiertas.dataset.model.CuboIndicadores;
+import org.ciudadesabiertas.dataset.model.CuboNacionalidad;
+import org.ciudadesabiertas.dataset.model.CuboProcedencia;
+import org.ciudadesabiertas.dataset.model.Distrito;
 import org.ciudadesabiertas.dataset.model.Equipamiento;
 import org.ciudadesabiertas.dataset.model.LicenciaActividad;
 import org.ciudadesabiertas.dataset.model.LocalComercial;
+import org.ciudadesabiertas.dataset.model.Municipio;
 import org.ciudadesabiertas.dataset.model.Organigrama;
+import org.ciudadesabiertas.dataset.model.Pais;
+import org.ciudadesabiertas.dataset.model.Provincia;
 import org.ciudadesabiertas.dataset.model.PuntoInteresTuristico;
+import org.ciudadesabiertas.dataset.model.SeccionCensal;
 import org.ciudadesabiertas.dataset.model.Subvencion;
 import org.ciudadesabiertas.dataset.model.Terraza;
 import org.ciudadesabiertas.dataset.model.Tramite;
@@ -52,14 +68,7 @@ import ch.qos.logback.classic.joran.JoranConfigurator;
 
 public class Main 
 {	
-	
-	/**
-	 * 
-	 */
 	private static final String RDF_OUTPUT = "rdfOutput";
-	/**
-	 * 
-	 */
 	private static final String JSON_OUTPUT = "jsonOutput";
 	private static final String TO = " to ";
 	private static final String ITEMS_FROM = "Items from ";
@@ -93,6 +102,57 @@ public class Main
 			sessions = hibernateConfiguration.buildSessionFactory();
 		}
 			
+	}
+	
+	public static void initDatasetClasses(Configuration config)
+	{
+		config.addAnnotatedClass(Subvencion.class);
+		config.addAnnotatedClass(Agenda.class);
+		config.addAnnotatedClass(Alojamiento.class);
+		config.addAnnotatedClass(Equipamiento.class);
+		config.addAnnotatedClass(AvisoQuejaSug.class);
+		config.addAnnotatedClass(CalidadAireEstacion.class);
+		config.addAnnotatedClass(CalidadAireObservacion.class);
+		config.addAnnotatedClass(CalidadAireSensor.class);
+		config.addAnnotatedClass(CallejeroPortal.class);
+		config.addAnnotatedClass(CallejeroTramoVia.class);
+		config.addAnnotatedClass(CallejeroVia.class);
+		config.addAnnotatedClass(Equipamiento.class);		
+		config.addAnnotatedClass(AgrupacionComercial.class);
+		config.addAnnotatedClass(LicenciaActividad.class);
+		config.addAnnotatedClass(LocalComercial.class);
+		config.addAnnotatedClass(Terraza.class);		
+		config.addAnnotatedClass(Organigrama.class);		
+		config.addAnnotatedClass(PuntoInteresTuristico.class);		
+		config.addAnnotatedClass(Tramite.class);
+		config.addAnnotatedClass(CubeDsd.class);
+		config.addAnnotatedClass(CubeDsdDimension.class);
+		config.addAnnotatedClass(CubeDsdDimensionValue.class);
+		config.addAnnotatedClass(CubeDsdMeasure.class);
+		config.addAnnotatedClass(CuboEdad.class);
+		config.addAnnotatedClass(CuboEstudios.class);
+		config.addAnnotatedClass(CuboIndicadores.class);
+		config.addAnnotatedClass(CuboNacionalidad.class);
+		config.addAnnotatedClass(CuboProcedencia.class);
+		config.addAnnotatedClass(Pais.class);
+		config.addAnnotatedClass(Autonomia.class);
+		config.addAnnotatedClass(Provincia.class);
+		config.addAnnotatedClass(Municipio.class);
+		config.addAnnotatedClass(Distrito.class);
+		config.addAnnotatedClass(Barrio.class);
+		config.addAnnotatedClass(SeccionCensal.class);
+		
+		
+		
+		//TODO CMG: Ver si es posible realizar la carga desde fichero
+		/*
+		try {
+			config.addAnnotatedClass(Class.forName("Subvencion"));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 	
 
@@ -199,18 +259,83 @@ public class Main
     	{
     		queryText="From Tramite";    		
     	}
+    	else if (dataset.equals("dsd"))
+    	{
+    		queryText="From CubeDsd";    		
+    	}
+    	else if (dataset.equals("dsdDimension"))
+    	{
+    		queryText="From CubeDsdDimension";    		
+    	}
+    	else if (dataset.equals("dsdDimensionValue"))
+    	{
+    		queryText="From CubeDsdDimensionValue";    		
+    	}
+    	else if (dataset.equals("dsdMeasure"))
+    	{
+    		queryText="From CubeDsdMeasure";    		
+    	}
+    	else if (dataset.equals("dsdRelDimension"))
+    	{
+    		queryText="From CubeDsdRelDimension";    		
+    	}    	
+    	else if (dataset.equals("padronCuboEdad"))
+    	{
+    		queryText="From CuboEdad";    		
+    	}
+    	else if (dataset.equals("padronCuboEstudios"))
+    	{
+    		queryText="From CuboEstudios";    		
+    	}
+    	else if (dataset.equals("padronCuboIndicadores"))
+    	{
+    		queryText="From CuboIndicadores";    		
+    	}
+    	else if (dataset.equals("padronCuboNacionalidad"))
+    	{
+    		queryText="From CuboNacionalidad";    		
+    	}
+    	else if (dataset.equals("padronCuboProcedencia"))
+    	{
+    		queryText="From CuboProcedencia";    		
+    	}
+    	else if (dataset.equals("territorioPais"))
+    	{
+    		queryText="From Pais";    		
+    	}
+    	else if (dataset.equals("territorioAutonomia"))
+    	{
+    		queryText="From Autonomia";    		
+    	}
+    	else if (dataset.equals("territorioProvincia"))
+    	{
+    		queryText="From Provincia";    		
+    	}
+    	else if (dataset.equals("territorioMunicipio"))
+    	{
+    		queryText="From Municipio";    		
+    	}
+    	else if (dataset.equals("territorioDistrito"))
+    	{
+    		queryText="From Distrito";    		
+    	}
+    	else if (dataset.equals("territorioBarrio"))
+    	{
+    		queryText="From Barrio";    		
+    	}
+    	else if (dataset.equals("territorioSeccion"))
+    	{
+    		queryText="From SeccionCensal";    		
+    	}    	
+    	
+    	
     	
     	if (queryText.equals(""))
     	{
     		throw new Exception("Dataset without control");
     	}
     	
-    	/*
-    	alojamiento=true
-    	aparcamiento=true
-    	avisoQuejaSugerencia=true
-    	*/
-    	    	
+     	    	
     	
 		Query query = session.createQuery(queryText);
 		result = query.list();
@@ -222,38 +347,6 @@ public class Main
 		return result;
 	}
 	
-	public static void initDatasetClasses(Configuration config)
-	{
-		config.addAnnotatedClass(Subvencion.class);
-		config.addAnnotatedClass(Agenda.class);
-		config.addAnnotatedClass(Alojamiento.class);
-		config.addAnnotatedClass(Equipamiento.class);
-		config.addAnnotatedClass(AvisoQuejaSug.class);
-		config.addAnnotatedClass(CalidadAireEstacion.class);
-		config.addAnnotatedClass(CalidadAireObservacion.class);
-		config.addAnnotatedClass(CalidadAireSensor.class);
-		config.addAnnotatedClass(CallejeroPortal.class);
-		config.addAnnotatedClass(CallejeroTramoVia.class);
-		config.addAnnotatedClass(CallejeroVia.class);
-		config.addAnnotatedClass(Equipamiento.class);		
-		config.addAnnotatedClass(AgrupacionComercial.class);
-		config.addAnnotatedClass(LicenciaActividad.class);
-		config.addAnnotatedClass(LocalComercial.class);
-		config.addAnnotatedClass(Terraza.class);		
-		config.addAnnotatedClass(Organigrama.class);		
-		config.addAnnotatedClass(PuntoInteresTuristico.class);		
-		config.addAnnotatedClass(Tramite.class);
-		
-		//TODO CMG: Ver si es posible realizar la carga desde fichero
-		/*
-		try {
-			config.addAnnotatedClass(Class.forName("Subvencion"));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-	}
 	
 	public static <T> void generarJSON(List<T> listado, String path, String jsonFileName)
 	{

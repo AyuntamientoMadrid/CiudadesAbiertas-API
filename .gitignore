@@ -156,3 +156,5 @@ API_CA/API_PADRON/.settings/
 API_CA/API_PADRON/src/test/resources/config.properties
 API_CA/API_PADRON/src/test/resources/logback.xml
 liquibase_CA/target/
+loaders_IAM/bigFiles_CA/jsonOutput/
+loaders_IAM/bigFiles_CA/rdfOutput/

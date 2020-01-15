@@ -92,14 +92,17 @@
 
 		<!-- End JAVA 11 -->
 
+		
+
+
 		<!-- Dependencias de conjuntos de datos -->
+		 
+		
 		<dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-
 		</dependency>
-
 
 		<dependency>
 			<groupId>API_CA</groupId>
@@ -280,7 +283,44 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.dsd</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.padron</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.territorio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		
 
 	</dependencies>
 
