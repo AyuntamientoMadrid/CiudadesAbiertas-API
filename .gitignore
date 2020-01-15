@@ -155,3 +155,4 @@ API_CA/API_PADRON/.project
 API_CA/API_PADRON/.settings/
 API_CA/API_PADRON/src/test/resources/config.properties
 API_CA/API_PADRON/src/test/resources/logback.xml
+liquibase_CA/target/
