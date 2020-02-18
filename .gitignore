@@ -169,7 +169,6 @@ liquibase_CA/src/main/resources/liquibase/db-changelog-script-1.17-PADRON-data-6
 liquibase_CA/src/main/resources/liquibase/db-changelog-script-1.17-PADRON-data-7.xml
 liquibase_CA/src/main/resources/liquibase/db-changelog-script-1.17-PADRON-data-8.xml
 liquibase_CA/src/main/resources/liquibase/db-changelog-script-1.17-PADRON-data-9.xml
-
 API_CA/API_AGENDA/target/
 API_CA/API_AGENDAMUNICIPAL/src/test/resources/config.properties
 API_CA/API_AGENDAMUNICIPAL/src/test/resources/logback.xml
