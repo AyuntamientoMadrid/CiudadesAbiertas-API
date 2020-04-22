@@ -197,3 +197,12 @@ API_CA/API_TERRITORIO/target/
 API_CA/API_TRAMITE/target/
 API_CA/API_WEB/target/
 API_CA/rdfGeneratorZ/target/
+liquibase_CA/target/
+API_CA/API_AGENDAMUNICIPAL/target/API_AGENDAMUNICIPAL.jar
+API_CA/API_AGENDAMUNICIPAL/target/
+API_CA/API_BICICLETAPUBLICA/target/
+API_CA/API_AGENDAMUNICIPAL/src/test/resources/config.properties
+API_CA/API_AGENDAMUNICIPAL/src/test/resources/logback.xml
+API_CA/API_BICICLETAPUBLICA/src/test/resources/config.properties
+API_CA/API_BICICLETAPUBLICA/src/test/resources/logback.xml
+
