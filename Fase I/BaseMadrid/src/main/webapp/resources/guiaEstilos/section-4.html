@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Ayre - Guía de estilos</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+	<!--<link rel="stylesheet" href="public/vendor_2018.min.css">
+  <link rel="stylesheet" href="public/indraweb_2018.min.css">-->
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="css/vendor.min.css">
+  <link rel="stylesheet" href="css/proyecto-base.min.css">
+
+  
+  
+
+</head>
+<body class="kss-body indraweb-2018">
+	<!--<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 header__col-left">
+					<h1 class="header__title">Ayre - Guía de estilos</h1>
+				</div>
+			</div>
+		</div>
+  </header>-->
+  <header class="header" id="top">
+		<div class="container-title">
+			<div class="brand">
+				<div class="row">
+					<div class="col-md-10 titulo">
+						<h1><a class="" title="Intranet Ayuntamiento de Madrid" href="index.html">Intranet Ayuntamiento de Madrid</a></h1>
+					</div>
+					<div class="col-md-2 header-logo">
+						<a href="#" accesskey="I"><img src="img/logo_madrid_cabecera.png" alt="Logo Madrid"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Menu secundario -->
+		<div class="menu_secundario">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-lg-1 col-xl-1 ayre-logo above">
+		                <a class="header_logo" title="" href="#">   
+		                    <img class="logo_ayre" src="img/ayre_logo.png" alt="Logo Ayre">
+		                </a>
+		            </div>
+		            <div class="col-12 col-lg-11 col-xl-11 options">
+		        
+		            </div>
+		        </div>
+		    </div>
+		</div>	
+	</header>
+	<div id="kss-wrapper" class="kss-wrapper">
+		<div id="kss-nav">
+			<aside>
+				<nav class="kss-nav">
+          <ul class="kss-menu" data-kss-ref="4">
+            <li class="kss-menu-item"><a href="./index.html"><span class="kss-ref">0</span><span class="kss-name">Introducción</span></a></li>
+            <li class="kss-menu-item">
+            	<a href="section-1.html"><span class="kss-ref">1</span><span class="kss-name">Base</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-2.html"><span class="kss-ref">2</span><span class="kss-name">Módulos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-3.html"><span class="kss-ref">3</span><span class="kss-name">Elementos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-4.html"><span class="kss-ref">4</span><span class="kss-name">Formularios</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-5.html"><span class="kss-ref">5</span><span class="kss-name">Botones</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-6.html"><span class="kss-ref">6</span><span class="kss-name">Variables</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-7.html"><span class="kss-ref">7</span><span class="kss-name">Aplicaciones Externas</span></a>
+            </li>
+          </ul>
+          <ul class="kss-menu-child">
+            <li class="kss-menu-item"><a href="#section-4.1"><span class="kss-ref">4.1</span><span class="kss-name">Input</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.2"><span class="kss-ref">4.2</span><span class="kss-name">Select</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.3"><span class="kss-ref">4.3</span><span class="kss-name">Checkbox</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.4"><span class="kss-ref">4.4</span><span class="kss-name">Radio</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.5"><span class="kss-ref">4.5</span><span class="kss-name">Campo texto (Bloque)</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.6"><span class="kss-ref">4.6</span><span class="kss-name">Campo fecha</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.7"><span class="kss-ref">4.7</span><span class="kss-name">Casilla de verificación</span></a></li>
+            <li class="kss-menu-item"><a href="#section-4.8"><span class="kss-ref">4.8</span><span class="kss-name">Validación de campos</span></a></li>
+          </ul>
+        </nav>
+			</aside>
+		</div>
+		<div class="kss-content">
+      <article class="kss-article">
+        <section id="section-4" class="kss-section kss-depth-1">
+          <h1 class="kss-title"><span class="kss-ref">4</span> Formularios</h1>
+          <div class="kss-description">
+            <p>A continuación se muestran los diferentes componentes para construir formularios.</p>
+          </div>
+        </section>
+        <section id="section-4.1" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.1</span> Input</h1>
+          <div class="kss-description">
+            <p>Se utilizan los <code>input</code> personalizados de Bootstrap:</p>
+
+<p>hay tres tipos de input</p>
+
+<ul>
+<li>input tipo texto <strong>type=&quot;text&quot;</strong></li>
+<li>input tipo numérico <strong>type=&quot;number&quot;</strong></li>
+<li>input tipo archivo <strong>type=&quot;file&quot;</strong></li>
+</ul>
+
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+    <label class="control-label">Campo texto</label>
+    <input type="text" class="form-control" name="username" required="true">
+</div>
+<div class="form-group">
+    <label class="control-label">Campo numérico</label>
+    <input type="number" class="form-control" name="username">
+</div>
+<div class="form-group">
+    <input type="file" class="custom-file-input" id="inputGroupFile01">
+    <label class="custom-file-label label_show" for="inputGroupFile01">Seleccione un archivo</label>
+    <label class="custom-file-label label_hidden hidden" for="inputGroupFile01"></label>
+    <i class="custom-file-icon icon icon-close hidden" alt="borrar" title="borrar"></i>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;Campo texto&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;username&quot; required=&quot;true&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;Campo numérico&lt;/label&gt;
+    &lt;input type=&quot;number&quot; class=&quot;form-control&quot; name=&quot;username&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input type=&quot;file&quot; class=&quot;custom-file-input&quot; id=&quot;inputGroupFile01&quot;&gt;
+    &lt;label class=&quot;custom-file-label label_show&quot; for=&quot;inputGroupFile01&quot;&gt;Seleccione un archivo&lt;/label&gt;
+    &lt;label class=&quot;custom-file-label label_hidden hidden&quot; for=&quot;inputGroupFile01&quot;&gt;&lt;/label&gt;
+    &lt;i class=&quot;custom-file-icon icon icon-close hidden&quot; alt=&quot;borrar&quot; title=&quot;borrar&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.2" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.2</span> Select</h1>
+          <div class="kss-description">
+            <p>Los elementos <code>select</code> tienen una presentación especifica. Su personalización se hace por javascript, por lo que basta con incluirlos como un select normal.<br/>
+Se utilizan si desea permitir que el usuario elija entre varias opciones</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+<label class="control-label">Lista de valores (desplegable)</label>
+<div class="custom-select">
+<select class="form-control simple" name="desplegable">
+    <option value="">Seleccione una opción</option>
+    <option value="op1">Opción 1</option>
+    <option value="op2">Opción 2</option>
+    <option value="op3">Opción 3</option>
+</select>
+<span class="custom-select__arrow" aria-hidden="true">
+<span class="icon-arrow-full-down"></span>
+</span>
+</div>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+&lt;label class=&quot;control-label&quot;&gt;Lista de valores (desplegable)&lt;/label&gt;
+&lt;div class=&quot;custom-select&quot;&gt;
+&lt;select class=&quot;form-control simple&quot; name=&quot;desplegable&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;Seleccione una opción&lt;/option&gt;
+    &lt;option value=&quot;op1&quot;&gt;Opción 1&lt;/option&gt;
+    &lt;option value=&quot;op2&quot;&gt;Opción 2&lt;/option&gt;
+    &lt;option value=&quot;op3&quot;&gt;Opción 3&lt;/option&gt;
+&lt;/select&gt;
+&lt;span class=&quot;custom-select__arrow&quot; aria-hidden=&quot;true&quot;&gt;
+&lt;span class=&quot;icon-arrow-full-down&quot;&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.3" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.3</span> Checkbox</h1>
+          <div class="kss-description">
+            <p>Corresponden a los <code>checkbox</code> personalizados de Bootstrap y se utilizan para seleccionar una o varias opciones en una lista</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">
+    Checkbox
+    </label>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-check&quot;&gt;
+    &lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; value=&quot;&quot; id=&quot;defaultCheck1&quot;&gt;
+    &lt;label class=&quot;form-check-label&quot; for=&quot;defaultCheck1&quot;&gt;
+    Checkbox
+    &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.4" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.4</span> Radio</h1>
+          <div class="kss-description">
+            <p>Corresponden a los <code>radio</code> personalizados de Bootstrap y se utilizan para seleccionar una opción entre muchas.</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked="">
+    <label class="form-check-label" for="exampleRadios1">
+    Radiobutton
+    </label>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-check&quot;&gt;
+    &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;exampleRadios&quot; id=&quot;exampleRadios1&quot; value=&quot;option1&quot; checked=&quot;&quot;&gt;
+    &lt;label class=&quot;form-check-label&quot; for=&quot;exampleRadios1&quot;&gt;
+    Radiobutton
+    &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.5" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.5</span> Campo texto (Bloque)</h1>
+          <div class="kss-description">
+            <p>Es un campo de texto dedicado para un gran volumen de texto.<br/>
+Se utilizan los <code>textarea</code> personalizados de Bootstrap.</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+    <label for="exampleFormControlTextarea1">Campo texto (Bloque)</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label for=&quot;exampleFormControlTextarea1&quot;&gt;Campo texto (Bloque)&lt;/label&gt;
+    &lt;textarea class=&quot;form-control&quot; id=&quot;exampleFormControlTextarea1&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.6" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.6</span> Campo fecha</h1>
+          <div class="kss-description">
+            <p>Se utilizan los <code>input</code> personalizados de Bootstrap a los que hay que incluir las clases <strong>from hasDatepicker</strong>.</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+    <div class="col-sm-12 col">
+        <label class="control-label">Campo fecha</label>
+        <input type="text" id="date" class="from hasDatepicker" name="date" placeholder="Campo fecha">
+        <img class="ui-datepicker-trigger" src="img/calendar.png" alt="..." title="...">
+    </div>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;div class=&quot;col-sm-12 col&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Campo fecha&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;date&quot; class=&quot;from hasDatepicker&quot; name=&quot;date&quot; placeholder=&quot;Campo fecha&quot;&gt;
+        &lt;img class=&quot;ui-datepicker-trigger&quot; src=&quot;img/calendar.png&quot; alt=&quot;...&quot; title=&quot;...&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.7" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.7</span> Casilla de verificación</h1>
+          <div class="kss-description">
+            <p>Se utiliza la casilla de verificación personalizados de Bootstrap.</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+    <span class="texto_switch">Casilla de verificación</span>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;switch&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
+        &lt;span class=&quot;slider round&quot;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;span class=&quot;texto_switch&quot;&gt;Casilla de verificación&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-4.8" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">4.8</span> Validación de campos</h1>
+          <div class="kss-description">
+            <p>Cuando un campo del formulario es obligatorio <code>*</code> tiene una validación, estos campos tienen dos estados:</p>
+
+<ul>
+<li>Correcto <strong>class=&quot;okField&quot;</strong></li>
+<li>Incorrecto <strong>class=&quot;errorField&quot;</strong></li>
+</ul>
+
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="form-group">
+    <label class="control-label">Campo texto error *</label>
+    <input type="text" class="form-control errorField" name="username" required="true">
+    <span class="hint">Texto cuando hay un <strong>'error'</strong>. </span>
+</div>
+<div class="form-group">
+    <label class="control-label">Campo texto ok *</label>
+    <input type="email" class="form-control okField" name="username" required="true">
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;Campo texto error *&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control errorField&quot; name=&quot;username&quot; required=&quot;true&quot;&gt;
+    &lt;span class=&quot;hint&quot;&gt;Texto cuando hay un &lt;strong&gt;&#x27;error&#x27;&lt;/strong&gt;. &lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;Campo texto ok *&lt;/label&gt;
+    &lt;input type=&quot;email&quot; class=&quot;form-control okField&quot; name=&quot;username&quot; required=&quot;true&quot;&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+	</div>
+	<footer class="footer">
+        
+    <div class="links">
+      <div class="footer_content_xl">
+        <img src="img/escudo_madrid.png" alt="escudo del ayuntamiento de Madrid" />
+        
+      </div>
+    </div>
+    <div class="copyright" id="bottom">
+      <div class="footer_content_xl">
+        <ul>
+          <li class="footer_title">Ayuntamiento de Madrid 2019</li>
+          <li class="text">Copyright 2019. Reservados todos los derechos</li>
+        </ul>
+      </div>         
+    </div>
+  </footer>
+
+	<!-- SCRIPTS -->
+	<script src="public/kss.js"></script>
+	<script src="public/prettify.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="public/rainbow.min.js"></script>
+  <script src="public/main.js"></script>
+  <script src="public/js/proyecto-base.min.js"></script>
+  <script src="public/js/vendor.min.js"></script>
+	<script>
+		$( document ).ready(function(){
+      $(".listado_revista .bloque_imagen a").click(function(event){
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+
+      $(".participacion_detalle .participacion_images a,.participacion_detalle .participacion_images p").click(function(event){
+          event.preventDefault();
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+  });
+	</script>
+
+	<!-- 
+	 -->
+</body>
+</html>

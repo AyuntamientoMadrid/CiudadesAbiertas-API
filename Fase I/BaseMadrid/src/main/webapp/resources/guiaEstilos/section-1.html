@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Ayre - Guía de estilos</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+	<!--<link rel="stylesheet" href="public/vendor_2018.min.css">
+  <link rel="stylesheet" href="public/indraweb_2018.min.css">-->
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="css/vendor.min.css">
+  <link rel="stylesheet" href="css/proyecto-base.min.css">
+
+  
+  
+
+</head>
+<body class="kss-body indraweb-2018">
+	<!--<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 header__col-left">
+					<h1 class="header__title">Ayre - Guía de estilos</h1>
+				</div>
+			</div>
+		</div>
+  </header>-->
+  <header class="header" id="top">
+		<div class="container-title">
+			<div class="brand">
+				<div class="row">
+					<div class="col-md-10 titulo">
+						<h1><a class="" title="Intranet Ayuntamiento de Madrid" href="index.html">Intranet Ayuntamiento de Madrid</a></h1>
+					</div>
+					<div class="col-md-2 header-logo">
+						<a href="#" accesskey="I"><img src="img/logo_madrid_cabecera.png" alt="Logo Madrid"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Menu secundario -->
+		<div class="menu_secundario">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-lg-1 col-xl-1 ayre-logo above">
+		                <a class="header_logo" title="" href="#">   
+		                    <img class="logo_ayre" src="img/ayre_logo.png" alt="Logo Ayre">
+		                </a>
+		            </div>
+		            <div class="col-12 col-lg-11 col-xl-11 options">
+		        
+		            </div>
+		        </div>
+		    </div>
+		</div>	
+	</header>
+	<div id="kss-wrapper" class="kss-wrapper">
+		<div id="kss-nav">
+			<aside>
+				<nav class="kss-nav">
+          <ul class="kss-menu" data-kss-ref="1">
+            <li class="kss-menu-item"><a href="./index.html"><span class="kss-ref">0</span><span class="kss-name">Introducción</span></a></li>
+            <li class="kss-menu-item">
+            	<a href="section-1.html"><span class="kss-ref">1</span><span class="kss-name">Base</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-2.html"><span class="kss-ref">2</span><span class="kss-name">Módulos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-3.html"><span class="kss-ref">3</span><span class="kss-name">Elementos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-4.html"><span class="kss-ref">4</span><span class="kss-name">Formularios</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-5.html"><span class="kss-ref">5</span><span class="kss-name">Botones</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-6.html"><span class="kss-ref">6</span><span class="kss-name">Variables</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-7.html"><span class="kss-ref">7</span><span class="kss-name">Aplicaciones Externas</span></a>
+            </li>
+          </ul>
+          <ul class="kss-menu-child">
+            <li class="kss-menu-item"><a href="#section-1.1"><span class="kss-ref">1.1</span><span class="kss-name">Rejilla</span></a></li>
+            <li class="kss-menu-item"><a href="#section-1.2"><span class="kss-ref">1.2</span><span class="kss-name">Encabezados</span></a></li>
+            <li class="kss-menu-item"><a href="#section-1.3"><span class="kss-ref">1.3</span><span class="kss-name">Fuentes</span></a></li>
+            <li class="kss-menu-item"><a href="#section-1.4"><span class="kss-ref">1.4</span><span class="kss-name">Iconos</span></a></li>
+          </ul>
+        </nav>
+			</aside>
+		</div>
+		<div class="kss-content">
+      <article class="kss-article">
+        <section id="section-1" class="kss-section kss-depth-1">
+          <h1 class="kss-title"><span class="kss-ref">1</span> Base</h1>
+        </section>
+        <section id="section-1.1" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">1.1</span> Rejilla</h1>
+          <div class="kss-description">
+            <p>La estructura de la intranet del Ayuntamiento está apoyada en la librería <strong>Bootstrap</strong> ya que facilita la construcción de un modelo web <strong>responsive</strong>.<br/>
+Esta librería se basa en el ancho de la pantalla del dispositivo en el cual se va a reproducir la web:</p>
+
+<ul>
+<li>Según el ancho del dispositivo, se usan los prefijos de la clase <strong>.col-xs- , .col-sm-, .col-md- y .col-lg-</strong></li></li>
+<li>Y se le añade a la clase el número de columnas que se quiere que ocupe el elemento, teniendo en cuenta que el máximo es 12 y el mínimo 1. Sin olvidar que la suma de cada nivel de elementos debe ser 12.</li></li>
+</ul>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead colspan="9">
+        <tr>
+            <th></th>
+            <th colspan="2">
+                Dispositivos móviles
+                <small>(&lt;768px)</small>
+            </th>
+            <th colspan="2">
+                Tablets
+                <small>(≥768px)</small>
+            </th>
+            <th colspan="2">
+                Pantallas de Escritorio 
+                <small>Normales (≥992px)</small>
+            </th>
+            <th colspan="2">
+                Grandes Pantallas de 
+                <small>Escritorio (≥1200px)</small>
+            </th>
+        </tr>
+    </thead>
+    <tbody colspan="9">
+        <tr>
+          <th scope="row" class="text-nowrap">Width</th>
+          <td colspan="2">Auto</td>
+          <td colspan="2">750px</td>
+          <td colspan="2">970px</td>
+          <td colspan="2">1170px</td>
+        </tr>
+        <tr>
+          <th scope="row" class="text-nowrap">Prefijo de la clase</th>
+          <td colspan="2"><code>.col-xs-</code></td>
+          <td colspan="2"><code>.col-md-</code></td>
+          <td colspan="2"><code>.col-lg-</code></td>
+          <td colspan="2"><code>.col-xl-</code></td>
+        </tr>
+        <tr>
+          <th scope="row" class="text-nowrap"># de columnas</th>
+          <td colspan="8">12</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>Esto es un ejemplo de la estructura de la web:</p>
+
+<ul>
+<li><strong>Header, Body, Footer 12</strong> columnas</li></li>
+<li>Cuando se dejen márgenes, primero se usa la clase <strong>container</strong> donde se define el ancho del contenedor y después la clase <strong>&quot;row&quot;</strong> donde se especifican los márgenes. Si un contenedor padre tiene un &quot;width&quot; en &quot;px&quot; y el contenedor hijo tiene &quot;margin:0 auto&quot; se centrar dicho contenedor y todos los hijos de este.</li>
+<li>En la estructura central de la página, hay dos partes, la parte central &apos;body&apos; o &quot;mainContent&quot; y la columna de la derecha en el que se localizan los diferentes paneles de herramientas.</li>
+<li>Para el &apos;contenido central&apos; se usan las clases según el ancho del dispositivo <strong>.col-xs/sm/md/lg-9</strong> y la columna de la derecha <strong>.col-xs/sm/md/lg-3</strong>.</li>
+</ul>
+<p><div class="table-responsive">
+  <table class="table table-bordered table-striped">
+        <thead colspan="9">
+          <tr>
+            <th scope="row" class="text-nowrap" colspan="9" style="text-align:left">Estructura de la web</th>
+          </tr>
+        </thead>
+        <tbody colspan="9">
+          <tr>
+            <th scope="row" class="text-nowrap" rowspan="2">Header</th>
+            <td colspan="8">12 Columnas</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap">X</th>
+            <td colspan="6">Container : {Margin: 0 auto y width: ..px}</td>
+            <td colspan="1">X</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap" rowspan="10">Body</th>
+            <td colspan="8">....</td>
+          </tr>
+          <tr>
+            <td colspan="1" rowspan="2">X</td>
+            <td scope="row" class="text-nowrap " colspan="6">Container {width: ..px}</td>
+            <td colspan="1" rowspan="2">X</td>
+          </tr>
+          <tr>
+            <td scope="row" class="text-nowrap " colspan="6">row {margin: 0 auto}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap " colspan="8">.....</th>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap" rowspan="5" colspan="1">X</th>
+            <td colspan="6">Container : {width: ..px}</td>
+            <td colspan="1" rowspan="5">X</td>
+          </tr>
+          <tr>
+            <td scope="row" class="text-nowrap" colspan="1" rowspan="4">Margin</td>
+            <td scope="row" class="text-nowrap" colspan="4" style="width:950px">row  { margin: x auto }</td>
+            <td scope="row" class="text-nowrap" colspan="1" rowspan="4">Margin</td>
+          </tr>
+          <tr>
+            <td scope="row" class="text-nowrap col-md-3" colspan="1">9-Cols</td>
+            <td scope="row" class="text-nowrap col-md-9" colspan="3">3-Cols</td>
+          </tr>
+          <tr>
+            <td scope="row" class="text-nowrap" colspan="1" rowspan="2">MainContent</td>
+            <td scope="row" class="text-nowrap" colspan="3">columna derecha</td>
+          </tr>
+          <tr>
+            <td scope="row" class="text-nowrap" colspan="3"></td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap " colspan="8">.....</th>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap" rowspan="2" colspan="1">Footer</th>
+            <td colspan="8">12 Columnas</td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-nowrap" colspan="8">...</th>
+          </tr>
+      </tbody>
+  </table>
+</div>
+</p>
+<p>Para más información: <strong>http:getbootstrap.com/</strong></p>
+          </div>
+        </section>
+        <section id="section-1.2" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">1.2</span> Encabezados</h1>
+          <div class="kss-description">
+            <p>Es la estructura que debe tener la web desde los h1 hasta los h6.</p>
+
+<ul>
+<li>h1 --&gt; Página: Intranet Ayuntamiento de Madrid o SITE de la làgina..</li>
+<li>h2 --&gt; Sección en la que se encuetra. Módulos generales de la página.</li>
+<li>h3 --&gt; Apartados en los que se divide la página.</li>
+<li>h4/h5/h6 --&gt; Subsecciones/modulos del h# padre.
+<img src="img/outline.png"/></li>
+</ul>
+
+          </div>
+        </section>
+        <section id="section-1.3" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">1.3</span> Fuentes</h1>
+          <div class="kss-description">
+            <p>La tipografía utilizada en la web es &quot;LATO&quot; y está disponible en 3 modos</p>
+
+<h4>LatoRegular</h4>
+<div class="kss-markup">
+<pre>
+<code><span style="font-family: LatoRegular; font-size:16px; font-style:normal;">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+!@#$%^&amp;*()_+-=,./?&lt;&gt;[]{}|~`
+1234567890</span></code>
+</pre>
+</div>
+
+<h4>LatoBold</h4>
+<div class="kss-markup">
+<pre>
+<code><span style="font-family: LatoBold; font-size:16px; font-style:normal;">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+!@#$%^&amp;*()_+-=,./?&lt;&gt;[]{}|~`
+1234567890</span></code>
+</pre>
+</div>
+
+<h4>LatoLight</h4>
+<div class="kss-markup">
+<pre>
+<code><span style="font-family: LatoLight; font-size:16px; font-style:normal;">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+!@#$%^&amp;*()_+-=,./?&lt;&gt;[]{}|~`
+1234567890</span></code>
+</pre>
+</div>
+          </div>
+        </section>
+        <section id="section-1.4" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">1.4</span> Iconos</h1>
+          <div class="kss-description">
+            <p>Los iconos están añadidos dentro de la fuente usada en esta web.<br>
+Cómo funciona:</p>
+
+<ul>
+<li>Se usa el pseudo-element css <strong>:before</strong> para asociar el icono al Tag que se desee.</li>
+<li>Con el atributo <strong>content</strong>, se especifica que icono se usa.</li>
+</ul>
+<p>La siguiente lista de iconos sirve para saber las clases o content asociados a dichos iconos y para ver todos los iconos de forma rápida.</p>
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <div class="container">
+<ul class="glyphs css-mapping">
+<li>
+<div class="icon icon-camera_zoom"></div>
+<input type="text" readonly="readonly" value="\e94a">
+</li>
+<li>
+<div class="icon icon-like"></div>
+<input type="text" readonly="readonly" value="\e949">
+</li>
+<li>
+<div class="icon icon-profile"></div>
+<input type="text" readonly="readonly" value="\e948">
+</li>
+<li>
+<div class="icon icon-tag"></div>
+<input type="text" readonly="readonly" value="\e947">
+</li>
+<li>
+<div class="icon icon-shopping"></div>
+<input type="text" readonly="readonly" value="\e946">
+</li>
+<li>
+<div class="icon icon-deal"></div>
+<input type="text" readonly="readonly" value="\e945">
+</li>
+<li>
+<div class="icon icon-exchange"></div>
+<input type="text" readonly="readonly" value="\e943">
+</li>
+<li>
+<div class="icon icon-euro"></div>
+<input type="text" readonly="readonly" value="\e944">
+</li>
+<li>
+<div class="icon icon-add"></div>
+<input type="text" readonly="readonly" value="\e93f">
+</li>
+<li>
+<div class="icon icon-layers"></div>
+<input type="text" readonly="readonly" value="\e940">
+</li>
+<li>
+<div class="icon icon-graph"></div>
+<input type="text" readonly="readonly" value="\e941">
+</li>
+<li>
+<div class="icon icon-informacion"></div>
+<input type="text" readonly="readonly" value="\e942">
+</li>
+<li>
+<div class="icon icon-form-error"></div>
+<input type="text" readonly="readonly" value="\e93d">
+</li>
+<li>
+<div class="icon icon-form-ok"></div>
+<input type="text" readonly="readonly" value="\e93e">
+</li>
+<li>
+<div class="icon icon-content-book-4"></div>
+<input type="text" readonly="readonly" value="\e935">
+</li>
+<li>
+<div class="icon icon-download-computer"></div>
+<input type="text" readonly="readonly" value="\e936">
+</li>
+<li>
+<div class="icon icon-bg_document"></div>
+<input type="text" readonly="readonly" value="\e934">
+</li>
+<li>
+<div class="icon icon-close"></div>
+<input type="text" readonly="readonly" value="\e932">
+</li>
+<li>
+<div class="icon icon-calendar-3"></div>
+<input type="text" readonly="readonly" value="\e930">
+</li>
+<li>
+<div class="icon icon-documents"></div>
+<input type="text" readonly="readonly" value="\e931">
+</li>
+<li>
+<div class="icon icon-email-check"></div>
+<input type="text" readonly="readonly" value="\e92c">
+</li>
+<li>
+<div class="icon icon-font-size"></div>
+<input type="text" readonly="readonly" value="\e92d">
+</li>
+<li>
+<div class="icon icon-heart"></div>
+<input type="text" readonly="readonly" value="\e92e">
+</li>
+<li>
+<div class="icon icon-share"></div>
+<input type="text" readonly="readonly" value="\e92f">
+</li>
+<li>
+<div class="icon icon-home"></div>
+<input type="text" readonly="readonly" value="\e92a">
+</li>
+<li>
+<div class="icon icon-id-card-3"></div>
+<input type="text" readonly="readonly" value="\e92b">
+</li>
+<li>
+<div class="icon icon-content-book-1"></div>
+<input type="text" readonly="readonly" value="\e929">
+</li>
+<li>
+<div class="icon icon-correo-web"></div>
+<input type="text" readonly="readonly" value="\e927">
+</li>
+<li>
+<div class="icon icon-time-view"></div>
+<input type="text" readonly="readonly" value="\e928">
+</li>
+<li>
+<div class="icon icon-menu1"></div>
+<input type="text" readonly="readonly" value="\e91f">
+</li>
+<li>
+<div class="icon icon-Search-icon"></div>
+<input type="text" readonly="readonly" value="\e920">
+</li>
+<li>
+<div class="icon icon-vivienda"></div>
+<input type="text" readonly="readonly" value="\e921">
+</li>
+<li>
+<div class="icon icon-vehiculos"></div>
+<input type="text" readonly="readonly" value="\e922">
+</li>
+<li>
+<div class="icon icon-hogar"></div>
+<input type="text" readonly="readonly" value="\e923">
+</li>
+<li>
+<div class="icon icon-empleo"></div>
+<input type="text" readonly="readonly" value="\e924">
+</li>
+<li>
+<div class="icon icon-aficiones"></div>
+<input type="text" readonly="readonly" value="\e925">
+</li>
+<li>
+<div class="icon icon-electronica"></div>
+<input type="text" readonly="readonly" value="\e926">
+</li>
+<li>
+<div class="icon icon-arrow-down"></div>
+<input type="text" readonly="readonly" value="\e901">
+</li>
+<li>
+<div class="icon icon-arrowup"></div>
+<input type="text" readonly="readonly" value="\e937">
+</li>
+<li>
+<div class="icon icon-arrow-left"></div>
+<input type="text" readonly="readonly" value="\e907">
+</li>
+<li>
+<div class="icon icon-arrow-right"></div>
+<input type="text" readonly="readonly" value="\e90d">
+</li>
+<li>
+<div class="icon icon-arrow-top-right"></div>
+<input type="text" readonly="readonly" value="\e902">
+</li>
+<li>
+<div class="icon icon-arrow-shaft-down"></div>
+<input type="text" readonly="readonly" value="\e91a">
+</li>
+<li>
+<div class="icon icon-arrowshaftup"></div>
+<input type="text" readonly="readonly" value="\e93a">
+</li>
+<li>
+<div class="icon icon-arrowshaftleft"></div>
+<input type="text" readonly="readonly" value="\e93b">
+</li>
+<li>
+<div class="icon icon-arrowshaftright"></div>
+<input type="text" readonly="readonly" value="\e93c">
+</li>
+<li>
+<div class="icon icon-arrow-full-up"></div>
+<input type="text" readonly="readonly" value="\e910">
+</li>
+<li>
+<div class="icon icon-arrow-full-down"></div>
+<input type="text" readonly="readonly" value="\e933">
+</li>
+<li>
+<div class="icon icon-arrowfullleft"></div>
+<input type="text" readonly="readonly" value="\e938">
+</li>
+<li>
+<div class="icon icon-arrowfullright"></div>
+<input type="text" readonly="readonly" value="\e939">
+</li>
+<li>
+<div class="icon icon-social-facebook"></div>
+<input type="text" readonly="readonly" value="\e912">
+</li>
+<li>
+<div class="icon icon-social-instagram"></div>
+<input type="text" readonly="readonly" value="\e913">
+</li>
+<li>
+<div class="icon icon-social-linkedin"></div>
+<input type="text" readonly="readonly" value="\e914">
+</li>
+<li>
+<div class="icon icon-social-twitter"></div>
+<input type="text" readonly="readonly" value="\e915">
+</li>
+<li>
+<div class="icon icon-social-youtube"></div>
+<input type="text" readonly="readonly" value="\e916">
+</li>
+<li>
+<div class="icon icon-badge"></div>
+<input type="text" readonly="readonly" value="\e903">
+</li>
+<li>
+<div class="icon icon-calendar"></div>
+<input type="text" readonly="readonly" value="\e904">
+</li>
+<li>
+<div class="icon icon-email"></div>
+<input type="text" readonly="readonly" value="\e906">
+</li>
+<li>
+<div class="icon icon-file"></div>
+<input type="text" readonly="readonly" value="\e908">
+</li>
+<li>
+<div class="icon icon-help"></div>
+<input type="text" readonly="readonly" value="\e909">
+</li>
+<li>
+<div class="icon icon-idea"></div>
+<input type="text" readonly="readonly" value="\e90a">
+</li>
+<li>
+<div class="icon icon-menu"></div>
+<input type="text" readonly="readonly" value="\e90b">
+</li>
+<li>
+<div class="icon icon-message"></div>
+<input type="text" readonly="readonly" value="\e90c">
+</li>
+<li>
+<div class="icon icon-notifications"></div>
+<input type="text" readonly="readonly" value="\e90e">
+</li>
+<li>
+<div class="icon icon-plane"></div>
+<input type="text" readonly="readonly" value="\e90f">
+</li>
+<li>
+<div class="icon icon-search"></div>
+<input type="text" readonly="readonly" value="\e911">
+</li>
+<li>
+<div class="icon icon-circle-close"></div>
+<input type="text" readonly="readonly" value="\e918">
+</li>
+<li>
+<div class="icon icon-circle-check"></div>
+<input type="text" readonly="readonly" value="\e900">
+</li>
+<li>
+<div class="icon icon-check"></div>
+<input type="text" readonly="readonly" value="\e917">
+</li>
+<li>
+<div class="icon icon-star"></div>
+<input type="text" readonly="readonly" value="\e905">
+</li>
+<li>
+<div class="icon icon-document"></div>
+<input type="text" readonly="readonly" value="\e919">
+</li>
+<li>
+<div class="icon icon-image"></div>
+<input type="text" readonly="readonly" value="\e91b">
+</li>
+<li>
+<div class="icon icon-globe"></div>
+<input type="text" readonly="readonly" value="\e91c">
+</li>
+<li>
+<div class="icon icon-play"></div>
+<input type="text" readonly="readonly" value="\e91d">
+</li>
+<li>
+<div class="icon icon-face-sad"></div>
+<input type="text" readonly="readonly" value="\e91e">
+</li>
+</ul>
+</div>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;div class=&quot;container&quot;&gt;
+&lt;ul class=&quot;glyphs css-mapping&quot;&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-camera_zoom&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e94a&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-like&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e949&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-profile&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e948&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-tag&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e947&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-shopping&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e946&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-deal&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e945&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-exchange&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e943&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-euro&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e944&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-add&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93f&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-layers&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e940&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-graph&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e941&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-informacion&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e942&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-form-error&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93d&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-form-ok&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93e&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-content-book-4&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e935&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-download-computer&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e936&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-bg_document&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e934&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-close&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e932&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-calendar-3&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e930&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-documents&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e931&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-email-check&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92c&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-font-size&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92d&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-heart&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92e&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-share&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92f&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-home&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92a&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-id-card-3&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e92b&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-content-book-1&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e929&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-correo-web&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e927&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-time-view&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e928&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-menu1&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91f&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-Search-icon&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e920&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-vivienda&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e921&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-vehiculos&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e922&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-hogar&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e923&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-empleo&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e924&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-aficiones&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e925&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-electronica&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e926&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-down&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e901&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowup&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e937&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-left&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e907&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-right&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90d&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-top-right&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e902&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-shaft-down&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91a&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowshaftup&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93a&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowshaftleft&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93b&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowshaftright&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e93c&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-full-up&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e910&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrow-full-down&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e933&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowfullleft&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e938&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-arrowfullright&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e939&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-social-facebook&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e912&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-social-instagram&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e913&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-social-linkedin&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e914&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-social-twitter&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e915&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-social-youtube&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e916&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-badge&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e903&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-calendar&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e904&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-email&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e906&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-file&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e908&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-help&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e909&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-idea&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90a&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-menu&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90b&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-message&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90c&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-notifications&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90e&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-plane&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e90f&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-search&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e911&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-circle-close&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e918&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-circle-check&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e900&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-check&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e917&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-star&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e905&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-document&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e919&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-image&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91b&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-globe&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91c&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-play&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91d&quot;&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div class=&quot;icon icon-face-sad&quot;&gt;&lt;/div&gt;
+&lt;input type=&quot;text&quot; readonly=&quot;readonly&quot; value=&quot;\e91e&quot;&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+	</div>
+	<footer class="footer">
+        
+    <div class="links">
+      <div class="footer_content_xl">
+        <img src="img/escudo_madrid.png" alt="escudo del ayuntamiento de Madrid" />
+        
+      </div>
+    </div>
+    <div class="copyright" id="bottom">
+      <div class="footer_content_xl">
+        <ul>
+          <li class="footer_title">Ayuntamiento de Madrid 2019</li>
+          <li class="text">Copyright 2019. Reservados todos los derechos</li>
+        </ul>
+      </div>         
+    </div>
+  </footer>
+
+	<!-- SCRIPTS -->
+	<script src="public/kss.js"></script>
+	<script src="public/prettify.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="public/rainbow.min.js"></script>
+  <script src="public/main.js"></script>
+  <script src="public/js/proyecto-base.min.js"></script>
+  <script src="public/js/vendor.min.js"></script>
+	<script>
+		$( document ).ready(function(){
+      $(".listado_revista .bloque_imagen a").click(function(event){
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+
+      $(".participacion_detalle .participacion_images a,.participacion_detalle .participacion_images p").click(function(event){
+          event.preventDefault();
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+  });
+	</script>
+
+	<!-- 
+	 -->
+</body>
+</html>

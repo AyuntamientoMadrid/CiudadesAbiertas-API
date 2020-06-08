@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Ayre - Guía de estilos</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+	<!--<link rel="stylesheet" href="public/vendor_2018.min.css">
+  <link rel="stylesheet" href="public/indraweb_2018.min.css">-->
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="css/vendor.min.css">
+  <link rel="stylesheet" href="css/proyecto-base.min.css">
+
+  
+  
+
+</head>
+<body class="kss-body indraweb-2018">
+	<!--<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 header__col-left">
+					<h1 class="header__title">Ayre - Guía de estilos</h1>
+				</div>
+			</div>
+		</div>
+  </header>-->
+  <header class="header" id="top">
+		<div class="container-title">
+			<div class="brand">
+				<div class="row">
+					<div class="col-md-10 titulo">
+						<h1><a class="" title="Intranet Ayuntamiento de Madrid" href="index.html">Intranet Ayuntamiento de Madrid</a></h1>
+					</div>
+					<div class="col-md-2 header-logo">
+						<a href="#" accesskey="I"><img src="img/logo_madrid_cabecera.png" alt="Logo Madrid"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Menu secundario -->
+		<div class="menu_secundario">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-lg-1 col-xl-1 ayre-logo above">
+		                <a class="header_logo" title="" href="#">   
+		                    <img class="logo_ayre" src="img/ayre_logo.png" alt="Logo Ayre">
+		                </a>
+		            </div>
+		            <div class="col-12 col-lg-11 col-xl-11 options">
+		        
+		            </div>
+		        </div>
+		    </div>
+		</div>	
+	</header>
+	<div id="kss-wrapper" class="kss-wrapper">
+		<div id="kss-nav">
+			<aside>
+				<nav class="kss-nav">
+          <ul class="kss-menu" data-kss-ref="6">
+            <li class="kss-menu-item"><a href="./index.html"><span class="kss-ref">0</span><span class="kss-name">Introducción</span></a></li>
+            <li class="kss-menu-item">
+            	<a href="section-1.html"><span class="kss-ref">1</span><span class="kss-name">Base</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-2.html"><span class="kss-ref">2</span><span class="kss-name">Módulos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-3.html"><span class="kss-ref">3</span><span class="kss-name">Elementos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-4.html"><span class="kss-ref">4</span><span class="kss-name">Formularios</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-5.html"><span class="kss-ref">5</span><span class="kss-name">Botones</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-6.html"><span class="kss-ref">6</span><span class="kss-name">Variables</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-7.html"><span class="kss-ref">7</span><span class="kss-name">Aplicaciones Externas</span></a>
+            </li>
+          </ul>
+          <ul class="kss-menu-child">
+            <li class="kss-menu-item"><a href="#section-6.1"><span class="kss-ref">6.1</span><span class="kss-name">Colores</span></a></li>
+            <li class="kss-menu-item"><a href="#section-6.2"><span class="kss-ref">6.2</span><span class="kss-name">Media Queries</span></a></li>
+            <li class="kss-menu-item"><a href="#section-6.3"><span class="kss-ref">6.3</span><span class="kss-name">Utilidades</span></a></li>
+          </ul>
+        </nav>
+			</aside>
+		</div>
+		<div class="kss-content">
+      <article class="kss-article">
+        <section id="section-6" class="kss-section kss-depth-1">
+          <h1 class="kss-title"><span class="kss-ref">6</span> Variables</h1>
+          <div class="kss-description">
+            <p>Variables de color y tamaños.</p>
+          </div>
+        </section>
+        <section id="section-6.1" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">6.1</span> Colores</h1>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <span style="background: {$modifiers};" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#00B0CA</div>
+                <div class="kss-modifier-description">
+                  <p>$color-blue1   </p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #00B0CA;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#66CFDF</div>
+                <div class="kss-modifier-description">
+                  <p>$color-blue2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #66CFDF;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#B2E7EF</div>
+                <div class="kss-modifier-description">
+                  <p>$color-blue3</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #B2E7EF;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#E5F7F9</div>
+                <div class="kss-modifier-description">
+                  <p>$color-blue4</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #E5F7F9;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#333333</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey1</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #333333;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#868689</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #868689;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#DEDFE0</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey3</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #DEDFE0;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#F8F8F8</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey4</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #F8F8F8;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#E5E5E5</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey5</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #E5E5E5;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#B6B6B8</div>
+                <div class="kss-modifier-description">
+                  <p>$color-grey6</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #B6B6B8;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#E21776</div>
+                <div class="kss-modifier-description">
+                  <p>$color-pink</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #E21776;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#C3CD05</div>
+                <div class="kss-modifier-description">
+                  <p>$color-green</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #C3CD05;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#282C34</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-black</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #282C34;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#333A49</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-black2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #333A49;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#49546B</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-grey1</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #49546B;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#6F7484</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-grey2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #6F7484;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#D8E0E7</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-grey3</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #D8E0E7;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#EEF2F5</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-grey4</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #EEF2F5;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#FFFFFF</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-white</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #FFFFFF;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#003DF6</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-purple1</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #003DF6;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#4169E1</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-purple2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #4169E1;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#1D69E5</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-purple3</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #1D69E5;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#DA932C</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-orange1</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #DA932C;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#E4AD1A</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-orange2</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #E4AD1A;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#D65B4A</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-red</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #D65B4A;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">#66B92E</div>
+                <div class="kss-modifier-description">
+                  <p>$color-ayre-green</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <span style="background: #66B92E;" class="styleguide-color"></span>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;span style=&quot;background: {$modifiers};&quot; class=&quot;styleguide-color&quot;&gt;&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-6.2" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">6.2</span> Media Queries</h1>
+          <div class="kss-description">
+            <p>Los anchos para las media queries por dispositivo son:</p>
+
+<ul>
+<li><strong>Móvil:</strong> Hasta 767px ($screen-xs-max)</li>
+<li><strong>Tablet:</strong> Desde 768px ($screen-md-min) hasta 1023px ($screen-md-max)</li>
+<li><strong>Escritorio:</strong> A partir de 1024px ($screen-lg-min)</li>
+</ul>
+<p>Trabajamos con una aproximación Mobile First, por lo que generalmente daremos estilos para móvil y usaremos estas media queries para tablet y escritorio:</p>
+
+<div class="kss-markup">
+<pre>
+<code>@media (min-width: $screen-md-min) {
+    CSS Tablet
+}
+
+@media (min-width: $screen-lg-min) {
+    CSS Escritorio
+}</code>
+</pre>
+</div>
+
+<ul>
+<li>$screen-xl-min: 1200px;</li>
+<li>$screen-lg-max: 1199px;</li>
+<li>$screen-lg-min: 1024px;</li>
+<li>$screen-md-max: 1023px;</li>
+<li>$screen-md-min: 768px;</li>
+<li>$screen-xs-max: 767px;</li>
+</ul>
+
+          </div>
+        </section>
+        <section id="section-6.3" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">6.3</span> Utilidades</h1>
+          <div class="kss-description">
+            <p>Funciones SASS.</p>
+
+<h4>em</h4>
+<div class="kss-markup">
+<pre>
+<code>em($target, $context: $font-base)</code>
+</pre>
+</div>
+
+<p>Convierte una medida de <strong>px</strong> en <strong>em</strong>.<br/>
+$target: Los <strong>px</strong> objetivo.<br/>
+$context: Los <strong>px</strong> del contexto. Este parámetro es opcional, si no se indica se tomarán 16px ($font-base).<br/>
+return: Tamaño en <strong>em</strong>.</p>
+          </div>
+        </section>
+      </article>
+    </div>
+	</div>
+	<footer class="footer">
+        
+    <div class="links">
+      <div class="footer_content_xl">
+        <img src="img/escudo_madrid.png" alt="escudo del ayuntamiento de Madrid" />
+        
+      </div>
+    </div>
+    <div class="copyright" id="bottom">
+      <div class="footer_content_xl">
+        <ul>
+          <li class="footer_title">Ayuntamiento de Madrid 2019</li>
+          <li class="text">Copyright 2019. Reservados todos los derechos</li>
+        </ul>
+      </div>         
+    </div>
+  </footer>
+
+	<!-- SCRIPTS -->
+	<script src="public/kss.js"></script>
+	<script src="public/prettify.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="public/rainbow.min.js"></script>
+  <script src="public/main.js"></script>
+  <script src="public/js/proyecto-base.min.js"></script>
+  <script src="public/js/vendor.min.js"></script>
+	<script>
+		$( document ).ready(function(){
+      $(".listado_revista .bloque_imagen a").click(function(event){
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+
+      $(".participacion_detalle .participacion_images a,.participacion_detalle .participacion_images p").click(function(event){
+          event.preventDefault();
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+  });
+	</script>
+
+	<!-- 
+	 -->
+</body>
+</html>

@@ -1,0 +1,94 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <changeSet author="Localidata" id="table-query">
+		<createTable tableName="query">
+            <column name="code" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="texto" type="VARCHAR(4000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="database_con" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="VARCHAR(100)"/>
+            <column name="tags" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="definition" type="VARCHAR(100)"/>
+        </createTable>
+		<rollback>
+            <dropTable tableName="query"/>            
+		</rollback>
+	</changeSet>
+	<changeSet author="Localidata" id="table-param">
+		<createTable tableName="param">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query_code" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="example" type="VARCHAR(500)"/>
+        </createTable>	    
+		<rollback>
+            <dropTable tableName="param"/>            
+		</rollback>
+	</changeSet>
+	
+	
+	<changeSet author="Localidata" id="table-swagger-def">
+		<createTable tableName="swagger_definition">
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(4000)">
+                <constraints nullable="false"/>
+            </column>            
+        </createTable>	    
+		<rollback>
+            <dropTable tableName="swagger_definition"/>            
+		</rollback>
+	</changeSet>
+	
+		
+	<changeSet author="Localidata" id="PK-table-query">
+        <addPrimaryKey columnNames="code" constraintName="query-pk" tableName="query"/>
+    </changeSet>		
+	
+	<changeSet author="Localidata" id="PK-table-param">
+        <addPrimaryKey columnNames="id" constraintName="param-pk" tableName="param"/>
+    </changeSet>
+	
+	<changeSet author="Localidata" id="Index-code-param">
+        <createIndex indexName="code" tableName="param">
+            <column name="query_code"/>
+        </createIndex>
+    </changeSet>		
+	
+	<changeSet author="Localidata" id="Index-code-swagger">
+        <createIndex indexName="code" tableName="swagger_definition">
+            <column name="code"/>
+        </createIndex>
+    </changeSet>	
+	
+	<changeSet author="Localidata" id="FK-param-query">
+        <addForeignKeyConstraint baseColumnNames="query_code" baseTableName="param" constraintName="param_ibfk_1" referencedColumnNames="code" referencedTableName="query"/>
+    </changeSet>
+	
+	
+	
+</databaseChangeLog>	

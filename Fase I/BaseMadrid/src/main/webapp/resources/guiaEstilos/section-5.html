@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Ayre - Guía de estilos</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+	<!--<link rel="stylesheet" href="public/vendor_2018.min.css">
+  <link rel="stylesheet" href="public/indraweb_2018.min.css">-->
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="css/vendor.min.css">
+  <link rel="stylesheet" href="css/proyecto-base.min.css">
+
+  
+  
+
+</head>
+<body class="kss-body indraweb-2018">
+	<!--<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 header__col-left">
+					<h1 class="header__title">Ayre - Guía de estilos</h1>
+				</div>
+			</div>
+		</div>
+  </header>-->
+  <header class="header" id="top">
+		<div class="container-title">
+			<div class="brand">
+				<div class="row">
+					<div class="col-md-10 titulo">
+						<h1><a class="" title="Intranet Ayuntamiento de Madrid" href="index.html">Intranet Ayuntamiento de Madrid</a></h1>
+					</div>
+					<div class="col-md-2 header-logo">
+						<a href="#" accesskey="I"><img src="img/logo_madrid_cabecera.png" alt="Logo Madrid"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Menu secundario -->
+		<div class="menu_secundario">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-lg-1 col-xl-1 ayre-logo above">
+		                <a class="header_logo" title="" href="#">   
+		                    <img class="logo_ayre" src="img/ayre_logo.png" alt="Logo Ayre">
+		                </a>
+		            </div>
+		            <div class="col-12 col-lg-11 col-xl-11 options">
+		        
+		            </div>
+		        </div>
+		    </div>
+		</div>	
+	</header>
+	<div id="kss-wrapper" class="kss-wrapper">
+		<div id="kss-nav">
+			<aside>
+				<nav class="kss-nav">
+          <ul class="kss-menu" data-kss-ref="5">
+            <li class="kss-menu-item"><a href="./index.html"><span class="kss-ref">0</span><span class="kss-name">Introducción</span></a></li>
+            <li class="kss-menu-item">
+            	<a href="section-1.html"><span class="kss-ref">1</span><span class="kss-name">Base</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-2.html"><span class="kss-ref">2</span><span class="kss-name">Módulos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-3.html"><span class="kss-ref">3</span><span class="kss-name">Elementos comunes</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-4.html"><span class="kss-ref">4</span><span class="kss-name">Formularios</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-5.html"><span class="kss-ref">5</span><span class="kss-name">Botones</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-6.html"><span class="kss-ref">6</span><span class="kss-name">Variables</span></a>
+            </li>
+            <li class="kss-menu-item">
+            	<a href="section-7.html"><span class="kss-ref">7</span><span class="kss-name">Aplicaciones Externas</span></a>
+            </li>
+          </ul>
+          <ul class="kss-menu-child">
+            <li class="kss-menu-item"><a href="#section-5.1"><span class="kss-ref">5.1</span><span class="kss-name">Estilos</span></a></li>
+            <li class="kss-menu-item"><a href="#section-5.2"><span class="kss-ref">5.2</span><span class="kss-name">Estados</span></a></li>
+          </ul>
+        </nav>
+			</aside>
+		</div>
+		<div class="kss-content">
+      <article class="kss-article">
+        <section id="section-5" class="kss-section kss-depth-1">
+          <h1 class="kss-title"><span class="kss-ref">5</span> Botones</h1>
+          <div class="kss-description">
+            <p>Los estilos de botón se pueden aplicar a cualquier elemento con la clase <code>.btn</code> aplicada. Sin embargo, normalmente se aplica solo a los elementos <code>&lt;a&gt;</code> y <code>&lt;button&gt;</code> para obtener la mejor representación.</p>
+
+          </div>
+        </section>
+        <section id="section-5.1" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">5.1</span> Estilos</h1>
+          <div class="kss-description">
+            <p>Hay tres tipos de botones:</p>
+
+<ul>
+<li>Botón verde: <strong>btn-success</strong></li>
+<li>Botón gris: <strong>btn-secondary</strong></li>
+<li>Botón rojo: <strong>btn-danger</strong></li>
+</ul>
+
+          </div>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <button type="submit" class="btn btn-success">Button</button>
+<button type="submit" class="btn btn-secondary">Button</button>
+<button type="submit" class="btn btn-danger">Button</button>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;button type=&quot;submit&quot; class=&quot;btn btn-success&quot;&gt;Button&lt;/button&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-secondary&quot;&gt;Button&lt;/button&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-danger&quot;&gt;Button&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+        <section id="section-5.2" class="kss-section kss-depth-2">
+          <h1 class="kss-title"><span class="kss-ref">5.2</span> Estados</h1>
+          <div class="kss-modifier-block">
+            <div class="kss-modifier kss-modifier-original">
+              <div class="kss-modifier-example">
+                <button type="submit" class="btn btn-success {$modifiers}">Button</button>
+<button type="submit" class="btn btn-secondary {$modifiers}">Button</button>
+<button type="submit" class="btn btn-danger {$modifiers}">Button</button>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">:hover</div>
+                <div class="kss-modifier-description">
+                  <p>Botón hover.</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <button type="submit" class="btn btn-success pseudo-class-hover">Button</button>
+<button type="submit" class="btn btn-secondary pseudo-class-hover">Button</button>
+<button type="submit" class="btn btn-danger pseudo-class-hover">Button</button>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">.focus</div>
+                <div class="kss-modifier-description">
+                  <p>Botón activo.</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <button type="submit" class="btn btn-success focus">Button</button>
+<button type="submit" class="btn btn-secondary focus">Button</button>
+<button type="submit" class="btn btn-danger focus">Button</button>
+              </div>
+            </div>
+            <div class="kss-modifier">
+              <div class="kss-modifier-head">
+                <div class="kss-modifier-name">.disabled</div>
+                <div class="kss-modifier-description">
+                  <p>Botón desactivado. Si usa el elemento <code>&lt;button&gt;</code>, se le puede agregar el atributo <code>disabled</code> en su lugar.</p>
+
+                </div>
+              </div>
+              <div class="kss-modifier-example">
+                <button type="submit" class="btn btn-success disabled">Button</button>
+<button type="submit" class="btn btn-secondary disabled">Button</button>
+<button type="submit" class="btn btn-danger disabled">Button</button>
+              </div>
+            </div>
+            <div class="kss-markup">
+              <pre><code data-language="html">&lt;button type=&quot;submit&quot; class=&quot;btn btn-success {$modifiers}&quot;&gt;Button&lt;/button&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-secondary {$modifiers}&quot;&gt;Button&lt;/button&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-danger {$modifiers}&quot;&gt;Button&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+	</div>
+	<footer class="footer">
+        
+    <div class="links">
+      <div class="footer_content_xl">
+        <img src="img/escudo_madrid.png" alt="escudo del ayuntamiento de Madrid" />
+        
+      </div>
+    </div>
+    <div class="copyright" id="bottom">
+      <div class="footer_content_xl">
+        <ul>
+          <li class="footer_title">Ayuntamiento de Madrid 2019</li>
+          <li class="text">Copyright 2019. Reservados todos los derechos</li>
+        </ul>
+      </div>         
+    </div>
+  </footer>
+
+	<!-- SCRIPTS -->
+	<script src="public/kss.js"></script>
+	<script src="public/prettify.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="public/rainbow.min.js"></script>
+  <script src="public/main.js"></script>
+  <script src="public/js/proyecto-base.min.js"></script>
+  <script src="public/js/vendor.min.js"></script>
+	<script>
+		$( document ).ready(function(){
+      $(".listado_revista .bloque_imagen a").click(function(event){
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+
+      $(".participacion_detalle .participacion_images a,.participacion_detalle .participacion_images p").click(function(event){
+          event.preventDefault();
+          $( ".modal-body .container-fluid .imagen img" ).remove();
+          $( ".modal-footer p" ).remove();
+          var url = $(this).parent().parent().find("img").attr("src");
+          var alternative_text = $(this).parent().parent().find("img").attr("alt");
+          $( ".modal-body .container-fluid .imagen" ).append( "<img src='"+url+"' alt='"+alternative_text+"'>" );
+          $( ".modal-footer .nombre_imagen" ).append( "<p>"+alternative_text+"</p>" );
+          $( ".modal-footer .download" ).append( "<p><a href='"+url+"' download='"+url+"'>Descargar</a></p>" ).append("<p>350Kb</p>");
+      });
+  });
+	</script>
+
+	<!-- 
+	 -->
+</body>
+</html>
