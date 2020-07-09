@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws.uweb.iam" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws.uweb.iam" xmlns:intf="http://ws.uweb.iam" xmlns:tns1="http://beans.uweb.iam" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws.uweb.iam" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://beans.uweb.iam"/>
+   <element name="getUserData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_int">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="getUserDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getUserDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getServicesInfo">
+    <complexType/>
+   </element>
+   <element name="getServicesInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="getServicesInfoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getApplicationDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListApplicationData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListApplicationDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getListApplicationDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationsUserList">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getApplicationsUserListResponse">
+    <complexType>
+     <sequence>
+      <element name="getApplicationsUserListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsersProfileApplicationList">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsersProfileApplicationListResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsersProfileApplicationListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsersApplicationList">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsersApplicationListResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsersApplicationListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getErrorData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getErrorDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getErrorDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getProcessDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProfileData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProfileDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getProfileDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProfilesUserApplicationList">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProfilesUserApplicationListResponse">
+    <complexType>
+     <sequence>
+      <element name="getProfilesUserApplicationListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStatusUserData">
+    <complexType>
+     <sequence>
+      <element name="ub" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStatusUserDataResponse">
+    <complexType>
+     <sequence>
+      <element name="getStatusUserDataReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByLogin">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="getUserDataByLoginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByDni">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByDniResponse">
+    <complexType>
+     <sequence>
+      <element name="getUserDataByDniReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByNumPer">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserDataByNumPerResponse">
+    <complexType>
+     <sequence>
+      <element name="getUserDataByNumPerReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessApplicationByUser">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessApplicationByUserResponse">
+    <complexType>
+     <sequence>
+      <element name="getProcessApplicationByUserReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getChildsProcessByUser">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getChildsProcessByUserResponse">
+    <complexType>
+     <sequence>
+      <element name="getChildsProcessByUserReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessStatusByUser">
+    <complexType>
+     <sequence>
+      <element name="uwebBean" type="tns1:UwebBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getProcessStatusByUserResponse">
+    <complexType>
+     <sequence>
+      <element name="getProcessStatusByUserReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://beans.uweb.iam" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://ws.uweb.iam"/>
+   <complexType name="Beans">
+    <sequence>
+     <element name="_toString" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UwebBean">
+    <complexContent>
+     <extension base="tns1:Beans">
+      <sequence>
+       <element name="appKey" nillable="true" type="xsd:int"/>
+       <element name="beanInfo" nillable="true" type="xsd:string"/>
+       <element name="date" nillable="true" type="xsd:string"/>
+       <element name="dni" nillable="true" type="xsd:string"/>
+       <element name="errorKey" nillable="true" type="xsd:int"/>
+       <element name="firmware" nillable="true" type="xsd:string"/>
+       <element name="indKey" nillable="true" type="xsd:int"/>
+       <element name="listKey" nillable="true" type="impl:ArrayOf_xsd_int"/>
+       <element name="login" nillable="true" type="xsd:string"/>
+       <element name="numPer" nillable="true" type="xsd:int"/>
+       <element name="password" nillable="true" type="xsd:string"/>
+       <element name="processKey" nillable="true" type="xsd:int"/>
+       <element name="profileKey" nillable="true" type="xsd:int"/>
+       <element name="userKey" nillable="true" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getProcessDataRequest">
+
+      <wsdl:part element="impl:getProcessData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProcessDataResponse">
+
+      <wsdl:part element="impl:getProcessDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProcessStatusByUserResponse">
+
+      <wsdl:part element="impl:getProcessStatusByUserResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProcessApplicationByUserResponse">
+
+      <wsdl:part element="impl:getProcessApplicationByUserResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersProfileApplicationListRequest">
+
+      <wsdl:part element="impl:getUsersProfileApplicationList" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getServicesInfoRequest">
+
+      <wsdl:part element="impl:getServicesInfo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfilesUserApplicationListRequest">
+
+      <wsdl:part element="impl:getProfilesUserApplicationList" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChildsProcessByUserRequest">
+
+      <wsdl:part element="impl:getChildsProcessByUser" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByNumPerResponse">
+
+      <wsdl:part element="impl:getUserDataByNumPerResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataRequest">
+
+      <wsdl:part element="impl:getUserData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationDataRequest">
+
+      <wsdl:part element="impl:getApplicationData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByDniResponse">
+
+      <wsdl:part element="impl:getUserDataByDniResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByDniRequest">
+
+      <wsdl:part element="impl:getUserDataByDni" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataResponse">
+
+      <wsdl:part element="impl:getUserDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChildsProcessByUserResponse">
+
+      <wsdl:part element="impl:getChildsProcessByUserResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListApplicationDataResponse">
+
+      <wsdl:part element="impl:getListApplicationDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByLoginRequest">
+
+      <wsdl:part element="impl:getUserDataByLogin" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getStatusUserDataRequest">
+
+      <wsdl:part element="impl:getStatusUserData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersApplicationListResponse">
+
+      <wsdl:part element="impl:getUsersApplicationListResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileDataRequest">
+
+      <wsdl:part element="impl:getProfileData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByNumPerRequest">
+
+      <wsdl:part element="impl:getUserDataByNumPer" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsUserListRequest">
+
+      <wsdl:part element="impl:getApplicationsUserList" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProcessApplicationByUserRequest">
+
+      <wsdl:part element="impl:getProcessApplicationByUser" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getStatusUserDataResponse">
+
+      <wsdl:part element="impl:getStatusUserDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getErrorDataRequest">
+
+      <wsdl:part element="impl:getErrorData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getErrorDataResponse">
+
+      <wsdl:part element="impl:getErrorDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProcessStatusByUserRequest">
+
+      <wsdl:part element="impl:getProcessStatusByUser" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getServicesInfoResponse">
+
+      <wsdl:part element="impl:getServicesInfoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfileDataResponse">
+
+      <wsdl:part element="impl:getProfileDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getProfilesUserApplicationListResponse">
+
+      <wsdl:part element="impl:getProfilesUserApplicationListResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersProfileApplicationListResponse">
+
+      <wsdl:part element="impl:getUsersProfileApplicationListResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationsUserListResponse">
+
+      <wsdl:part element="impl:getApplicationsUserListResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersApplicationListRequest">
+
+      <wsdl:part element="impl:getUsersApplicationList" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserDataByLoginResponse">
+
+      <wsdl:part element="impl:getUserDataByLoginResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getApplicationDataResponse">
+
+      <wsdl:part element="impl:getApplicationDataResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListApplicationDataRequest">
+
+      <wsdl:part element="impl:getListApplicationData" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServicesUweb">
+
+      <wsdl:operation name="getUserData">
+
+         <wsdl:input message="impl:getUserDataRequest" name="getUserDataRequest"/>
+
+         <wsdl:output message="impl:getUserDataResponse" name="getUserDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getServicesInfo">
+
+         <wsdl:input message="impl:getServicesInfoRequest" name="getServicesInfoRequest"/>
+
+         <wsdl:output message="impl:getServicesInfoResponse" name="getServicesInfoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationData">
+
+         <wsdl:input message="impl:getApplicationDataRequest" name="getApplicationDataRequest"/>
+
+         <wsdl:output message="impl:getApplicationDataResponse" name="getApplicationDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListApplicationData">
+
+         <wsdl:input message="impl:getListApplicationDataRequest" name="getListApplicationDataRequest"/>
+
+         <wsdl:output message="impl:getListApplicationDataResponse" name="getListApplicationDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationsUserList">
+
+         <wsdl:input message="impl:getApplicationsUserListRequest" name="getApplicationsUserListRequest"/>
+
+         <wsdl:output message="impl:getApplicationsUserListResponse" name="getApplicationsUserListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersProfileApplicationList">
+
+         <wsdl:input message="impl:getUsersProfileApplicationListRequest" name="getUsersProfileApplicationListRequest"/>
+
+         <wsdl:output message="impl:getUsersProfileApplicationListResponse" name="getUsersProfileApplicationListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersApplicationList">
+
+         <wsdl:input message="impl:getUsersApplicationListRequest" name="getUsersApplicationListRequest"/>
+
+         <wsdl:output message="impl:getUsersApplicationListResponse" name="getUsersApplicationListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getErrorData">
+
+         <wsdl:input message="impl:getErrorDataRequest" name="getErrorDataRequest"/>
+
+         <wsdl:output message="impl:getErrorDataResponse" name="getErrorDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessData">
+
+         <wsdl:input message="impl:getProcessDataRequest" name="getProcessDataRequest"/>
+
+         <wsdl:output message="impl:getProcessDataResponse" name="getProcessDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileData">
+
+         <wsdl:input message="impl:getProfileDataRequest" name="getProfileDataRequest"/>
+
+         <wsdl:output message="impl:getProfileDataResponse" name="getProfileDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfilesUserApplicationList">
+
+         <wsdl:input message="impl:getProfilesUserApplicationListRequest" name="getProfilesUserApplicationListRequest"/>
+
+         <wsdl:output message="impl:getProfilesUserApplicationListResponse" name="getProfilesUserApplicationListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStatusUserData">
+
+         <wsdl:input message="impl:getStatusUserDataRequest" name="getStatusUserDataRequest"/>
+
+         <wsdl:output message="impl:getStatusUserDataResponse" name="getStatusUserDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByLogin">
+
+         <wsdl:input message="impl:getUserDataByLoginRequest" name="getUserDataByLoginRequest"/>
+
+         <wsdl:output message="impl:getUserDataByLoginResponse" name="getUserDataByLoginResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByDni">
+
+         <wsdl:input message="impl:getUserDataByDniRequest" name="getUserDataByDniRequest"/>
+
+         <wsdl:output message="impl:getUserDataByDniResponse" name="getUserDataByDniResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByNumPer">
+
+         <wsdl:input message="impl:getUserDataByNumPerRequest" name="getUserDataByNumPerRequest"/>
+
+         <wsdl:output message="impl:getUserDataByNumPerResponse" name="getUserDataByNumPerResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessApplicationByUser">
+
+         <wsdl:input message="impl:getProcessApplicationByUserRequest" name="getProcessApplicationByUserRequest"/>
+
+         <wsdl:output message="impl:getProcessApplicationByUserResponse" name="getProcessApplicationByUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChildsProcessByUser">
+
+         <wsdl:input message="impl:getChildsProcessByUserRequest" name="getChildsProcessByUserRequest"/>
+
+         <wsdl:output message="impl:getChildsProcessByUserResponse" name="getChildsProcessByUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessStatusByUser">
+
+         <wsdl:input message="impl:getProcessStatusByUserRequest" name="getProcessStatusByUserRequest"/>
+
+         <wsdl:output message="impl:getProcessStatusByUserResponse" name="getProcessStatusByUserResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServicesUwebSoapBinding" type="impl:ServicesUweb">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUserData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getServicesInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getServicesInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getServicesInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getApplicationDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListApplicationData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListApplicationDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListApplicationDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getApplicationsUserList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getApplicationsUserListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getApplicationsUserListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersProfileApplicationList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsersProfileApplicationListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsersProfileApplicationListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersApplicationList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsersApplicationListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsersApplicationListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getErrorData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getErrorDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getErrorDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProcessDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProcessDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfileData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProfileDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProfileDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProfilesUserApplicationList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProfilesUserApplicationListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProfilesUserApplicationListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStatusUserData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getStatusUserDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getStatusUserDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByLogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserDataByLoginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserDataByLoginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByDni">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserDataByDniRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserDataByDniResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserDataByNumPer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserDataByNumPerRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserDataByNumPerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessApplicationByUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProcessApplicationByUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProcessApplicationByUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChildsProcessByUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getChildsProcessByUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getChildsProcessByUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getProcessStatusByUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getProcessStatusByUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getProcessStatusByUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicesUwebService">
+
+      <wsdl:port binding="impl:ServicesUwebSoapBinding" name="ServicesUweb">
+
+         <wsdlsoap:address location="http://desa1/WSUwebv2/services/ServicesUweb"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
