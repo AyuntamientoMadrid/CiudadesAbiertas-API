@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Localidata" id="queries">
+        <insert tableName="query">
+            <column name="code" value="pais"/>
+            <column name="texto" value="select id, identifier, title, geometry as hasGeometry from territorio_pais"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="Listado de paises"/>
+            <column name="tags" value="País"/>
+            <column name="definition"/>
+        </insert>        
+        <rollback/>        	      
+    </changeSet>
+   
+   <changeSet id="DATA-CORE-tag-3.2" author="Localidata">
+    	<tagDatabase tag="3.02" />
+  	</changeSet>  
+   
+</databaseChangeLog>

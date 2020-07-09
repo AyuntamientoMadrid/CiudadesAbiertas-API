@@ -1,0 +1,64 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+   <changeSet author="Localidata" id="dropNull">
+		<dropNotNullConstraint tableName="semantic_field" columnName="object_type" columnDataType="varchar(50)"/>
+		<rollback>
+            <addNotNullConstraint 
+				tableName="semantic_field"
+				columnName="object_type"
+				columnDataType="varchar(50)"
+            />             
+       </rollback> 
+   </changeSet>
+   
+   <changeSet author="Localidata" id="remove-double-quotes">
+    <update tableName="subvencion">
+        <column name="title" type="varchar(400)" valueComputed="REPLACE(title, '&quot;', '\''')" />        
+        <where>title LIKE '%&quot;%'</where>
+    </update>
+	<rollback/>
+	</changeSet>
+ 
+
+	<changeSet author="Localidata" id="columns-blanknodes"> 
+		<addColumn tableName="semantic_field" >
+			<column name="blank_node_type" 
+				afterColumn="object_uri"				
+				type="varchar(50)">  
+				<constraints nullable="true" /> 
+			</column>				
+			<column name="blank_node_id" 
+				afterColumn="blank_node_type"				
+				type="varchar(100)">  
+				<constraints nullable="true" />  
+			</column>	
+			<column name="blank_property_id" 
+				afterColumn="blank_node_id"				
+				type="varchar(100)">  
+				<constraints nullable="true" />  
+			</column>
+		</addColumn>
+		<rollback>
+			<dropColumn  
+				columnName="blank_node_type"
+				tableName="semantic_field">    
+			</dropColumn>  
+			<dropColumn  
+				columnName="blank_node_id"
+				tableName="semantic_field">    
+			</dropColumn>  
+			<dropColumn  
+				columnName="blank_property_id"
+				tableName="semantic_field">    
+			</dropColumn> 
+		</rollback>	
+	</changeSet>
+	
+	<changeSet id="DATA-CORE-tag-4.01" author="Localidata">
+    	<tagDatabase tag="4.01" />
+  	</changeSet>  
+	
+</databaseChangeLog>	

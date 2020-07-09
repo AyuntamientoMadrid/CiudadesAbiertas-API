@@ -1,0 +1,47 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <changeSet author="Localidata" id="prefix-data">
+        <insert tableName="semantic_prefix">
+            <column name="id" value="dcterms"/>
+            <column name="url" value="http://purl.org/dc/terms/"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="esadm"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="espresup"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/hacienda/presupuesto#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="essubv"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/subvencion#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="org"/>
+            <column name="url" value="http://www.w3.org/ns/org#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="owl"/>
+            <column name="url" value="http://www.w3.org/2002/07/owl#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="rdf"/>
+            <column name="url" value="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" value="xsd"/>
+            <column name="url" value="http://www.w3.org/2001/XMLSchema#"/>
+        </insert>
+		 <rollback/>  
+    </changeSet>
+	
+	
+	<changeSet id="DATA-CORE-tag-4.0" author="Localidata">
+    	<tagDatabase tag="4.0" />
+  	</changeSet>  
+	
+</databaseChangeLog>	

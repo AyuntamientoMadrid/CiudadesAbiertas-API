@@ -215,3 +215,13 @@ API_CA/API_CONTRATOS/.gitignore
 API_CA/API_CONTRATOS/.project
 API_CA/API_CONTRATOS/.settings/org.eclipse.core.resources.prefs
 API_CA/API_CONTRATOS/.settings/
+API_CA/API_BICICLETAPUBLICA/.settings/
+API_CA/API_BICICLETAPUBLICA/.project
+Fase II/API_DINAMICA/.gitignore
+Fase II/API_DINAMICA/.project
+Fase II/API_DINAMICA/src/htools/
+Fase II/liquibase_API_Dinamica/.settings/
+Fase II/API_DINAMICA_FuntionalTest/.gitignore
+Fase II/API_DINAMICA_FuntionalTest/.project
+Fase II/liquibase_API_Dinamica/.gitignore
+Fase II/liquibase_API_Dinamica/.project
