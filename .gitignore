@@ -198,6 +198,24 @@ API_CA/API_TRAMITE/target/
 API_CA/API_WEB/target/
 API_CA/rdfGeneratorZ/target/
 liquibase_CA/target/
+API_CA/API_CONTRATOS/.settings/
+API_CA/API_CONTRATOS/.classpath
+API_CA/API_CONTRATOS/.gitignore
+API_CA/API_CONTRATOS/.project
+API_CA/API_AGENDAMUNICIPAL/.settings/
+API_CA/API_AGENDAMUNICIPAL/.classpath
+API_CA/API_AGENDAMUNICIPAL/.gitignore
+API_CA/API_AGENDAMUNICIPAL/.project
+API_CA/API_AGENDAMUNICIPAL/src/test/resources/config.properties
+API_CA/API_AGENDAMUNICIPAL/src/test/resources/logback.xml
+API_CA/API_BICICLETAPUBLICA/.classpath
+API_CA/API_BICICLETAPUBLICA/.gitignore
+API_CA/API_BICICLETAPUBLICA/.project
+API_CA/API_BICICLETAPUBLICA/.settings/
+API_CA/API_BICICLETAPUBLICA/src/test/resources/logback.xml
+API_CA/API_BICICLETAPUBLICA/src/test/resources/config.properties
+API_CA/API_CONTRATOS/src/test/resources/config.properties
+API_CA/API_CONTRATOS/src/test/resources/logback.xml
 API_CA/API_AGENDAMUNICIPAL/target/API_AGENDAMUNICIPAL.jar
 API_CA/API_AGENDAMUNICIPAL/target/
 API_CA/API_BICICLETAPUBLICA/target/
@@ -205,7 +223,6 @@ API_CA/API_AGENDAMUNICIPAL/src/test/resources/config.properties
 API_CA/API_AGENDAMUNICIPAL/src/test/resources/logback.xml
 API_CA/API_BICICLETAPUBLICA/src/test/resources/config.properties
 API_CA/API_BICICLETAPUBLICA/src/test/resources/logback.xml
-
 API_CA/API_AGENDAMUNICIPAL/.classpath
 API_CA/API_AGENDAMUNICIPAL/.gitignore
 API_CA/API_AGENDAMUNICIPAL/.project
@@ -225,3 +242,18 @@ Fase II/API_DINAMICA_FuntionalTest/.gitignore
 Fase II/API_DINAMICA_FuntionalTest/.project
 Fase II/liquibase_API_Dinamica/.gitignore
 Fase II/liquibase_API_Dinamica/.project
+API_CA/API_CONVENIO/.classpath
+API_CA/API_CONVENIO/.gitignore
+API_CA/API_CONVENIO/.project
+API_CA/API_CONVENIO/.settings/
+API_CA/API_CONVENIO/src/test/resources/logback.xml
+API_CA/API_PRESUPUESTO/.classpath
+API_CA/API_PRESUPUESTO/.gitignore
+API_CA/API_PRESUPUESTO/.project
+API_CA/API_PRESUPUESTO/.settings/
+API_CA/API_PRESUPUESTO/src/test/resources/logback.xml
+API_CA/API_TRAFICO/.classpath
+API_CA/API_TRAFICO/.gitignore
+API_CA/API_TRAFICO/.project
+API_CA/API_TRAFICO/.settings/
+API_CA/API_TRAFICO/src/test/resources/logback.xml
