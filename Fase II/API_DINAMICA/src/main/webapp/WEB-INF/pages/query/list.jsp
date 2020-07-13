@@ -201,8 +201,7 @@
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson" />" target="blanck">geojson</a>
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss" />" target="blanck">georss</a>
 			            		</c:if>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl" />" target="blanck">ttl</a>
-							  </c:when>			  
+			            		</c:when>			  
 							  <c:otherwise>
 							   	<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.json?${exampleParams[entidad.queryD.code]}" />" target="blanck">json</a>
 			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.xml?${exampleParams[entidad.queryD.code]}" />" target="blanck">xml</a>
@@ -211,8 +210,7 @@
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson?${exampleParams[entidad.queryD.code]}" />" target="blanck">geojson</a>
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss?${exampleParams[entidad.queryD.code]}" />" target="blanck">georss</a>
 			            		</c:if>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl?${exampleParams[entidad.queryD.code]}" />" target="blanck">ttl</a>
-							  </c:otherwise>
+			            		</c:otherwise>
 							</c:choose>
 			            </p>
 			        </li>
