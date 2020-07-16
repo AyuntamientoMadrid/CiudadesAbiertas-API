@@ -46,7 +46,6 @@ import org.ciudadesAbiertas.madrid.utils.constants.Constants;
 import org.ciudadesAbiertas.madrid.utils.converters.CSVConverter;
 import org.ciudadesAbiertas.madrid.utils.converters.GEOJSONConverter;
 import org.ciudadesAbiertas.madrid.utils.converters.GEORSSConverter;
-import org.ciudadesAbiertas.madrid.utils.converters.RDFConverter;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -125,7 +124,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
     // MediaType.valueOf(Constants.MEDIA_TYPE_TEXT)).
 	mediaType(Constants.FORMATO_CSV, MediaType.valueOf(Constants.MEDIA_TYPE_CSV)).
 	// mediaType(Constants.FORMATO_JSONLD, MediaType.valueOf(RDFConverter.JSONLD)).
-	mediaType(Constants.FORMATO_TTL, MediaType.valueOf(RDFConverter.TURTLE)).
+	//mediaType(Constants.FORMATO_TTL, MediaType.valueOf(RDFConverter.TURTLE)).
 	// mediaType(Constants.FORMATO_N3, MediaType.valueOf(RDFConverter.N3)).
 	mediaType(Constants.FORMATO_GEOJSON, MediaType.valueOf(Constants.MEDIA_TYPE_GEOJSON)).mediaType(Constants.FORMATO_GEORSS, MediaType.valueOf(Constants.MEDIA_TYPE_GEORSS))
 	.mediaType(Constants.FORMATO_ODATA, MediaType.valueOf(Constants.MEDIA_TYPE_GEORSS));
@@ -203,7 +202,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
     // Añadimos georss
     converters.add(new GEORSSConverter());
 
-    converters.add(new RDFConverter<>());
+  
     
     /*
      * // Añadimos el RDF/XML converters.add(new

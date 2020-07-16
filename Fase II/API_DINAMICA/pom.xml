@@ -59,13 +59,13 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>4.0.1</version>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
 		</dependency>
 
 
@@ -357,14 +357,6 @@
 		</dependency>
 
 		<!-- Fin Dependencias UWEB -->
-
-	
-		<dependency>
-			<groupId>be.ugent.rml</groupId>
-			<artifactId>rmlmapper</artifactId>
-			<version>4.8.0</version>
-		</dependency>
-
 
 
 	</dependencies>
