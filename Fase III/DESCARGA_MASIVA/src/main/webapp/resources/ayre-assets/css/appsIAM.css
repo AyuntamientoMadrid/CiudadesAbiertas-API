@@ -1,0 +1,77 @@
+/*
+ * appsIAM 1.0.0
+ * 13/06/2019
+ *
+ * Estilos específicos para las aplicaciones de IAM desplegadas en AYRE.
+ * 
+ * Developer: Portales y Contenidos
+ *   
+*/
+.title, .title_img {
+	height: 120px ;
+}
+
+.contentdetail_title_pub, .featured_news_header{
+   min-height:100px;
+  	height: 120px ;
+}
+
+.title .container p, .title_img .container p {
+	padding-top: 30px;
+}
+
+.contentdetail_title_pub  .container{
+   padding-top: 20px;
+}
+
+.entradilla p {
+margin-bottom:0px;
+padding-bottom:5px;
+}
+
+.asterisco{
+ color: #f66a00;
+ font-family: verdana;
+ font-weight: bold;
+}
+
+.boton_menu_share_menu {
+	top: 275px;
+}	
+
+.bloque1{
+	margin-left: 440px;
+	max-width: 1500px;
+}
+
+.footer_title{
+	color: white;
+	font-family: LatoBold;
+	font-size: 1.1em;
+}
+
+.footer_text{
+	color: white;
+}
+
+.footer .copyright{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+@media(max-width:1600px){
+
+	.bloque1{
+	    margin-left: 200px;
+	}
+	
+} 
+
+@media(max-width:1024px){
+
+	.bloque1{
+	    margin-left: 0px;
+	}
+	
+}

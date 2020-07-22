@@ -1,0 +1,46 @@
+/* Boton menu arriba */
+.boton_menu_share_menu {
+	top: 200px;	
+}	
+
+/* Subrayados en enlaces hover*/
+a:hover {	
+	text-decoration: none;
+}
+
+/* Validación */
+/* 		Errores de validacion*/
+.parsley-errors-list{
+	color: #d65b4a;	
+	list-style-type: none;	
+	padding: 0 0 0 0;
+}
+
+.okField {	
+	border-color: #66b92e !important;	
+}
+
+.errorField {	
+	border-color: #d65b4a  !important;;	
+}
+
+/* Fin Validación */
+
+
+.fieldsetParam
+{
+	background: #F6F8FA;
+}
+
+
+.page-item.active .page-link {
+	 z-index: 0; 
+}
+
+#timeStart, #timeFinish, #start, #finish{	
+	color: #676d71;	
+}
+
+.oculto{
+	display:none;
+}
