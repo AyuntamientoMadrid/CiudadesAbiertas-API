@@ -1,0 +1,116 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Localidata" id="query_data">
+        <insert tableName="query">
+            <column name="code" value="agendamunicipal"/>
+            <column name="texto" value="&#13;&#10;    SELECT&#13;&#10;        evento.title,&#13;&#10;        evento.description,&#13;&#10;        evento.url,&#13;&#10;        evento.start_date,&#13;&#10;        evento.end_date,&#13;&#10;        evento.location_title,&#13;&#10;        evento.street_address,&#13;&#10;        evento.postal_code,&#13;&#10;        evento.portal_id,&#13;&#10;        evento.municipio_id,&#13;&#10;        evento.municipio_title,&#13;&#10;        evento.distrito_id,&#13;&#10;        evento.distrito_title,&#13;&#10;        evento.barrio_title,&#13;&#10;        evento.equipamiento_id,&#13;&#10;        evento.equipamiento_title,&#13;&#10;        evento.super_event_id,&#13;&#10;        evento.tipo_evento,&#13;&#10;        evento.tipo_acceso,&#13;&#10;        evento.tipo_sesion,&#13;&#10;        evento.canal,&#13;&#10;        doc.encoding_format as doc_encoding_format,&#13;&#10;        doc.name as doc_name,&#13;&#10;        doc.url as doc_url,&#13;&#10;        rol.agent_name as rol_agent_name,&#13;&#10;        rol.nombre as rol_nombre,&#13;&#10;        rol.apellido1 as rol_apellido1,&#13;&#10;        rol.apellido2 as rol_apellido2,&#13;&#10;        rol.organization_title as rol_organization_title,&#13;&#10;        rol.organization_id as rol_organization_id,&#13;&#10;        rol.role as rol_role,&#13;&#10;        rol.rol as rol_rol,&#13;&#10;        rol.inicio_asistencia as rol_inicio_asistencia,&#13;&#10;        rol.fin_asistencia as rol_fin_asistencia                     &#13;&#10;    FROM&#13;&#10;        agenda_m_evento evento,&#13;&#10;        agenda_m_document doc,&#13;&#10;        agenda_m_rolintegranteevento rol                      &#13;&#10;    WHERE&#13;&#10;        evento.id like doc.event_id                                   &#13;&#10;        and evento.id like rol.event_id "/>
+            <column name="database_con" value="ciudadesAbiertas"/>
+            <column name="summary" value="Agenda Municipal"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="comercios"/>
+            <column name="texto" value="&#13;&#10;    SELECT&#13;&#10;        id        ,&#13;&#10;        title        ,&#13;&#10;        description        ,&#13;&#10;        municipio_id        ,&#13;&#10;        municipio_title        ,&#13;&#10;        street_address        ,&#13;&#10;        postal_code        ,&#13;&#10;        distrito_id        ,&#13;&#10;        barrio_id        ,&#13;&#10;        x_etrs89        ,&#13;&#10;        y_etrs89        ,&#13;&#10;        telephone        ,&#13;&#10;        url        ,&#13;&#10;        tipo_actividad_economica        ,&#13;&#10;        nombre_comercial        ,&#13;&#10;        rotulo        ,&#13;&#10;        aforo        ,&#13;&#10;        tipo_situacion        ,&#13;&#10;        tipo_acceso        ,&#13;&#10;        referencia_catastral        ,&#13;&#10;        tiene_licencia_apertura        ,&#13;&#10;        tiene_terraza        ,&#13;&#10;        agrupacion_comercial        ,&#13;&#10;        portal_id    &#13;&#10;    FROM&#13;&#10;        local_comercial"/>
+            <column name="database_con" value="ciudadesAbiertas"/>
+            <column name="summary" value="Comercios"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="subvenciones"/>
+            <column name="texto" value="&#13;&#10;    select&#13;&#10;        *                                                             &#13;&#10;    from&#13;&#10;        subvencion                                                  &#13;&#10;    where&#13;&#10;        LEN(id) &lt;6                                              &#13;&#10;    order by&#13;&#10;        id"/>
+            <column name="database_con" value="ciudadesAbiertas"/>
+            <column name="summary" value="subvenciones"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="tramite"/>
+            <column name="texto" value="&#13;&#10;    SELECT&#13;&#10;        id        ,&#13;&#10;        title        ,&#13;&#10;        description        ,&#13;&#10;        url        ,&#13;&#10;        impreso        ,&#13;&#10;        detalle_telefono        ,&#13;&#10;        detalle_presencial        ,&#13;&#10;        detalle_en_linea        ,&#13;&#10;        detalle_correo_postal        ,&#13;&#10;        permite_en_linea        ,&#13;&#10;        permite_presencial        ,&#13;&#10;        permite_telefono        ,&#13;&#10;        permite_correo_postal        ,&#13;&#10;        normativa        ,&#13;&#10;        organo        ,&#13;&#10;        pago        ,&#13;&#10;        requisitos        ,&#13;&#10;        same_as        ,&#13;&#10;        materia        ,&#13;&#10;        fecha_plazo_inicio        ,&#13;&#10;        fecha_plazo_fin        ,&#13;&#10;        fecha_respuesta        ,&#13;&#10;        fecha_presentacion        ,&#13;&#10;        fecha_respuesta_texto        ,&#13;&#10;        fecha_presentacion_texto        ,&#13;&#10;        efecto_silencio_administrativo    &#13;&#10;    FROM&#13;&#10;        tramite"/>
+            <column name="database_con" value="ciudadesAbiertas"/>
+            <column name="summary" value="Tramites"/>
+        </insert>
+    </changeSet>
+    
+    <changeSet author="Localidata" id="query_conf_data">
+        <insert tableName="query_conf">
+            <column name="id" value="agendamunicipal"/>
+            <column name="path" value="D:\temp\agenda"/>
+            <column name="mode" value="auto"/>
+            <column name="cron" value="0 * 1 * * *"/>
+            <column name="zip" valueBoolean="false"/>
+            <column name="items" valueNumeric="0"/>
+            <column name="overwrite" valueBoolean="true"/>
+            <column name="minute" value="*"/>
+            <column name="hour" value="1"/>
+            <column name="day_month" value="*"/>
+            <column name="day_week" value="*"/>
+            <column name="month" value="*"/>
+        </insert>
+        <insert tableName="query_conf">
+            <column name="id" value="comercios"/>
+            <column name="path" value="D:\temp\locales"/>
+            <column name="mode" value="manual"/>
+			<column name="cron" value="0 * 1 * * *"/>
+            <column name="zip" valueBoolean="false"/>
+            <column name="items" valueNumeric="0"/>
+            <column name="overwrite" valueBoolean="true"/>
+            <column name="minute" value="*"/>
+            <column name="hour" value="1"/>
+            <column name="day_month" value="*"/>
+            <column name="day_week" value="*"/>
+            <column name="month" value="*"/>
+        </insert>
+        <insert tableName="query_conf">
+            <column name="id" value="subvenciones"/>
+            <column name="path" value="D:\temp\subvenciones"/>
+            <column name="mode" value="auto"/>
+			<column name="cron" value="0 * 1 * * *"/>
+            <column name="zip" valueBoolean="false"/>
+            <column name="items" valueNumeric="0"/>
+            <column name="overwrite" valueBoolean="true"/>
+            <column name="minute" value="*"/>
+            <column name="hour" value="1"/>
+            <column name="day_month" value="*"/>
+            <column name="day_week" value="*"/>
+            <column name="month" value="*"/>
+        </insert>
+        <insert tableName="query_conf">
+            <column name="id" value="tramite"/>
+            <column name="path" value="D:\temp\tramites"/>
+            <column name="mode" value="manual"/>
+			<column name="cron" value="0 * 1 * * *"/>
+            <column name="zip" valueBoolean="false"/>
+            <column name="items" valueNumeric="0"/>
+            <column name="overwrite" valueBoolean="true"/>
+            <column name="minute" value="*"/>
+            <column name="hour" value="1"/>
+            <column name="day_month" value="*"/>
+            <column name="day_week" value="*"/>
+            <column name="month" value="*"/>
+        </insert>
+    </changeSet>
+    
+	<changeSet author="Localidata" id="task_data">
+        <insert tableName="task">
+            <column name="id" value="20200623175126612A14460"/>
+            <column name="status" value="terminado"/>
+            <column name="query" value="agendamunicipal"/>
+            <column name="start" valueDate="2020-06-23 17:51:26.613"/>
+            <column name="finish" valueDate="2020-06-23 17:51:29.617"/>
+            <column name="mode" value="manual"/>
+        </insert>
+    </changeSet>
+    
+    <changeSet author="Localidata" id="PK-table-task">
+        <addPrimaryKey columnNames="id" constraintName="task-pk" tableName="task"/>
+    </changeSet>
+    
+    
+    <changeSet author="Localidata" id="PK_Query_Conf">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="query_conf"/>
+    </changeSet>
+    
+    <changeSet author="Localidata" id="FK_Query_Conf">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="query_conf" constraintName="query_conf_ibfk_1" referencedColumnNames="code" referencedTableName="query"/>
+    </changeSet>	
+    
+</databaseChangeLog>	

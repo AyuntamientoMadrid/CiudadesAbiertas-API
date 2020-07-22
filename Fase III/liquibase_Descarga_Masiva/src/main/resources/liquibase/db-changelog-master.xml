@@ -1,0 +1,20 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <include file="liquibase/db-changelog-script-0.0-EMPTY.xml"/>
+  <!--   Version 1.0 CORE -->
+  <!--  TABLAS -->
+  <include file="liquibase/db-changelog-script-1.0-CORE-table.xml"/>
+  <!-- SQLSERVER FUNCTION TRASLATE PARA SQLSERVER 2012 -->  
+  <include file="liquibase/db-changelog-script-1.0-SQLSERVER-FUNCIONES.xml"/>    
+  <!-- DATOS -->
+  <include file="liquibase/db-changelog-script-1.0-CORE-data.xml"/>
+  <!-- DESCARGA MASIVA-->
+  <include file="liquibase/db-changelog-script-2.0-DYNAMIC_SQL-table.xml"/>
+  <include file="liquibase/db-changelog-script-2.0-DYNAMIC_SQL-data.xml"/>
+  
+  
+   
+</databaseChangeLog>

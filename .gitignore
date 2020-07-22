@@ -265,3 +265,13 @@ API_CA/API_PRESUPUESTO/target/
 API_CA/API_TRAFICO/src/test/resources/config.properties
 API_CA/API_TRAFICO/target/
 Fase II/API_DINAMICA/.settings/
+Fase III/DESCARGA_MASIVA/.gitignore
+Fase III/DESCARGA_MASIVA/.project
+Fase III/DESCARGA_MASIVA/.settings/
+Fase III/DESCARGA_MASIVA/src/htools/
+Fase III/DESCARGA_MASIVA_FuntionalTest/.gitignore
+Fase III/DESCARGA_MASIVA_FuntionalTest/.project
+Fase III/DESCARGA_MASIVA_FuntionalTest/.settings/
+Fase III/liquibase_Descarga_Masiva/.gitignore
+Fase III/liquibase_Descarga_Masiva/.project
+Fase III/liquibase_Descarga_Masiva/D_M.bat

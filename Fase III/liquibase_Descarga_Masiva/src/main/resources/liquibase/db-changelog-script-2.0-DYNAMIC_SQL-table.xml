@@ -1,0 +1,92 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <changeSet author="Localidata" id="table-query">
+		<createTable tableName="query">
+            <column name="code" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="texto" type="VARCHAR(4000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="database_con" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="summary" type="VARCHAR(100)"/>            
+        </createTable>
+		<rollback>
+            <dropTable tableName="query"/>            
+		</rollback>
+	</changeSet>
+		
+	<changeSet author="Localidata" id="PK-table-query">
+        <addPrimaryKey columnNames="code" constraintName="query-pk" tableName="query"/>
+    </changeSet>		
+	
+
+    <changeSet author="Localidata" id="table-task">
+        <createTable tableName="task">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start" type="DATETIME"> 
+                <constraints nullable="false"/>
+            </column>
+            <column name="finish" type="DATETIME"/>
+            <column name="mode" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            
+        </createTable>
+    <rollback>
+        <dropTable tableName="task"/>            
+    </rollback>
+    </changeSet>
+	
+		
+	
+
+    <changeSet author="Localidata" id="table-query_conf">
+        <createTable tableName="query_conf">
+            <column name="id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="manual" name="mode" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cron" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="0" name="zip" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="items" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="overwrite" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            
+            <column name="minute" type="VARCHAR(50)"/>
+            <column name="hour" type="VARCHAR(50)"/>
+            <column name="day_month" type="VARCHAR(50)"/>
+            <column name="day_week" type="VARCHAR(50)"/>
+            <column name="month" type="VARCHAR(50)"/>
+            
+        </createTable>
+    </changeSet>
+    
+    
+	
+	
+	
+</databaseChangeLog>	

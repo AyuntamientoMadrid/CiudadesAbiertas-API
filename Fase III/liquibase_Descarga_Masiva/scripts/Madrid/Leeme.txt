@@ -1,0 +1,7 @@
+Scripts generados con la siguiente configuración:
+
+BBDD: bbdd_ciudadesAbiertas
+USUARIO: user_ciudadesAbiertas
+SCHEMA: schema_descargaMasiva
+LOGIN: login_ciudadesAbiertas
+PASSWORD: Primera1
