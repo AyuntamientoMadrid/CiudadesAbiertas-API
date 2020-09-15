@@ -52,7 +52,7 @@ public class LikeNoAccents {
     }
     
     
-    public String toSqlString() {        
+    public String toSqlString(String databaseKey) {        
         
 		       
         String theSQLString="";
@@ -68,7 +68,8 @@ public class LikeNoAccents {
         {	//TEXT Description
         	//theSQLString= "dbo.TRANSLATE(UPPER(convert(varchar(5000),"+ columns[0] +")),'ÂÁÀÄÃÊÉÈËÎÍÌÏÔÓÒÖÕÛÚÙÜÑ', 'AAAAAEEEEIIIIOOOOOUUUUN') like ?";
         	//VARCHAR DESCRIPTION
-        	theSQLString= DifferentSQLforDatabases.TRANSLATE_SQLSERVER+columnName + DifferentSQLforDatabases.TRANSLATE_END+" like '"+adaptedValue+"'";
+        	//theSQLString= DifferentSQLforDatabases.TRANSLATE_SQLSERVER+columnName + DifferentSQLforDatabases.TRANSLATE_END+" like '"+adaptedValue+"'";
+        	theSQLString= DifferentSQLforDatabases.getTranslateSQLServer(databaseKey) +columnName + DifferentSQLforDatabases.TRANSLATE_END+" like '"+adaptedValue+"'";        
         }
         else if (database.equals(Constants.MYSQL))
         {

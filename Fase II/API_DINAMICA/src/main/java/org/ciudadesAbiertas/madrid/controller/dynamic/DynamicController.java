@@ -326,7 +326,7 @@ public class DynamicController implements IDynamicController{
 				String type=queryModel.get(requestParam);
 				String value=requestParameters.get(requestParam);
 				
-				String condition=generateConditionFromRequestParam(requestParam,value,type, databaseType);				
+				String condition=generateConditionFromRequestParam(requestParam,value,type, databaseType, query.getDatabase());				
 				
 				if (Util.validValue(condition))
 				{
@@ -486,7 +486,7 @@ public class DynamicController implements IDynamicController{
 	}
 
 
-	private String generateConditionFromRequestParam(String paramName, String paramValue, String paramType, String databaseType)  
+	private String generateConditionFromRequestParam(String paramName, String paramValue, String paramType, String databaseType, String databaseKey)  
 	{		
 		String condition="";
 		if (Util.validValue(paramValue)) {		
@@ -496,7 +496,7 @@ public class DynamicController implements IDynamicController{
 				paramValue = paramValue.replace("*", "%");
 				
 				LikeNoAccents c1 = new LikeNoAccents(paramName, paramValue, databaseType);
-				condition=c1.toSqlString();						
+				condition=c1.toSqlString(databaseKey);						
 			}
 			else if ( (paramType.equals(Constants.JAVA_SQL_TIMESTAMP)||(paramType.equals(Constants.JAVA_SQL_DATE))||(paramType.equals(Constants.JAVA_SQL_TIME))) )
 			{		    	

@@ -27,17 +27,27 @@ public class RSQLUtil {
 	
 	private Map<String, String> map;
 	
-	private String database="";
+	private String databaseType="";
+	
+	private String databaseKey="";
 	
 	
-	public void setDatabase(String database) {
-		this.database=database;		
+	public void setDatabaseType(String databaseType) {
+		this.databaseType=databaseType;		
 	}
 	
-	public String getDatabase() {
-		return database;		
+	public String getDatabaseType() {
+		return databaseType;		
 	}
-	
+		
+	public String getDatabaseKey() {
+	  return databaseKey;
+	}
+
+	public void setDatabaseKey(String databaseKey) {
+	  this.databaseKey = databaseKey;
+	}
+
 	private String addaptFieldToDatabase(String field, String database)
 	{
 		String finalField=field;
@@ -48,7 +58,7 @@ public class RSQLUtil {
         }
         else if (database.equals(Constants.SQLSERVER))
         {	
-        	finalField= DifferentSQLforDatabases.TRANSLATE_SQLSERVER+finalField + DifferentSQLforDatabases.TRANSLATE_END;
+        	finalField=  DifferentSQLforDatabases.getTranslateSQLServer(databaseKey)+finalField + DifferentSQLforDatabases.TRANSLATE_END;
         }
         else if (database.equals(Constants.MYSQL))
         {
@@ -156,7 +166,7 @@ public class RSQLUtil {
 				String rsqlCondition=node.toString();
 				if (fieldType.equals(Constants.JAVA_LANG_STRING)||fieldType.equals(Constants.JAVA_LANG_BOOLEAN))
 				{
-					field=addaptFieldToDatabase(field, database);
+					field=addaptFieldToDatabase(field, databaseType);
 					cNodeOperator=cNodeOperator.replace("==", "like");
 					cNodeOperator=cNodeOperator.replace("!=", "not like");
 					cNodeOperator=cNodeOperator.replace("==", "=");

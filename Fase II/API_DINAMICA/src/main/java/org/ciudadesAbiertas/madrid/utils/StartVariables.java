@@ -76,6 +76,8 @@ public class StartVariables
 		
 		public static Map<String,String> databaseTypes = new HashMap<String,String>();
 		
+		public static Map<String,String> sqlServerSchemas = new HashMap<String,String>();
+		
 		public static Map<String,String> errorDatabaseTypes = new HashMap<String,String>();
 		
 		public static Map<String,Map<String,String>> modelsForDynamicQuerys = new LinkedHashMap<String,Map<String,String>>();

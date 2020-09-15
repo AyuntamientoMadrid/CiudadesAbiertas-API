@@ -249,6 +249,11 @@ public class WebConfig extends WebMvcConfigurerAdapter
       StartVariables.db_schema = env.getProperty(Constants.DB_SCHEMA);
       StartVariables.databaseTypes.put(Constants.DEFAULT_DATABASE, Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)));
 
+      if (Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)).contains(Constants.SQLSERVER))
+   	  {
+    	StartVariables.sqlServerSchemas.put(Constants.DEFAULT_DATABASE, env.getProperty(Constants.DB_SCHEMA));
+   	  }  
+      
       ds.setInitialSize(Integer.parseInt(env.getProperty(Constants.DB_INITIAL_SIZE)));
       ds.setMaxActive(Integer.parseInt(env.getProperty(Constants.DB_MAX_ACTIVE)));
       ds.setMaxIdle(Integer.parseInt(env.getProperty(Constants.DB_MAX_IDLE)));

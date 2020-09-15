@@ -98,6 +98,11 @@ public class MultipleDataSource
 	
 				StartVariables.databaseTypes.put(key, Util.getDatabaseTypeFromDriver(p.getProperty(Constants.DB_DRIVER)));
 				
+				if (p.getProperty(Constants.DB_SCHEMA)!=null)
+				{
+					StartVariables.sqlServerSchemas.put(key, p.getProperty(Constants.DB_SCHEMA));
+				}
+				
 				ds.setInitialSize(Integer.parseInt(p.getProperty(Constants.DB_INITIAL_SIZE)));
 				ds.setMaxActive(Integer.parseInt(p.getProperty(Constants.DB_MAX_ACTIVE)));
 				ds.setMaxIdle(Integer.parseInt(p.getProperty(Constants.DB_MAX_IDLE)));
