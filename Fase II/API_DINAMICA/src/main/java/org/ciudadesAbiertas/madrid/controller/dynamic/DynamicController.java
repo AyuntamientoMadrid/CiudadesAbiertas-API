@@ -340,7 +340,7 @@ public class DynamicController implements IDynamicController{
 			{
 				try
 				{
-					rsqlConditions=generateConditionsFromRSQL(rsqlQ,StartVariables.modelsForDynamicQuerys.get(query.getCode()), databaseType);
+					rsqlConditions=generateConditionsFromRSQL(rsqlQ,StartVariables.modelsForDynamicQuerys.get(query.getCode()), databaseType, query.getDatabase());
 				}
 				catch (Exception e)
 				{
@@ -473,10 +473,11 @@ public class DynamicController implements IDynamicController{
 
 
 
-	private String generateConditionsFromRSQL(String rsqlQ, Map<String, String> map, String database) throws Exception {		
+	private String generateConditionsFromRSQL(String rsqlQ, Map<String, String> map, String databaseType, String databaseKey) throws Exception {		
 		
 		RSQLUtil rUtil=new RSQLUtil();
-		rUtil.setDatabase(database);
+		rUtil.setDatabaseType(databaseType);
+		rUtil.setDatabaseKey(databaseKey);
 		rUtil.setMap(map);
 		rUtil.parseQuery(rsqlQ);
 		rUtil.checkNode();
