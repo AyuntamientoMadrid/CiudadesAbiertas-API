@@ -334,6 +334,8 @@ public class ApiJsonController {
 		tempParam.put("type", "integer");
 	    else if (param.getType().equals(Constants.DATE))
 		tempParam.put("type", "string");
+	
+		tempParam.put("required",false);
 
 	    parameters.add(tempParam);
 	}
