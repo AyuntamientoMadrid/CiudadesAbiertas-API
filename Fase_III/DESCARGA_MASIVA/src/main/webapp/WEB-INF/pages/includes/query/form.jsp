@@ -121,7 +121,7 @@ var textoModal = "Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\ficher
 					data-parsley-minlength="5"
 					data-parsley-maxlength="200" 
 					data-parsley-required="true"
-					pattern="^(?:[\w]\:|[\\]?)(\\[a-zA-Z_\-\s0-9]+)+$">
+					pattern="^(?:[\w]\:|[\\]?)(\\[.a-zA-Z_\-\s0-9]+)+$">
 			</div>
 		</div>
 		<div class="form-group col-md-1">
