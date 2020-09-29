@@ -40,7 +40,7 @@ public class TableNameReplacer {
 	private static TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
 	
 	
-	public static String addAliases(String sql)  {
+	public static String addAliases(String sql) throws Exception  {
 		
 
 		log.debug("Query before add aliases: "+sql);
@@ -55,7 +55,8 @@ public class TableNameReplacer {
 		try {
 			select = (Select) CCJSqlParserUtil.parse(sql);
 		} catch (JSQLParserException e) {
-			log.error("Error parsinga data",e);
+			log.error("Error parsing data",e);
+			throw e;
 		}        
        
 		if (select!=null)

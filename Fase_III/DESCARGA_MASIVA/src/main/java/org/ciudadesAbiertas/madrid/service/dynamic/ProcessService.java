@@ -59,6 +59,14 @@ public class ProcessService {
 		} catch (Exception e) {
 			errors = true;
 			errorMessage = "[ProcessService] [query] [database:" + database + "] [queryText:"+queryText+"] Error:" + e.getMessage();
+			
+			String cause=Util.extractCauseFromException(e);
+					
+			if (Util.validValue(cause))
+			{
+			  errorMessage = "[database:" + database + "] [causa:"+cause+"]";
+			}
+			
 			return errorMessage;
 		}
 

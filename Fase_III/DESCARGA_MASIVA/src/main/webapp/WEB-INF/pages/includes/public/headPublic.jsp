@@ -13,4 +13,5 @@
 	<title><%=session.getAttribute("title") %><%=LiteralConstants.TITLE_HEAD_SUFFIX%></title>
 	<link rel="stylesheet" href="<c:url value="/resources/ayre-assets/css/vendor.min.css"/>">	
 	<link rel="stylesheet" href="<c:url value="/resources/ayre-assets/css/proyecto-base.min.css"/>">
+	<link rel="icon" type="image/png" href="<c:url value="/resources/ayre-assets/images/favicon.ico"/>" />
 </head>

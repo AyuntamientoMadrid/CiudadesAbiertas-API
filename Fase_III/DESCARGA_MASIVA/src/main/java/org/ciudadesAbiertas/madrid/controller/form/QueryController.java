@@ -18,6 +18,7 @@ import org.ciudadesAbiertas.madrid.config.multipe.MultipleDataSource;
 import org.ciudadesAbiertas.madrid.controller.Commons;
 import org.ciudadesAbiertas.madrid.model.dynamic.QueryConfD;
 import org.ciudadesAbiertas.madrid.model.dynamic.QueryD;
+import org.ciudadesAbiertas.madrid.service.dynamic.ProcessService;
 import org.ciudadesAbiertas.madrid.service.dynamic.QueryConfService;
 import org.ciudadesAbiertas.madrid.service.dynamic.QueryService;
 import org.ciudadesAbiertas.madrid.utils.ErrorBean;
@@ -52,6 +53,9 @@ public class QueryController {
 
     @Autowired
     private MultipleDataSource multipleDataSource;
+    
+    @Autowired
+    private ProcessService processService;
 
     public static final String PATH = "/query";
     private static final String PARAM_ID = "{id}";
@@ -373,16 +377,23 @@ public class QueryController {
 	    boolean folderOK = checkFilePath(path);
 
 	    queryService.add(entidad, queryConf);
-
+	    
 	    Commons.auditoria(MODULO, OPERACION_ALTA, estadoOperacion);
-
-	    if (folderOK && validCron) {
-		return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_ADDED);
-	    } else if (folderOK==false){
-		return edit(entidad.getCode(), "Directorio no accesible");
-	    } else if (validCron==false){
-		return edit(entidad.getCode(), "Fecha de ejecución muy lejana");
-	    }
+	    
+	    //Validar query	    
+	    String errores = processService.query(entidad, queryConf);	   
+	    
+		if (Util.validValue(errores)) {
+		  return edit(entidad.getCode(), errores);
+		} else {
+		  if (folderOK && validCron) {
+			return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_ADDED);
+		  } else if (folderOK == false) {
+			return edit(entidad.getCode(), "Directorio no accesible: "+queryConf.getPath());
+		  } else if (validCron == false) {
+			return edit(entidad.getCode(), "Fecha de ejecución muy lejana");
+		  }
+		}
 
 	} catch (Exception e) {
 	    log.error("Error saving object", e);
@@ -523,16 +534,22 @@ public class QueryController {
 	    }
 
 	    queryService.update(queryForm, oldQuery, queryConf, oldQueryConf);
-
 	    Commons.auditoria(MODULO, OPERACION_EDICION, estadoOperacion);
-
-	    if (folderOK && validCron) {
-		return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_UPDATED);
-	    } else if (folderOK==false){
-		return edit(id, "Directorio no accesible");
-	    } else if (validCron==false){
-		return edit(id, "Fecha de ejecución muy lejana");
-	    }
+	    
+	    //Validando query
+	    String errores = processService.query(queryForm, queryConf);  
+	    
+		if (Util.validValue(errores)) {
+		  return edit(id, errores);
+		} else {
+		  if (folderOK && validCron) {
+			return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_UPDATED);
+		  } else if (folderOK == false) {
+			return edit(id, "Directorio no accesible: "+queryConf.getPath());
+		  } else if (validCron == false) {
+			return edit(id, "Fecha de ejecución muy lejana");
+		  }
+		}
 
 	} catch (Exception e) {
 	    log.error("Error updating object", e);

@@ -22,55 +22,54 @@ import net.sf.jsqlparser.JSQLParserException;
 @Repository
 public class DynamicDaoMultipleDatabase {
 
-    @Autowired
-    private MultipleSessionFactory multipleSessionFactory;
+@Autowired
+private MultipleSessionFactory multipleSessionFactory;
 
-    @Autowired
-    private MultipleDataSource multipleDataSource;
+@Autowired
+private MultipleDataSource multipleDataSource;
 
-    private static final Logger log = LoggerFactory.getLogger(DynamicDaoMultipleDatabase.class);
+private static final Logger log = LoggerFactory.getLogger(DynamicDaoMultipleDatabase.class);
 
-    public List<Object> query(String database, String query) throws Exception {
+public List<Object> query(String database, String query) throws Exception {
 
-	SessionFactory selectedFactory = multipleSessionFactory.getFactories().get(database);
+  SessionFactory selectedFactory = multipleSessionFactory.getFactories().get(database);
 
-	List<Object> result = new ArrayList<Object>();
-	// CONTROL PARA LAS BBDD NO CARGADAS
-	if (selectedFactory != null) {
+  List<Object> result = new ArrayList<Object>();
+  // CONTROL PARA LAS BBDD NO CARGADAS
+  if (selectedFactory != null) {
 
-	    String databaseType = StartVariables.databaseTypes.get(database);
+	String databaseType = StartVariables.databaseTypes.get(database);
 
-	    query = TableNameReplacer.addAliases(query);
+	query = TableNameReplacer.addAliases(query);
 
-	    if (databaseType.equals(Constants.SQLSERVER)) {
-		try {
-		    query = TableNameReplacer.addSchemaToQuery(query);
-		} catch (JSQLParserException e1) {
-		    log.error("Error parsing query", e1);
-		}
-	    }
-
-	    NativeQuery sqlquery = null;
-
-	    sqlquery = selectedFactory.getCurrentSession().createSQLQuery(query);
-	    sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
-
-	    try {
-		result = sqlquery.list();
-		log.info("devolvemos resultados");
-
-	    } catch (Exception e) {
-		log.error("Error throwing query", e);
-		throw new Exception("Conection error");
-	    }
-
-	} else {
-	    log.error("[query][ERROR][database:" + database + "] [NOT FOUND]");
-	    throw new Exception("Database not found");
+	if (databaseType.equals(Constants.SQLSERVER)) {
+	  try {
+		query = TableNameReplacer.addSchemaToQuery(query);
+	  } catch (JSQLParserException e1) {
+		log.error("Error parsing query", e1);
+	  }
 	}
 
-	return result;
+	NativeQuery sqlquery = null;
 
-    }
+	sqlquery = selectedFactory.getCurrentSession().createSQLQuery(query);
+	sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
+
+	try {
+	  result = sqlquery.list();
+	  log.info("devolvemos resultados");
+	} catch (Exception e) {
+	  log.error("Error throwing query", e);
+	  throw e;
+	}
+
+  } else {
+	log.error("[query][ERROR][database:" + database + "] [NOT FOUND]");
+	throw new Exception("Database not found");
+  }
+
+  return result;
+
+}
 
 }

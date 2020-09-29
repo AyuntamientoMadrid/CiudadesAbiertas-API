@@ -1471,6 +1471,22 @@ public class Util {
     	return result;
     }
     
+	public static String extractCauseFromException(Exception ex) {
+	  String cause="";
+	  if (ex instanceof Throwable) {
+		Throwable throwableException = (Throwable) ex;
+		while (throwableException.getCause() != null) {
+		  cause = throwableException.getCause().getMessage();
+		  if (throwableException.getCause() instanceof Throwable) {
+			throwableException = throwableException.getCause();
+		  }else {
+			break;
+		  }
+		}		
+	  }
+	  return cause;
+	}
+    
     public static void main(String[] args) {
 
 	//String formattedSQL = formatSQL("select * from agenda where agenda.key=23");

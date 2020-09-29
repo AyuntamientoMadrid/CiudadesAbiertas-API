@@ -7,12 +7,6 @@
 
 	<display-name>Descarga Masiva</display-name>
 
-	<absolute-ordering>
-		<name>A</name>
-		<others />
-		<name>B</name>
-	</absolute-ordering>
-
 	<error-page>
 		<location>/errors</location>
 	</error-page>

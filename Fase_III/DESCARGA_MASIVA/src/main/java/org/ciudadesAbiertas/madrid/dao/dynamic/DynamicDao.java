@@ -61,9 +61,9 @@ public class DynamicDao {
 
 			result = sqlquery.list();
 
-		} catch (Exception e) {
-			log.error("Error throwing query", e);
-			throw new Exception("Conection error");
+		} catch (Exception ex) {
+			log.error("Error throwing query", ex);
+			throw ex;
 		}
 
 		return result;
