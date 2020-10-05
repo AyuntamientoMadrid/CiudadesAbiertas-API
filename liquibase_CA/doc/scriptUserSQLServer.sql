@@ -25,6 +25,8 @@ CREATE SCHEMA ciudadesAbiertas AUTHORIZATION ciudadesAbiertas;
 
 GO
 ALTER USER ciudadesAbiertas WITH DEFAULT_SCHEMA=ciudadesAbiertas;
+GO
+
 
 /*
 USE ciudadesAbiertas

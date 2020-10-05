@@ -15,10 +15,12 @@
    </changeSet>
    
    <changeSet author="Localidata" id="remove-double-quotes">
-    <update tableName="subvencion">
-        <column name="title" type="varchar(400)" valueComputed="REPLACE(title, '&quot;', '\''')" />        
-        <where>title LIKE '%&quot;%'</where>
-    </update>
+    <sql dbms="mysql">UPDATE subvencion SET title = REPLACE(title, '"', '\'') WHERE title LIKE '%"%'</sql> 
+	<rollback/>
+	</changeSet>
+	
+	<changeSet author="Localidata" id="remove-double-quotes-ms">
+	<sql dbms="mssql">UPDATE ${database.defaultSchemaName}.subvencion SET title = REPLACE(title, '"', '''') WHERE title LIKE '%"%'</sql>
 	<rollback/>
 	</changeSet>
  
@@ -40,6 +42,11 @@
 				type="varchar(100)">  
 				<constraints nullable="true" />  
 			</column>
+			<column name="object_reference_type" 
+				afterColumn="object_reference"				
+				type="varchar(20)">  
+				<constraints nullable="true" />  
+			</column>
 		</addColumn>
 		<rollback>
 			<dropColumn  
@@ -53,8 +60,112 @@
 			<dropColumn  
 				columnName="blank_property_id"
 				tableName="semantic_field">    
-			</dropColumn> 
+			</dropColumn>
+			<dropColumn  
+				columnName="object_reference_type"
+				tableName="semantic_field">    
+			</dropColumn>
 		</rollback>	
+	</changeSet>
+	
+	
+	<changeSet author="Localidata" id="semantic_id_size">
+	
+		<dropPrimaryKey 
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+	
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_field"/>
+			
+		
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+			
+			
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rel_prefix"  
+            tableName="semantic_rel_prefix"/>  
+			
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_rel_prefix"/>
+
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_rel_prefix"  
+            tableName="semantic_rel_prefix"/>  
+				
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/> 
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_rml"/>
+			
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/>  
+
+		<rollback>
+		
+		<dropPrimaryKey 
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+	
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(50) NOT NULL"
+			tableName="semantic_field"/>
+			
+		
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+			
+			
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rel_prefix"  
+            tableName="semantic_rel_prefix"/>  
+			
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(50) NOT NULL"
+			tableName="semantic_rel_prefix"/>
+
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_rel_prefix"  
+            tableName="semantic_rel_prefix"/>  
+				
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/> 
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(50) NOT NULL"
+			tableName="semantic_rml"/>
+			
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/>		
+		
+		
+		</rollback>
+			
 	</changeSet>
 	
 	<changeSet id="DATA-CORE-tag-4.01" author="Localidata">
