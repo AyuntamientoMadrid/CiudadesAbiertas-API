@@ -70,7 +70,7 @@ public class LiteralConstants {
 	//Textos para los correos.
 	public final static String TEXTO_ERROR_MAIL= "Listado de errores producidos en la descarga.";//"List of errors produced in the download.";
 	public final static String TEXTO_NO_ERROR_MAIL= "Descarga finalizada sin errores.";//"Download process has finished without errors.";	
-	public final static String TEXTO_SALUDOS_MAIL= "Bye.";
+	public final static String TEXTO_SALUDOS_MAIL= "\n\nEste mail ha sido enviado por la aplicación web Descarga Masiva.";
 	
 	
 }

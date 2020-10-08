@@ -69,7 +69,8 @@ public class QueryTest {
 	WebElement textoLargoBox = driver.findElement(By.name("texto"));
 	textoLargoBox.clear();
 	textoLargoBox.sendKeys("SELECT GETDATE() current_date_time");
-
+	//textoLargoBox.sendKeys("SELECT NOW() ahora FROM DUAL");
+	
 	WebElement summaryBox = driver.findElement(By.name("summary"));
 	summaryBox.clear();
 	summaryBox.sendKeys("Descripción tiempo");
@@ -83,17 +84,17 @@ public class QueryTest {
 	
 	Select minuteSelect = new Select(driver.findElement(By.name("minute")));
 	minuteSelect.deselectAll();
-	minuteSelect.selectByValue("0");
-	minuteSelect.selectByValue("5");
+	minuteSelect.selectByValue("00");
+	minuteSelect.selectByValue("05");
 	
 	Select hourSelect = new Select(driver.findElement(By.name("hour")));
 	hourSelect.deselectAll();
-	hourSelect.selectByValue("0");
-	hourSelect.selectByValue("2");	
+	hourSelect.selectByValue("00");
+	hourSelect.selectByValue("02");	
 	
 	Select dayMSelect = new Select(driver.findElement(By.name("dayM")));
 	dayMSelect.deselectAll();
-	dayMSelect.selectByValue("1");
+	dayMSelect.selectByValue("01");
 	dayMSelect.selectByValue("15");	
 	
 	Select dayWSelect = new Select(driver.findElement(By.name("dayW")));
@@ -157,6 +158,7 @@ public class QueryTest {
 	WebElement textoLargoBox = driver.findElement(By.name("texto"));
 	textoLargoBox.clear();
 	textoLargoBox.sendKeys("SELECT GETDATE() as fecha_actual");
+	//textoLargoBox.sendKeys("SELECT NOW() ahora FROM DUAL");
 
 	WebElement summaryBox = driver.findElement(By.name("summary"));
 	summaryBox.clear();
@@ -175,7 +177,7 @@ public class QueryTest {
 	
 	Select hourSelect = new Select(driver.findElement(By.name("hour")));
 	hourSelect.deselectAll();
-	hourSelect.selectByValue("0");
+	hourSelect.selectByValue("00");
 	
 	
 	Select dayMSelect = new Select(driver.findElement(By.name("dayM")));
@@ -189,8 +191,8 @@ public class QueryTest {
 	
 	Select monthSelect = new Select(driver.findElement(By.name("month")));
 	monthSelect.deselectAll();
-	monthSelect.selectByValue("1");
-	monthSelect.selectByValue("6");
+	monthSelect.selectByValue("01");
+	monthSelect.selectByValue("06");
 	monthSelect.selectByValue("12");
 	
 	WebElement zipCheck = driver.findElement(By.name("zip"));

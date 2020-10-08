@@ -352,6 +352,15 @@ public class QueryController {
 
 	    entidad.setCode(code);
 	    
+	    boolean checkDays=true;
+		//No se pueden combinar dia del mes y dia de la semana
+		if ((queryConf.getDayM().equals("*")==false) && (queryConf.getDayW().equals("*")==false))
+		{
+		  checkDays=false;
+		  queryConf.setDayM("*");
+		  queryConf.setDayW("*");		  
+		}
+	    
 	    String cron = generateCron(queryConf);
 	    queryConf.setCron(cron);
 	    
@@ -386,7 +395,9 @@ public class QueryController {
 		if (Util.validValue(errores)) {
 		  return edit(entidad.getCode(), errores);
 		} else {
-		  if (folderOK && validCron) {
+		  if (checkDays==false)  {
+			return edit(entidad.getCode(), "Día del mes y día de la semana no están soportados si se utilizan a la vez");
+		  } else if (folderOK && validCron) {
 			return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_ADDED);
 		  } else if (folderOK == false) {
 			return edit(entidad.getCode(), "Directorio no accesible: "+queryConf.getPath());
@@ -470,8 +481,8 @@ public class QueryController {
 
 	List<String> valuesMonth = new ArrayList<String>();
 	List<String> textMonth = new ArrayList<String>();
-	keySet = Constants.month.keySet();
-	for (Integer key : keySet) {
+	Set<String> keySetMonth = Constants.month.keySet();
+	for (String key : keySetMonth) {
 	    valuesMonth.add(key + "");
 	    textMonth.add(Constants.month.get(key));
 	}
@@ -509,6 +520,15 @@ public class QueryController {
 	    code = StringUtils.replace(code, " ", "");
 	    queryForm.setCode(code);
 
+	    boolean checkDays=true;
+		//No se pueden combinar dia del mes y dia de la semana
+		if ((queryConf.getDayM().equals("*")==false) && (queryConf.getDayW().equals("*")==false))
+		{
+		  checkDays=false;
+		  queryConf.setDayM("*");
+		  queryConf.setDayW("*");		
+		}
+	    
 	    String cron = generateCron(queryConf);	    
 	    queryConf.setCron(cron);
 	    
@@ -542,7 +562,9 @@ public class QueryController {
 		if (Util.validValue(errores)) {
 		  return edit(id, errores);
 		} else {
-		  if (folderOK && validCron) {
+		  if (checkDays==false)  {
+			return edit(id, "Día del mes y día de la semana no están soportados si se utilizan a la vez");
+		  }else  if (folderOK && validCron) {
 			return new ModelAndView("redirect:" + LIST + "?" + Constants.PARAM_UPDATED);
 		  } else if (folderOK == false) {
 			return edit(id, "Directorio no accesible: "+queryConf.getPath());
