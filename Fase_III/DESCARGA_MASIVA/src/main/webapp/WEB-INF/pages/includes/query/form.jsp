@@ -11,8 +11,8 @@
 <%@include file="../modal_include.jsp"%>
 
 <script>
-var textoModal = "Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-				 "Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
+var textoModal = "Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br/><br/>"+
+				 "Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero.  <br/><br/>" +
 				 "Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
 </script>
 
@@ -112,9 +112,20 @@ var textoModal = "Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\ficher
 </div>
 <fieldset>
 	<div class="form-row">
-		<div class="form-group col-md-11">
-			<div class="col-sm-11 col">
-				<label class="control-label">Ruta y nombre de los ficheros sin extensión (Usar <b>\</b> como caracter separador)</label>
+		<div class="form-group col-md-12">
+			
+			<div class="row">
+            	<div class="col-md-11">
+            	  	<label class="control-label">Ruta y nombre de los ficheros sin extensión (Usar <b>\</b> como caracter separador)</label>
+            	 </div>
+            	 <div class="col-md-1">
+            	  	<div class="pointer icon icon-informacion" align="right" onclick="activarModal(textoModal);"></div>
+            	 </div>
+            </div>
+			
+			
+			<div class="row">
+				<div class="col-md-12">
 				<input type="text" class="form-control" required="false" id="path"
 					name="path" value="${configuration.path}"
 					data-parsley-trigger="change" 
@@ -122,14 +133,10 @@ var textoModal = "Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\ficher
 					data-parsley-maxlength="200" 
 					data-parsley-required="true"
 					pattern="^(?:[\w]\:|[\\]?)(\\[.a-zA-Z_\-\s0-9]+)+$">
+					</div>
 			</div>
 		</div>
-		<div class="form-group col-md-1">
-			<div class="col-sm-1 col">
-				<label class="control-label">Ayuda</label>
-				<div class="icon icon-informacion" align="center" onclick="activarModal(textoModal);"></div>
-			</div>
-		</div>
+		
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">

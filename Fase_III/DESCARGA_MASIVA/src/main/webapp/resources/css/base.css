@@ -44,3 +44,7 @@ a:hover {
 .oculto{
 	display:none;
 }
+
+.pointer {
+    cursor: pointer;
+}
