@@ -2,11 +2,12 @@ package org.ciudadesAbiertas.madrid.controller.dynamic;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.ciudadesAbiertas.madrid.model.dynamic.ParamD;
@@ -26,6 +27,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -54,12 +56,16 @@ public class ApiJsonController {
 
     @Autowired
     private Environment env;
+    
+
+	@Autowired
+	private ApplicationContext applicationContext;
 
     JSONParser parser = new JSONParser();
 
     @SuppressWarnings("unchecked")
     @RequestMapping(path)
-    public @ResponseBody String all() {
+    public @ResponseBody String all(HttpServletRequest request) {
 
 	String unionPoint = "\"paths\": {";
 
@@ -138,6 +144,24 @@ public class ApiJsonController {
 	String finalJSON = originalJSON.replace(unionPoint, unionPoint + pathsJSON + ",");
 	finalJSON = finalJSON.replace("\\/", "/");
 
+	//Lineas para acutalizar el contexto y el host
+    String tomcatHost=request.getServerName()+":"+request.getServerPort();
+	String actualHost=StartVariables.serverPort;			
+		
+	String tomcatContext = applicationContext.getApplicationName();
+	String newContext=StartVariables.context; 	
+		
+	if (tomcatHost.equals(actualHost)==false)
+	{
+	  finalJSON=finalJSON.replace(tomcatHost, actualHost);
+	}
+	if (Util.validValue(newContext))
+	{
+	  finalJSON=finalJSON.replace(tomcatContext, newContext);
+	}
+	//Fin Lineas para acutalizar el contexto y el host
+	
+	
 	// Now we add the definitions
 
 	JSONObject originalDefinitions = null;
