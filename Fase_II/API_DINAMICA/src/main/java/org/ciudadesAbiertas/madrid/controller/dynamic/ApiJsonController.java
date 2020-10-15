@@ -38,7 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiJsonController {
 
-    public static final String path = "/API/api.json";
+    private static final String SCHEMA_SLASHES = "://";
+
+	public static final String path = "/API/api.json";
 
     private static final Logger log = LoggerFactory.getLogger(ApiJsonController.class);
 
@@ -146,18 +148,32 @@ public class ApiJsonController {
 
 	//Lineas para acutalizar el contexto y el host
     String tomcatHost=request.getServerName()+":"+request.getServerPort();
-	String actualHost=StartVariables.serverPort;			
+	String actualHost=StartVariables.uriBase;		
+	String actualSchema="";	
 		
 	String tomcatContext = applicationContext.getApplicationName();
 	String newContext=StartVariables.context; 	
-		
+	
+	
+	
+	actualSchema=actualHost.substring(0,actualHost.indexOf(SCHEMA_SLASHES));
+	actualHost=actualHost.substring(actualHost.indexOf(SCHEMA_SLASHES)+SCHEMA_SLASHES.length());
+	
+	log.info(tomcatHost+" vs "+actualHost);
+	log.info(tomcatContext+" vs "+newContext);
+	
+	//reemplazo el localhost por defecto por el de tomcat
+	finalJSON=finalJSON.replace("localhost:8080", tomcatHost);
 	if (tomcatHost.equals(actualHost)==false)
 	{
 	  finalJSON=finalJSON.replace(tomcatHost, actualHost);
+	  finalJSON=finalJSON.replace("\"http\"", "\""+actualSchema+"\"");
+	  log.info("reemplazo host y schema: "+actualHost);
 	}
-	if (Util.validValue(newContext))
+	if ((Util.validValue(newContext))&&(newContext.equals(tomcatContext)==false))
 	{
 	  finalJSON=finalJSON.replace(tomcatContext, newContext);
+	  log.info("reemplazo");
 	}
 	//Fin Lineas para acutalizar el contexto y el host
 	
