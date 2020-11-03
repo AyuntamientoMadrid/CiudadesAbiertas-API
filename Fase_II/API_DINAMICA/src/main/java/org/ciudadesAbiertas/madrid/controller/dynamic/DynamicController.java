@@ -393,7 +393,7 @@ public class DynamicController implements IDynamicController{
 				results=distinctResults;
 			}
 
-
+			/*
 			if (isGroupByQuery)
 			{					
 				List<Object> groupResults = new ArrayList<Object>();
@@ -419,6 +419,7 @@ public class DynamicController implements IDynamicController{
 				}
 				results=groupResults;				
 			}
+			*/
 			
 			//borramos el orderBy si lo tiene
 			queryText = StringUtils.normalizeSpace(queryText);

@@ -28,6 +28,8 @@ public class AliasToLinkedEntityMapTransformer extends AliasedTupleSubsetResultT
 
 			if (alias != null) {
 				result.put(alias, tuple[i]);
+			}else{
+				result.put(i+"", tuple[i]);
 			}
 		}
 		return result;
