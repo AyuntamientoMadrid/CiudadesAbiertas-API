@@ -68,7 +68,7 @@
 							<p>${lastPetition}</p>
 						</div>
 						<div class="form-group col-md-3 ">
-							<label class="control-label bold">Llamadas en los ultimos 7 días</label>
+							<label class="control-label bold">Llamadas en los últimos 7 días</label>
 							<p>${lastWeekPetitions}</p>
 						</div>								
 					</div>
