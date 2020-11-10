@@ -90,6 +90,7 @@ public class CubeQueryDao<T> extends DatasetDao<T>
 					
 				queryObj.setFirstResult(page * pageSize);
 				queryObj.setMaxResults(pageSize);		
+				queryObj.setResultTransformer(Util.transformadorCamposSqlOrdenados);
 							
 				result =   (List<T>) queryObj.list();
 								

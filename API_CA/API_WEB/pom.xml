@@ -252,7 +252,13 @@
 			  			 <version>0.0.1-SNAPSHOT</version> 
 			  	</dependency>
 			  	
-			  				  	
+			  	<!-- Dependencia bus-->
+			    <dependency>
+						<groupId>API_CA</groupId>
+			  			<artifactId>org.ciudadesabiertas.bus</artifactId>
+			  			 <version>0.0.1-SNAPSHOT</version> 
+			  	</dependency>
+			  	
 			  	<!--  Dependencia para el conjunto de datos plantilla-->
 			  	<!-- 
 			  	<dependency>
@@ -563,6 +569,16 @@
 			 </dependencies>
 		</profile>
 		
+		<profile>
+			<id>bus</id>
+			<dependencies>			
+			  	<dependency>
+						<groupId>API_CA</groupId>
+			  			<artifactId>org.ciudadesabiertas.bus</artifactId>
+			  			 <version>0.0.1-SNAPSHOT</version> 
+			  	</dependency>
+			 </dependencies>
+		</profile>
 		
 		
 		
@@ -707,5 +723,5 @@
 		        </configuration>
 		      </plugin>
 		</plugins>
-  </build>  
+  </build>
 </project>
