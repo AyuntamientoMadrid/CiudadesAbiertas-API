@@ -293,5 +293,7 @@ API_CA/API_BUS/.project
 API_CA/API_BUS/.settings/
 API_CA/API_BUS/src/test/resources/logback.xml
 API_CA/API_BUS/src/test/resources/config.properties
-API_CA/API_BUS/target/API_BUS.jar
 API_CA/API_BUS/target/
+
+API_CA/API_WEB/src/main/resources/buildNumber.properties
+
