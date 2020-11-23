@@ -150,3 +150,10 @@ En la ficha de una definición de Swagger se hará clic al enlace 'Eliminar'
 ![Editar definición de Swagger](./img/eliminarDefinicionSwagger.jpg)
 
 Se hará clic en el botón borrar, aparecerá en pantalla 'elemento borrado'
+
+### Acceso a Swagger
+La url de acceso a los servicios de swagger esta disponible en la siguiente url:  http://servidor/contextoApp/swagger/index.html
+
+Como ejemplo asociamos la url del servicio de pruebas establecido en Alzir: https://alzir.dia.fi.upm.es/dynamicAPI/swagger/index.html
+
+![Página de inicio de Swagger](./img/swaggerdynamicAPI.JPG)
