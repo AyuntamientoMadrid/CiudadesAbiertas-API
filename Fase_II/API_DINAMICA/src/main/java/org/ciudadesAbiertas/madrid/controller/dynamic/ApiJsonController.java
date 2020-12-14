@@ -2,6 +2,7 @@ package org.ciudadesAbiertas.madrid.controller.dynamic;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -378,6 +379,24 @@ public class ApiJsonController {
 		tempParam.put("required",false);
 
 	    parameters.add(tempParam);
+	}
+	
+	
+	if (model.containsKey(StartVariables.geometry_field) || (model.containsKey(StartVariables.xETRS89_field) && model.containsKey(StartVariables.yETRS89_field))) {
+			JSONObject srId = new JSONObject();
+			srId.put("name", "srId");
+			srId.put("in", "query");
+			srId.put("description", "Sistema de referencia para generar las coordenadas");
+			srId.put("required", false);
+			srId.put("type", "string");
+							
+			JSONArray epsgs=new JSONArray();
+			epsgs.addAll(Arrays.asList(Constants.SUPPORTED_SRIDS.split(",")));		
+			
+			srId.put("enum",epsgs);		
+			srId.put("default",Constants.DEFAULT_LAT_LON_VALUE);
+			
+			parameters.add(srId);		
 	}
 
 	// Añadimos los parametros del modelo
