@@ -22,6 +22,7 @@ import java.util.List;
 import org.ciudadesAbiertas.madrid.controller.dynamic.ApiJsonController;
 import org.ciudadesAbiertas.madrid.controller.dynamic.DynamicController;
 import org.ciudadesAbiertas.madrid.controller.form.QueryController;
+import org.ciudadesAbiertas.madrid.controller.form.SemanticController;
 import org.ciudadesAbiertas.madrid.controller.form.SwaggerDefinitionController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -106,6 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     roleUserURLs.add("/home/**");
     roleUserURLs.add(QueryController.LIST + "/**");
     roleUserURLs.add(SwaggerDefinitionController.LIST + "/**");
+    roleUserURLs.add(SemanticController.LIST + "/**");
 
     for (String tempURL : roleAnonymousURLs)
     {

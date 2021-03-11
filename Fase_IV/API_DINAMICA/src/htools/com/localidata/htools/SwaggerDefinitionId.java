@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,67 +10,67 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SwaggerDefinitionId implements java.io.Serializable {
 
-    private String code;
-    private String description;
-    private String text;
+private String code;
+private String description;
+private String text;
 
-    public SwaggerDefinitionId() {
-    }
+public SwaggerDefinitionId() {
+}
 
-    public SwaggerDefinitionId(String code, String description, String text) {
-	this.code = code;
-	this.description = description;
-	this.text = text;
-    }
+public SwaggerDefinitionId(String code, String description, String text) {
+  this.code = code;
+  this.description = description;
+  this.text = text;
+}
 
-    @Column(name = "code", nullable = false, length = 100)
-    public String getCode() {
-	return this.code;
-    }
+@Column(name = "code", nullable = false, length = 100)
+public String getCode() {
+  return this.code;
+}
 
-    public void setCode(String code) {
-	this.code = code;
-    }
+public void setCode(String code) {
+  this.code = code;
+}
 
-    @Column(name = "description", nullable = false, length = 200)
-    public String getDescription() {
-	return this.description;
-    }
+@Column(name = "description", nullable = false, length = 200)
+public String getDescription() {
+  return this.description;
+}
 
-    public void setDescription(String description) {
-	this.description = description;
-    }
+public void setDescription(String description) {
+  this.description = description;
+}
 
-    @Column(name = "text", nullable = false, length = 4000)
-    public String getText() {
-	return this.text;
-    }
+@Column(name = "text", nullable = false, length = 4000)
+public String getText() {
+  return this.text;
+}
 
-    public void setText(String text) {
-	this.text = text;
-    }
+public void setText(String text) {
+  this.text = text;
+}
 
-    public boolean equals(Object other) {
-	if ((this == other))
-	    return true;
-	if ((other == null))
-	    return false;
-	if (!(other instanceof SwaggerDefinitionId))
-	    return false;
-	SwaggerDefinitionId castOther = (SwaggerDefinitionId) other;
+public boolean equals(Object other) {
+  if ((this == other))
+	return true;
+  if ((other == null))
+	return false;
+  if (!(other instanceof SwaggerDefinitionId))
+	return false;
+  SwaggerDefinitionId castOther = (SwaggerDefinitionId) other;
 
-	return ((this.getCode() == castOther.getCode()) || (this.getCode() != null && castOther.getCode() != null && this.getCode().equals(castOther.getCode())))
-		&& ((this.getDescription() == castOther.getDescription()) || (this.getDescription() != null && castOther.getDescription() != null && this.getDescription().equals(castOther.getDescription())))
-		&& ((this.getText() == castOther.getText()) || (this.getText() != null && castOther.getText() != null && this.getText().equals(castOther.getText())));
-    }
+  return ((this.getCode() == castOther.getCode()) || (this.getCode() != null && castOther.getCode() != null && this.getCode().equals(castOther.getCode())))
+	  && ((this.getDescription() == castOther.getDescription()) || (this.getDescription() != null && castOther.getDescription() != null && this.getDescription().equals(castOther.getDescription())))
+	  && ((this.getText() == castOther.getText()) || (this.getText() != null && castOther.getText() != null && this.getText().equals(castOther.getText())));
+}
 
-    public int hashCode() {
-	int result = 17;
+public int hashCode() {
+  int result = 17;
 
-	result = 37 * result + (getCode() == null ? 0 : this.getCode().hashCode());
-	result = 37 * result + (getDescription() == null ? 0 : this.getDescription().hashCode());
-	result = 37 * result + (getText() == null ? 0 : this.getText().hashCode());
-	return result;
-    }
+  result = 37 * result + (getCode() == null ? 0 : this.getCode().hashCode());
+  result = 37 * result + (getDescription() == null ? 0 : this.getDescription().hashCode());
+  result = 37 * result + (getText() == null ? 0 : this.getText().hashCode());
+  return result;
+}
 
 }

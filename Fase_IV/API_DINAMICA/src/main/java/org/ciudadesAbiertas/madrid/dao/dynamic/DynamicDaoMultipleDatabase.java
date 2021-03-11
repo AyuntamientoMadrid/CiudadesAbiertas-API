@@ -2,6 +2,7 @@ package org.ciudadesAbiertas.madrid.dao.dynamic;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,17 +116,27 @@ public class DynamicDaoMultipleDatabase {
 				sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
 
 				try {
-					LinkedHashMap value = (LinkedHashMap) sqlquery.uniqueResult();
-					if (!value.isEmpty()) {
-						if (value.get(COUNTER_CA) instanceof BigInteger) {
-							BigInteger valor = (BigInteger) value.get(COUNTER_CA);
-							totalRegistro = valor.longValue();
-						} else {
-							Integer valor = (Integer) value.get(COUNTER_CA);
-							totalRegistro = valor.longValue();
-						}
-					}
-
+				    Object uniqueResult = sqlquery.uniqueResult();
+				    if (uniqueResult instanceof HashMap)
+				    {
+				        HashMap value =  (HashMap) sqlquery.uniqueResult();
+		    			if (!value.isEmpty()) {
+		    				if (value.get(COUNTER_CA) instanceof BigInteger) {
+		    					BigInteger valor = (BigInteger) value.get(COUNTER_CA);
+		    					totalRegistro = valor.longValue();
+		    				}else {
+		    					Integer valor = (Integer) value.get(COUNTER_CA);
+		    					totalRegistro = valor.longValue();
+		    				}
+		    			}
+				    }
+				    else if (uniqueResult instanceof BigInteger)
+				    {
+				      BigInteger valor = (BigInteger) uniqueResult;
+					  totalRegistro = valor.longValue();		      
+				    }
+					
+				    
 					log.info("[rowCount] [devolvemos resultados]");
 
 				} catch (Exception e) {

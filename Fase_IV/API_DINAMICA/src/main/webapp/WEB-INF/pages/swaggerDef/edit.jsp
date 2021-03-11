@@ -14,6 +14,8 @@
 	
 	<%@include file="../includes/menuLateral.jsp"%>
 	
+	<%@include file="../includes/modal_include.jsp"%>
+	
 	<div class="user_name">
 		<div class="container">
 			<div class="row">
@@ -100,7 +102,7 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	<script src="<c:url value="/resources/js/swaggerDef/commons.js"/>"></script>
-
+	<script src="<c:url value="/resources/js/swaggerDef/help.js"/>"></script>
 <script>
 $(document).ready(function()
 		{				 

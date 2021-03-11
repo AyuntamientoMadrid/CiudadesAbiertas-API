@@ -126,7 +126,7 @@ public class Constants
 	public static final String STR_NUMBER_REQUEST_PER_SECOND="peticiones.maximas.segundo";			
 
 	//numero de decimales para las conversiones de lat/long a x y
-	public static final int NUM_DECIMALS_XY = 8;
+	public static final int NUM_DECIMALS_COORDINATES = 8;
 	
 	public static final String SUPPORTED_SRIDS = "EPSG:25830,EPSG:25829,EPSG:25828,EPSG:25831,EPSG:23030,EPSG:23029,EPSG:23028,EPSG:23031,EPSG:4258,EPSG:4230,EPSG:4326,EPSG:4082,EPSG:4083";
 	public static final String SUPPORTED_XY_SRIDS="EPSG:25830,EPSG:25829,EPSG:25828,EPSG:25831,EPSG:23030,EPSG:23029,EPSG:23028,EPSG:23031,EPSG:4082,EPSG:4083";
@@ -161,7 +161,11 @@ public class Constants
 	public static final String DB_HIBERNATE_DEFAULT_SCHEMA="hibernate.default_schema";
 	
 	
-	
+	//Separador de CSV por Defecto
+	public static final String SEPARATOR_CSV_VALUE="separator.csv.value";
+	public static final String SEPARATOR_COMODIN_TAB_VALUE="separator.comodin.tab";
+	public static final String PARAM_CSV_SEPARATOR="csvSeparator";
+	public static final Character SEPARATOR_TAB='\t';
 	
 	//Propiedad URIBase
 	public static final String URI_BASE = "URIBase";
@@ -179,7 +183,11 @@ public class Constants
 	public static final String mimeCSV = "text/csv";
 	public static final String mimeGEOJSON = "application/geo+json";
 	public static final String mimeGEORSS = "application/atom+xml";
-		
+	public static final String mimeTURTLE = "text/turtle";
+	public static final String mimeRDF_XML = "application/rdf+xml";
+	public static final String mimeN3 = "text/n3";
+	public static final String mimeJSONLD = "application/ld+json";	
+	
 	
 	public static final int maxSizeURL=2000;
 	
@@ -229,7 +237,8 @@ public class Constants
 	public static final String YETRS89 = "yETRS89";
 	public static final String METERS = "meters";
 	public static final String DISTANCE = "distance";
-	
+	public static final String hasGeometry = "hasGeometry";
+	 
 	
 	public static final String FORMATO_HTML = "html";
 	public static final String FORMATO_JSON = "json";
@@ -316,6 +325,7 @@ public class Constants
 	public static final String TEXT = "text";
 	public static final String NUMBER = "number";
 	public static final String DATE = "date";
+	public static final String DATE_TIME = "dateTime";
 	public static final String BOOLEAN = "boolean";
 	
 	public static final String JAVA_LANG_BOOLEAN = "java.lang.Boolean";
@@ -346,5 +356,8 @@ public class Constants
 	public static final String GROUP_P = "groupP";
 	public static final String FIELDS_P = "fieldsP";
 	public static final String HAVING_P = "havingP";
+	
+	//Resultado por defecto para Consultas que no tienen asignado su modelo
+	public static final String defaultResult="{\r\n\t\t\"type\": \"object\",\r\n\t\t\"properties\": {\r\n\t\t\t\"contentMD5\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"first\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"geographicCoordinates\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"last\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"next\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"page\": {\r\n\t\t\t\t\"type\": \"integer\",\r\n\t\t\t\t\"format\": \"int32\"\r\n\t\t\t},\r\n\t\t\t\"pageRecords\": {\r\n\t\t\t\t\"type\": \"integer\",\r\n\t\t\t\t\"format\": \"int64\"\r\n\t\t\t},\r\n\t\t\t\"pageSize\": {\r\n\t\t\t\t\"type\": \"integer\",\r\n\t\t\t\t\"format\": \"int32\"\r\n\t\t\t},\r\n\t\t\t\"prev\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"projectedCoordinates\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"records\": {\r\n\t\t\t\t\"type\": \"array\",\r\n\t\t\t\t\"items\": {\r\n\t\t\t\t\t\"type\": \"object\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"responseDate\": {\r\n\t\t\t\t\"type\": \"string\",\r\n\t\t\t\t\"format\": \"date-time\"\r\n\t\t\t},\r\n\t\t\t\"self\": {\r\n\t\t\t\t\"type\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"status\": {\r\n\t\t\t\t\"type\": \"integer\",\r\n\t\t\t\t\"format\": \"int32\"\r\n\t\t\t},\r\n\t\t\t\"totalRecords\": {\r\n\t\t\t\t\"type\": \"integer\",\r\n\t\t\t\t\"format\": \"int64\"\r\n\t\t\t}\r\n\t\t},\r\n\t\t\"title\": \"defaultResult\"\r\n\t}";
 }
 

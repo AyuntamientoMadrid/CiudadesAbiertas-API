@@ -47,7 +47,7 @@
             <pattern>[%-15thread] %d %-4relative  %-5level %logger{35} - %msg%n</pattern>
         </encoder>
 </appender>
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE"/>
 	</root>

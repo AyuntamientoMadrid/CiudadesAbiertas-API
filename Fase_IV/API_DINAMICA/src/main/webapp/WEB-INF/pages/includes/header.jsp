@@ -10,7 +10,7 @@
 			<div class="brand">
 				<div class="row">
 					<div class="col-md-10 titulo">						
-						<h1><a class="" title="<%=LiteralConstants.TITULO_CABECERA%>" href="index.html"><%=LiteralConstants.TITULO_CABECERA%></a></h1>
+						<h1><a class="" title="<%=LiteralConstants.TITULO_CABECERA%>" href="<c:url value="/home"/>"><%=LiteralConstants.TITULO_CABECERA%></a></h1>
 					</div>
 					<div class="col-md-2 header-logo">
 						<a href="#" accesskey="I"><img src="<c:url value="/resources/ayre-assets/images/logo_madrid_cabecera.png"/>" alt="Logo Madrid"></a>

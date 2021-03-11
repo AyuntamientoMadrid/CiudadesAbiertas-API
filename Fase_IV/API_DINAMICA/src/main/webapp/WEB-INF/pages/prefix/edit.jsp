@@ -14,6 +14,8 @@
 	
 	<%@include file="../includes/menuLateral.jsp"%>
 	
+	<%@include file="../includes/modal_include.jsp"%>
+	
 	<div class="user_name">
 		<div class="container">
 			<div class="row">
@@ -27,7 +29,7 @@
    	<div class="title mt-0">
 		<div class="container">
 			<div class="col-md-12">
-				<p>Editar ${object.id}</p>
+				<p>Editar ${object.code}</p>
 			</div>
 		</div>
 	</div>
@@ -101,7 +103,7 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	<script src="<c:url value="/resources/js/prefix/commons.js"/>"></script>
-
+	<script src="<c:url value="/resources/js/prefix/help.js"/>"></script>
 
 		
 		

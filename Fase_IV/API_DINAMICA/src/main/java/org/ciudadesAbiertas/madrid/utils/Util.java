@@ -139,7 +139,7 @@ public class Util
 	{
 	    DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
 	    otherSymbols.setDecimalSeparator('.');		 
-	    DecimalFormat df = new DecimalFormat("#.00", otherSymbols);
+	    DecimalFormat df = new DecimalFormat("#.#####", otherSymbols);
 	    return df.format(value);
 	}
 	
@@ -802,25 +802,31 @@ public class Util
 			else if (acceptHeader.contains(Constants.mimeCSV))
 			{
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".csv"));
+			}	
+			else if (acceptHeader.contains(Constants.mimeGEOJSON))
+			{
+				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".geojson"));
 			}
-			/*
-			else if (acceptHeader.contains(RDFConverter.RDF_XML))
+			else if (acceptHeader.contains(Constants.mimeGEORSS))
+			{
+				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".georss"));
+			}
+			else if (acceptHeader.contains(Constants.mimeRDF_XML))
 			{
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".rdf"));
 			}
-			else if (acceptHeader.contains(RDFConverter.TURTLE))
+			else if (acceptHeader.contains(Constants.mimeTURTLE))
 			{
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".ttl"));
 			}
-			else if (acceptHeader.contains(RDFConverter.N3))
+			else if (acceptHeader.contains(Constants.mimeN3))
 			{
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".n3"));
 			}
-			else if (acceptHeader.contains(RDFConverter.JSONLD))
+			else if (acceptHeader.contains(Constants.mimeJSONLD))
 			{
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".jsonld"));
-			}
-			*/			
+			}					
 			else {
 				//Sin formato definido o valido se devuelve por defecto JSON
 				headers.add(Constants.HEADER_LOCATION, red.replace(aURL.getPath(), aURL.getPath()+".json"));
@@ -1528,16 +1534,39 @@ public class Util
 	
 	public static void generaCoordenadasAll(String source, String srId, List listado)
 	{	
-		boolean isTransformacionXY = true;		
-			
-		String target = StartVariables.SRID_LAT_LON_APP;
+		boolean isTransformacionLatLon = true;	
+		boolean isTransformacionXY = false;				
+		String targetLatLon = StartVariables.SRID_LAT_LON_APP;
+		String targetXY = null;
 		//Comprobamos el srId si es para x e y o Lat y lon
 		if (validValue(srId) && CoordinateTransformer.comprobarSrIdLatLon(srId)) {
-			target = srId;
-			isTransformacionXY = false;
+		  if (StartVariables.SRID_XY_APP.equals(srId)) {
+			isTransformacionLatLon = false;
+		  } else {
+			targetLatLon = srId;
+			isTransformacionLatLon = true;
+		  }
+		} else if (validValue(srId) && CoordinateTransformer.comprobarSrIdXY(srId)) {
+			if (StartVariables.SRID_XY_APP.equals(srId)) {
+				isTransformacionXY = false;
+			  } else {
+				  targetXY = srId;
+				isTransformacionXY = true;
+				isTransformacionLatLon = false;
+			  }		
+		}else {
+		  isTransformacionLatLon = false;
 		}
-		//1 obtenemos lat y lon Siempre se genera esta transformación, activamos true, para que permita la transformacion
-		CoordinateTransformer ct1 = new CoordinateTransformer(source,target);
+		
+		//esta transformación es para que siempre se devuelvan lat y lon (en bbdd está almacenado X e Y)
+		CoordinateTransformer trasnformadorLatLon = new CoordinateTransformer(source,targetLatLon);
+		CoordinateTransformer trasnformadorXY = null;
+		
+		if (isTransformacionXY)
+		{
+			trasnformadorXY= new CoordinateTransformer(StartVariables.SRID_XY_APP,targetXY);
+		}
+		
 					
 		for (int i=0;i<listado.size();i++)		
 		{
@@ -1546,18 +1575,38 @@ public class Util
 			BigDecimal x = (BigDecimal) actualBean.get(StartVariables.xETRS89_field);
 			BigDecimal y = (BigDecimal) actualBean.get(StartVariables.yETRS89_field);
 			String hasGeometry = (String) actualBean.get(StartVariables.geometry_field);
-		
+									
 			if ( validValue(x) && validValue(y) )
 			{					
 				//Alternamos posición X e Y
-				double[] transformCoordinates = ct1.transformCoordinates(y.doubleValue(), x.doubleValue());	
+				double[] transformCoordinates = trasnformadorLatLon.transformCoordinates(y.doubleValue(), x.doubleValue());	
 				//Alternamos la salida del vector para Lat y lon				
-				actualBean.put(StartVariables.latWGS84_field, new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_XY, BigDecimal.ROUND_HALF_UP));
-				actualBean.put(StartVariables.lonWGS84_field, new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_XY, BigDecimal.ROUND_HALF_UP));
-			}
+				actualBean.put(StartVariables.latWGS84_field, new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+				actualBean.put(StartVariables.lonWGS84_field, new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+			
+				//Aqui se hace la transforamción de X e Y si es necesaria
+				if (isTransformacionXY)
+				{
+					transformCoordinates = trasnformadorXY.transformCoordinates(x.doubleValue(),y.doubleValue());	
+					actualBean.put(StartVariables.xETRS89_field, new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+					actualBean.put(StartVariables.yETRS89_field, new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+				}
+			}		
 			
 			if (validValue(hasGeometry))
 			{
+				isTransformacionLatLon=false;
+				isTransformacionXY=false;
+				
+				if (validValue(srId) && CoordinateTransformer.comprobarSrIdLatLon(srId)) {
+					isTransformacionLatLon=true;
+				} else if (validValue(srId) && CoordinateTransformer.comprobarSrIdXY(srId)) {
+					//Solo necesito tranforamcion de X e Y si el srId es disntito al de por defecto
+					if (StartVariables.SRID_XY_APP.equals(srId)==false) {
+						isTransformacionXY=true;
+					}
+				}
+				
 				JSONObject geoObj=Util.stringToJSONObject(hasGeometry);
 				if (geoObj!=null)
 				{
@@ -1565,9 +1614,47 @@ public class Util
 					if (features!=null)
 					{
 						JSONObject actualFeature=(JSONObject)features.get(0);
-						if (actualFeature!=null)
+						if ( isTransformacionLatLon || isTransformacionXY)
 						{
-							actualBean.put(StartVariables.geometry_field,actualFeature);
+    						if (actualFeature!=null)
+    						{
+    						  JSONObject geometry=(JSONObject)actualFeature.get("geometry");
+    						  JSONArray coordinates=(JSONArray)geometry.get("coordinates");
+    						  JSONArray coordinatesTransformed=new JSONArray();
+    						  for (int j=0;j<coordinates.size();j++)
+    						  {
+    							JSONArray vectorActual=(JSONArray) coordinates.get(j);
+    							JSONArray vectorActualTransformed=new JSONArray();
+    							for (int k=0;k<vectorActual.size();k++)
+    							{
+    							  JSONArray coordinate=(JSONArray) vectorActual.get(k);
+    							  JSONArray coordinateTransformed=new JSONArray();
+    							  
+    							  double[] transformCoordinates = new double[2];    							
+    							  
+    							  if ( isTransformacionLatLon) {
+    								  //Alternamos posición X e Y
+    								  transformCoordinates = trasnformadorLatLon.transformCoordinates((double)coordinate.get(1), (double)coordinate.get(0));	
+    								  //Alternamos la salida del vector para Lat y lon
+    								  coordinateTransformed.add(new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+    								  coordinateTransformed.add(new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));	
+    							  }else if (isTransformacionXY){
+    								   transformCoordinates = trasnformadorXY.transformCoordinates((double)coordinate.get(0), (double)coordinate.get(1));	
+    								   coordinateTransformed.add(new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+     								   coordinateTransformed.add(new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_COORDINATES, BigDecimal.ROUND_HALF_UP));
+    							  }  
+    							  
+    							  vectorActualTransformed.add(coordinateTransformed);
+    							}							
+    							coordinatesTransformed.add(vectorActualTransformed);							
+    						  }
+    						  geometry.put("coordinates", coordinatesTransformed);
+    						  actualFeature.put("geometry",geometry);
+    						  						  
+    						  actualBean.put(StartVariables.geometry_field,actualFeature);
+    						}
+						}else {
+						  actualBean.put(StartVariables.geometry_field,actualFeature);
 						}
 					}
 				}
@@ -1581,35 +1668,6 @@ public class Util
 			}
 			
 		}
-		
-
-		
-		//Es necesario comprobar si debe aplicar transformación a las X e Y ya que puede ser que no sea el caso
-		if (validValue(srId) && isTransformacionXY) {
-			// 2 transformamos x e y segun el parametro srId y las coordenadas lat / long
-			// generadas anteriormente.
-			CoordinateTransformer ct2 = new CoordinateTransformer(source, srId);
-
-			for (int i = 0; i < listado.size(); i++) {
-
-				LinkedHashMap actualBean=(LinkedHashMap) listado.get(i);
-				
-				BigDecimal x = (BigDecimal) actualBean.get(StartVariables.xETRS89_field);
-				BigDecimal y = (BigDecimal) actualBean.get(StartVariables.yETRS89_field);
-				
-				
-				if ( validValue(x) && validValue(y) )
-				{						
-					
-					double[] transformCoordinates = ct2.transformCoordinates(x.doubleValue(), y.doubleValue());	
-					
-					actualBean.put("x",new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_XY, BigDecimal.ROUND_HALF_UP));
-					actualBean.put("y",new BigDecimal(transformCoordinates[0]).setScale(Constants.NUM_DECIMALS_XY, BigDecimal.ROUND_HALF_UP));
-				}
-			}
-		}//fin if validValue(srId)
-			
-		
 		
 	}
 	
@@ -1689,6 +1747,75 @@ public class Util
 		return listado;
 	}
 	
+	//CMG Funcion auxiliar para obtener el Character separador de la url de la peticiones en el CSVConverter
+	public static Character getSeparatorByURL(String url) {
+		Character result = null;
+		if (validateURL(url)) {
+			if (url.contains(Constants.PARAM_CSV_SEPARATOR)) {
+				int inicio=url.indexOf(Constants.PARAM_CSV_SEPARATOR+"=");
+				result = url.charAt(inicio+Constants.PARAM_CSV_SEPARATOR.length()+1);
+				if (result!=null) {
+					log.debug("[URL:"+url+"] [result:"+result+"].");
+				}
+			}
+		}
+		if (result==null) {
+			log.error("[ERROR] [URL:"+url+"] No contiene un csvSeparator valido.");
+		}
+		return result;
+	}
+	
+	public static String convertJavaTypesToSwaggerTypes(String type) {
+
+		if (type.toLowerCase().equals(Constants.JAVA_LANG_STRING.toLowerCase())
+				|| type.toLowerCase().equals("string")) {
+			return "string";
+		} else if (type.toLowerCase().equals(Constants.JAVA_SQL_TIMESTAMP.toLowerCase())) {
+			return "string";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_INTEGER.toLowerCase())
+				|| type.toLowerCase().equals("integer")) {
+			return "integer";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_BOOLEAN.toLowerCase())
+				|| type.toLowerCase().equals("boolean")) {
+			return "boolean";
+		} else if (type.toLowerCase().equals(Constants.JAVA_SQL_DATE.toLowerCase())) {
+			return "string";
+		} else if (type.toLowerCase().equals(Constants.JAVA_SQL_TIME.toLowerCase())) {
+			return "string";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_SHORT.toLowerCase())) {
+			return "integer";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_LONG.toLowerCase())) {
+			return "integer";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_LONG.toLowerCase())) {
+			return "integer";
+		} else if (type.toLowerCase().equals(Constants.JAVA_MATH_BIGDECIMAL.toLowerCase())) {
+			return "number";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_FLOAT.toLowerCase())) {
+			return "number";
+		} else if (type.toLowerCase().equals(Constants.JAVA_LANG_DOUBLE.toLowerCase())) {
+			return "number";
+		} else {
+			log.error("Tipo sin procesar: " + type);
+			return "string";
+		}
+	}
+	
+	
+	public static boolean isNumeric(String data)
+	{
+		try
+		{
+			Integer.parseInt(data);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
 		String formattedSQL = formatSQL("select * from agenda where agenda.key=23");
@@ -1696,11 +1823,11 @@ public class Util
 		System.out.println(formattedSQL);
 		
 		 float d = (float) 1.237;
-		 d=(float) 23.232332;
+		 d=(float) 23.22;
 		 
 		 DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
 		 otherSymbols.setDecimalSeparator('.');		 
-		 DecimalFormat df = new DecimalFormat("#.00", otherSymbols);
+		 DecimalFormat df = new DecimalFormat("#.######", otherSymbols);
 		
 		 System.out.print(decimalFormatterCSV(d));
 	}

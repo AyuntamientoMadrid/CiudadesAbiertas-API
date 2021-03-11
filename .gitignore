@@ -307,3 +307,7 @@ API_CA/API_EMPLEO/.gitignore
 API_CA/API_EMPLEO/.classpath
 API_CA/API_EMPLEO/target/
 API_CA/API_EMPLEO/src/test/resources/config.properties
+Fase_IV/rmlmapper-java-master/.project
+Fase_IV/liquibase_API_Dinamica/.project
+Fase_IV/API_DINAMICA_FuntionalTest/.project
+Fase_IV/API_DINAMICA/.project

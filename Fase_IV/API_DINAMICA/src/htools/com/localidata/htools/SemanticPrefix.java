@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,51 +17,51 @@ import javax.persistence.Table;
 @Table(name = "semantic_prefix", catalog = "apiDinamica")
 public class SemanticPrefix implements java.io.Serializable {
 
-    private String id;
-    private String url;
-    private Set<SemanticRelPrefix> semanticRelPrefixes = new HashSet<SemanticRelPrefix>(0);
+private String id;
+private String url;
+private Set<SemanticRelPrefix> semanticRelPrefixes = new HashSet<SemanticRelPrefix>(0);
 
-    public SemanticPrefix() {
-    }
+public SemanticPrefix() {
+}
 
-    public SemanticPrefix(String id, String url) {
-	this.id = id;
-	this.url = url;
-    }
+public SemanticPrefix(String id, String url) {
+  this.id = id;
+  this.url = url;
+}
 
-    public SemanticPrefix(String id, String url, Set<SemanticRelPrefix> semanticRelPrefixes) {
-	this.id = id;
-	this.url = url;
-	this.semanticRelPrefixes = semanticRelPrefixes;
-    }
+public SemanticPrefix(String id, String url, Set<SemanticRelPrefix> semanticRelPrefixes) {
+  this.id = id;
+  this.url = url;
+  this.semanticRelPrefixes = semanticRelPrefixes;
+}
 
-    @Id
+@Id
 
-    @Column(name = "id", unique = true, nullable = false, length = 50)
-    public String getId() {
-	return this.id;
-    }
+@Column(name = "id", unique = true, nullable = false, length = 50)
+public String getId() {
+  return this.id;
+}
 
-    public void setId(String id) {
-	this.id = id;
-    }
+public void setId(String id) {
+  this.id = id;
+}
 
-    @Column(name = "url", nullable = false, length = 200)
-    public String getUrl() {
-	return this.url;
-    }
+@Column(name = "url", nullable = false, length = 200)
+public String getUrl() {
+  return this.url;
+}
 
-    public void setUrl(String url) {
-	this.url = url;
-    }
+public void setUrl(String url) {
+  this.url = url;
+}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "semanticPrefix")
-    public Set<SemanticRelPrefix> getSemanticRelPrefixes() {
-	return this.semanticRelPrefixes;
-    }
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "semanticPrefix")
+public Set<SemanticRelPrefix> getSemanticRelPrefixes() {
+  return this.semanticRelPrefixes;
+}
 
-    public void setSemanticRelPrefixes(Set<SemanticRelPrefix> semanticRelPrefixes) {
-	this.semanticRelPrefixes = semanticRelPrefixes;
-    }
+public void setSemanticRelPrefixes(Set<SemanticRelPrefix> semanticRelPrefixes) {
+  this.semanticRelPrefixes = semanticRelPrefixes;
+}
 
 }

@@ -27,7 +27,7 @@
    	<div class="title mt-0">
 		<div class="container">
 			<div class="col-md-12">
-				<p>¿Eliminar ${object.id}?</p>
+				<p>¿Eliminar ${object.code}?</p>
 			</div>
 		</div>
 	</div>

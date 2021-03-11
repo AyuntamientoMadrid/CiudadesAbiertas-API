@@ -16,12 +16,12 @@ public class SemanticRelPrefix implements java.io.Serializable {
 
     private String id;
     private String query;
-    private String prefix;
+    private int prefix;
 
     public SemanticRelPrefix() {
     }
 
-    public SemanticRelPrefix( String query, String prefix) {
+    public SemanticRelPrefix( String query, int prefix) {
 	
 	this.query = query;
 	this.prefix = prefix;
@@ -48,11 +48,11 @@ public class SemanticRelPrefix implements java.io.Serializable {
     }
 
     @Column(name = "prefix", nullable = false, length = 50)
-    public String getPrefix() {
+    public int getPrefix() {
 	return this.prefix;
     }
 
-    public void setPrefix(String prefix) {
+    public void setPrefix(int prefix) {
 	this.prefix = prefix;
     }
 

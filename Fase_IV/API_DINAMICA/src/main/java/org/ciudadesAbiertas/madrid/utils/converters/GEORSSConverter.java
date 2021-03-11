@@ -184,7 +184,7 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 				{	
 					if (((LinkedHashMap)record).containsKey(StartVariables.geometry_field))
 					{
-						List<SyndEntry> entriesFromPolygons = transformGeoRSSMultipolygon(record,petitionSrId);
+						List<SyndEntry> entriesFromPolygons = transformGeoRSSMultipolygon(l.getSelf(),record,petitionSrId);
 						if (entriesFromPolygons!=null)
 						{
 							entries.addAll(entriesFromPolygons);
@@ -192,7 +192,7 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 					}
 					else
 					{
-						SyndEntry entry = transformGeoRSS(record,petitionSrId);
+						SyndEntry entry = transformGeoRSS(l.getSelf(), record,petitionSrId);
 						if (entry!=null)
 						{													
 							entries.add(entry);
@@ -228,7 +228,7 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
     }
 
 
-	private SyndEntry transformGeoRSS(T record, String petitionSrId) throws Exception {
+	private SyndEntry transformGeoRSS(String selfURL, T record, String petitionSrId) throws Exception {
 		List<BeanUtil> listData = Util.obtenerBeanUtilLinkedHashMap(record);
 		SyndEntry entry = new SyndEntryImpl();
 		
@@ -240,13 +240,13 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 		String beanId="";
 		String theURI="";
 		
-		theURI = generateURI(record, theURI);		
+		theURI = selfURL.substring(0,selfURL.indexOf(".georss"))+"/";		
 		
 		for (BeanUtil bean:listData)
 		{
 			if (bean.getFieldName().equals("id"))
 			{
-				beanId=(String) bean.getValue();
+				beanId=(String) bean.getValue();				
 			}
 			
 			//TRATAMIENTO GENERICO PARA GEORSS
@@ -324,35 +324,7 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 	}
 
 
-	private String generateURI(T record, String theURI) {
-		Class<? extends Object> recordClass = record.getClass();		
-		Annotation[] annotations = recordClass.getAnnotations();		
-		if (objectURIs.containsKey(recordClass.getName())==false)
-		{			
-			String contexto=StartVariables.context;
-			String uriBase=StartVariables.uriBase;
-			for (Annotation ann:annotations)
-			{
-				String anotationS = ann.toString();			
-				if (anotationS.contains("anotations.PathId"))
-				{
-					theURI=ann.toString().substring(ann.toString().indexOf("value=")+7);
-					//theURI=theURI.substring(0,theURI.lastIndexOf("\""));
-					theURI=theURI.replace(")","");
-					theURI=theURI.replace("\"","");
-					
-					theURI=(uriBase+contexto+theURI+"/");
-					objectURIs.put(recordClass.getName(),theURI);
-					break;
-				}
-			}
-		}
-		else
-		{
-			theURI=objectURIs.get(recordClass.getName());
-		}
-		return theURI;
-	}
+	
 	
 	
 	private SyndEntry transformOData(T record, String petitionSrId) throws Exception {
@@ -391,7 +363,7 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 		return entry;
 	}
 	
-	private List<SyndEntry> transformGeoRSSMultipolygon(T record, String petitionSrId) throws Exception 
+	private List<SyndEntry> transformGeoRSSMultipolygon(String selfURL, T record, String petitionSrId) throws Exception 
 	{	
 		List<SyndEntry> listEntries = new ArrayList<SyndEntry>();
 		
@@ -407,8 +379,8 @@ public class GEORSSConverter <T, L extends Result> extends AbstractHttpMessageCo
 		String beanIdentifier="";
 		String theURI="";
 		
-		theURI = generateURI(record, theURI);
-						       
+		theURI = selfURL.substring(0,selfURL.indexOf(".georss"))+"/";		
+								       
 		for (BeanUtil bean:listData)
 		{			
 			if (bean.getFieldName().equals("id"))

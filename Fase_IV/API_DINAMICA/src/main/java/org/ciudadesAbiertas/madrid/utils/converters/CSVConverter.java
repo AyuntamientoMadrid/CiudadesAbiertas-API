@@ -19,7 +19,6 @@ package org.ciudadesAbiertas.madrid.utils.converters;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -27,9 +26,11 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.ciudadesAbiertas.madrid.utils.ObjectResult;
 import org.ciudadesAbiertas.madrid.utils.Result;
 import org.ciudadesAbiertas.madrid.utils.StartVariables;
+import org.ciudadesAbiertas.madrid.utils.Util;
+import org.ciudadesAbiertas.madrid.utils.constants.Constants;
+import org.jline.utils.Log;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -62,7 +63,6 @@ public class CSVConverter <T, L extends Result> extends AbstractHttpMessageConve
     
     private static final String TEXT_CSV = "text/csv";
     
-
 
 
     public CSVConverter() {
@@ -111,14 +111,26 @@ public class CSVConverter <T, L extends Result> extends AbstractHttpMessageConve
 		byte[] bomBytes = new byte[] { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
 		
 		OutputStreamWriter outputStream = new OutputStreamWriter(outputMessage.getBody(),Charset.forName("UTF8"));       
-		outputStream.write(new String(bomBytes));        
+		outputStream.write(new String(bomBytes));   
+		//CMG: 2021-01-19: Aplicamos lógica para poder cambiar el separador.
+		Character comodin = StartVariables.separator_csv;
+		
+	
+		if (l.getSelf().contains(Constants.PARAM_CSV_SEPARATOR))
+		{
+			comodin=Util.getSeparatorByURL(l.getSelf());
+			if (comodin.equals(StartVariables.separator_comodin_tab)) {
+				comodin=Constants.SEPARATOR_TAB;
+			}
+		}
+		Log.debug("[CSVConverter] [comodin:"+comodin+"]");	
         StatefulBeanToCsv<T> beanToCsv =
                   new StatefulBeanToCsvBuilder(outputStream)
-                  			/*.withSeparator(';')*/
+                  			.withSeparator(comodin)
                             .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                             .withMappingStrategy(strategy)
                             .withEscapechar(CSVWriter.NO_ESCAPE_CHARACTER)
-                            .withLineEnd(CSVWriter.RFC4180_LINE_END)                            
+                            .withLineEnd(CSVWriter.RFC4180_LINE_END) 
                             .build();
         try {
         	
@@ -164,8 +176,13 @@ public class CSVConverter <T, L extends Result> extends AbstractHttpMessageConve
         	
         	if (anotherSeparator)
         	{
+        		Character separadorGeo=";".charAt(0);
+        		if (comodin.equals(",".charAt(0))==false)
+        		{
+        			separadorGeo=comodin;
+        		}
         		beanToCsv=new StatefulBeanToCsvBuilder(outputStream)
-      			.withSeparator(';')
+      			.withSeparator(separadorGeo)
       			.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
       			.withMappingStrategy(strategy)
       			.withEscapechar(CSVWriter.NO_ESCAPE_CHARACTER)

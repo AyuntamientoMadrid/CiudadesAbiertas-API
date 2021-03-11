@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,87 +16,87 @@ import javax.persistence.Table;
 @Table(name = "param", catalog = "apiDinamica")
 public class Param implements java.io.Serializable {
 
-    private int id;
-    private Query query;
-    private String name;
-    private String type;
-    private String description;
-    private String example;
+private int id;
+private Query query;
+private String name;
+private String type;
+private String description;
+private String example;
 
-    public Param() {
-    }
+public Param() {
+}
 
-    public Param(int id, Query query, String name, String type) {
-	this.id = id;
-	this.query = query;
-	this.name = name;
-	this.type = type;
-    }
+public Param(int id, Query query, String name, String type) {
+  this.id = id;
+  this.query = query;
+  this.name = name;
+  this.type = type;
+}
 
-    public Param(int id, Query query, String name, String type, String description, String example) {
-	this.id = id;
-	this.query = query;
-	this.name = name;
-	this.type = type;
-	this.description = description;
-	this.example = example;
-    }
+public Param(int id, Query query, String name, String type, String description, String example) {
+  this.id = id;
+  this.query = query;
+  this.name = name;
+  this.type = type;
+  this.description = description;
+  this.example = example;
+}
 
-    @Id
+@Id
 
-    @Column(name = "id", unique = true, nullable = false)
-    public int getId() {
-	return this.id;
-    }
+@Column(name = "id", unique = true, nullable = false)
+public int getId() {
+  return this.id;
+}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+public void setId(int id) {
+  this.id = id;
+}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "query_code", nullable = false)
-    public Query getQuery() {
-	return this.query;
-    }
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "query_code", nullable = false)
+public Query getQuery() {
+  return this.query;
+}
 
-    public void setQuery(Query query) {
-	this.query = query;
-    }
+public void setQuery(Query query) {
+  this.query = query;
+}
 
-    @Column(name = "name", nullable = false, length = 20)
-    public String getName() {
-	return this.name;
-    }
+@Column(name = "name", nullable = false, length = 20)
+public String getName() {
+  return this.name;
+}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+public void setName(String name) {
+  this.name = name;
+}
 
-    @Column(name = "type", nullable = false, length = 10)
-    public String getType() {
-	return this.type;
-    }
+@Column(name = "type", nullable = false, length = 10)
+public String getType() {
+  return this.type;
+}
 
-    public void setType(String type) {
-	this.type = type;
-    }
+public void setType(String type) {
+  this.type = type;
+}
 
-    @Column(name = "description", length = 100)
-    public String getDescription() {
-	return this.description;
-    }
+@Column(name = "description", length = 100)
+public String getDescription() {
+  return this.description;
+}
 
-    public void setDescription(String description) {
-	this.description = description;
-    }
+public void setDescription(String description) {
+  this.description = description;
+}
 
-    @Column(name = "example", length = 500)
-    public String getExample() {
-	return this.example;
-    }
+@Column(name = "example", length = 500)
+public String getExample() {
+  return this.example;
+}
 
-    public void setExample(String example) {
-	this.example = example;
-    }
+public void setExample(String example) {
+  this.example = example;
+}
 
 }

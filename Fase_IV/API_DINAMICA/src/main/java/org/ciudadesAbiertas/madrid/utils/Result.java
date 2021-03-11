@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticPrefix;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRml;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -50,6 +52,11 @@ public class Result {
 	private String contentMD5="";
 	private String projectedCoordinates="";
 	private String geographicCoordinates="";
+	
+	//Atributos para generar RDF en API Dinamica
+	private String query="";
+	private List<SemanticPrefix> prefixes=new ArrayList<SemanticPrefix>();
+	private SemanticRml rml;
 	
 	
 
@@ -231,6 +238,43 @@ public class Result {
 
 	public void setGeographicCoordinates(String geographicCoordinates) {
 		this.geographicCoordinates = geographicCoordinates;
+	}
+
+
+	public String getQuery() {
+	    return query;
+	}
+
+
+	public void setQuery(String query) {
+	    this.query = query;
+	}
+
+
+	
+
+	public List<SemanticPrefix> getPrefixes() {
+	    return prefixes;
+	}
+
+
+	public void setPrefixes(List<SemanticPrefix> prefixes) {
+	    this.prefixes = prefixes;
+	}
+
+
+	public void setProjectedCoordinates(String projectedCoordinates) {
+	    this.projectedCoordinates = projectedCoordinates;
+	}
+
+
+	public SemanticRml getRml() {
+	    return rml;
+	}
+
+
+	public void setRml(SemanticRml rml) {
+	    this.rml = rml;
 	}
 
 	

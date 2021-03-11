@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,74 +17,74 @@ import javax.persistence.Table;
 @Table(name = "users", catalog = "apiDinamica")
 public class Users implements java.io.Serializable {
 
-    private String username;
-    private String pass;
-    private byte enabled;
-    private Set<UserRoles> userRoleses = new HashSet<UserRoles>(0);
-    private Set<GroupMembers> groupMemberses = new HashSet<GroupMembers>(0);
+private String username;
+private String pass;
+private byte enabled;
+private Set<UserRoles> userRoleses = new HashSet<UserRoles>(0);
+private Set<GroupMembers> groupMemberses = new HashSet<GroupMembers>(0);
 
-    public Users() {
-    }
+public Users() {
+}
 
-    public Users(String username, String pass, byte enabled) {
-	this.username = username;
-	this.pass = pass;
-	this.enabled = enabled;
-    }
+public Users(String username, String pass, byte enabled) {
+  this.username = username;
+  this.pass = pass;
+  this.enabled = enabled;
+}
 
-    public Users(String username, String pass, byte enabled, Set<UserRoles> userRoleses, Set<GroupMembers> groupMemberses) {
-	this.username = username;
-	this.pass = pass;
-	this.enabled = enabled;
-	this.userRoleses = userRoleses;
-	this.groupMemberses = groupMemberses;
-    }
+public Users(String username, String pass, byte enabled, Set<UserRoles> userRoleses, Set<GroupMembers> groupMemberses) {
+  this.username = username;
+  this.pass = pass;
+  this.enabled = enabled;
+  this.userRoleses = userRoleses;
+  this.groupMemberses = groupMemberses;
+}
 
-    @Id
+@Id
 
-    @Column(name = "username", unique = true, nullable = false, length = 45)
-    public String getUsername() {
-	return this.username;
-    }
+@Column(name = "username", unique = true, nullable = false, length = 45)
+public String getUsername() {
+  return this.username;
+}
 
-    public void setUsername(String username) {
-	this.username = username;
-    }
+public void setUsername(String username) {
+  this.username = username;
+}
 
-    @Column(name = "pass", nullable = false, length = 60)
-    public String getPass() {
-	return this.pass;
-    }
+@Column(name = "pass", nullable = false, length = 60)
+public String getPass() {
+  return this.pass;
+}
 
-    public void setPass(String pass) {
-	this.pass = pass;
-    }
+public void setPass(String pass) {
+  this.pass = pass;
+}
 
-    @Column(name = "enabled", nullable = false)
-    public byte getEnabled() {
-	return this.enabled;
-    }
+@Column(name = "enabled", nullable = false)
+public byte getEnabled() {
+  return this.enabled;
+}
 
-    public void setEnabled(byte enabled) {
-	this.enabled = enabled;
-    }
+public void setEnabled(byte enabled) {
+  this.enabled = enabled;
+}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    public Set<UserRoles> getUserRoleses() {
-	return this.userRoleses;
-    }
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+public Set<UserRoles> getUserRoleses() {
+  return this.userRoleses;
+}
 
-    public void setUserRoleses(Set<UserRoles> userRoleses) {
-	this.userRoleses = userRoleses;
-    }
+public void setUserRoleses(Set<UserRoles> userRoleses) {
+  this.userRoleses = userRoleses;
+}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    public Set<GroupMembers> getGroupMemberses() {
-	return this.groupMemberses;
-    }
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+public Set<GroupMembers> getGroupMemberses() {
+  return this.groupMemberses;
+}
 
-    public void setGroupMemberses(Set<GroupMembers> groupMemberses) {
-	this.groupMemberses = groupMemberses;
-    }
+public void setGroupMemberses(Set<GroupMembers> groupMemberses) {
+  this.groupMemberses = groupMemberses;
+}
 
 }

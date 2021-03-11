@@ -12,6 +12,10 @@ public class SemanticBean {
     private SemanticRml rml;
     private List<SemanticPrefix> prefixes=new ArrayList<SemanticPrefix>();
     private List<SemanticField> fields=new ArrayList<SemanticField>();
+    private String typeURL;
+    private String prefixTypeURL;
+    private String subjectURI;
+    private String selectedFieldForURI;
     
     
     public SemanticRml getRml() {
@@ -32,6 +36,30 @@ public class SemanticBean {
     public void setFields(List<SemanticField> fields) {
         this.fields = fields;
     }
-    
+    public String getTypeURL() {
+        return typeURL;
+    }
+    public void setTypeURL(String typeURL) {
+        this.typeURL = typeURL;
+    }
+    public String getPrefixTypeURL() {
+        return prefixTypeURL;
+    }
+    public void setPrefixTypeURL(String prefixTypeURL) {
+        this.prefixTypeURL = prefixTypeURL;
+    }
+	public String getSubjectURI() {
+	  return subjectURI;
+	}
+	public void setSubjectURI(String subjectURI) {
+	  this.subjectURI = subjectURI;
+	}
+	public String getSelectedFieldForURI() {
+	  return selectedFieldForURI;
+	}
+	public void setSelectedFieldForURI(String selectedFieldForURI) {
+	  this.selectedFieldForURI = selectedFieldForURI;
+	}
+     
     
 }

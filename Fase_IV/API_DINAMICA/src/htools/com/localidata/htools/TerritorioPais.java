@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,75 +13,75 @@ import javax.persistence.Table;
 @Table(name = "territorio_pais", catalog = "apiDinamica")
 public class TerritorioPais implements java.io.Serializable {
 
-    private String ikey;
-    private String id;
-    private String identifier;
-    private String title;
-    private String geometry;
+private String ikey;
+private String id;
+private String identifier;
+private String title;
+private String geometry;
 
-    public TerritorioPais() {
-    }
+public TerritorioPais() {
+}
 
-    public TerritorioPais(String ikey, String id, String identifier, String title) {
-	this.ikey = ikey;
-	this.id = id;
-	this.identifier = identifier;
-	this.title = title;
-    }
+public TerritorioPais(String ikey, String id, String identifier, String title) {
+  this.ikey = ikey;
+  this.id = id;
+  this.identifier = identifier;
+  this.title = title;
+}
 
-    public TerritorioPais(String ikey, String id, String identifier, String title, String geometry) {
-	this.ikey = ikey;
-	this.id = id;
-	this.identifier = identifier;
-	this.title = title;
-	this.geometry = geometry;
-    }
+public TerritorioPais(String ikey, String id, String identifier, String title, String geometry) {
+  this.ikey = ikey;
+  this.id = id;
+  this.identifier = identifier;
+  this.title = title;
+  this.geometry = geometry;
+}
 
-    @Id
+@Id
 
-    @Column(name = "ikey", unique = true, nullable = false, length = 50)
-    public String getIkey() {
-	return this.ikey;
-    }
+@Column(name = "ikey", unique = true, nullable = false, length = 50)
+public String getIkey() {
+  return this.ikey;
+}
 
-    public void setIkey(String ikey) {
-	this.ikey = ikey;
-    }
+public void setIkey(String ikey) {
+  this.ikey = ikey;
+}
 
-    @Column(name = "id", nullable = false, length = 50)
-    public String getId() {
-	return this.id;
-    }
+@Column(name = "id", nullable = false, length = 50)
+public String getId() {
+  return this.id;
+}
 
-    public void setId(String id) {
-	this.id = id;
-    }
+public void setId(String id) {
+  this.id = id;
+}
 
-    @Column(name = "identifier", nullable = false, length = 400)
-    public String getIdentifier() {
-	return this.identifier;
-    }
+@Column(name = "identifier", nullable = false, length = 400)
+public String getIdentifier() {
+  return this.identifier;
+}
 
-    public void setIdentifier(String identifier) {
-	this.identifier = identifier;
-    }
+public void setIdentifier(String identifier) {
+  this.identifier = identifier;
+}
 
-    @Column(name = "title", nullable = false, length = 400)
-    public String getTitle() {
-	return this.title;
-    }
+@Column(name = "title", nullable = false, length = 400)
+public String getTitle() {
+  return this.title;
+}
 
-    public void setTitle(String title) {
-	this.title = title;
-    }
+public void setTitle(String title) {
+  this.title = title;
+}
 
-    @Column(name = "geometry")
-    public String getGeometry() {
-	return this.geometry;
-    }
+@Column(name = "geometry")
+public String getGeometry() {
+  return this.geometry;
+}
 
-    public void setGeometry(String geometry) {
-	this.geometry = geometry;
-    }
+public void setGeometry(String geometry) {
+  this.geometry = geometry;
+}
 
 }

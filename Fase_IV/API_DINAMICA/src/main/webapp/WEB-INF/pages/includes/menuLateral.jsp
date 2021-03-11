@@ -9,7 +9,7 @@
 			<li><a href="<c:url value="/query"/>">Consultas SQL</a></li>
 			<li><a href="<c:url value="/swaggerDef"/>">Definiciones de SWAGGER</a></li>			
 			
-			<!-- 
+			
 			<li class="has_children">
 				<a href="#">Datos Semánticos</a>
 				<ul>
@@ -18,8 +18,9 @@
 					<li><a href="<c:url value="/prefix"/>">Prefijos</a></a></li>					
 				</ul>
 			</li>
+			<li><a target="swagger" href="<c:url value="/swagger"/>">Documentación</a></li>
 			
-			 -->			
+						
 			<!-- 
 			<li><a href="<c:url value="/entidadBase"/>">CRUD Básico</a></li>
 			<li class="has_children">

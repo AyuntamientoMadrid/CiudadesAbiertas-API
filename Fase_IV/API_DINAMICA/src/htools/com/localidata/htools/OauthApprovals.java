@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,26 +15,26 @@ import javax.persistence.Table;
 @Table(name = "oauth_approvals", catalog = "apiDinamica")
 public class OauthApprovals implements java.io.Serializable {
 
-    private OauthApprovalsId id;
+private OauthApprovalsId id;
 
-    public OauthApprovals() {
-    }
+public OauthApprovals() {
+}
 
-    public OauthApprovals(OauthApprovalsId id) {
-	this.id = id;
-    }
+public OauthApprovals(OauthApprovalsId id) {
+  this.id = id;
+}
 
-    @EmbeddedId
+@EmbeddedId
 
-    @AttributeOverrides({ @AttributeOverride(name = "userId", column = @Column(name = "userId")), @AttributeOverride(name = "clientId", column = @Column(name = "clientId")),
-	    @AttributeOverride(name = "scope", column = @Column(name = "scope")), @AttributeOverride(name = "status", column = @Column(name = "status", length = 10)),
-	    @AttributeOverride(name = "expiresAt", column = @Column(name = "expiresAt", nullable = false, length = 19)), @AttributeOverride(name = "lastModifiedAt", column = @Column(name = "lastModifiedAt", length = 19)) })
-    public OauthApprovalsId getId() {
-	return this.id;
-    }
+@AttributeOverrides({ @AttributeOverride(name = "userId", column = @Column(name = "userId")), @AttributeOverride(name = "clientId", column = @Column(name = "clientId")), @AttributeOverride(name = "scope", column = @Column(name = "scope")),
+	@AttributeOverride(name = "status", column = @Column(name = "status", length = 10)), @AttributeOverride(name = "expiresAt", column = @Column(name = "expiresAt", nullable = false, length = 19)),
+	@AttributeOverride(name = "lastModifiedAt", column = @Column(name = "lastModifiedAt", length = 19)) })
+public OauthApprovalsId getId() {
+  return this.id;
+}
 
-    public void setId(OauthApprovalsId id) {
-	this.id = id;
-    }
+public void setId(OauthApprovalsId id) {
+  this.id = id;
+}
 
 }

@@ -18,6 +18,7 @@ public class SemanticField implements java.io.Serializable {
     private String field;
     private String predicate;
     private String objectReference;
+    private String objectReferenceType;
     private String objectType;
     private boolean objectUri;
     private String blankNodeType;
@@ -27,12 +28,13 @@ public class SemanticField implements java.io.Serializable {
     public SemanticField() {
     }
 
-    public SemanticField(String id, String query, String field, String predicate, String objectReference, String objectType, boolean objectUri, String blankNodeType, String blankNodeId) {
+    public SemanticField(String id, String query, String field, String predicate, String objectReference, String objectReferenceType, String objectType, boolean objectUri, String blankNodeType, String blankNodeId) {
 	this.id = id;
 	this.query = query;
 	this.field = field;
 	this.predicate = predicate;
 	this.objectReference = objectReference;
+	this.objectReferenceType = objectReferenceType;
 	this.objectType = objectType;
 	this.objectUri = objectUri;
 	this.blankNodeType = blankNodeType;
@@ -123,6 +125,15 @@ public class SemanticField implements java.io.Serializable {
     
     
     
+    @Column(name = "object_reference_type", nullable = true, length = 20)
+    public String getObjectReferenceType() {
+        return objectReferenceType;
+    }
+
+    public void setObjectReferenceType(String objectReferenceType) {
+        this.objectReferenceType = objectReferenceType;
+    }
+
     @Column(name = "blank_property_id", nullable = true, length = 100)
     public String getBlankNodeProperty() {
         return blankNodeProperty;

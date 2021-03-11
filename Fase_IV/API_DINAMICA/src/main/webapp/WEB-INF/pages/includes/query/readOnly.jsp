@@ -4,6 +4,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="true"%>
 <%@ page isELIgnored="false"%>
+<%@ page import= "org.ciudadesAbiertas.madrid.utils.constants.LiteralConstants" %> 
+
+
+
+ <div class="advice">
+    	<c:choose>
+		  <c:when test="${empty error}">
+		    <div class="container error d-none" id="expInfo">
+		  </c:when>			  
+		  <c:otherwise>
+		    <div class="container error" id="expInfo">
+		  </c:otherwise>
+		</c:choose>
+	  	<c:choose>
+		  <c:when test="${error eq ''}">
+		    <h4 id="errorAdviceTitle"><%=LiteralConstants.TEXT_ERROR%></h4>
+	          	<p><%=LiteralConstants.OPERACION_KO%>.</p>
+		  </c:when>			  
+		  <c:otherwise>
+		    <h4 id="errorAdviceTitle"><%=LiteralConstants.TEXT_ERROR%></h4>
+	         		<p>${error}.</p>
+		  </c:otherwise>
+		</c:choose>		
+            
+        </div>
+    </div>
 
 <div class="texto">
 	<div class="container">

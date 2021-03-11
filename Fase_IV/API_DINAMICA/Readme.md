@@ -14,12 +14,20 @@ Aplicación para creación dinámica de conjuntos de datos, configurables median
   -	Gestión de Usuarios (externos para usuarios de la API)
   -	Estadísticas básicas de uso de URL
   -	Control básico de seguridad para evitar desbordamientos
-  - Formatos Geojson y Georss
-  - Módulo Semántico
-  - Consultas geográficas (dentro de un radio)
-  - Ayudas añadidas en todas las pantallas
-  - Precarga de diferentes tipos de consultas
-  - Separador de CSV dinámico
+  - Configuración del separador de CSV en las peticiones en este formato
+  - Plantillas añadidas en consultas para ayudar a dar de alta los siguientes tipos de consultas
+  	- Consulta Básica
+  	- Consulta Agrupada
+  	- Consulta Distinct
+  	- Consulta con coordenadas
+  	- Consulta de distancia geográfica
+  - Módulo de Datos Semanticos
+  	- Submódulo prefijos: gestión de prefijos necesarios para las definiciones semánticas
+  	- Submódulo definiciones: configuración de información semantica vinculada a las diferentes URLs. Esto permite la generación de los formatos:
+		 - rdf
+		 - ttl
+		 - jsonld
+		 - n3
 
 ## Requerimientos
 
@@ -80,6 +88,11 @@ https=off
 xy.value.epsg=EPSG:25830
 #vble para la configuracion de las coordenadas geograficas  SOPORTAMOS (EPSG:4258, EPSG:4230, EPSG:4326)
 lat_lon.value.epsg=EPSG:4258
+
+#Separador por defecto para los CSV (Ejemplo: , ; - :)
+separator.csv.value = ,
+#Caracter que funciona como comodin para solicitar que los csv esten separados como tabulador. (Valor por defecto *)
+separator.comodin.tab=*
 
 geo.xETRS89.field=xETRS89
 geo.yETRS89.field=yETRS89
@@ -227,6 +240,18 @@ hibernate.use_sql_comments=true
 rsql.log.active=off
 ```
 
+## Separador CSV
+
+Es necesario configurar los siguientes párametros en el fichero *config.properties*:
+```
+#Separador por defecto para los CSV (Ejemplo: , ; - :)
+separator.csv.value = ,
+#Caracter que funciona como comodin para solicitar que los csv esten separados como tabulador. (Valor por defecto *)
+separator.comodin.tab=*
+```
+
+Estos párametros definen el separador por defecto, pero tambien es posible modificar este separador directamente en la petición.
+Ejemplo url: https://alzir.dia.fi.upm.es/dynamicAPI/API/query/subvencion.csv?csvSeparator=;
 
 
 # Autores

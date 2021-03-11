@@ -46,6 +46,7 @@ import org.ciudadesAbiertas.madrid.utils.constants.Constants;
 import org.ciudadesAbiertas.madrid.utils.converters.CSVConverter;
 import org.ciudadesAbiertas.madrid.utils.converters.GEOJSONConverter;
 import org.ciudadesAbiertas.madrid.utils.converters.GEORSSConverter;
+import org.ciudadesAbiertas.madrid.utils.converters.RDFConverter;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,7 +111,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry)
   {
-    registry.addResourceHandler(Constants.RESOURCES + "**").addResourceLocations(Constants.RESOURCES);
+    registry.addResourceHandler(Constants.RESOURCES + "**").addResourceLocations(Constants.RESOURCES);    
     registry.addResourceHandler(Constants.SWAGGER + "**").addResourceLocations(Constants.SWAGGER);
   }
 
@@ -123,10 +124,12 @@ public class WebConfig extends WebMvcConfigurerAdapter
     // mediaType(Constants.FORMATO_HTML,
     // MediaType.valueOf(Constants.MEDIA_TYPE_TEXT)).
 	mediaType(Constants.FORMATO_CSV, MediaType.valueOf(Constants.MEDIA_TYPE_CSV)).
-	// mediaType(Constants.FORMATO_JSONLD, MediaType.valueOf(RDFConverter.JSONLD)).
-	//mediaType(Constants.FORMATO_TTL, MediaType.valueOf(RDFConverter.TURTLE)).
-	// mediaType(Constants.FORMATO_N3, MediaType.valueOf(RDFConverter.N3)).
-	mediaType(Constants.FORMATO_GEOJSON, MediaType.valueOf(Constants.MEDIA_TYPE_GEOJSON)).mediaType(Constants.FORMATO_GEORSS, MediaType.valueOf(Constants.MEDIA_TYPE_GEORSS))
+	mediaType(Constants.FORMATO_JSONLD, MediaType.valueOf(Constants.mimeJSONLD)).
+	mediaType(Constants.FORMATO_TTL, MediaType.valueOf(Constants.mimeTURTLE)).
+	mediaType(Constants.FORMATO_N3, MediaType.valueOf(Constants.mimeN3)).
+	mediaType(Constants.FORMATO_RDF, MediaType.valueOf(Constants.mimeRDF_XML)).
+	mediaType(Constants.FORMATO_GEOJSON, MediaType.valueOf(Constants.MEDIA_TYPE_GEOJSON))
+	.mediaType(Constants.FORMATO_GEORSS, MediaType.valueOf(Constants.MEDIA_TYPE_GEORSS))
 	.mediaType(Constants.FORMATO_ODATA, MediaType.valueOf(Constants.MEDIA_TYPE_GEORSS));
 
   }
@@ -202,25 +205,19 @@ public class WebConfig extends WebMvcConfigurerAdapter
     // Añadimos georss
     converters.add(new GEORSSConverter());
 
-  
+    // Añadimos turtle
+    converters.add(new RDFConverter<>(Constants.mimeTURTLE));
     
-    /*
-     * // Añadimos el RDF/XML converters.add(new
-     * RDFConverter<>(RDFConverter.RDF_XML, env.getProperty(Constants.URI_BASE),
-     * StartVariables.context));
-     * 
-     * // Añadimos el ttl converters.add(new RDFConverter<>(RDFConverter.TURTLE,
-     * env.getProperty(Constants.URI_BASE), StartVariables.context));
-     * 
-     * // Añadimos N3 converters.add(new RDFConverter<>(RDFConverter.N3,
-     * env.getProperty(Constants.URI_BASE), StartVariables.context));
-     * 
-     * // Añadimos JSONLD converters.add(new RDFConverter<>(RDFConverter.JSONLD,
-     * env.getProperty(Constants.URI_BASE), StartVariables.context));
-     * 
-     * 
-     * 
-     */
+    // Añadimos JSONLD
+    converters.add(new RDFConverter<>(Constants.mimeJSONLD));
+    
+    // Añadimos N3
+    converters.add(new RDFConverter<>(Constants.mimeN3));    
+    
+    // Añadimos RDF_XML
+    converters.add(new RDFConverter<>(Constants.mimeRDF_XML));
+    
+    
   }
 
   private Properties getHibernateProperties()
@@ -247,13 +244,14 @@ public class WebConfig extends WebMvcConfigurerAdapter
       ds.setPassword(Util.checkAndSetEncodedProperty(env.getProperty(Constants.DB_PASSWORD)));
 
       StartVariables.db_schema = env.getProperty(Constants.DB_SCHEMA);
+      
       StartVariables.databaseTypes.put(Constants.DEFAULT_DATABASE, Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)));
-
+      
       if (Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)).contains(Constants.SQLSERVER))
    	  {
     	StartVariables.sqlServerSchemas.put(Constants.DEFAULT_DATABASE, env.getProperty(Constants.DB_SCHEMA));
-   	  }  
-      
+   	  }    
+
       ds.setInitialSize(Integer.parseInt(env.getProperty(Constants.DB_INITIAL_SIZE)));
       ds.setMaxActive(Integer.parseInt(env.getProperty(Constants.DB_MAX_ACTIVE)));
       ds.setMaxIdle(Integer.parseInt(env.getProperty(Constants.DB_MAX_IDLE)));
@@ -289,6 +287,11 @@ public class WebConfig extends WebMvcConfigurerAdapter
 
       StartVariables.db_schema = env.getProperty(Constants.DB_SCHEMA);
       StartVariables.databaseTypes.put(Constants.DEFAULT_DATABASE, Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)));
+      
+      if (Util.getDatabaseTypeFromDriver(env.getProperty(Constants.DB_DRIVER)).contains(Constants.SQLSERVER))
+   	  {
+    	StartVariables.sqlServerSchemas.put(Constants.DEFAULT_DATABASE, env.getProperty(Constants.DB_SCHEMA));
+   	  }   
 
       try
       {
@@ -389,17 +392,23 @@ public class WebConfig extends WebMvcConfigurerAdapter
     String str_rsql_log_active = env.getProperty(Constants.STR_RSQL_LOG_ACTIVE);
     String tipoAutenticacion = env.getProperty(Constants.TIPO_AUTENTICACION);
 
+    
+    if (Util.validValue(env.getProperty(Constants.STR_CONTEXTO)))
+    {
+    	StartVariables.context=env.getProperty(Constants.STR_CONTEXTO);
+    }
+    
     if (Util.validValue(env.getProperty(Constants.URI_BASE)))
     {
       if (Util.validateURL(env.getProperty(Constants.URI_BASE)))
       {
-	StartVariables.uriBase = env.getProperty(Constants.URI_BASE);
-	StartVariables.serverPort = StartVariables.uriBase.substring(StartVariables.uriBase.indexOf("//") + 2);
-	StartVariables.schema = StartVariables.uriBase.substring(0, StartVariables.uriBase.indexOf("://") + 3);
+    	  StartVariables.uriBase = env.getProperty(Constants.URI_BASE);
+    	  StartVariables.serverPort = StartVariables.uriBase.substring(StartVariables.uriBase.indexOf("//") + 2);
+    	  StartVariables.schema = StartVariables.uriBase.substring(0, StartVariables.uriBase.indexOf("://") + 3);
       }
       else
       {
-	throw new MalformedURLException(Constants.URI_BASE);
+    	  throw new MalformedURLException(Constants.URI_BASE);
       }
 
     }
@@ -531,6 +540,30 @@ public class WebConfig extends WebMvcConfigurerAdapter
     {
       StartVariables.geometry_field = env.getProperty("geo.geometry.field");
     }
+    
+    //CMG 2021-01-19: Control para definir el separador de los CSV
+    if (Util.validValue(env.getProperty(Constants.SEPARATOR_CSV_VALUE)))
+    {
+    	String auxSeparator = env.getProperty(Constants.SEPARATOR_CSV_VALUE);
+    	if (auxSeparator.length()==1) {
+    		StartVariables.separator_csv = env.getProperty(Constants.SEPARATOR_CSV_VALUE).charAt(0);
+    		log.info("CSV SEPARATOR: " + StartVariables.separator_csv);
+    	}else {
+    		log.error("[ERROR]: El Caracter Separador definido no es valido: "+ auxSeparator );
+    	}
+    }
+    
+    //CMG 2021-01-22: Control para definir el comodin para el tab de los CSV
+    if (Util.validValue(env.getProperty(Constants.SEPARATOR_COMODIN_TAB_VALUE)))
+    {
+    	String auxComodin = env.getProperty(Constants.SEPARATOR_COMODIN_TAB_VALUE);
+    	if (auxComodin.length()==1) {
+    		StartVariables.separator_comodin_tab = env.getProperty(Constants.SEPARATOR_COMODIN_TAB_VALUE).charAt(0);
+    		log.info("CSV COMODIN TAB: " + StartVariables.separator_comodin_tab);
+    	}else {
+    		log.error("[ERROR]: El Caracter Comodin (TAB) definido no es valido: "+ auxComodin );
+    	}
+    }
 
   }
 
@@ -585,11 +618,11 @@ public class WebConfig extends WebMvcConfigurerAdapter
 
   @Bean
   public InternalResourceViewResolver viewResolver()
-  {
+  {   
     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
     viewResolver.setViewClass(JstlView.class);
     viewResolver.setPrefix("/WEB-INF/pages/");
-    viewResolver.setSuffix(".jsp");
+    viewResolver.setSuffix(".jsp"); 
     return viewResolver;
   }
 

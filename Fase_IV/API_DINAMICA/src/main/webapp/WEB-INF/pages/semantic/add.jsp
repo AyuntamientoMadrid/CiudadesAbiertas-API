@@ -6,7 +6,7 @@
 <%@ page import= "org.ciudadesAbiertas.madrid.utils.constants.LiteralConstants" %> 
 <%@ page session="true"%>
 <%@ page isELIgnored="false" %> 
-<c:set var="title" value="<%=LiteralConstants.TITLE_HEAD_CONSULTAS_SQL%>" scope="session"/>
+<c:set var="title" value="<%=LiteralConstants.TITLE_HEAD_SEMANTIC_DEF%>" scope="session"/>
 <!DOCTYPE html>
 <html lang="es">
 <%@include file="../includes/head.jsp"%>	
@@ -18,11 +18,6 @@
 	<%@include file="../includes/modal_include.jsp"%>
 
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-	
-	
-
-
 	
 	<div class="user_name">
 		<div class="container">
@@ -62,7 +57,7 @@
 		<div class="brand">
 			<div class="row">
 				<div class="col-3">
-					<a href="<c:url value="/query"/>"><i class="ico icon-arrow-left"></i> Volver</a>
+					<a href="<c:url value="/semanticDef"/>"><i class="ico icon-arrow-left"></i> Volver</a>
 				</div>
 				<div class="col-9 options">
 					<ul>
@@ -95,140 +90,178 @@
 			 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 	<input type="hidden" name="prefixSelectedHidden" id="prefixSelectedHidden" value="" />			 	
 			 	<div class="tiny-text">
-			    	<p>Por favor introduzca todos los campos para dar de alta una nueva Consulta. </p>
+			    	<p>Por favor introduzca todos los campos para dar de alta una nueva definición. </p>
           		</div>
 		          <div class="col-xs-12 text-right">
 		            <p>Campos obligatorios *</p>
 		          </div>
-		          <div class="form-group title">
-		            <div class="col-xs-12">
-		              <h4>Configuración incial</h4>
-		            </div>
-		          </div>            
-		          <fieldset>
-		          	<div class="form-row">
-		              	<div class="form-group col-md-12">
-		              	  <div class="row">
-			              	  <div class="col-md-11">
-			              	  	<label class="control-label" for="query">Consulta *</label>
-			              	  </div>
-			              	  <div class="col-md-1">
-			              	  	<div class="icon icon-informacion pointer" align="center" onclick="activarModal(textoModal_1);"></div>
-			              	  </div>
-		              	  </div>			              
-			              <select class="form-control simple" name="query" id="query" required="true" data-parsley-required="true">
-			             		<option value="<c:out value="" />">Seleccione una consulta</option>	  
-			              		<c:forEach var="entry" items="${availableQueries}">
-								  <option value="<c:out value="${entry.key}" />"><c:out value="${entry.value.summary}" /></option>
-								</c:forEach>			              
-							</select>	
-			        	</div>				        		        	
-			        </div>
-			        
-			        <div class="form-row">
-		              	<div class="form-group col-md-6">
-			              <label class="control-label" for="query">Prefijos Seleccionados </label>
-			              <select class="form-control multiple" name="prefixSelected" id="prefixSelected" multiple="multiple" path="skills">
-			              </select>
-			        	</div>
-			        	
-			        	
-			        	
-			        	<div class="form-group col-md-6">
-		                	<div class="col-sm-12 col">
-		                  		<label class="control-label">Prefijos disponibles</label>                    
-			                 	<select class="form-control multiple" name="prefixAvailable" id="prefixAvailable"  multiple="multiple">	                 								    
-							    	<c:forEach var="prefix" items="${prefixList}">
-								  		<option title="${prefix.url}" value="<c:out value="${prefix.id}" />"><c:out value="${prefix.id} ${prefix.url}" /></option>
-									</c:forEach>
-								</select>						
-		                	</div>                           
-		              	</div>
-		              	
-			        </div>
-			         
-			        </fieldset>
-			        
-			        
-			        <div class="form-group title">
-		            	<div class="col-xs-12">
-		            	  <h4>URL del Tipo (rdf:type)</h4>
-		            	</div>
-		          	</div> 
-			        <fieldset>
+		          
+		          
+		          <div id="capaConfiguracionInicial">
+		          
+			          <div class="form-group title">
+			            <div class="col-xs-12">
+			              <h4>Configuración incial</h4>
+			            </div>
+			          </div>            
+			          <fieldset>
 			          	<div class="form-row">
-			              	<div class="form-group col-md-3">
-				              <label class="control-label" for="query">Prefijo</label>
-				              <select class="form-control simple" name="prefixType" id="prefixType">
-				             		<option value="<c:out value="-1" />">Seleccione un prefijo</option>
+			              	<div class="form-group col-md-12">
+			              	  <div class="row">
+				              	  <div class="col-md-11">
+				              	  	<label class="control-label" for="query">Consulta *</label>
+				              	  </div>
+				              	  <div class="col-md-1">
+				              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaConsulta);"></div>
+				              	  </div>
+			              	  </div>			              
+				              <select class="form-control simple" name="query" id="query" required="true" data-parsley-required="true">
+				             		<option value="<c:out value="" />">Seleccione una consulta</option>	  
+				              		<c:forEach var="entry" items="${availableQueries}">
+									  <option value="<c:out value="${entry.key}" />"><c:out value="${entry.value.summary}" /></option>
+									</c:forEach>			              
 								</select>	
+				        	</div>				        		        	
+				        </div>
+				        
+				        <div class="form-row">
+			              	<div class="form-group col-md-6">			              
+				              <div class="row">
+				              	  <div class="col-md-10">
+				              	  	<label class="control-label" for="query">Prefijos Seleccionados</label>
+				              	  </div>
+				              	  <div class="col-md-2">
+				              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaPrefijoSel);"></div>
+				              	  </div>
+			              	  </div>
+				              <select class="form-control multiple" name="prefixSelected" id="prefixSelected" multiple="multiple" path="skills">
+				              </select>
 				        	</div>
-				        	<div class="form-group col-md-9">
-				              <div class="form-group">
-					                <label class="control-label" for="summary">Fin de URL / URL Completa</label>
-					                <input type="text" class="form-control" required="true" id="typeURI" name="typeURI" value="${object.summary}"
-					              	data-parsley-trigger="change"
-									data-parsley-minlength="2" 
-									data-parsley-maxlength="100"
-									data-parsley-required="true"				
-					              >
-					              <span class="hint d-none"></span>
-					            </div>	
-				        	</div>	
-				        </div>			        
-			        </fieldset>
+				        	
+				        	
+				        	
+				        	<div class="form-group col-md-6">
+			                	<div class="col-sm-12 col">		                  		
+			                  		<div class="row">
+					              	  <div class="col-md-10">
+					              	  	<label class="control-label">Prefijos disponibles</label>
+					              	  </div>
+					              	  <div class="col-md-2">
+					              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaPrefijoDis);"></div>
+					              	  </div>
+				              	  	</div>                  
+				                 	<select class="form-control multiple" name="prefixAvailable" id="prefixAvailable"  multiple="multiple">	                 								    
+								    	<c:forEach var="prefix" items="${prefixList}">
+									  		<option title="${prefix.url}" value="<c:out value="${prefix.id}" />"><c:out value="${prefix.code} ${prefix.url}" /></option>
+										</c:forEach>
+									</select>						
+			                	</div>                           
+			              	</div>
+			              	
+				        </div>
+				         
+				        </fieldset>
 			        
+			        </div>
 			        
-			        <div class="form-group title">
-		            	<div class="col-xs-12">
-		            	  <h4>Relaciones</h4>
-		            	</div>
-		          	</div> 
-			        <fieldset id="relaciones">
-			        	<fieldset id="fieldsetCampoZero">
-				          	<div class="form-row">
-				          		<div class="form-group col-md-3">
-					              <label class="control-label" for="query">Atributo</label>
-					              <input type="text" class="form-control" required="true" id="fieldNameCampoZero" name="fieldNameCampoZero" value="atributoValue">
+			        <div id="capaTipo">
+			        	<div class="form-group title">
+			            	<div class="col-xs-12">
+			            	  <h4>URI de cada elemento</h4>
+			            	</div>
+			          	</div> 
+			          	
+			          	     <fieldset>
+				          	<div class="form-row">				              	
+					        	<div class="form-group col-md-8">
+					              <div class="form-group">					                
+						                <div class="row">
+						              	  <div class="col-md-10">
+						              	  	  <label class="control-label" for="summary">Inicio de URI</label>
+						              	  </div>
+						              	  <div class="col-md-2">
+						              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaInputURI);"></div>
+						              	  </div>
+					              	  	</div> 
+						                <input type="text" class="form-control" id="inputObjectURI" name="inputObjectURI" value="" disabled="disabled">
+						              <span class="hint d-none"></span>
+						            </div>	
 					        	</div>
-				              	<div class="form-group col-md-3">
-					              <label class="control-label" for="query">Prefijo</label>
-					              <select class="form-control simple" name="prefixTypeCampoZero" id="prefixTypeCampoZero">
+					        	<div class="form-group col-md-4">
+					              <div class="form-group">					                
+						                <div class="row">
+						              	  <div class="col-md-10">
+						              	  	  <label class="control-label" for="summary">Fin de URI</label>
+						              	  </div>
+						              	  <div class="col-md-2">
+						              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaFinURI);"></div>
+						              	  </div>
+					              	  	</div> 
+						                 <select class="form-control simple" name="fieldObjectURI" id="fieldObjectURI" required="">
+					             			<option value="">Seleccione un campo</option>
+										</select>
+						              <span class="hint d-none"></span>
+						            </div>	
+					        	</div>	
+					        </div>			        
+				        </fieldset>
+			        
+			        
+				        <div class="form-group title">
+			            	<div class="col-xs-12">
+			            	  <h4>URL del Tipo (rdf:type)</h4>
+			            	</div>
+			          	</div> 
+				        <fieldset>
+				          	<div class="form-row">
+				              	<div class="form-group col-md-3">				            
+					              	<div class="row">
+					              	  <div class="col-md-8">
+					              	  	  <label class="control-label" for="query">Prefijo</label>
+					              	  </div>
+					              	  <div class="col-md-4">
+					              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaPrefijoType);"></div>
+					              	  </div>
+				              	  	</div> 
+					              <select class="form-control simple" name="prefixType" id="prefixType">
 					             		<option value="<c:out value="-1" />">Seleccione un prefijo</option>
 									</select>	
 					        	</div>
-					        	<div class="form-group col-md-6">
-					              <div class="form-group">
-						                <label class="control-label" for="urlCampoZero">Fin de URL / URL Completa</label>
-						                <input type="text" class="form-control" required="true" id="urlCampoZero" name="urlCampoZero" value=""
-						              	data-parsley-trigger="change"
-										data-parsley-minlength="2" 
-										data-parsley-maxlength="100"
-										data-parsley-required="true"				
-						              >
+					        	<div class="form-group col-md-9">
+					              <div class="form-group">					                
+						                <div class="row">
+						              	  <div class="col-md-10">
+						              	  	  <label class="control-label" for="summary">Fin de URL / URL Completa</label>
+						              	  </div>
+						              	  <div class="col-md-2">
+						              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaTypeURL);"></div>
+						              	  </div>
+					              	  	</div> 
+						                <input type="text" class="form-control" id="typeURI" name="typeURI" value="${object.summary}">
 						              <span class="hint d-none"></span>
 						            </div>	
-					        	</div>					        	
-					        </div>
-					        <div class="form-row">			          		
-				              	<div class="form-group col-md-4 offset-md-8">
-				              		<div class="form-group">
-						              <label class="control-label" for="query">Tipo</label>
-						              <select class="form-control simple" name="fieldTypeCampoZero" id="fieldTypeCampoZero">
-						             		<c:forEach var="dataType" items="${xsdDataTypes}">
-								  				<option value="<c:out value="${dataType.value}" />"><c:out value="${dataType.name} ${dataType.example}" /></option>
-											</c:forEach>
-									  </select>	
-						        	</div>
-						        </div>
-					        			        	
-					        </div>	
-				        </fieldset>			 			        
-			        </fieldset>
+					        	</div>	
+					        </div>			        
+				        </fieldset>			        
+			        </div>
+			        
+			        <div class="form-group title">
+			       		<div class="col-xs-12">
+          	 				<h4 id="listadoRelaciones">Listado Relaciones</h4>
+          				</div>
+          				<fieldset id="relacionesListado">
+          				
+          					<table class="table-striped" id="relacionesTabla" style="width:100%">
+          					</table>
+          				
+          				</fieldset>
+          			</div>
 			        
 			        
-			        
-			        <div class="row buttons">
+			        <jsp:include page="../includes/semantic/campoZero.jsp" />
+					
+					
+					 <div class="row buttons">
 			            <div class="col-md-4">                
 			              <a class="btn btn-secondary btn-block" href="<c:url value="/semanticDef"/>" role="button" id="botonVolver">Volver</a>
 			            </div>
@@ -252,18 +285,18 @@
 	
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
-	<script id="taskScript" src="<c:url value="/resources/js/semantic/commons.js?v=1"/>" data-context="${contextPath}"></script>
+	<script id="taskScript" src="<c:url value="/resources/js/semantic/commons.js"/>" data-context="${contextPath}"></script>
+	<script src="<c:url value="/resources/js/semantic/help.js"/>"></script>
 	
-	<script>
-	var textoModal_1 =  "1 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-					 	"1 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-					 	"1 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
-	var textoModal_2 =  "2 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-					 	"2 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-					 	"2 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
-	var textoModal_3 =  "3 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-					 	"3 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-					 	"3 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
+	<script>	
+	$("#capaTipo").hide();
+	$("#capaRelaciones").hide();
+	
+	$("#botonGuardar").attr("disabled", true);
+	
+	var querySelected="";
+	var objectURI="${objectURI}";
+	
 	</script>
 	
 	<style>

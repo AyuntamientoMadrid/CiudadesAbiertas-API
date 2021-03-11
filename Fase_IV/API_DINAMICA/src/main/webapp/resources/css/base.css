@@ -37,3 +37,42 @@ a:hover {
 }
 
 .pointer {cursor: pointer;}
+
+/* Inicio menu desplegable add en consultas */
+.share_menu .brand .options ul li.add_query .add_options {
+	position: absolute;
+	z-index: 98;
+	right: 170px;
+	display: none;
+	width: 250px;
+	border: 1px solid #ccc;
+	background: #fff;
+}
+
+.share_menu .brand .options ul li.add_query .icon-arrow-down {
+	font-size: .5em;
+	margin-left: 5px;
+}
+
+.share_menu .brand .options ul li.add_query .add_options ul li {
+	text-align: left;
+	display: block;
+	margin: 0;
+	padding: 0 0 10px;
+	border: none;
+}
+
+.share_menu .brand .options ul li.add_query .add_options ul {
+	padding: 10px 10px 0;
+}
+
+/* Fin  menu desplegable add en consultas */
+
+.flechasNav{
+	margin-bottom:15px;
+}
+
+#relacionesTabla{
+	table-layout: fixed;
+    word-wrap: break-word;
+}

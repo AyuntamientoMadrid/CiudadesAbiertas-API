@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,24 +15,24 @@ import javax.persistence.Table;
 @Table(name = "oauth_code", catalog = "apiDinamica")
 public class OauthCode implements java.io.Serializable {
 
-    private OauthCodeId id;
+private OauthCodeId id;
 
-    public OauthCode() {
-    }
+public OauthCode() {
+}
 
-    public OauthCode(OauthCodeId id) {
-	this.id = id;
-    }
+public OauthCode(OauthCodeId id) {
+  this.id = id;
+}
 
-    @EmbeddedId
+@EmbeddedId
 
-    @AttributeOverrides({ @AttributeOverride(name = "code", column = @Column(name = "code")), @AttributeOverride(name = "authentication", column = @Column(name = "authentication")) })
-    public OauthCodeId getId() {
-	return this.id;
-    }
+@AttributeOverrides({ @AttributeOverride(name = "code", column = @Column(name = "code")), @AttributeOverride(name = "authentication", column = @Column(name = "authentication")) })
+public OauthCodeId getId() {
+  return this.id;
+}
 
-    public void setId(OauthCodeId id) {
-	this.id = id;
-    }
+public void setId(OauthCodeId id) {
+  this.id = id;
+}
 
 }

@@ -27,7 +27,7 @@
    	<div class="title mt-0">
 		<div class="container">
 			<div class="col-md-12">
-				<p id="parrafoTitulo">${object.id}</p>
+				<p id="parrafoTitulo">${object.code}</p>
 			</div>
 		</div>
 	</div>

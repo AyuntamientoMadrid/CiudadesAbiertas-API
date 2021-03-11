@@ -1,6 +1,7 @@
 package org.ciudadesAbiertas.madrid.service.dynamic;
 
 import java.util.List;
+import java.util.Map;
 
 import org.ciudadesAbiertas.madrid.dao.dynamic.SemanticFieldDao;
 import org.ciudadesAbiertas.madrid.model.dynamic.SemanticField;
@@ -25,9 +26,9 @@ public class SemanticFieldService {
     }
 
     @Transactional(readOnly = true)
-    public List<SemanticField> getFieldsFromQuery(String query) {
+    public List<SemanticField> getFieldsFromQuery(String query, String order) {
 	log.info("getFieldsFromQuery");
-	return semanticFieldDao.getFieldsFromQuery(query);
+	return semanticFieldDao.getFieldsFromQuery(query, order);
     }
 
     @Transactional
@@ -36,6 +37,14 @@ public class SemanticFieldService {
 	semanticFieldDao.delete(field);
 	
     }
+    
+    
+    @Transactional(readOnly = true)
+    public Map<String, List<SemanticField>> getMapQueryFields() {
+	log.info("getMapQueryFields");
+	return semanticFieldDao.getMapQueryFields();
+    }
+
 
     
 

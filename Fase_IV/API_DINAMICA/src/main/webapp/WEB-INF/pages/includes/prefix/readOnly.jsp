@@ -14,7 +14,7 @@
 			<div class="col-3">	
 				<dl>			
 					<dt>Código</dt>
-					<dd>${object.id}</dd>
+					<dd>${object.code}</dd>
 										
 				</dl>
 			</div>		

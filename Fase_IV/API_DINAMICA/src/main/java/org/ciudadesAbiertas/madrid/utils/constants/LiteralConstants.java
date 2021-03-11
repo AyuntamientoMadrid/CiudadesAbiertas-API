@@ -63,6 +63,9 @@ public class LiteralConstants {
 	
 	//Paginas de SWAGGER DEF
 	public final static String TITLE_HEAD_SEMANTIC_DEF="Definiciones Semánticas";
+	
+	//Paginas de SWAGGER DEF
+	public final static String TITLE_HEAD_PREFIX_DEF="Definiciones Semánticas";
 		
 	
 	public final static String SIN_DATOS="Sin datos";

@@ -22,10 +22,16 @@ import org.ciudadesAbiertas.madrid.exception.TooManyRequestException;
 import org.ciudadesAbiertas.madrid.model.Estadistica;
 import org.ciudadesAbiertas.madrid.model.dynamic.ParamD;
 import org.ciudadesAbiertas.madrid.model.dynamic.QueryD;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticPrefix;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRelPrefix;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRml;
 import org.ciudadesAbiertas.madrid.service.EstadisticaService;
 import org.ciudadesAbiertas.madrid.service.dynamic.DynamicService;
 import org.ciudadesAbiertas.madrid.service.dynamic.ParamService;
+import org.ciudadesAbiertas.madrid.service.dynamic.PrefixRelService;
+import org.ciudadesAbiertas.madrid.service.dynamic.PrefixService;
 import org.ciudadesAbiertas.madrid.service.dynamic.QueryService;
+import org.ciudadesAbiertas.madrid.service.dynamic.SemanticRmlService;
 import org.ciudadesAbiertas.madrid.utils.CoordinateTransformer;
 import org.ciudadesAbiertas.madrid.utils.DynamicQueryUtils;
 import org.ciudadesAbiertas.madrid.utils.LikeNoAccents;
@@ -36,6 +42,7 @@ import org.ciudadesAbiertas.madrid.utils.StringToDateConverter;
 import org.ciudadesAbiertas.madrid.utils.TableNameReplacer;
 import org.ciudadesAbiertas.madrid.utils.Util;
 import org.ciudadesAbiertas.madrid.utils.constants.Constants;
+import org.ciudadesAbiertas.madrid.utils.converters.CSVConverter;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -54,6 +61,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
+import net.sf.jsqlparser.JSQLParserException;
 
 
 
@@ -90,13 +98,25 @@ public class DynamicController implements IDynamicController{
 	@Autowired
 	private EstadisticaService estadisticaService;
 	
-	@RequestMapping(value= {path+"{code}"}, method = {RequestMethod.GET}, produces="text/csv")	
+	@Autowired
+	private SemanticRmlService semanticRmlService;
+	
+	@Autowired
+	private PrefixRelService prefixRelService;
+	
+	@Autowired
+	private PrefixService prefixService;
+	
+	
+	@RequestMapping(value= {path+"{code}", path+"{code}"+"/"+"{id}"}, method = {RequestMethod.GET}, produces="text/csv")	
 	public @ResponseBody ResponseEntity<Object> csvDynamicQuery(HttpServletRequest request, HttpServletResponse response,
 															@PathVariable String code, 
+															@PathVariable(required = false) String id,
 															@RequestParam(value = "page", defaultValue = "1", required = false) String page, 
 															@RequestParam(value = "pageSize", defaultValue = "100", required = false) String pageSize,															
 															@RequestParam(value = "sort", defaultValue = "", required = false) String sort,
-															@RequestParam(value = Constants.SRID, defaultValue = Constants.DOCUMENTATION_SRID, required = false) String srId,
+															@RequestParam(value = Constants.SRID, required = false) String srId,
+															@RequestParam(value = Constants.PARAM_CSV_SEPARATOR, required = false) Character csvSeparator,
 															@RequestParam(value = Constants.RSQL_Q, defaultValue = "", required = false) String rsqlQ) 
 																	throws TooManyRequestException, BadRequestException, InternalErrorException {
 
@@ -107,6 +127,11 @@ public class DynamicController implements IDynamicController{
 			return negotiationResponseEntity;
 		}
 
+		if (srId==null)
+		{
+		  srId=StartVariables.SRID_XY_APP;
+		}
+		
 		petitionsControl();
 
 		srIdControl(srId);
@@ -114,7 +139,8 @@ public class DynamicController implements IDynamicController{
 		if (errorExtension(request, response))
 			return null;
 
-		Result listado = listado(request, code, page, pageSize, sort, srId, rsqlQ);
+		Result listado = listado(request, code, page, pageSize, sort, srId, rsqlQ, csvSeparator, id);
+				
 		return createResponse(listado);
 
 	}
@@ -125,13 +151,14 @@ public class DynamicController implements IDynamicController{
 
 
 	
-	@RequestMapping(value= {path+"{code}"}, method = {RequestMethod.GET})
+	@RequestMapping(value= {path+"{code}", path+"{code}"+"/"+"{id}"}, method = {RequestMethod.GET})
 	public @ResponseBody ResponseEntity<Object> dynamicQuery(HttpServletRequest request, HttpServletResponse response,
 															@PathVariable String code, 
+															@PathVariable(required = false) String id,
 															@RequestParam(value = "page", defaultValue = "1", required = false) String page, 
 															@RequestParam(value = "pageSize", defaultValue = "100", required = false) String pageSize,
 															@RequestParam(value = "sort", defaultValue = "", required = false) String sort,
-															@RequestParam(value = Constants.SRID, defaultValue = Constants.DOCUMENTATION_SRID, required = false) String srId ,
+															@RequestParam(value = Constants.SRID, required = false) String srId ,
 															@RequestParam(value = Constants.RSQL_Q, defaultValue = "", required = false) String rsqlQ) 
 	 
 																	throws TooManyRequestException, BadRequestException, InternalErrorException {
@@ -140,6 +167,10 @@ public class DynamicController implements IDynamicController{
 		
 		log.info(Util.getFullURL(request));
 		
+		if (srId==null)
+		{
+		  srId=StartVariables.SRID_XY_APP;
+		}
 		//Verifico la negociación de contenidos
 		ResponseEntity<Object> negotiationResponseEntity=Util.negotiationContent(request);
 		if (negotiationResponseEntity!=null){
@@ -158,7 +189,22 @@ public class DynamicController implements IDynamicController{
 		if (errorExtension(request, response))
 			return null;
 		
-		Result listado = listado(request,code,page,pageSize,sort,srId, rsqlQ);
+		Result listado = listado(request,code,page,pageSize,sort,srId, rsqlQ, id);
+		
+		if (Util.isSemanticPetition(request))
+		{		
+		    SemanticRml rml = semanticRmlService.recordByQuery(code);
+		    
+		    List<SemanticPrefix> prefixes=prefixService.getPrefixInQuery(code);
+		    
+		    listado.setQuery(code);
+		    listado.setPrefixes(prefixes);
+		    listado.setRml(rml);    
+		    
+		    
+		    
+		}
+		
 		return createResponse(listado);
 	}
 
@@ -213,7 +259,14 @@ public class DynamicController implements IDynamicController{
 	
 	@SuppressWarnings("unused")
 	private Result listado(HttpServletRequest request, String code, String page, String pageSize,
-			String sort, String srId, String rsqlQ) throws TooManyRequestException, InternalErrorException, BadRequestException {
+			String sort, String srId, String rsqlQ, String id) throws TooManyRequestException, InternalErrorException, BadRequestException {
+		
+		return listado(request, code, page, pageSize, sort, srId, rsqlQ, null, id);
+	}
+	
+	@SuppressWarnings("unused")
+	private Result listado(HttpServletRequest request, String code, String page, String pageSize,
+			String sort, String srId, String rsqlQ, Character csvSeparator, String idParam) throws TooManyRequestException, InternalErrorException, BadRequestException {
 
 
 		log.info("[listado]" + code);
@@ -230,7 +283,7 @@ public class DynamicController implements IDynamicController{
 
 		Map<String, String> requestParameters = Util.getQueryMap(request);
 
-		QueryD query = queryService.record(code);
+		QueryD query = queryService.recordCode(code);
 		
 		if (query==null)
 		{
@@ -260,6 +313,8 @@ public class DynamicController implements IDynamicController{
 		allowedParams.add(Constants.SORT);
 		allowedParams.add(Constants.AJAX_PARAM);
 		allowedParams.add(Constants.SRID);	
+		//CMG CSV SEPARATOR
+		allowedParams.add(Constants.PARAM_CSV_SEPARATOR);		
 		for (ParamD p:parameters)
 		{
 			allowedParams.add(p.getName());
@@ -283,6 +338,13 @@ public class DynamicController implements IDynamicController{
 				requestParams.add(key);
 			}
 		}
+		
+		if (Util.validValue(idParam))
+		{				
+			requestParameters.put("id", idParam);			
+			requestParams.add("id");
+		}
+		
 		
 		String databaseType = StartVariables.databaseTypes.get(query.getDatabase());	
 
@@ -340,7 +402,7 @@ public class DynamicController implements IDynamicController{
 			{
 				try
 				{
-					rsqlConditions=generateConditionsFromRSQL(rsqlQ,StartVariables.modelsForDynamicQuerys.get(query.getCode()), databaseType, query.getDatabase());
+					rsqlConditions=generateConditionsFromRSQL(rsqlQ,StartVariables.modelsForDynamicQuerys.get(query.getCode()), databaseType,  query.getDatabase());
 				}
 				catch (Exception e)
 				{
@@ -432,7 +494,7 @@ public class DynamicController implements IDynamicController{
 		} 
 
 		log.info("[listado] [end]");
-		return guardarResult(results, totalRegistros, srId, request, (isDistinctQuery || isGroupByQuery));
+		return guardarResult(code, results, totalRegistros, srId, request, page, pageSize, csvSeparator);
 
 	}
 
@@ -527,31 +589,92 @@ public class DynamicController implements IDynamicController{
 	 * @return
 	 * @throws Exception
 	 */
-	private Result guardarResult( List<Object> listado, 
+	private Result guardarResult( String queryCode, List<Object> listado, 
 											long total, 
 											String srId, 
-											HttpServletRequest request,
-											boolean generateCoords)  {
+											HttpServletRequest request, 
+											String page, String pageSize,											
+											Character csvSeparator)  {
 
-		int numPage = Constants.defaultPage;
-		int numPageSize = StartVariables.defaultPageSize;
+		
 		log.info("[guardarResult] [init]");
+		log.debug("[guardarResult] [total:"+total+"] [srId:"+srId+"] [page:"+page+"] [pageSize:"+pageSize+"] [csvSeparator:"+csvSeparator+"]");
+		
+		//CMG: Control de Paginación
+		int actualPage=Integer.parseInt(page);
+		if (actualPage<1)
+		{
+			actualPage=1;
+		}
+		int size=Integer.parseInt(pageSize);
+		String maxSizeString = env.getProperty("pagina.maximo");
+		if (maxSizeString==null)
+			maxSizeString="50";
+		int maxSize=Integer.parseInt(maxSizeString);
+		if(size>maxSize){
+			size=maxSize;
+		}
 
 		Result resultado = new Result();
+		boolean coordinatesXY=false;
+		boolean coordinatesGeo=false;
+		Map<String, String> map = StartVariables.modelsForDynamicQuerys.get(queryCode);
+		if ((map.containsKey(Constants.XETRS89))&&(map.containsKey(Constants.YETRS89)))
+		{
+			coordinatesXY=true;
+		}
+		else if (map.containsKey(Constants.hasGeometry))
+		{
+			coordinatesGeo=true;
+		}
 		
-		if (generateCoords==false)
+		if (coordinatesGeo || coordinatesXY)
 		{
 			Util.generaCoordenadasAll(StartVariables.SRID_XY_APP, srId, listado);
+			
+			if (coordinatesXY)
+			{
+				String srIdXY=StartVariables.SRID_XY_APP;
+				String srIdLatLon=StartVariables.SRID_LAT_LON_APP;
+				if (!"".equals(srId) && CoordinateTransformer.comprobarSrIdXY(srId)) {
+					srIdXY = srId;
+					resultado.setProjectedCcoordinates(srIdXY);
+					resultado.setGeographicCoordinates(srIdLatLon);			
+				}else if (!"".equals(srId) && CoordinateTransformer.comprobarSrIdLatLon(srId)) {
+					srIdLatLon=srId;
+					resultado.setProjectedCcoordinates(srIdXY);
+					resultado.setGeographicCoordinates(srIdLatLon);
+				}
+				else {
+					resultado.setProjectedCcoordinates(srIdXY);
+					resultado.setGeographicCoordinates(srIdLatLon);
+				}
+			}else if (coordinatesGeo)
+			{
+				String srIdXY=StartVariables.SRID_XY_APP;
+				String srIdLatLon=StartVariables.SRID_LAT_LON_APP;
+				if (!"".equals(srId) && CoordinateTransformer.comprobarSrIdXY(srId)) {
+					srIdXY = srId;
+					resultado.setProjectedCcoordinates(srIdXY);							
+				}else if (!"".equals(srId) && CoordinateTransformer.comprobarSrIdLatLon(srId)) {
+					srIdLatLon=srId;					
+					resultado.setGeographicCoordinates(srIdLatLon);
+				}
+				else {
+					resultado.setProjectedCcoordinates(srIdXY);
+				}
+			}
+			
 		}
 		
 		try {
 
-			Map<String, String> pageMetadataCalculation = Util.pageMetadataCalculation(request, total, numPageSize,env.getProperty(Constants.URI_BASE), env.getProperty(Constants.STR_CONTEXTO));
+			Map<String, String> pageMetadataCalculation = Util.pageMetadataCalculation(request, total, size,env.getProperty(Constants.URI_BASE), env.getProperty(Constants.STR_CONTEXTO));
 	
 			// Pagina actual
 			resultado.setSelf(pageMetadataCalculation.get(Constants.SELF));
 			
-			if (numPage!=Constants.NO_PAGINATION) {
+			if (actualPage!=Constants.NO_PAGINATION) {
 				// Pagina inicial
 				resultado.setFirst(pageMetadataCalculation.get(Constants.FIRST));
 				// Ultima página
@@ -564,15 +687,15 @@ public class DynamicController implements IDynamicController{
 			// MD5
 			resultado.setContentMD5(Util.generateHash(Util.toString(listado)));
 	
-			if (numPage!=Constants.NO_PAGINATION) {
-				resultado.setPage(numPage);
+			if (actualPage!=Constants.NO_PAGINATION) {
+				resultado.setPage(actualPage);
 			}else {
 				resultado.setPage(1);
 			}
 			
 			
-			if (numPageSize!=Constants.NO_PAGINATION) {
-				resultado.setPageSize(numPageSize);
+			if (size!=Constants.NO_PAGINATION) {
+				resultado.setPageSize(size);
 			}	else {
 				resultado.setPageSize((int)total);
 			}		
@@ -585,6 +708,7 @@ public class DynamicController implements IDynamicController{
 		}catch (Exception ex) {
 			log.error("[guardarResult] [ERROR] ["+ex.getMessage()+"]");
 		}
+		
 
 		log.info("[guardarResult] [end]");
 		return resultado;

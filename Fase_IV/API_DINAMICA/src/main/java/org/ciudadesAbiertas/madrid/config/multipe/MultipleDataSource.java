@@ -97,7 +97,7 @@ public class MultipleDataSource
 				ds.setPassword(Util.checkAndSetEncodedProperty(p.getProperty(Constants.DB_PASSWORD)));
 	
 				StartVariables.databaseTypes.put(key, Util.getDatabaseTypeFromDriver(p.getProperty(Constants.DB_DRIVER)));
-				
+							   	
 				if (p.getProperty(Constants.DB_SCHEMA)!=null)
 				{
 					StartVariables.sqlServerSchemas.put(key, p.getProperty(Constants.DB_SCHEMA));
@@ -154,6 +154,7 @@ public class MultipleDataSource
 				if (p.getProperty(Constants.DB_SCHEMA)!=null)
 				{
 					defaultSchema.put(key, p.getProperty(Constants.DB_SCHEMA));
+					StartVariables.sqlServerSchemas.put(key, p.getProperty(Constants.DB_SCHEMA));
 				}
 				StartVariables.databaseTypes.put(key, Util.getDatabaseTypeFromDriver(p.getProperty(Constants.DB_DRIVER)));
 

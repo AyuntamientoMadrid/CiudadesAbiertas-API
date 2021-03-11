@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,139 +13,139 @@ import javax.persistence.Table;
 @Table(name = "oauth_client_details", catalog = "apiDinamica")
 public class OauthClientDetails implements java.io.Serializable {
 
-    private String clientId;
-    private String resourceIds;
-    private String clientSecret;
-    private String scope;
-    private String authorizedGrantTypes;
-    private String webServerRedirectUri;
-    private String authorities;
-    private Integer accessTokenValidity;
-    private Integer refreshTokenValidity;
-    private String additionalInformation;
-    private String autoapprove;
+private String clientId;
+private String resourceIds;
+private String clientSecret;
+private String scope;
+private String authorizedGrantTypes;
+private String webServerRedirectUri;
+private String authorities;
+private Integer accessTokenValidity;
+private Integer refreshTokenValidity;
+private String additionalInformation;
+private String autoapprove;
 
-    public OauthClientDetails() {
-    }
+public OauthClientDetails() {
+}
 
-    public OauthClientDetails(String clientId) {
-	this.clientId = clientId;
-    }
+public OauthClientDetails(String clientId) {
+  this.clientId = clientId;
+}
 
-    public OauthClientDetails(String clientId, String resourceIds, String clientSecret, String scope, String authorizedGrantTypes, String webServerRedirectUri, String authorities, Integer accessTokenValidity, Integer refreshTokenValidity,
-	    String additionalInformation, String autoapprove) {
-	this.clientId = clientId;
-	this.resourceIds = resourceIds;
-	this.clientSecret = clientSecret;
-	this.scope = scope;
-	this.authorizedGrantTypes = authorizedGrantTypes;
-	this.webServerRedirectUri = webServerRedirectUri;
-	this.authorities = authorities;
-	this.accessTokenValidity = accessTokenValidity;
-	this.refreshTokenValidity = refreshTokenValidity;
-	this.additionalInformation = additionalInformation;
-	this.autoapprove = autoapprove;
-    }
+public OauthClientDetails(String clientId, String resourceIds, String clientSecret, String scope, String authorizedGrantTypes, String webServerRedirectUri, String authorities, Integer accessTokenValidity, Integer refreshTokenValidity,
+	String additionalInformation, String autoapprove) {
+  this.clientId = clientId;
+  this.resourceIds = resourceIds;
+  this.clientSecret = clientSecret;
+  this.scope = scope;
+  this.authorizedGrantTypes = authorizedGrantTypes;
+  this.webServerRedirectUri = webServerRedirectUri;
+  this.authorities = authorities;
+  this.accessTokenValidity = accessTokenValidity;
+  this.refreshTokenValidity = refreshTokenValidity;
+  this.additionalInformation = additionalInformation;
+  this.autoapprove = autoapprove;
+}
 
-    @Id
+@Id
 
-    @Column(name = "client_id", unique = true, nullable = false)
-    public String getClientId() {
-	return this.clientId;
-    }
+@Column(name = "client_id", unique = true, nullable = false)
+public String getClientId() {
+  return this.clientId;
+}
 
-    public void setClientId(String clientId) {
-	this.clientId = clientId;
-    }
+public void setClientId(String clientId) {
+  this.clientId = clientId;
+}
 
-    @Column(name = "resource_ids")
-    public String getResourceIds() {
-	return this.resourceIds;
-    }
+@Column(name = "resource_ids")
+public String getResourceIds() {
+  return this.resourceIds;
+}
 
-    public void setResourceIds(String resourceIds) {
-	this.resourceIds = resourceIds;
-    }
+public void setResourceIds(String resourceIds) {
+  this.resourceIds = resourceIds;
+}
 
-    @Column(name = "client_secret")
-    public String getClientSecret() {
-	return this.clientSecret;
-    }
+@Column(name = "client_secret")
+public String getClientSecret() {
+  return this.clientSecret;
+}
 
-    public void setClientSecret(String clientSecret) {
-	this.clientSecret = clientSecret;
-    }
+public void setClientSecret(String clientSecret) {
+  this.clientSecret = clientSecret;
+}
 
-    @Column(name = "scope")
-    public String getScope() {
-	return this.scope;
-    }
+@Column(name = "scope")
+public String getScope() {
+  return this.scope;
+}
 
-    public void setScope(String scope) {
-	this.scope = scope;
-    }
+public void setScope(String scope) {
+  this.scope = scope;
+}
 
-    @Column(name = "authorized_grant_types")
-    public String getAuthorizedGrantTypes() {
-	return this.authorizedGrantTypes;
-    }
+@Column(name = "authorized_grant_types")
+public String getAuthorizedGrantTypes() {
+  return this.authorizedGrantTypes;
+}
 
-    public void setAuthorizedGrantTypes(String authorizedGrantTypes) {
-	this.authorizedGrantTypes = authorizedGrantTypes;
-    }
+public void setAuthorizedGrantTypes(String authorizedGrantTypes) {
+  this.authorizedGrantTypes = authorizedGrantTypes;
+}
 
-    @Column(name = "web_server_redirect_uri")
-    public String getWebServerRedirectUri() {
-	return this.webServerRedirectUri;
-    }
+@Column(name = "web_server_redirect_uri")
+public String getWebServerRedirectUri() {
+  return this.webServerRedirectUri;
+}
 
-    public void setWebServerRedirectUri(String webServerRedirectUri) {
-	this.webServerRedirectUri = webServerRedirectUri;
-    }
+public void setWebServerRedirectUri(String webServerRedirectUri) {
+  this.webServerRedirectUri = webServerRedirectUri;
+}
 
-    @Column(name = "authorities")
-    public String getAuthorities() {
-	return this.authorities;
-    }
+@Column(name = "authorities")
+public String getAuthorities() {
+  return this.authorities;
+}
 
-    public void setAuthorities(String authorities) {
-	this.authorities = authorities;
-    }
+public void setAuthorities(String authorities) {
+  this.authorities = authorities;
+}
 
-    @Column(name = "access_token_validity")
-    public Integer getAccessTokenValidity() {
-	return this.accessTokenValidity;
-    }
+@Column(name = "access_token_validity")
+public Integer getAccessTokenValidity() {
+  return this.accessTokenValidity;
+}
 
-    public void setAccessTokenValidity(Integer accessTokenValidity) {
-	this.accessTokenValidity = accessTokenValidity;
-    }
+public void setAccessTokenValidity(Integer accessTokenValidity) {
+  this.accessTokenValidity = accessTokenValidity;
+}
 
-    @Column(name = "refresh_token_validity")
-    public Integer getRefreshTokenValidity() {
-	return this.refreshTokenValidity;
-    }
+@Column(name = "refresh_token_validity")
+public Integer getRefreshTokenValidity() {
+  return this.refreshTokenValidity;
+}
 
-    public void setRefreshTokenValidity(Integer refreshTokenValidity) {
-	this.refreshTokenValidity = refreshTokenValidity;
-    }
+public void setRefreshTokenValidity(Integer refreshTokenValidity) {
+  this.refreshTokenValidity = refreshTokenValidity;
+}
 
-    @Column(name = "additional_information", length = 2000)
-    public String getAdditionalInformation() {
-	return this.additionalInformation;
-    }
+@Column(name = "additional_information", length = 2000)
+public String getAdditionalInformation() {
+  return this.additionalInformation;
+}
 
-    public void setAdditionalInformation(String additionalInformation) {
-	this.additionalInformation = additionalInformation;
-    }
+public void setAdditionalInformation(String additionalInformation) {
+  this.additionalInformation = additionalInformation;
+}
 
-    @Column(name = "autoapprove")
-    public String getAutoapprove() {
-	return this.autoapprove;
-    }
+@Column(name = "autoapprove")
+public String getAutoapprove() {
+  return this.autoapprove;
+}
 
-    public void setAutoapprove(String autoapprove) {
-	this.autoapprove = autoapprove;
-    }
+public void setAutoapprove(String autoapprove) {
+  this.autoapprove = autoapprove;
+}
 
 }

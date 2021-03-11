@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.ciudadesAbiertas.madrid.utils.constants.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,12 +35,16 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ErrorController {
+    
+    private static final Logger log = LoggerFactory.getLogger(ErrorController.class);
  
     @RequestMapping(value = "errors", method = RequestMethod.GET)
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
          
         ModelAndView errorPage = new ModelAndView("error");
         String errorMsg = "";
+        
+        printException(httpRequest);        
         int httpErrorCode = getErrorCode(httpRequest);
  
         switch (httpErrorCode) {
@@ -77,4 +83,13 @@ public class ErrorController {
         return (Integer) httpRequest
           .getAttribute("javax.servlet.error.status_code");
     }
+    
+    private void printException(HttpServletRequest httpRequest) {
+	
+	Exception e=(Exception) httpRequest.getAttribute("javax.servlet.error.exception");
+	
+        log.error("Error captured", e);
+    }
+    
+    
 }

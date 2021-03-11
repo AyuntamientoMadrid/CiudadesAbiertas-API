@@ -13,7 +13,8 @@ Funcionalidades asociadas a esta fase:
 - **API_DINAMICA**: contiene el proyecto base que se definió.
 - **liquibase_API_Dinamica**: contiene la carga de datos para la BBDD del proyecto y los scripts de creación de la misma.
 - **API_DINAMICA_FuntionalTest**: los test funcionales sobre el proyecto base que se realizan en Selenium.
-  
+- **rmlmapper-java-master**: Librería para generar los formatos semánticos en API_DINAMICA 
+ 
 # Autores
  - Juan Carlos Ballesteros (Localidata)
  - Carlos Martínez de la Casa (Localidata)

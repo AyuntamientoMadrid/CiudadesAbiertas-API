@@ -20,6 +20,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,14 +61,25 @@ public class DynamicMappingStrategy<T> extends ColumnPositionMappingStrategy<T> 
     
     
 
-    @Override
+    private static final String HEAD_NAME_DISTINCT = "value";
+
+	@Override
     public String[] generateHeader(T bean) throws CsvRequiredFieldEmptyException {
 
 	// Este array es para tener en cuenta los campos que pueden o no existir (x e y)
 	// Siempre en último lugar
 
-	LinkedHashMap<String, Object> beanMap = (LinkedHashMap) bean;
-
+    LinkedHashMap<String, Object> beanMap = new LinkedHashMap<String, Object>();
+      
+    if (bean instanceof String)
+    {
+      beanMap.put(HEAD_NAME_DISTINCT, bean);
+    }
+    else
+    {
+      beanMap = (LinkedHashMap) bean;
+    }
+    
 	String[] header = new String[beanMap.size()];
 
 	Set<Entry<String, Object>> entrySet = beanMap.entrySet();
@@ -87,8 +99,17 @@ public class DynamicMappingStrategy<T> extends ColumnPositionMappingStrategy<T> 
     public String[] transmuteBean(T bean) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 
 	List<String> transmutedBean = new ArrayList<String>();
-
-	LinkedHashMap<String, Object> beanMap = (LinkedHashMap) bean;
+	
+	 LinkedHashMap<String, Object> beanMap = new LinkedHashMap<String, Object>();
+     
+	    if (bean instanceof String)
+	    {
+	      beanMap.put(HEAD_NAME_DISTINCT, bean);
+	    }
+	    else
+	    {
+	      beanMap = (LinkedHashMap) bean;
+	    }
 
 	Set<Entry<String, Object>> entrySet = beanMap.entrySet();
 	Iterator<Entry<String, Object>> iterator = entrySet.iterator();
@@ -236,7 +257,9 @@ public class DynamicMappingStrategy<T> extends ColumnPositionMappingStrategy<T> 
 	    return (Util.decimalFormatterCSV(((Float) campo).floatValue()));
 	} else if (campo instanceof BigDecimal) {	    
 	    return (Util.decimalFormatterCSV(((BigDecimal) campo).floatValue()));
-	} else if (campo instanceof Timestamp) {
+	}  else if (campo instanceof BigInteger) {	    
+	  return (((BigInteger) campo).intValue() + "");
+	}else if (campo instanceof Timestamp) {
 	    Date dateTemp=new Date(((Timestamp) campo).getTime());
 	    String dateString=Util.dateTimeFormatterWithoutT.format(dateTemp);	    
 	    dateString=dateString.replace(" 00:00:00","");    

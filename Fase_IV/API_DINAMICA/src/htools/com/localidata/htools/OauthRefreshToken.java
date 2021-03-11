@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,25 +15,25 @@ import javax.persistence.Table;
 @Table(name = "oauth_refresh_token", catalog = "apiDinamica")
 public class OauthRefreshToken implements java.io.Serializable {
 
-    private OauthRefreshTokenId id;
+private OauthRefreshTokenId id;
 
-    public OauthRefreshToken() {
-    }
+public OauthRefreshToken() {
+}
 
-    public OauthRefreshToken(OauthRefreshTokenId id) {
-	this.id = id;
-    }
+public OauthRefreshToken(OauthRefreshTokenId id) {
+  this.id = id;
+}
 
-    @EmbeddedId
+@EmbeddedId
 
-    @AttributeOverrides({ @AttributeOverride(name = "tokenId", column = @Column(name = "token_id")), @AttributeOverride(name = "token", column = @Column(name = "token")),
-	    @AttributeOverride(name = "authentication", column = @Column(name = "authentication")) })
-    public OauthRefreshTokenId getId() {
-	return this.id;
-    }
+@AttributeOverrides({ @AttributeOverride(name = "tokenId", column = @Column(name = "token_id")), @AttributeOverride(name = "token", column = @Column(name = "token")),
+	@AttributeOverride(name = "authentication", column = @Column(name = "authentication")) })
+public OauthRefreshTokenId getId() {
+  return this.id;
+}
 
-    public void setId(OauthRefreshTokenId id) {
-	this.id = id;
-    }
+public void setId(OauthRefreshTokenId id) {
+  this.id = id;
+}
 
 }

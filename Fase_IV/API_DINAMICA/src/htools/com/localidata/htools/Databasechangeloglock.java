@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -16,63 +16,63 @@ import javax.persistence.TemporalType;
 @Table(name = "DATABASECHANGELOGLOCK", catalog = "apiDinamica")
 public class Databasechangeloglock implements java.io.Serializable {
 
-    private int id;
-    private boolean locked;
-    private Date lockgranted;
-    private String lockedby;
+private int id;
+private boolean locked;
+private Date lockgranted;
+private String lockedby;
 
-    public Databasechangeloglock() {
-    }
+public Databasechangeloglock() {
+}
 
-    public Databasechangeloglock(int id, boolean locked) {
-	this.id = id;
-	this.locked = locked;
-    }
+public Databasechangeloglock(int id, boolean locked) {
+  this.id = id;
+  this.locked = locked;
+}
 
-    public Databasechangeloglock(int id, boolean locked, Date lockgranted, String lockedby) {
-	this.id = id;
-	this.locked = locked;
-	this.lockgranted = lockgranted;
-	this.lockedby = lockedby;
-    }
+public Databasechangeloglock(int id, boolean locked, Date lockgranted, String lockedby) {
+  this.id = id;
+  this.locked = locked;
+  this.lockgranted = lockgranted;
+  this.lockedby = lockedby;
+}
 
-    @Id
+@Id
 
-    @Column(name = "ID", unique = true, nullable = false)
-    public int getId() {
-	return this.id;
-    }
+@Column(name = "ID", unique = true, nullable = false)
+public int getId() {
+  return this.id;
+}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+public void setId(int id) {
+  this.id = id;
+}
 
-    @Column(name = "LOCKED", nullable = false)
-    public boolean isLocked() {
-	return this.locked;
-    }
+@Column(name = "LOCKED", nullable = false)
+public boolean isLocked() {
+  return this.locked;
+}
 
-    public void setLocked(boolean locked) {
-	this.locked = locked;
-    }
+public void setLocked(boolean locked) {
+  this.locked = locked;
+}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LOCKGRANTED", length = 19)
-    public Date getLockgranted() {
-	return this.lockgranted;
-    }
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "LOCKGRANTED", length = 19)
+public Date getLockgranted() {
+  return this.lockgranted;
+}
 
-    public void setLockgranted(Date lockgranted) {
-	this.lockgranted = lockgranted;
-    }
+public void setLockgranted(Date lockgranted) {
+  this.lockgranted = lockgranted;
+}
 
-    @Column(name = "LOCKEDBY")
-    public String getLockedby() {
-	return this.lockedby;
-    }
+@Column(name = "LOCKEDBY")
+public String getLockedby() {
+  return this.lockedby;
+}
 
-    public void setLockedby(String lockedby) {
-	this.lockedby = lockedby;
-    }
+public void setLockedby(String lockedby) {
+  this.lockedby = lockedby;
+}
 
 }

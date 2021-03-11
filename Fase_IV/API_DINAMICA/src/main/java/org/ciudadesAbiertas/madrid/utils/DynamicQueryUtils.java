@@ -138,6 +138,43 @@ public class DynamicQueryUtils {
 				}
 				queryText = queryText.replace(param.getName(), compareDate);
 			}
+			else if (param.getType().equals(Constants.DATE_TIME)) 
+			{
+				String compareDate = "";
+				if (databaseType.equals(Constants.ORACLE)) 
+				{
+					compareDate = "TO_DATE(" + paramValue + ",'yyyyMMddhhmmss')";
+				} 
+				else 
+				{
+					// STR_TO_DATE('21,5,2013','%d,%m,%Y');
+					String year = paramValue.substring(0, 4);
+					String month = paramValue.substring(4, 6);
+					String day = paramValue.substring(6, 8);
+					String hour = "00";
+					String minute = "00";
+					String second = "00";
+					if (paramValue.length()==10)
+					{
+					  hour = paramValue.substring(8, 10);
+					}
+					else if (paramValue.length()==12) 
+					{
+					   hour = paramValue.substring(8, 10);
+					   minute = paramValue.substring(10, 12);
+					}
+					else if (paramValue.length()==14) 
+					{
+					    hour = paramValue.substring(8, 10);
+						minute = paramValue.substring(10, 12);
+						second = paramValue.substring(12, 14);
+					}
+					
+					String date = day + "," + month + "," + year+ ","+ hour +","+ minute + ","+second;
+					compareDate = "STR_TO_DATE('" + date + "','%d,%m,%Y,%H,%i,%s')";
+				}
+				queryText = queryText.replace(param.getName(), compareDate);
+			}
 
 		}
 		return queryText;
@@ -176,10 +213,10 @@ public static Map<String,String> typesQuery(SessionFactory sessionFactory, Strin
 		log.debug("texto query con parametros:");
 		log.debug(queryText);
 
-		log.info("Extrayendo metadatos de query");
+		log.info("Extrayendo metadatos de query "+query.getCode());
 		
 		
-		try {
+		
 			
 			Connection connection = ((SessionImpl)sessionFactory.getCurrentSession()).connection();
 			Statement stmt = connection.createStatement();
@@ -196,10 +233,7 @@ public static Map<String,String> typesQuery(SessionFactory sessionFactory, Strin
 			
 			
 	
-		} catch (Exception e) {
-			log.error("Error en query de metadatos", e);
-			log.error(queryText);
-		}
+		
 
 		return typesQuery;
 

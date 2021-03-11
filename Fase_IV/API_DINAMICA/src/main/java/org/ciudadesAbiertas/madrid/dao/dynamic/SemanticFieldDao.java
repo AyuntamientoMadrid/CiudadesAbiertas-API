@@ -1,9 +1,13 @@
 package org.ciudadesAbiertas.madrid.dao.dynamic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.ciudadesAbiertas.madrid.model.dynamic.SemanticField;
+import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRelPrefix;
+import org.ciudadesAbiertas.madrid.utils.Util;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,21 +23,22 @@ public class SemanticFieldDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    
-
     public void add(SemanticField entity) {
 
 	Session session = null;
 	Transaction tx = null;
 	try {
+
+	    
+
+	    session = sessionFactory.openSession();
+	    tx = session.beginTransaction();
 	    
 	    if (entity.getId()==null)
 	    {
-		entity.setId(maxId()+"");
+		entity.setId(UtilDao.getSuffixForId(SemanticField.class.getSimpleName(), UtilDao.maxId(session, SemanticField.class)));
 	    }
 	    
-	    session = sessionFactory.openSession();
-	    tx = session.beginTransaction();
 	    session.save(entity);
 
 	    tx.commit();
@@ -41,39 +46,24 @@ public class SemanticFieldDao {
 	    tx.rollback();
 	    throw e;
 	} finally {
-	    if (session!=null)
-	    {
+	    if (session != null) {
 		session.close();
 	    }
 	}
 
     }
 
-   
-
     
-    public int maxId () {
-	Criteria criteria = sessionFactory.getCurrentSession()
-		    .createCriteria(SemanticField.class)
-		    .setProjection(Projections.rowCount());
-	Integer idCount= Integer.valueOf(0);
-	Object uniqueResult = criteria.uniqueResult();
-	if (uniqueResult!=null)
-	{
-	    idCount = Integer.parseInt(uniqueResult.toString());
-	   
-	}
-	return idCount.intValue();		
 
-}
-
-
-
-
-    public List<SemanticField> getFieldsFromQuery(String queryName) {
+    public List<SemanticField> getFieldsFromQuery(String queryName, String orderfields) {
 	List<SemanticField> result = new ArrayList<SemanticField>();
 
-	Query query = sessionFactory.getCurrentSession().createQuery("FROM SemanticField where query like :queryName");
+	String queryString="FROM SemanticField where query like :queryName";
+	if (Util.validValue(orderfields))
+	{
+	    queryString+=" order by "+orderfields;
+	}
+	Query query = sessionFactory.getCurrentSession().createQuery(queryString);
 	query.setParameter("queryName", queryName);
 
 	result = query.getResultList();
@@ -81,8 +71,35 @@ public class SemanticFieldDao {
 	return result;
     }
 
+    public Map<String, List<SemanticField>> getMapQueryFields() {
 
+	Map<String, List<SemanticField>> contentMap = new HashMap<String, List<SemanticField>>();
 
+	List<SemanticField> result = new ArrayList<SemanticField>();
+
+	Query query = sessionFactory.getCurrentSession().createQuery("FROM SemanticField ORDER BY query");
+
+	result = query.getResultList();
+
+	String actualQuery = "";
+	List<SemanticField> listForQuery = new ArrayList<SemanticField>();
+
+	for (SemanticField semanticField : result) {
+
+	    if (semanticField.getQuery().equals(actualQuery) == false) {
+		if (listForQuery.isEmpty() == false) {
+		    contentMap.put(actualQuery, listForQuery);
+		}
+		actualQuery = semanticField.getQuery();
+		listForQuery = new ArrayList<SemanticField>();		
+	    }
+	    listForQuery.add(semanticField);
+	    
+	}	
+	contentMap.put(actualQuery, listForQuery);	
+
+	return contentMap;
+    }
 
     public void delete(SemanticField field) {
 	try {
@@ -90,8 +107,7 @@ public class SemanticFieldDao {
 	} catch (Exception e) {
 	    throw e;
 	}
-	
+
     }
-   
 
 }

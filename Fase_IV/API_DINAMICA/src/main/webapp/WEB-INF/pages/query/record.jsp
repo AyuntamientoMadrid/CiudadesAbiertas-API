@@ -56,10 +56,10 @@
 				<div class="col-9 options">
 					<ul>
 						<li>
-							<a title="Editar" href="<c:url value="/query/edit/${object.code}"/>" id="enlaceEditar"><i class="ico icon-exchange"></i><span class="text">Editar</span></a>
+							<a title="Editar" href="<c:url value="/query/edit/${object.id}"/>" id="enlaceEditar"><i class="ico icon-exchange"></i><span class="text">Editar</span></a>
 						</li>
 						<li>
-							<a title="Eliminar" href="<c:url value="/query/delete/${object.code}"/>" id="enlaceBorrar"/><i class="ico icon-close"></i><span class="text">Eliminar</span></a>
+							<a title="Eliminar" href="<c:url value="/query/delete/${object.id}"/>" id="enlaceBorrar"/><i class="ico icon-close"></i><span class="text">Eliminar</span></a>
 						</li>						
 						<li class="font_size">
 							<a title="Tamaño de letra" href="#" class="enlace"><i class="ico icon-font-size"></i><span class="text">Tamaño de letra</span><i class="ico icon-arrow-down"></i></a>

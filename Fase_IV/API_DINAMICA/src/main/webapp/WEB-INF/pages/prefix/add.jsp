@@ -14,6 +14,8 @@
 	
 	<%@include file="../includes/menuLateral.jsp"%>
 	
+	<%@include file="../includes/modal_include.jsp"%>
+	
 	<div class="user_name">
 		<div class="container">
 			<div class="row">
@@ -52,7 +54,7 @@
 		<div class="brand">
 			<div class="row">
 				<div class="col-3">
-					<a href="<c:url value="/query"/>"><i class="ico icon-arrow-left"></i> Volver</a>
+					<a href="<c:url value="/prefix"/>"><i class="ico icon-arrow-left"></i> Volver</a>
 				</div>
 				<div class="col-9 options">
 					<ul>
@@ -100,7 +102,7 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	<script src="<c:url value="/resources/js/prefix/commons.js"/>"></script>
-
+	<script src="<c:url value="/resources/js/prefix/help.js"/>"></script>
 	
 		
 </body>

@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,30 +15,29 @@ import javax.persistence.Table;
 @Table(name = "DATABASECHANGELOG", catalog = "apiDinamica")
 public class Databasechangelog implements java.io.Serializable {
 
-    private DatabasechangelogId id;
+private DatabasechangelogId id;
 
-    public Databasechangelog() {
-    }
+public Databasechangelog() {
+}
 
-    public Databasechangelog(DatabasechangelogId id) {
-	this.id = id;
-    }
+public Databasechangelog(DatabasechangelogId id) {
+  this.id = id;
+}
 
-    @EmbeddedId
+@EmbeddedId
 
-    @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "ID", nullable = false)), @AttributeOverride(name = "author", column = @Column(name = "AUTHOR", nullable = false)),
-	    @AttributeOverride(name = "filename", column = @Column(name = "FILENAME", nullable = false)), @AttributeOverride(name = "dateexecuted", column = @Column(name = "DATEEXECUTED", nullable = false, length = 19)),
-	    @AttributeOverride(name = "orderexecuted", column = @Column(name = "ORDEREXECUTED", nullable = false)), @AttributeOverride(name = "exectype", column = @Column(name = "EXECTYPE", nullable = false, length = 10)),
-	    @AttributeOverride(name = "md5sum", column = @Column(name = "MD5SUM", length = 35)), @AttributeOverride(name = "description", column = @Column(name = "DESCRIPTION")),
-	    @AttributeOverride(name = "comments", column = @Column(name = "COMMENTS")), @AttributeOverride(name = "tag", column = @Column(name = "TAG")),
-	    @AttributeOverride(name = "liquibase", column = @Column(name = "LIQUIBASE", length = 20)), @AttributeOverride(name = "contexts", column = @Column(name = "CONTEXTS")),
-	    @AttributeOverride(name = "labels", column = @Column(name = "LABELS")) })
-    public DatabasechangelogId getId() {
-	return this.id;
-    }
+@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "ID", nullable = false)), @AttributeOverride(name = "author", column = @Column(name = "AUTHOR", nullable = false)),
+	@AttributeOverride(name = "filename", column = @Column(name = "FILENAME", nullable = false)), @AttributeOverride(name = "dateexecuted", column = @Column(name = "DATEEXECUTED", nullable = false, length = 19)),
+	@AttributeOverride(name = "orderexecuted", column = @Column(name = "ORDEREXECUTED", nullable = false)), @AttributeOverride(name = "exectype", column = @Column(name = "EXECTYPE", nullable = false, length = 10)),
+	@AttributeOverride(name = "md5sum", column = @Column(name = "MD5SUM", length = 35)), @AttributeOverride(name = "description", column = @Column(name = "DESCRIPTION")),
+	@AttributeOverride(name = "comments", column = @Column(name = "COMMENTS")), @AttributeOverride(name = "tag", column = @Column(name = "TAG")), @AttributeOverride(name = "liquibase", column = @Column(name = "LIQUIBASE", length = 20)),
+	@AttributeOverride(name = "contexts", column = @Column(name = "CONTEXTS")), @AttributeOverride(name = "labels", column = @Column(name = "LABELS")) })
+public DatabasechangelogId getId() {
+  return this.id;
+}
 
-    public void setId(DatabasechangelogId id) {
-	this.id = id;
-    }
+public void setId(DatabasechangelogId id) {
+  this.id = id;
+}
 
 }

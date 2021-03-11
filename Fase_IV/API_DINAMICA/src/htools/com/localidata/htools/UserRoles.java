@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,47 +17,47 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "user_roles", catalog = "apiDinamica", uniqueConstraints = @UniqueConstraint(columnNames = { "role", "username" }))
 public class UserRoles implements java.io.Serializable {
 
-    private int userRoleId;
-    private Users users;
-    private String role;
+private int userRoleId;
+private Users users;
+private String role;
 
-    public UserRoles() {
-    }
+public UserRoles() {
+}
 
-    public UserRoles(int userRoleId, Users users, String role) {
-	this.userRoleId = userRoleId;
-	this.users = users;
-	this.role = role;
-    }
+public UserRoles(int userRoleId, Users users, String role) {
+  this.userRoleId = userRoleId;
+  this.users = users;
+  this.role = role;
+}
 
-    @Id
+@Id
 
-    @Column(name = "user_role_id", unique = true, nullable = false)
-    public int getUserRoleId() {
-	return this.userRoleId;
-    }
+@Column(name = "user_role_id", unique = true, nullable = false)
+public int getUserRoleId() {
+  return this.userRoleId;
+}
 
-    public void setUserRoleId(int userRoleId) {
-	this.userRoleId = userRoleId;
-    }
+public void setUserRoleId(int userRoleId) {
+  this.userRoleId = userRoleId;
+}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username", nullable = false)
-    public Users getUsers() {
-	return this.users;
-    }
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "username", nullable = false)
+public Users getUsers() {
+  return this.users;
+}
 
-    public void setUsers(Users users) {
-	this.users = users;
-    }
+public void setUsers(Users users) {
+  this.users = users;
+}
 
-    @Column(name = "role", nullable = false, length = 45)
-    public String getRole() {
-	return this.role;
-    }
+@Column(name = "role", nullable = false, length = 45)
+public String getRole() {
+  return this.role;
+}
 
-    public void setRole(String role) {
-	this.role = role;
-    }
+public void setRole(String role) {
+  this.role = role;
+}
 
 }

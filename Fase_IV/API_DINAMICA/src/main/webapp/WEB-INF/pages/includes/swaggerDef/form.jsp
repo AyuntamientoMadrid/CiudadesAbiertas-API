@@ -45,8 +45,15 @@
             </div>
           </div>            
           <fieldset>
-            <div class="form-group">
-              <label class="control-label">Código *</label>
+            <div class="form-group">              
+              <div class="row">
+	            	  <div class="col-md-10">
+	            	  	<label class="control-label">Código *</label>
+	            	  </div>
+	            	  <div class="col-md-2">
+	            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(codigoDoc);"></div>
+	            	  </div>
+	           </div>
               <input type="text" class="form-control" required="true" id="code" name="code" value="${object.code}"
               	data-parsley-trigger="change"
 			data-parsley-minlength="2" 
@@ -55,8 +62,15 @@
               >
               <span class="hint d-none"></span>
             </div>   
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Descripción</label>
+            <div class="form-group">              
+              <div class="row">
+            	  <div class="col-md-10">
+            	  	<label for="exampleFormControlTextarea1">Descripción</label>
+            	  </div>
+            	  <div class="col-md-2">
+            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(descripcionDoc);"></div>
+            	  </div>
+	           </div>
               <textarea class="form-control"  id="description" name="description"
               	data-parsley-trigger="change"
 			data-parsley-minlength="0" 
@@ -64,8 +78,15 @@
 			data-parsley-required="true"				
               >${object.description}</textarea>
             </div>           
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Definición</label>
+            <div class="form-group">             
+               <div class="row">
+            	  <div class="col-md-10">
+            	  	 <label for="exampleFormControlTextarea1">Definición</label>
+            	  </div>
+            	  <div class="col-md-2">
+            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(definicionDoc);"></div>
+            	  </div>
+	           </div>
               <textarea class="form-control"  id="text" name="text" rows="3" 
               	data-parsley-trigger="change"
 			data-parsley-minlength="0" 

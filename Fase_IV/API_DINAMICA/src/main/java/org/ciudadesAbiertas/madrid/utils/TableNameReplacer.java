@@ -3,6 +3,7 @@ package org.ciudadesAbiertas.madrid.utils;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,13 +41,14 @@ public class TableNameReplacer {
 	private static TablesNamesFinder tablesNamesFinder = new TablesNamesFinder();
 	
 	
-	public static String addAliases(String sql)  {
+	public static String addAliases(String sql) {
 		
+	  	String SELECT_WILDCARD = "select * from";
 
-		log.debug("Query before add aliases: "+sql);
+		log.debug("Query before add aliases: "+sql);	
 		
-		
-		if (sql.startsWith(DynamicQueryUtils.SELECT_FROM))
+		String sqlTest = StringUtils.normalizeSpace(sql);	
+		if (sqlTest.toLowerCase().startsWith(SELECT_WILDCARD))
 		{
 			return sql;
 		}
@@ -55,7 +57,7 @@ public class TableNameReplacer {
 		try {
 			select = (Select) CCJSqlParserUtil.parse(sql);
 		} catch (JSQLParserException e) {
-			log.error("Error parsinga data",e);
+			log.error("Error parsing SQL",e);			
 		}        
        
 		if (select!=null)

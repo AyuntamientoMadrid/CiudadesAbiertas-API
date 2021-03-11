@@ -14,6 +14,8 @@
 	
 	<%@include file="../includes/menuLateral.jsp"%>
 	
+	<%@include file="../includes/modal_include.jsp"%>
+	
 	<div class="user_name">
 		<div class="container">
 			<div class="row">
@@ -99,6 +101,8 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	<script src="<c:url value="/resources/js/query/commons.js"/>"></script>
+	<script src="<c:url value="/resources/js/query/templates.js"/>"></script>
+	<script src="<c:url value="/resources/js/query/help.js"/>"></script>
 
 <script>
 
@@ -106,16 +110,32 @@ var htmlParamCode="";
 var numParams=1;
 var buttonAddParaCode="";
 $(document).ready(function()
-		{				 
-			// Cambiamos la ruta de la imagen del calendario
-			$( ".calendar" ).datepicker( "option", "buttonImage", "<c:url value="/resources/ayre-assets/images/calendar.png"/>" );
-			$( ".calendar" ).datepicker({ dateFormat: 'yy-mm-dd' });
+{				 
+	// Cambiamos la ruta de la imagen del calendario
+	$( ".calendar" ).datepicker( "option", "buttonImage", "<c:url value="/resources/ayre-assets/images/calendar.png"/>" );
+	$( ".calendar" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	
+	htmlParamCode=$("#capaParametro0").parent().html();			
+	
+	var typeQuery=getUrlParameter('typeQuery');
+
+	if (typeQuery=='geoquery'){		
+		geoquery();			
+	}else if (typeQuery=='groupby'){		
+		groupby();			
+	}else if (typeQuery=='distinct'){		
+		distinct();		
+	}else if (typeQuery=='latlon'){		
+		latlon();
+		$("#capaParametros").hide();
+	}else{
+		$("#capaParametros").hide();
+	}
 			
-			htmlParamCode=$("#capaParametro0").parent().html();						
-			
-		});
+});
 		
-$("#capaParametros").hide();	
+	
+
 		
 </script>		
 		

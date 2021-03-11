@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,48 +16,48 @@ import javax.persistence.Table;
 @Table(name = "group_members", catalog = "apiDinamica")
 public class GroupMembers implements java.io.Serializable {
 
-    private long id;
-    private Groups groups;
-    private Users users;
+private long id;
+private Groups groups;
+private Users users;
 
-    public GroupMembers() {
-    }
+public GroupMembers() {
+}
 
-    public GroupMembers(long id, Groups groups, Users users) {
-	this.id = id;
-	this.groups = groups;
-	this.users = users;
-    }
+public GroupMembers(long id, Groups groups, Users users) {
+  this.id = id;
+  this.groups = groups;
+  this.users = users;
+}
 
-    @Id
+@Id
 
-    @Column(name = "id", unique = true, nullable = false)
-    public long getId() {
-	return this.id;
-    }
+@Column(name = "id", unique = true, nullable = false)
+public long getId() {
+  return this.id;
+}
 
-    public void setId(long id) {
-	this.id = id;
-    }
+public void setId(long id) {
+  this.id = id;
+}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", nullable = false)
-    public Groups getGroups() {
-	return this.groups;
-    }
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "group_id", nullable = false)
+public Groups getGroups() {
+  return this.groups;
+}
 
-    public void setGroups(Groups groups) {
-	this.groups = groups;
-    }
+public void setGroups(Groups groups) {
+  this.groups = groups;
+}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username", nullable = false)
-    public Users getUsers() {
-	return this.users;
-    }
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "username", nullable = false)
+public Users getUsers() {
+  return this.users;
+}
 
-    public void setUsers(Users users) {
-	this.users = users;
-    }
+public void setUsers(Users users) {
+  this.users = users;
+}
 
 }

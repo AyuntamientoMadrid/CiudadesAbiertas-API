@@ -16,19 +16,13 @@
 
 package org.ciudadesAbiertas.madrid.utils;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.ciudadesAbiertas.madrid.utils.constants.Constants;
-import org.codehaus.plexus.util.FileUtils;
 import org.cts.CRSFactory;
-import org.cts.IllegalCoordinateException;
-import org.cts.crs.CRSException;
 import org.cts.crs.CoordinateReferenceSystem;
 import org.cts.crs.GeodeticCRS;
 import org.cts.op.CoordinateOperation;
@@ -42,7 +36,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.core.util.FileUtil;
+
 
 /**
  * @author Juan Carlos Ballesteros (Localidata)

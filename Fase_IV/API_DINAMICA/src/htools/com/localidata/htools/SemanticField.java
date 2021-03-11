@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,91 +16,144 @@ import javax.persistence.Table;
 @Table(name = "semantic_field", catalog = "apiDinamica")
 public class SemanticField implements java.io.Serializable {
 
-    private String id;
-    private Query query;
-    private String field;
-    private String predicate;
-    private String objectReference;
-    private String objectType;
-    private boolean objectUri;
+private String id;
+private Query query;
+private String field;
+private String predicate;
+private String objectReference;
+private String objectReferenceType;
+private String objectType;
+private boolean objectUri;
+private String blankNodeType;
+private String blankNodeId;
+private String blankPropertyId;
 
-    public SemanticField() {
-    }
+public SemanticField() {
+}
 
-    public SemanticField(String id, Query query, String field, String predicate, String objectReference, String objectType, boolean objectUri) {
-	this.id = id;
-	this.query = query;
-	this.field = field;
-	this.predicate = predicate;
-	this.objectReference = objectReference;
-	this.objectType = objectType;
-	this.objectUri = objectUri;
-    }
+public SemanticField(String id, Query query, String field, String predicate, String objectReference, boolean objectUri) {
+  this.id = id;
+  this.query = query;
+  this.field = field;
+  this.predicate = predicate;
+  this.objectReference = objectReference;
+  this.objectUri = objectUri;
+}
 
-    @Id
+public SemanticField(String id, Query query, String field, String predicate, String objectReference, String objectReferenceType, String objectType, boolean objectUri, String blankNodeType, String blankNodeId, String blankPropertyId) {
+  this.id = id;
+  this.query = query;
+  this.field = field;
+  this.predicate = predicate;
+  this.objectReference = objectReference;
+  this.objectReferenceType = objectReferenceType;
+  this.objectType = objectType;
+  this.objectUri = objectUri;
+  this.blankNodeType = blankNodeType;
+  this.blankNodeId = blankNodeId;
+  this.blankPropertyId = blankPropertyId;
+}
 
-    @Column(name = "id", unique = true, nullable = false, length = 50)
-    public String getId() {
-	return this.id;
-    }
+@Id
 
-    public void setId(String id) {
-	this.id = id;
-    }
+@Column(name = "id", unique = true, nullable = false, length = 20)
+public String getId() {
+  return this.id;
+}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "query", nullable = false)
-    public Query getQuery() {
-	return this.query;
-    }
+public void setId(String id) {
+  this.id = id;
+}
 
-    public void setQuery(Query query) {
-	this.query = query;
-    }
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "query", nullable = false)
+public Query getQuery() {
+  return this.query;
+}
 
-    @Column(name = "field", nullable = false, length = 100)
-    public String getField() {
-	return this.field;
-    }
+public void setQuery(Query query) {
+  this.query = query;
+}
 
-    public void setField(String field) {
-	this.field = field;
-    }
+@Column(name = "field", nullable = false, length = 100)
+public String getField() {
+  return this.field;
+}
 
-    @Column(name = "predicate", nullable = false, length = 200)
-    public String getPredicate() {
-	return this.predicate;
-    }
+public void setField(String field) {
+  this.field = field;
+}
 
-    public void setPredicate(String predicate) {
-	this.predicate = predicate;
-    }
+@Column(name = "predicate", nullable = false, length = 200)
+public String getPredicate() {
+  return this.predicate;
+}
 
-    @Column(name = "object_reference", nullable = false, length = 200)
-    public String getObjectReference() {
-	return this.objectReference;
-    }
+public void setPredicate(String predicate) {
+  this.predicate = predicate;
+}
 
-    public void setObjectReference(String objectReference) {
-	this.objectReference = objectReference;
-    }
+@Column(name = "object_reference", nullable = false, length = 200)
+public String getObjectReference() {
+  return this.objectReference;
+}
 
-    @Column(name = "object_type", nullable = false, length = 50)
-    public String getObjectType() {
-	return this.objectType;
-    }
+public void setObjectReference(String objectReference) {
+  this.objectReference = objectReference;
+}
 
-    public void setObjectType(String objectType) {
-	this.objectType = objectType;
-    }
+@Column(name = "object_reference_type", length = 20)
+public String getObjectReferenceType() {
+  return this.objectReferenceType;
+}
 
-    @Column(name = "object_uri", nullable = false)
-    public boolean isObjectUri() {
-	return this.objectUri;
-    }
+public void setObjectReferenceType(String objectReferenceType) {
+  this.objectReferenceType = objectReferenceType;
+}
 
-    public void setObjectUri(boolean objectUri) {
-	this.objectUri = objectUri;
-    }
+@Column(name = "object_type", length = 50)
+public String getObjectType() {
+  return this.objectType;
+}
+
+public void setObjectType(String objectType) {
+  this.objectType = objectType;
+}
+
+@Column(name = "object_uri", nullable = false)
+public boolean isObjectUri() {
+  return this.objectUri;
+}
+
+public void setObjectUri(boolean objectUri) {
+  this.objectUri = objectUri;
+}
+
+@Column(name = "blank_node_type", length = 50)
+public String getBlankNodeType() {
+  return this.blankNodeType;
+}
+
+public void setBlankNodeType(String blankNodeType) {
+  this.blankNodeType = blankNodeType;
+}
+
+@Column(name = "blank_node_id", length = 100)
+public String getBlankNodeId() {
+  return this.blankNodeId;
+}
+
+public void setBlankNodeId(String blankNodeId) {
+  this.blankNodeId = blankNodeId;
+}
+
+@Column(name = "blank_property_id", length = 100)
+public String getBlankPropertyId() {
+  return this.blankPropertyId;
+}
+
+public void setBlankPropertyId(String blankPropertyId) {
+  this.blankPropertyId = blankPropertyId;
+}
 
 }

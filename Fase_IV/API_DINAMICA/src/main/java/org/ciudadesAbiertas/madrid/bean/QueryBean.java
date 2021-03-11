@@ -13,10 +13,10 @@ import org.ciudadesAbiertas.madrid.utils.StartVariables;
 public class QueryBean {
 	
 	private QueryD queryD;
-	private Boolean errorFileConfig = new Boolean(false);
+	private Boolean errorFileConfig = false;
 	private String textoError;
 	private Boolean geo=false;
-	
+	private Boolean rml=false;
 	
 	public QueryBean(QueryD queryD) {
 		super();
@@ -50,6 +50,16 @@ public class QueryBean {
 	public void setGeo(Boolean geo) {
 		this.geo = geo;
 	}
+	
+	
+
+	public Boolean getRml() {
+	    return rml;
+	}
+
+	public void setRml(Boolean rml) {
+	    this.rml = rml;
+	}
 
 	@Override
 	public String toString() {
@@ -63,10 +73,10 @@ public class QueryBean {
 				for (String value:StartVariables.errorDatabaseTypes.keySet()) {
 					if (this.queryD.getDatabase()!=null) {
 						if (value.equals(this.queryD.getDatabase())) {
-							this.errorFileConfig=new Boolean(true);
+							this.errorFileConfig=true;
 							this.textoError = "Database ["+value+"] No encontrada o no cargada correctamente.";
 						}else {
-							this.errorFileConfig=new Boolean(false);
+							this.errorFileConfig=false;
 						}
 					}
 				}

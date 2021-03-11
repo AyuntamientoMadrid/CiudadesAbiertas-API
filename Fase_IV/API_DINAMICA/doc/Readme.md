@@ -2,21 +2,28 @@
 
 En este documento se explicará los diferentes usos del API dinámica
 
-La API dinámica consta de tres partes:
+La API dinámica consta de las siguientes módulos:
+
  - Inicio
  - Consultas SQL
  - Definiciones de Swagger 
+ - Datos Semánticos
+ - Documentación
  
 ## Inicio
 ![Pantalla de inicio](./img/inicio.jpg)
 
 En la cabecera se tienen los enlaces:
+
  - Inicio, este enlace irá a la pantalla de inicio
  - Desconectar, este enlace desconectará la sesión.
 
 En el menú se tienen los siguientes enlaces:
- - Consultas SQL, este enlace irá al listado de las consultas SQL
- - Definiciones de Swagger, este enlace irá al listado de definiciones Swagger
+
+ - Consultas SQL
+ - Definiciones de SWAGGER
+ - Datos Semánticos
+ - Documentación
  
 En la pantalla de inicio aparecerán estadísticas de utilidad:
 
@@ -34,12 +41,12 @@ En el listado de consultas SQL se hará clic en la de las consultas, para accede
 ![Acceso a la ficha](./img/fichaConsultaSQL.jpg)
 
 ### Acceso a la llamada en json, xml, csv
-En el listado de consultas SQL se hará clic en las palabras json, xml, csv para acceder a la llamada de json, xml, csv.
+En el listado de consultas SQL se hará clic en las extensiones json, xml, o csv para acceder a la llamada en el formato seleccionado.
 
 ![Llamada Json](./img/llamadaJson.jpg)
 
 ### Añadir consulta SQL
-En el listado de consultas SQL se hará clic en el botón "Añadir"
+En el listado de consultas SQL se hará clic en el menú "Añadir" y se seleccionará "Consulta Básica":
 
 ![Añadir Consulta SQL](./img/anyadirConsultaSQL.jpg)
  
@@ -50,7 +57,7 @@ En este formulario se deberá de rellenar los siguientes campos:
  - Consulta SQL, en este campo se rellenará la query que se ejecutará en la base de datos.
  - Descripción,  en este campo se rellenará la descripción de la consulta SQL.
  - Etiquetas, en este campo se rellenará la etiqueta que se incluirá en la definición de Swagger.
- - Definición, en este campo se elegirá el modelo de la definición de Swagger. Si se deja en blanco se creará una nueva.
+ - Definición, en este campo se elegirá el modelo de la definición de Swagger. Si se deja en blanco se creará una definición nueva, con la información básica.
 
 ![Añadir Consulta SQL](./img/anyadirConsultaSQL2.jpg)
 
@@ -72,26 +79,48 @@ En este formulario se deberá de rellenar los siguientes campos:
 
 En la imagen se puede ver como se ha creado un parámetro de nombre idP de tipo texto. Para usar dicho parámetro se ha añadido en la consulta SQL.
 
-#### Añadir formato GeoJSON o GeoRSS
+#### Añadir formatos GeoJSON y GeoRSS
 ![Geojson Georss](./img/geojsonGeorss.jpg)
 
-Para que los formatos GeoJSON o GeoRSS aparezcan en el listado de consultas SQL, en el campo consulta SQL deben de aparecer las siguientes etiquetas:
+Para que los formatos GeoJSON o GeoRSS aparezcan en el listado de consultas SQL, en el campo consulta SQL deben de aparecer las siguientes campos:
 
- - xETRS89
- - yETRS89
+ - xETRS89 e ETRS89 para representar puntos (X,Y) en formato ETRS89. El srId de origen se configura en el archivo de configuración.
+ - hasGeometry para representar polígonos
+  
+Para añadir una consulta que soporte puntos, en la consulta deben existir los atributos "xETRS89" e "yETRS89". Ejemplo:
+
+```
+	SELECT
+        id ,
+        title ,      
+        x_etrs89 AS xETRS89 ,
+        y_etrs89 AS yETRS89 
+    FROM
+        equipamiento 
+```
+
+Para añadir una consulta que soporte poligonos, en la consulta deben existir el atributo "hasGeometry". Ejemplo:
+
+
+``` 
+    SELECT
+        id,
+        identifier,
+        title,
+        geometry as hasGeometry 
+    FROM
+        territorio_pais
+```
  
-Para coordenadas X e Y
+#### Añadir consultas específicas
 
-![Geojson Georss](./img/geojsonGeorss2.jpg)
+En el menú "añadir" aparecen las siguientes opciones:
 
- - latitud
- - longitud
-
-Para coordenadas latitud y longitud
-
- - hasGeometry
- 
-Para geometrías.
+ - Consulta Básica: es la opción que se ha explicado en la sección "Añadir consulta SQL".
+ - Consulta Agrupada: esta opción precarga un sentencia SQL de ejemplo y los parámetros necesarios para escribir una consulta que realiza operaciones de agrupación (SUM, AVG, COUNT,...).
+ - Consulta Distinct: esta opción precarga un sentencia SQL de ejemplo y los parámetros necesarios para escribir una consulta que contiene la restricción "distinct".
+ - Consulta con coordenadas: esta opción precarga un sentencia SQL de ejemplo y los parámetros necesarios para escribir una consulta que contiene campos X y Y.
+ - Consulta con distancia geográfica: esta opción precarga un sentencia SQL de ejemplo y los parámetros necesarios para escribir una consulta que permite realizar busquedas por distancica a partir de un punto (X e Y) y una distancia en metros.
 
 ### Editar consulta SQL
 En el listado de consultas SQL se hará clic en la de las consultas, para acceder a la ficha de la consulta.
@@ -157,3 +186,21 @@ La url de acceso a los servicios de swagger esta disponible en la siguiente url:
 Como ejemplo asociamos la url del servicio de pruebas establecido en Alzir: https://alzir.dia.fi.upm.es/dynamicAPI/swagger/index.html
 
 ![Página de inicio de Swagger](./img/swaggerdynamicAPI.JPG)
+
+## Datos Semánticos
+
+En este módulo se configuran las consultas SQL que previamente están dadas de alta, para asignarles información semantica, y así poder dotar a las llamadas de esa consulta de los siguientes formatos:
+
+ - rdf
+ - ttl
+ - jsonld
+ - n3
+ 
+ Este módulo esta compuesto por dos submodulos:
+ 
+ - Prefijos
+ - Definiciones
+
+### Prefijos
+
+### Definiciones

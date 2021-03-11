@@ -16,6 +16,7 @@ public class QueryD implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 3885360849498032483L;
 	
+	private int id;
 	private String code;
 	private String texto;
 	private String database;
@@ -30,6 +31,7 @@ public class QueryD implements java.io.Serializable {
 	
 	public QueryD(QueryD copia) {
 	    super();
+	    this.id = copia.id;
 	    this.code = copia.code;
 	    this.texto =  copia.texto;
 	    this.database =  copia.database;
@@ -40,13 +42,22 @@ public class QueryD implements java.io.Serializable {
 	}
 	
 	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	public int getId() {
+	  return this.id;
+	}
+
+	public void setId(int id) {
+	  this.id = id;
+	}
+
 	@Column(name = "code", unique = true, nullable = false, length = 50)
 	public String getCode() {
-		return this.code;
+	  return this.code;
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+	  this.code = code;
 	}
 
 	@Column(name = "texto", nullable = false, length = 4000)

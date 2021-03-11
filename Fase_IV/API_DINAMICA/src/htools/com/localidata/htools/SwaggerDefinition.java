@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -15,25 +15,25 @@ import javax.persistence.Table;
 @Table(name = "swagger_definition", catalog = "apiDinamica")
 public class SwaggerDefinition implements java.io.Serializable {
 
-    private SwaggerDefinitionId id;
+private SwaggerDefinitionId id;
 
-    public SwaggerDefinition() {
-    }
+public SwaggerDefinition() {
+}
 
-    public SwaggerDefinition(SwaggerDefinitionId id) {
-	this.id = id;
-    }
+public SwaggerDefinition(SwaggerDefinitionId id) {
+  this.id = id;
+}
 
-    @EmbeddedId
+@EmbeddedId
 
-    @AttributeOverrides({ @AttributeOverride(name = "code", column = @Column(name = "code", nullable = false, length = 100)), @AttributeOverride(name = "description", column = @Column(name = "description", nullable = false, length = 200)),
-	    @AttributeOverride(name = "text", column = @Column(name = "text", nullable = false, length = 4000)) })
-    public SwaggerDefinitionId getId() {
-	return this.id;
-    }
+@AttributeOverrides({ @AttributeOverride(name = "code", column = @Column(name = "code", nullable = false, length = 100)), @AttributeOverride(name = "description", column = @Column(name = "description", nullable = false, length = 200)),
+	@AttributeOverride(name = "text", column = @Column(name = "text", nullable = false, length = 4000)) })
+public SwaggerDefinitionId getId() {
+  return this.id;
+}
 
-    public void setId(SwaggerDefinitionId id) {
-	this.id = id;
-    }
+public void setId(SwaggerDefinitionId id) {
+  this.id = id;
+}
 
 }

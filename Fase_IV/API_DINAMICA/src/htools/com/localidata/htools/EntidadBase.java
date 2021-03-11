@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,85 +17,85 @@ import javax.persistence.TemporalType;
 @Table(name = "entidad_base", catalog = "apiDinamica")
 public class EntidadBase implements java.io.Serializable {
 
-    private String id;
-    private String texto;
-    private String textoLargo;
-    private Date fecha;
-    private Integer numeroEntero;
-    private BigDecimal numeroDecimal;
+private String id;
+private String texto;
+private String textoLargo;
+private Date fecha;
+private Integer numeroEntero;
+private BigDecimal numeroDecimal;
 
-    public EntidadBase() {
-    }
+public EntidadBase() {
+}
 
-    public EntidadBase(String id, String texto) {
-	this.id = id;
-	this.texto = texto;
-    }
+public EntidadBase(String id, String texto) {
+  this.id = id;
+  this.texto = texto;
+}
 
-    public EntidadBase(String id, String texto, String textoLargo, Date fecha, Integer numeroEntero, BigDecimal numeroDecimal) {
-	this.id = id;
-	this.texto = texto;
-	this.textoLargo = textoLargo;
-	this.fecha = fecha;
-	this.numeroEntero = numeroEntero;
-	this.numeroDecimal = numeroDecimal;
-    }
+public EntidadBase(String id, String texto, String textoLargo, Date fecha, Integer numeroEntero, BigDecimal numeroDecimal) {
+  this.id = id;
+  this.texto = texto;
+  this.textoLargo = textoLargo;
+  this.fecha = fecha;
+  this.numeroEntero = numeroEntero;
+  this.numeroDecimal = numeroDecimal;
+}
 
-    @Id
+@Id
 
-    @Column(name = "id", unique = true, nullable = false, length = 50)
-    public String getId() {
-	return this.id;
-    }
+@Column(name = "id", unique = true, nullable = false, length = 50)
+public String getId() {
+  return this.id;
+}
 
-    public void setId(String id) {
-	this.id = id;
-    }
+public void setId(String id) {
+  this.id = id;
+}
 
-    @Column(name = "texto", nullable = false, length = 100)
-    public String getTexto() {
-	return this.texto;
-    }
+@Column(name = "texto", nullable = false, length = 100)
+public String getTexto() {
+  return this.texto;
+}
 
-    public void setTexto(String texto) {
-	this.texto = texto;
-    }
+public void setTexto(String texto) {
+  this.texto = texto;
+}
 
-    @Column(name = "texto_largo", length = 4000)
-    public String getTextoLargo() {
-	return this.textoLargo;
-    }
+@Column(name = "texto_largo", length = 4000)
+public String getTextoLargo() {
+  return this.textoLargo;
+}
 
-    public void setTextoLargo(String textoLargo) {
-	this.textoLargo = textoLargo;
-    }
+public void setTextoLargo(String textoLargo) {
+  this.textoLargo = textoLargo;
+}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha", length = 19)
-    public Date getFecha() {
-	return this.fecha;
-    }
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "fecha", length = 26)
+public Date getFecha() {
+  return this.fecha;
+}
 
-    public void setFecha(Date fecha) {
-	this.fecha = fecha;
-    }
+public void setFecha(Date fecha) {
+  this.fecha = fecha;
+}
 
-    @Column(name = "numero_entero")
-    public Integer getNumeroEntero() {
-	return this.numeroEntero;
-    }
+@Column(name = "numero_entero")
+public Integer getNumeroEntero() {
+  return this.numeroEntero;
+}
 
-    public void setNumeroEntero(Integer numeroEntero) {
-	this.numeroEntero = numeroEntero;
-    }
+public void setNumeroEntero(Integer numeroEntero) {
+  this.numeroEntero = numeroEntero;
+}
 
-    @Column(name = "numero_decimal", precision = 12)
-    public BigDecimal getNumeroDecimal() {
-	return this.numeroDecimal;
-    }
+@Column(name = "numero_decimal", precision = 12)
+public BigDecimal getNumeroDecimal() {
+  return this.numeroDecimal;
+}
 
-    public void setNumeroDecimal(BigDecimal numeroDecimal) {
-	this.numeroDecimal = numeroDecimal;
-    }
+public void setNumeroDecimal(BigDecimal numeroDecimal) {
+  this.numeroDecimal = numeroDecimal;
+}
 
 }

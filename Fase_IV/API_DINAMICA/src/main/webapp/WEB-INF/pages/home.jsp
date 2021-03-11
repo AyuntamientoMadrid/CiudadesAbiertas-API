@@ -36,6 +36,7 @@
 				<div class="tiny-text">
 					<p>Bienvenid@ a la aplicación API Dinámica. </p>
 					<p>Puede acceder a los distintos módulos de la aplicación a través del botón menú de la izquierda.</p>
+					<p>Si desea acceder a la <b>documentación de la API</b> puede acceder pulsando <a target="swagger" href="<c:url value="/swagger"/>">aquí</a>.</p>
 				</div>			
 				<c:if test ="${not empty errorFicheros}">
 					<div class=" entradilla">
@@ -55,21 +56,23 @@
 				</div>
 				<fieldset>
 					<div class="form-row">
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 							<label class="control-label bold">Consultas SQL "Apificadas"</label>
 							<p>${numQueries}</p>
 						</div>
-						<div class="form-group col-md-3">
-							<label class="control-label bold">URL más utilizada</label>
-							<p>${urlMostWanted}</p>
-						</div>
-						<div class="form-group col-md-3 ">
+						<div class="form-group col-md-4">
 							<label class="control-label bold">Última llamada</label>
 							<p>${lastPetition}</p>
 						</div>
-						<div class="form-group col-md-3 ">
+						<div class="form-group col-md-4">
 							<label class="control-label bold">Llamadas en los últimos 7 días</label>
 							<p>${lastWeekPetitions}</p>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12 ">
+							<label class="control-label bold">URL más utilizada</label>
+							<p>${urlMostWanted}</p>
 						</div>								
 					</div>
 				</fieldset>

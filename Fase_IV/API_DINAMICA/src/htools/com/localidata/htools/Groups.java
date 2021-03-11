@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,62 +18,62 @@ import javax.persistence.Table;
 @Table(name = "groups", catalog = "apiDinamica")
 public class Groups implements java.io.Serializable {
 
-    private long id;
-    private String groupName;
-    private Set<GroupMembers> groupMemberses = new HashSet<GroupMembers>(0);
-    private GroupAuthorities groupAuthorities;
+private long id;
+private String groupName;
+private Set<GroupMembers> groupMemberses = new HashSet<GroupMembers>(0);
+private GroupAuthorities groupAuthorities;
 
-    public Groups() {
-    }
+public Groups() {
+}
 
-    public Groups(long id, String groupName) {
-	this.id = id;
-	this.groupName = groupName;
-    }
+public Groups(long id, String groupName) {
+  this.id = id;
+  this.groupName = groupName;
+}
 
-    public Groups(long id, String groupName, Set<GroupMembers> groupMemberses, GroupAuthorities groupAuthorities) {
-	this.id = id;
-	this.groupName = groupName;
-	this.groupMemberses = groupMemberses;
-	this.groupAuthorities = groupAuthorities;
-    }
+public Groups(long id, String groupName, Set<GroupMembers> groupMemberses, GroupAuthorities groupAuthorities) {
+  this.id = id;
+  this.groupName = groupName;
+  this.groupMemberses = groupMemberses;
+  this.groupAuthorities = groupAuthorities;
+}
 
-    @Id
+@Id
 
-    @Column(name = "id", unique = true, nullable = false)
-    public long getId() {
-	return this.id;
-    }
+@Column(name = "id", unique = true, nullable = false)
+public long getId() {
+  return this.id;
+}
 
-    public void setId(long id) {
-	this.id = id;
-    }
+public void setId(long id) {
+  this.id = id;
+}
 
-    @Column(name = "group_name", nullable = false, length = 50)
-    public String getGroupName() {
-	return this.groupName;
-    }
+@Column(name = "group_name", nullable = false, length = 50)
+public String getGroupName() {
+  return this.groupName;
+}
 
-    public void setGroupName(String groupName) {
-	this.groupName = groupName;
-    }
+public void setGroupName(String groupName) {
+  this.groupName = groupName;
+}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "groups")
-    public Set<GroupMembers> getGroupMemberses() {
-	return this.groupMemberses;
-    }
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "groups")
+public Set<GroupMembers> getGroupMemberses() {
+  return this.groupMemberses;
+}
 
-    public void setGroupMemberses(Set<GroupMembers> groupMemberses) {
-	this.groupMemberses = groupMemberses;
-    }
+public void setGroupMemberses(Set<GroupMembers> groupMemberses) {
+  this.groupMemberses = groupMemberses;
+}
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "groups")
-    public GroupAuthorities getGroupAuthorities() {
-	return this.groupAuthorities;
-    }
+@OneToOne(fetch = FetchType.LAZY, mappedBy = "groups")
+public GroupAuthorities getGroupAuthorities() {
+  return this.groupAuthorities;
+}
 
-    public void setGroupAuthorities(GroupAuthorities groupAuthorities) {
-	this.groupAuthorities = groupAuthorities;
-    }
+public void setGroupAuthorities(GroupAuthorities groupAuthorities) {
+  this.groupAuthorities = groupAuthorities;
+}
 
 }

@@ -51,7 +51,10 @@ public class ParamD implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "query_code", nullable = false)
+	@JoinColumn(
+	        name = "query_code",
+	        referencedColumnName = "code", nullable = false
+	    )
 	public QueryD getQuery() {
 		return this.query;
 	}

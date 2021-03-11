@@ -1,5 +1,5 @@
 package com.localidata.htools;
-// Generated 1 jul. 2020 14:16:07 by Hibernate Tools 4.3.5.Final
+// Generated 19 ene. 2021 10:56:41 by Hibernate Tools 4.3.5.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,231 +17,231 @@ import javax.persistence.TemporalType;
 @Table(name = "test_table", catalog = "apiDinamica")
 public class TestTable implements java.io.Serializable {
 
-    private int alfa;
-    private String bravo;
-    private Date charlie;
-    private Byte delta;
-    private Short echo;
-    private Integer foxtrot;
-    private Long golf;
-    private BigDecimal hotel;
-    private Float india;
-    private Double juliet;
-    private Boolean november;
-    private Long oscar;
-    private Date papa;
-    private Date quebec;
-    private Date romeo;
-    private String tango;
-    private String uniform;
-    private String victor;
-    private String whiskey;
+private int alfa;
+private String bravo;
+private Date charlie;
+private Byte delta;
+private Short echo;
+private Integer foxtrot;
+private Long golf;
+private BigDecimal hotel;
+private Float india;
+private Double juliet;
+private Boolean november;
+private Long oscar;
+private Date papa;
+private Date quebec;
+private Date romeo;
+private String tango;
+private String uniform;
+private String victor;
+private String whiskey;
 
-    public TestTable() {
-    }
+public TestTable() {
+}
 
-    public TestTable(int alfa) {
-	this.alfa = alfa;
-    }
+public TestTable(int alfa) {
+  this.alfa = alfa;
+}
 
-    public TestTable(int alfa, String bravo, Date charlie, Byte delta, Short echo, Integer foxtrot, Long golf, BigDecimal hotel, Float india, Double juliet, Boolean november, Long oscar, Date papa, Date quebec, Date romeo, String tango,
-	    String uniform, String victor, String whiskey) {
-	this.alfa = alfa;
-	this.bravo = bravo;
-	this.charlie = charlie;
-	this.delta = delta;
-	this.echo = echo;
-	this.foxtrot = foxtrot;
-	this.golf = golf;
-	this.hotel = hotel;
-	this.india = india;
-	this.juliet = juliet;
-	this.november = november;
-	this.oscar = oscar;
-	this.papa = papa;
-	this.quebec = quebec;
-	this.romeo = romeo;
-	this.tango = tango;
-	this.uniform = uniform;
-	this.victor = victor;
-	this.whiskey = whiskey;
-    }
+public TestTable(int alfa, String bravo, Date charlie, Byte delta, Short echo, Integer foxtrot, Long golf, BigDecimal hotel, Float india, Double juliet, Boolean november, Long oscar, Date papa, Date quebec, Date romeo, String tango,
+	String uniform, String victor, String whiskey) {
+  this.alfa = alfa;
+  this.bravo = bravo;
+  this.charlie = charlie;
+  this.delta = delta;
+  this.echo = echo;
+  this.foxtrot = foxtrot;
+  this.golf = golf;
+  this.hotel = hotel;
+  this.india = india;
+  this.juliet = juliet;
+  this.november = november;
+  this.oscar = oscar;
+  this.papa = papa;
+  this.quebec = quebec;
+  this.romeo = romeo;
+  this.tango = tango;
+  this.uniform = uniform;
+  this.victor = victor;
+  this.whiskey = whiskey;
+}
 
-    @Id
+@Id
 
-    @Column(name = "alfa", unique = true, nullable = false)
-    public int getAlfa() {
-	return this.alfa;
-    }
+@Column(name = "alfa", unique = true, nullable = false)
+public int getAlfa() {
+  return this.alfa;
+}
 
-    public void setAlfa(int alfa) {
-	this.alfa = alfa;
-    }
+public void setAlfa(int alfa) {
+  this.alfa = alfa;
+}
 
-    @Column(name = "bravo", length = 4)
-    public String getBravo() {
-	return this.bravo;
-    }
+@Column(name = "bravo", length = 4)
+public String getBravo() {
+  return this.bravo;
+}
 
-    public void setBravo(String bravo) {
-	this.bravo = bravo;
-    }
+public void setBravo(String bravo) {
+  this.bravo = bravo;
+}
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "charlie", length = 10)
-    public Date getCharlie() {
-	return this.charlie;
-    }
+@Temporal(TemporalType.DATE)
+@Column(name = "charlie", length = 10)
+public Date getCharlie() {
+  return this.charlie;
+}
 
-    public void setCharlie(Date charlie) {
-	this.charlie = charlie;
-    }
+public void setCharlie(Date charlie) {
+  this.charlie = charlie;
+}
 
-    @Column(name = "delta")
-    public Byte getDelta() {
-	return this.delta;
-    }
+@Column(name = "delta")
+public Byte getDelta() {
+  return this.delta;
+}
 
-    public void setDelta(Byte delta) {
-	this.delta = delta;
-    }
+public void setDelta(Byte delta) {
+  this.delta = delta;
+}
 
-    @Column(name = "echo")
-    public Short getEcho() {
-	return this.echo;
-    }
+@Column(name = "echo")
+public Short getEcho() {
+  return this.echo;
+}
 
-    public void setEcho(Short echo) {
-	this.echo = echo;
-    }
+public void setEcho(Short echo) {
+  this.echo = echo;
+}
 
-    @Column(name = "foxtrot")
-    public Integer getFoxtrot() {
-	return this.foxtrot;
-    }
+@Column(name = "foxtrot")
+public Integer getFoxtrot() {
+  return this.foxtrot;
+}
 
-    public void setFoxtrot(Integer foxtrot) {
-	this.foxtrot = foxtrot;
-    }
+public void setFoxtrot(Integer foxtrot) {
+  this.foxtrot = foxtrot;
+}
 
-    @Column(name = "golf")
-    public Long getGolf() {
-	return this.golf;
-    }
+@Column(name = "golf")
+public Long getGolf() {
+  return this.golf;
+}
 
-    public void setGolf(Long golf) {
-	this.golf = golf;
-    }
+public void setGolf(Long golf) {
+  this.golf = golf;
+}
 
-    @Column(name = "hotel", precision = 10)
-    public BigDecimal getHotel() {
-	return this.hotel;
-    }
+@Column(name = "hotel", precision = 10)
+public BigDecimal getHotel() {
+  return this.hotel;
+}
 
-    public void setHotel(BigDecimal hotel) {
-	this.hotel = hotel;
-    }
+public void setHotel(BigDecimal hotel) {
+  this.hotel = hotel;
+}
 
-    @Column(name = "india", precision = 12, scale = 0)
-    public Float getIndia() {
-	return this.india;
-    }
+@Column(name = "india", precision = 12, scale = 0)
+public Float getIndia() {
+  return this.india;
+}
 
-    public void setIndia(Float india) {
-	this.india = india;
-    }
+public void setIndia(Float india) {
+  this.india = india;
+}
 
-    @Column(name = "juliet", precision = 22, scale = 0)
-    public Double getJuliet() {
-	return this.juliet;
-    }
+@Column(name = "juliet", precision = 22, scale = 0)
+public Double getJuliet() {
+  return this.juliet;
+}
 
-    public void setJuliet(Double juliet) {
-	this.juliet = juliet;
-    }
+public void setJuliet(Double juliet) {
+  this.juliet = juliet;
+}
 
-    @Column(name = "november")
-    public Boolean getNovember() {
-	return this.november;
-    }
+@Column(name = "november")
+public Boolean getNovember() {
+  return this.november;
+}
 
-    public void setNovember(Boolean november) {
-	this.november = november;
-    }
+public void setNovember(Boolean november) {
+  this.november = november;
+}
 
-    @Column(name = "oscar")
-    public Long getOscar() {
-	return this.oscar;
-    }
+@Column(name = "oscar")
+public Long getOscar() {
+  return this.oscar;
+}
 
-    public void setOscar(Long oscar) {
-	this.oscar = oscar;
-    }
+public void setOscar(Long oscar) {
+  this.oscar = oscar;
+}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "papa", length = 19)
-    public Date getPapa() {
-	return this.papa;
-    }
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "papa", length = 26)
+public Date getPapa() {
+  return this.papa;
+}
 
-    public void setPapa(Date papa) {
-	this.papa = papa;
-    }
+public void setPapa(Date papa) {
+  this.papa = papa;
+}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "quebec", length = 19)
-    public Date getQuebec() {
-	return this.quebec;
-    }
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name = "quebec", length = 26)
+public Date getQuebec() {
+  return this.quebec;
+}
 
-    public void setQuebec(Date quebec) {
-	this.quebec = quebec;
-    }
+public void setQuebec(Date quebec) {
+  this.quebec = quebec;
+}
 
-    @Temporal(TemporalType.TIME)
-    @Column(name = "romeo", length = 8)
-    public Date getRomeo() {
-	return this.romeo;
-    }
+@Temporal(TemporalType.TIME)
+@Column(name = "romeo", length = 8)
+public Date getRomeo() {
+  return this.romeo;
+}
 
-    public void setRomeo(Date romeo) {
-	this.romeo = romeo;
-    }
+public void setRomeo(Date romeo) {
+  this.romeo = romeo;
+}
 
-    @Column(name = "tango", length = 10)
-    public String getTango() {
-	return this.tango;
-    }
+@Column(name = "tango", length = 10)
+public String getTango() {
+  return this.tango;
+}
 
-    public void setTango(String tango) {
-	this.tango = tango;
-    }
+public void setTango(String tango) {
+  this.tango = tango;
+}
 
-    @Column(name = "uniform")
-    public String getUniform() {
-	return this.uniform;
-    }
+@Column(name = "uniform")
+public String getUniform() {
+  return this.uniform;
+}
 
-    public void setUniform(String uniform) {
-	this.uniform = uniform;
-    }
+public void setUniform(String uniform) {
+  this.uniform = uniform;
+}
 
-    @Column(name = "victor", length = 16777215)
-    public String getVictor() {
-	return this.victor;
-    }
+@Column(name = "victor", length = 16777215)
+public String getVictor() {
+  return this.victor;
+}
 
-    public void setVictor(String victor) {
-	this.victor = victor;
-    }
+public void setVictor(String victor) {
+  this.victor = victor;
+}
 
-    @Column(name = "whiskey")
-    public String getWhiskey() {
-	return this.whiskey;
-    }
+@Column(name = "whiskey")
+public String getWhiskey() {
+  return this.whiskey;
+}
 
-    public void setWhiskey(String whiskey) {
-	this.whiskey = whiskey;
-    }
+public void setWhiskey(String whiskey) {
+  this.whiskey = whiskey;
+}
 
 }

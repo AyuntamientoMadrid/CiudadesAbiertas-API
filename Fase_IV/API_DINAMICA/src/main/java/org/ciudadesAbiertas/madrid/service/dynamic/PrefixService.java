@@ -32,7 +32,7 @@ public class PrefixService {
     }
 
     @Transactional(readOnly = true)
-    public SemanticPrefix record(String id) {
+    public SemanticPrefix record(int id) {
 	log.info("record");
 	return prefixDao.record(id);
     }
@@ -44,9 +44,9 @@ public class PrefixService {
     }
 
     @Transactional
-    public void update(SemanticPrefix newQuery, SemanticPrefix oldQuery) {
+    public void update(SemanticPrefix prefix) {
 	log.info("update");
-	prefixDao.update(newQuery, oldQuery);
+	prefixDao.update(prefix);
 
     }
 
@@ -59,11 +59,19 @@ public class PrefixService {
     
     
     @Transactional(readOnly = true)
-    public Map<String, SemanticPrefix> queryMap() {
+    public Map<Integer, SemanticPrefix> queryMap() {
 	log.info("queryMap");
 	return prefixDao.queryMap();
 
     }
+
+    @Transactional(readOnly = true)
+    public List<SemanticPrefix> getPrefixInQuery(String code) {
+	log.info("getPrefixInQuery: "+code);
+	return prefixDao.getPrefixInQuery(code);
+    }
+
+   
     
     
     

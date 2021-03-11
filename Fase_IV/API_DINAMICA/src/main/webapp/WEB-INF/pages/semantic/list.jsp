@@ -9,7 +9,8 @@
 <c:set var="title" value="<%=LiteralConstants.TITLE_HEAD_SEMANTIC_DEF%>" scope="session"/>
 <!DOCTYPE html>
 <html lang="es">
-<%@include file="../includes/head.jsp"%>	
+<%@include file="../includes/head.jsp"%>
+
 <body>
 	<%@include file="../includes/header.jsp"%>	
 	
@@ -172,7 +173,7 @@
 		<div class="contents_list">
 			<ul>
 				<c:forEach var="entidad" items="${list}" varStatus="loop">   
-					
+										
 					<c:choose>
 					  <c:when test="${loop.count eq 1}">
 					    <li class="dest">
@@ -182,41 +183,34 @@
 					  </c:otherwise>
 					</c:choose>
 					
-
-			            <h4 id="title_element_${loop.count}">
-			            	<a href="<c:url value="/semanticDef/${entidad.queryD.code}"/>"><c:out value="${entidad.queryD.code}" /></a>
-			            	<c:if test ="${entidad.errorFileConfig}">			            		
-			            		<img src="<c:url value="/resources/ayre-assets/images/ico_error.png"/>" alt="${entidad.textoError}" />
-			            	</c:if>
-			            </h4>
-			            <p><c:out value="${entidad.queryD.summary}" /></p>
-
-
-			            <p class="text-right">
+					<h4 id="title_element_${loop.count}">
+		            	<a href="<c:url value="/semanticDef/${entidad.rml.query}"/>"><c:out value="${entidad.rml.query}" /></a>
+			         </h4>
+			         <p>
+			         	<c:if test="${not empty entidad.prefixTypeURL}">
+						   <c:out value="${entidad.prefixTypeURL}" />:
+						</c:if>
+						<c:if test="${not empty entidad.typeURL}">
+						   <c:out value="${entidad.typeURL}" />
+						</c:if>
+						 (<c:out value="${entidad.fields.size()}" /> campos semantizados)
+					 </p>			            
+			         <p class="text-right">
 			            	<c:choose>
-							  <c:when test="${empty exampleParams[entidad.queryD.code]}">
-							    <a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.json" />" target="blanck">json</a>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.xml" />" target="blanck">xml</a>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.csv" />" target="blanck">csv</a>
-			            		<c:if test="${entidad.geo eq true}">
-			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson" />" target="blanck">geojson</a>
-			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss" />" target="blanck">georss</a>
-			            		</c:if>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl" />" target="blanck">ttl</a>
+							  <c:when test="${empty exampleParams[entidad.rml.query]}">
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.ttl" />" target="blanck">ttl</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.jsonld" />" target="blanck">jsonld</a>	
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.n3" />" target="blanck">n3</a>	
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.rdf" />" target="blanck">rdf</a>		            			
 							  </c:when>			  
 							  <c:otherwise>
-							   	<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.json?${exampleParams[entidad.queryD.code]}" />" target="blanck">json</a>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.xml?${exampleParams[entidad.queryD.code]}" />" target="blanck">xml</a>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.csv?${exampleParams[entidad.queryD.code]}" />" target="blanck">csv</a>
-							  	<c:if test="${entidad.geo eq true}">
-			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson?${exampleParams[entidad.queryD.code]}" />" target="blanck">geojson</a>
-			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss?${exampleParams[entidad.queryD.code]}" />" target="blanck">georss</a>
-			            		</c:if>
-			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl?${exampleParams[entidad.queryD.code]}" />" target="blanck">ttl</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.ttl?${exampleParams[entidad.rml.query]}" />" target="blanck">ttl</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.jsonld?${exampleParams[entidad.rml.query]}" />" target="blanck">jsonld</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.n3?${exampleParams[entidad.rml.query]}" />" target="blanck">n3</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.rml.query}.rdf?${exampleParams[entidad.rml.query]}" />" target="blanck">rdf</a>
 							  </c:otherwise>
 							</c:choose>
-			            </p>
-			        </li>
+			          </p>					
 			     </c:forEach>
 			</ul>
 		</div>

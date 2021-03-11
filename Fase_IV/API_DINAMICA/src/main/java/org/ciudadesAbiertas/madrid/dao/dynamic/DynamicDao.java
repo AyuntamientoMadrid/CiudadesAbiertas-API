@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,9 +64,7 @@ public class DynamicDao {
 		NativeQuery sqlquery = sessionFactory.getCurrentSession().createSQLQuery(query);
 		sqlquery.setFirstResult(page * pageSize);
 		sqlquery.setMaxResults(pageSize);
-		//sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
 		sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
-		;
 		
 		try {
 
@@ -73,6 +72,7 @@ public class DynamicDao {
 
 		} catch (Exception e) {
 			log.error("Error throwing query", e);
+			
 		}
 
 		return result;
@@ -83,7 +83,8 @@ public class DynamicDao {
 		log.info("[rowCount]");
 		log.debug("[rowCount] [query] ["+query+"]");
 		long totalRegistro = 0;
-		String queryRowCount= "Select count(*) as contar from ("+query+") as consulta";
+		String COUNTER_CA = "counterCA";
+		String queryRowCount = "Select count(*) as "+COUNTER_CA+" from (" + query + ") as queryCA";
 		
 		String databaseType = StartVariables.databaseTypes.get(database);
 		if (databaseType.equals(Constants.SQLSERVER))
@@ -101,18 +102,27 @@ public class DynamicDao {
 		sqlquery.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 
 		try {
+		    Object uniqueResult = sqlquery.uniqueResult();
+		    if (uniqueResult instanceof HashMap)
+		    {
+		        HashMap value =  (HashMap) sqlquery.uniqueResult();
+    			if (!value.isEmpty()) {
+    				if (value.get(COUNTER_CA) instanceof BigInteger) {
+    					BigInteger valor = (BigInteger) value.get(COUNTER_CA);
+    					totalRegistro = valor.longValue();
+    				}else {
+    					Integer valor = (Integer) value.get(COUNTER_CA);
+    					totalRegistro = valor.longValue();
+    				}
+    			}
+		    }
+		    else if (uniqueResult instanceof BigInteger)
+		    {
+		      BigInteger valor = (BigInteger) uniqueResult;
+			  totalRegistro = valor.longValue();		      
+		    }
 			
-			HashMap value =  (HashMap) sqlquery.uniqueResult();
-			if (!value.isEmpty()) {
-				if (value.get("contar") instanceof BigInteger) {
-					BigInteger valor = (BigInteger) value.get("contar");
-					totalRegistro = valor.longValue();
-				}else {
-					Integer valor = (Integer) value.get("contar");
-					totalRegistro = valor.longValue();
-				}
-			}
-			
+		    
 			log.info("[rowCount] [devolvemos resultados]");
 
 		} catch (Exception e) {

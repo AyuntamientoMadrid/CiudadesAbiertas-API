@@ -14,6 +14,8 @@
 	
 	<%@include file="../includes/menuLateral.jsp"%>
 	
+	<%@include file="../includes/modal_include.jsp"%>
+	
 	<div class="user_name">
 		<div class="container">
 			<div class="row">
@@ -39,7 +41,7 @@
 		  <li class="done" id="1"><a href="<c:url value="/home"/>">1. <span>Inicio</span></a></li>
 		  <li class="done" id="2">2. <span>Consultas SQL</span></li>
 		  <li class="selected" id="3"><a href="<c:url value="/query"/>">3. <span>Listado</span></a></li>		  
-		  <li class="selected" id="4"><a href="<c:url value="/query/${object.code}"/>">4. <span>Ficha</span></a></li>
+		  <li class="selected" id="4"><a href="<c:url value="/query/${object.id}"/>">4. <span>Ficha</span></a></li>
 		  <li class="selected" id="5">5. <span>Editar</span></li>
 		</ul>
 	</div>
@@ -100,7 +102,7 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	<script src="<c:url value="/resources/js/query/commons.js"/>"></script>
-
+	<script src="<c:url value="/resources/js/query/help.js"/>"></script>
 <script>
 
 var htmlParamCode="";

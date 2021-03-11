@@ -184,7 +184,7 @@
 					
 
 			            <h4 id="title_element_${loop.count}">
-			            	<a href="<c:url value="/prefix/${entidad.id}"/>"><c:out value="${entidad.id}" /></a>			            	
+			            	<a href="<c:url value="/prefix/${entidad.id}"/>"><c:out value="${entidad.code}" /></a>			            	
 			            </h4>
 			            <p><c:out value="${entidad.url}" /></p>
 			           

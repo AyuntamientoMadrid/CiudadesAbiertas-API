@@ -5,14 +5,18 @@
 <%@ page import= "org.ciudadesAbiertas.madrid.utils.constants.LiteralConstants" %> 
 <%@ page session="true"%>
 <%@ page isELIgnored="false" %> 
-<c:set var="title" value="<%=LiteralConstants.TITLE_HEAD_HOME%>" scope="session"/>
+<c:set var="title" value="<%=LiteralConstants.TITLE_HEAD_SEMANTIC_DEF%>" scope="session"/>
 <!DOCTYPE html>
 <html lang="es">
 <%@include file="../includes/head.jsp"%>	
+
+
 <body>
 	<%@include file="../includes/header.jsp"%>	
 	
 	<%@include file="../includes/menuLateral.jsp"%>
+	
+	<%@include file="../includes/modal_include.jsp"%>
 	
 	<div class="user_name">
 		<div class="container">
@@ -27,7 +31,7 @@
    	<div class="title mt-0">
 		<div class="container">
 			<div class="col-md-12">
-				<p>¿Eliminar ${object.code}?</p>
+				<p>¿Eliminar ${object.rml.query}?</p>
 			</div>
 		</div>
 	</div>
@@ -40,7 +44,7 @@
 		  <li class="done" id="1"><a href="<c:url value="/home"/>">1. <span>Inicio</span></a></li>
 		  <li class="done" id="2">2. <span>Definiciones Semánticas</span></li>
 		  <li class="selected" id="3"><a href="<c:url value="/semanticDef"/>">3. <span>Listado</span></a></li>		  
-		  <li class="selected" id="4"><a href="<c:url value="/semanticDef/${object.code}"/>">4. <span>Ficha</span></a></li>
+		  <li class="selected" id="4"><a href="<c:url value="/semanticDef/${object.rml.query}"/>">4. <span>Ficha</span></a></li>
 		  <li class="selected" id="5">5. <span>Borrar</span></li>
 		</ul>
 		</ul>
@@ -82,19 +86,146 @@
 
 <div class="row bloque1">	
 	<div class="col-xs-12 col-md-12 col-lg-10 col-xl-10">
-	    <jsp:include page="../includes/query/readOnly.jsp" />
+	    
+	    <div class="form">
+		 
+	    		<div class="form-group title">
+		            <div class="col-xs-12">
+		              <h4>Configuración incial</h4>
+		            </div>
+		          </div>            
+		          <fieldset>
+		          	<div class="form-row">
+		              	<div class="form-group col-md-12">
+		              	  <div class="row">
+			              	  <div class="col-md-11">
+			              	  	<label class="control-label" for="query">Consulta</label>
+			              	  </div>
+			              	  <div class="col-md-1">
+			              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaConsulta);"></div>
+			              	  </div>
+		              	  </div>			              
+			              <select class="form-control simple" name="query" id="query" required="true" data-parsley-required="true" disabled="disabled">
+			             		<option value="<c:out value="${object.rml.query}" />">${object.rml.query}</option>
+							</select>	
+			        	</div>				        		        	
+			        </div>
+			        
+			        <div class="form-row">
+		              			        	
+			        	<div class="form-group col-md-12">
+		                	<div class="col-sm-12 col">		                  		
+		                  		<div class="row">
+				              	  <div class="col-md-10">
+				              	  	<label class="control-label">Prefijos disponibles</label>
+				              	  </div>
+				              	  <div class="col-md-2">
+				              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaPrefijoDis);"></div>
+				              	  </div>
+			              	  	</div>                  
+			                 	<select class="form-control multiple" name="prefixAvailable" id="prefixAvailable"  multiple="multiple" size="${object.prefixes.size()}" disabled="disabled">	                 								    
+							    	<c:forEach var="prefix" items="${object.prefixes}">
+								  		<option title="${prefix.url}" value="<c:out value="${prefix.id}" />"><c:out value="${prefix.id} ${prefix.url}" /></option>
+									</c:forEach>
+								</select>						
+		                	</div>                           
+		              	</div>
+		              	
+			        </div>
+			         
+			        </fieldset>
+			        
+			         <div id="capaTipo">
+			         
+			         	<div class="form-group title">
+			            	<div class="col-xs-12">
+			            	  <h4>URI de cada elemento</h4>
+			            	</div>
+			          	</div> 
+			          	
+			          	 <fieldset>
+				          	<div class="form-row">				              	
+					        	<div class="form-group col-md-12">
+					              <div class="form-group">					                
+						                <div class="row">
+						                <div class="col-md-10">
+				              	  			<label class="control-label">&nbsp;</label>
+				              	 		 </div>
+						              	  <div class="col-md-2">
+						              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaInputURI);"></div>
+						              	  </div>
+					              	  	</div> 
+						                <input type="text" class="form-control" id="inputObjectURI" name="inputObjectURI" value="${object.subjectURI}" disabled="disabled">
+						              <span class="hint d-none"></span>
+						            </div>	
+					        	</div>					        	
+					        </div>			        
+				        </fieldset>
+			        
+				        <div class="form-group title">
+			            	<div class="col-xs-12">
+			            	  <h4>URL del Tipo (rdf:type)</h4>
+			            	</div>
+			          	</div> 
+				        <fieldset>
+				          	<div class="form-row">
+				              	<div class="form-group col-md-3">				            
+					              	<div class="row">
+					              	  <div class="col-md-8">
+					              	  	  <label class="control-label" for="query">Prefijo</label>
+					              	  </div>
+					              	  <div class="col-md-4">
+					              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaPrefijoType);"></div>
+					              	  </div>
+				              	  	</div> 
+					              	<select class="form-control simple" name="prefixType" id="prefixType" disabled="disabled">
+					             		<option value="<c:out value="-1" />">${object.prefixTypeURL}</option>
+									</select>	
+					        	</div>
+					        	<div class="form-group col-md-9">
+					              <div class="form-group">					                
+						                <div class="row">
+						              	  <div class="col-md-10">
+						              	  	  <label class="control-label" for="summary">Fin de URL / URL Completa</label>
+						              	  </div>
+						              	  <div class="col-md-2">
+						              	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaTypeURL);"></div>
+						              	  </div>
+					              	  	</div> 
+						                <input type="text" class="form-control" id="typeURI" name="typeURI" value="${object.typeURL}" disabled="disabled"
+						              	data-parsley-trigger="change"
+										data-parsley-minlength="2" 
+										data-parsley-maxlength="100"
+										data-parsley-required="false"				
+						              >
+						              <span class="hint d-none"></span>
+						            </div>	
+					        	</div>	
+					        </div>			        
+				        </fieldset>
+			        
+			        </div>
+			        
+			        <c:if test="${not empty object.fields}">
+			        	<jsp:include page="../includes/semantic/campoZero.jsp" />
+			        </c:if>
+			        
+		</div>
+			        
 	
 		<div class="row buttons">
 	        <div class="col-md-4">                
-	          <a class="btn btn-secondary btn-block" href="<c:url value="/semanticDef/${object.code}"/>" role="button"  id="botonVolver">Volver</a>
+	          <a class="btn btn-secondary btn-block" href="<c:url value="/semanticDef/${object.rml.query}"/>" role="button"  id="botonVolver">Volver</a>
 	        </div>
 	        <div class="col-md-4 offset-4">      
-	        	  <form action="<c:url value='/semanticDef/delete/${object.code}' />" method='POST'>
+	        	  <form action="<c:url value='/semanticDef/delete/${object.rml.query}' />" method='POST'>
 	        	  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />         
 	          	<button type="submit" class="btn btn-danger btn-block" id="botonBorrar">Borrar</button>
 	           </form>             
 	        </div>              
 	     </div>
+	     
+	     
 	
 	</div>
 </div>	
@@ -109,25 +240,35 @@
 	<%@include file="../includes/footer.jsp"%>	
 	<%@include file="../includes/foot.jsp"%>
 	
-	<script>	
-		$(document).ready(function()
-				{
-					 
-					// Cambiamos la ruta de la imagen del calendario
-					$( ".calendar, .to, .from" ).datepicker( "option", "buttonImage", "<c:url value="/resources/ayre-assets/images/calendar.png"/>" );
-					
-					//ajustamos texto
-					var text = $('#texto');					
-					text.height('auto');
-					text.height(text.prop('scrollHeight'));
-					//Y un poco de margen
-					$('#description').css({				    
-				        marginBottom: '10px'
-				    });
-					
-				});
+	<script src="<c:url value="/resources/js/semantic/help.js"/>"></script>
+	<script src="<c:url value="/resources/js/semantic/drawField.js"/>"></script>
+	
+	
+		<script>
+		var elementsAdded=new Array();
+		<c:forEach var="entry" items="${object.fields}">
 		
+			  drawField('${entry.field}',
+					  	'${entry.predicate}',
+					  	'${entry.objectType}',
+					  	'${entry.objectReference}',
+					  	'${entry.objectReferenceType}',
+					  	'${entry.blankNodeType}',
+					  	'${entry.blankNodeId}',
+					  	'${entry.blankNodeProperty}',
+					  	true
+			  );
+			  
+		</c:forEach>
 		
 	</script>	
+	
+	<style>
+		#fieldsetCampoZero{
+			display:none;
+		}
+	</style>
+	
 </body>
+
 </html>

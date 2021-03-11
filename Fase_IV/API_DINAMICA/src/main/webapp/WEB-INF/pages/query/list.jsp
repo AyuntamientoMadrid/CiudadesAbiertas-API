@@ -48,12 +48,22 @@
 					<a href="<c:url value="/home"/>"><i class="ico icon-arrow-left"></i> Volver</a>
 				</div>
 				<div class="col-9 options">
-					<ul>
-						<li>
-							<a title="Añadir" href="<c:url value="/query/add"/>"><i class="ico icon-add"></i><span class="text">Añadir</span></a>
-						</li>						
+					<ul>							
+						<li class="add_query">
+							<a title="Añadir consulta" class="enlace pointer"><i class="ico icon-add"></i><span class="text">Añadir</span><i class="ico icon-arrow-down"></i></a>
+							<div class="add_options">
+								<ul>
+									<li id="add-up"><a href="<c:url value="/query/add"/>">Consulta Básica</a></li>
+									<li id="add-down"><a href="<c:url value="/query/add?typeQuery=groupby"/>">Consulta Agrupada</a></li>
+									<li id="add-down"><a href="<c:url value="/query/add?typeQuery=distinct"/>">Consulta Distinct</a></li>
+									<li id="add-up"><a href="<c:url value="/query/add?typeQuery=latlon"/>">Consulta con coordenadas</a></li>
+									<li id="add-down"><a href="<c:url value="/query/add?typeQuery=geoquery"/>">Consulta de distancia geográfica</a></li>
+
+								</ul>
+							</div>
+						</li> 					
 						<li class="font_size">
-							<a title="Tamaño de letra" href="#" class="enlace"><i class="ico icon-font-size"></i><span class="text">Tamaño de letra</span><i class="ico icon-arrow-down"></i></a>
+							<a title="Tamaño de letra" class="enlace pointer"><i class="ico icon-font-size"></i><span class="text">Tamaño de letra</span><i class="ico icon-arrow-down"></i></a>
 							<div class="font_size_options">
 								<ul>
 									<li id="font-up"><a href="#">+ Aumentar</a></li>
@@ -183,7 +193,7 @@
 					
 
 			            <h4 id="title_element_${loop.count}">
-			            	<a href="<c:url value="/query/${entidad.queryD.code}"/>"><c:out value="${entidad.queryD.code}" /></a>
+			            	<a href="<c:url value="/query/${entidad.queryD.id}"/>"><c:out value="${entidad.queryD.code}" /></a>
 			            	<c:if test ="${entidad.errorFileConfig}">			            		
 			            		<img src="<c:url value="/resources/ayre-assets/images/ico_error.png"/>" alt="${entidad.textoError}" />
 			            	</c:if>
@@ -201,7 +211,13 @@
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson" />" target="blanck">geojson</a>
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss" />" target="blanck">georss</a>
 			            		</c:if>
-			            		</c:when>			  
+			            		<c:if test="${entidad.rml eq true}">
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl" />" target="blanck">ttl</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.jsonld" />" target="blanck">jsonld</a>	
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.n3" />" target="blanck">n3</a>	
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.rdf" />" target="blanck">rdf</a>		            			
+			            		</c:if>
+							  </c:when>			  
 							  <c:otherwise>
 							   	<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.json?${exampleParams[entidad.queryD.code]}" />" target="blanck">json</a>
 			            		<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.xml?${exampleParams[entidad.queryD.code]}" />" target="blanck">xml</a>
@@ -210,7 +226,13 @@
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.geojson?${exampleParams[entidad.queryD.code]}" />" target="blanck">geojson</a>
 			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.georss?${exampleParams[entidad.queryD.code]}" />" target="blanck">georss</a>
 			            		</c:if>
-			            		</c:otherwise>
+			            		<c:if test="${entidad.rml eq true}">
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.ttl?${exampleParams[entidad.queryD.code]}" />" target="blanck">ttl</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.jsonld?${exampleParams[entidad.queryD.code]}" />" target="blanck">jsonld</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.n3?${exampleParams[entidad.queryD.code]}" />" target="blanck">n3</a>
+			            			<a href="<c:out value="${contextPath}/API/query/${entidad.queryD.code}.rdf?${exampleParams[entidad.queryD.code]}" />" target="blanck">rdf</a>
+			            		</c:if>	
+							  </c:otherwise>
 							</c:choose>
 			            </p>
 			        </li>
@@ -250,6 +272,12 @@
 					
 				});
 		
+		$(document).ready(function () {
+	        $(".add_query .enlace").click(function () {
+	            $(".add_options").toggle();
+	        });
+	    
+	    });
 		
 	</script>	
 </body>

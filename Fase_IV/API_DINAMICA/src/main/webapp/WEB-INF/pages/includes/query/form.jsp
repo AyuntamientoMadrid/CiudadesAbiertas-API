@@ -14,15 +14,14 @@
 	    <form name='queryForm' id='queryForm' action="<c:url value='/query/save' />" method='POST'>
 	  </c:when>			  
 	  <c:when test="${param.type eq  'edit'}">
-	    <form name='queryForm' id='queryForm' action="<c:url value='/query/update/${object.code}' />" method='POST'>
+	    <form name='queryForm' id='queryForm' action="<c:url value='/query/update/${object.id}' />" method='POST'>
 	  </c:when>
 	  <c:otherwise>
 	    <form></form>
 	  </c:otherwise>
 	</c:choose>
 
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	<input type="hidden" name="originalCode" value="${object.code}" />
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
           <div class="tiny-text">
           
          	<c:choose>
@@ -48,8 +47,15 @@
           </div>            
           <fieldset>
           	<div class="form-row">
-              	<div class="form-group col-md-6">
-	              <label class="control-label" for="code">Código *</label>
+              	<div class="form-group col-md-6">	              
+		          <div class="row">
+	            	  <div class="col-md-10">
+	            	  	<label class="control-label" for="code">Código *</label>
+	            	  </div>
+	            	  <div class="col-md-2">
+	            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaCodigo);"></div>
+	            	  </div>
+	           	  </div>
 	              <input type="text" class="form-control" required="true" id="code" name="code" value="${object.code}"
 	              	data-parsley-trigger="change"
 					data-parsley-minlength="2" 
@@ -58,8 +64,15 @@
 	              	<span class="hint d-none"></span>
 	        	</div>
 	        	<div class="form-group col-md-6">
-                	<div class="col-sm-12 col">
-                  		<label class="control-label">Conexión de Base de Datos</label>                    
+                	<div class="col-sm-12 col">                  		
+	                  	<div class="row">
+		            	  <div class="col-md-10">
+		            	  	<label class="control-label">Conexión de Base de Datos</label>
+		            	  </div>
+		            	  <div class="col-md-2">
+		            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaBBDD);"></div>
+		            	  </div>
+		           	  	</div>                  
 	                 	<select class="form-control simple" name="database" id="database" required="true">	                 								    
 					    	<c:forEach items="${databases}" var="bd">
 					    		<c:choose>
@@ -75,9 +88,16 @@
                 	</div>                           
               	</div>
 	        </div>
-            <div class="form-group">
-              <label for="texto">Consulta SQL *</label>
-              <textarea class="form-control"  id="texto" name="texto" rows="3" 
+            <div class="form-group">              
+        		<div class="row">
+            	  <div class="col-md-11">
+            	  	<label for="texto">Consulta SQL *</label>
+            	  </div>
+            	  <div class="col-md-1">
+            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaConsulta);"></div>
+            	  </div>
+           	  </div>
+              <textarea class="form-control"  id="texto" name="texto" rows="10" 
               	data-parsley-trigger="change"
 			data-parsley-minlength="0" 
 			data-parsley-maxlength="4000"
@@ -85,8 +105,15 @@
               >${object.texto}</textarea>
             </div>
                         
-            <div class="form-group">
-                <label class="control-label" for="summary">Descripción</label>
+            <div class="form-group">                
+                <div class="row">
+	            	  <div class="col-md-10">
+	            	  	<label class="control-label" for="summary">Descripción</label>
+	            	  </div>
+	            	  <div class="col-md-2">
+	            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaDes);"></div>
+	            	  </div>
+	           	</div>
                 <input type="text" class="form-control" required="true" id="summary" name="summary" value="${object.summary}"
               	data-parsley-trigger="change"
 				data-parsley-minlength="2" 
@@ -95,8 +122,15 @@
               >
               <span class="hint d-none"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Etiquetas</label>
+            <div class="form-group">                
+                <div class="row">
+	            	  <div class="col-md-10">
+	            	  	<label class="control-label">Etiquetas</label>
+	            	  </div>
+	            	  <div class="col-md-2">
+	            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaEtiquetas);"></div>
+	            	  </div>
+	           	</div>
                 <input type="text" class="form-control" id="tags" name="tags" value="${object.tags}"
               	data-parsley-trigger="change"
 				data-parsley-minlength="2" 
@@ -109,8 +143,15 @@
            <c:if test="${(not empty definitions)}">
             
             <div class="form-row">
-              	<div class="form-group col-md-6">
-	              <label class="control-label" for="code">Definición</label>	              
+              	<div class="form-group col-md-6">	              
+		            <div class="row">
+		            	  <div class="col-md-10">
+		            	  	<label class="control-label" for="code">Definición</label>	
+		            	  </div>
+		            	  <div class="col-md-2">
+		            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaDefinicion);"></div>
+		            	  </div>
+		           	</div>              
 	              	<select class="form-control simple" name="definition" id="definition" required="true">
 	              			<option value="-1">Selección de un modelo</option>	                 								    
 					    	<c:forEach items="${definitions}" var="def">					    		
@@ -155,8 +196,15 @@
 		          		<fieldset class="fieldsetParam">
 		          
 			          	<div class="form-row">
-			              	<div class="form-group col-md-6">
-				              <label class="control-label" for="code">Nombre *</label>
+			              	<div class="form-group col-md-6">				             
+							 	<div class="row">
+					            	  <div class="col-md-10">
+					            	  	 <label class="control-label" for="code">Nombre *</label>	
+					            	  </div>
+					            	  <div class="col-md-2">
+					            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaParamNombre);"></div>
+					            	  </div>
+					           	</div> 
 				              <input type="text" class="form-control" id="code" name="code0" value=""
 				              	data-parsley-trigger="change"
 								data-parsley-minlength="2" 
@@ -165,8 +213,15 @@
 				              	<span class="hint d-none"></span>
 				        	</div>
 				        	<div class="form-group col-md-6">
-			                	<div class="col-sm-12 col">
-			                  		<label class="control-label">Conexión de Base de Datos</label>                    
+			                	<div class="col-sm-12 col">			                  		
+			                  		 <div class="row">
+					            	  <div class="col-md-10">
+					            	  	 <label class="control-label">Tipo de parámetro</label>	
+					            	  </div>
+					            	  <div class="col-md-2">
+					            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaParamTipo);"></div>
+					            	  </div>
+					           		</div>                  
 				                 	<select class="form-control simple" name="type0" id="type" required="true">              								    
 								    	<option value="<%=Constants.TEXT%>">Texto</option>
 										<option value="<%=Constants.NUMBER%>">Número</option>
@@ -177,8 +232,15 @@
 				        </div>      
 			            
 			            <div class="form-row">
-			              	<div class="form-group col-md-6">
-				              <label class="control-label" for="code">Descripción</label>
+			              	<div class="form-group col-md-6">				              
+				              <div class="row">
+				            	  <div class="col-md-10">
+				            	  	 <label class="control-label" for="code">Descripción</label>	
+				            	  </div>
+				            	  <div class="col-md-2">
+				            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaParamDes);"></div>
+				            	  </div>
+				           	  </div>
 				              <input type="text" class="form-control" id="description" name="description0" value=""
 				              	data-parsley-trigger="change"
 								data-parsley-minlength="2" 
@@ -186,8 +248,15 @@
 								data-parsley-required="false">
 				              	<span class="hint d-none"></span>
 				        	</div>
-				        	<div class="form-group col-md-6">
-				              <label class="control-label" for="code">Ejemplo</label>
+				        	<div class="form-group col-md-6">				              
+				              <div class="row">
+				            	  <div class="col-md-10">
+				            	  	 <label class="control-label" for="code">Ejemplo</label>	
+				            	  </div>
+				            	  <div class="col-md-2">
+				            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(ayudaParamEjemplo);"></div>
+				            	  </div>
+				           	  </div>
 				              <input type="text" class="form-control" id="example" name="example0" value=""
 				              	data-parsley-trigger="change"
 								data-parsley-minlength="2" 
@@ -239,22 +308,31 @@
 						        	</div>
 						        	<div class="form-group col-md-6">
 					                	<div class="col-sm-12 col">
-					                  		<label class="control-label">Conexión de Base de Datos</label>                    
+					                  		<label class="control-label">Tipo</label>                    
 						                 	<select class="form-control simple" name="type${loop.count-1}" id="type" required="true">      
 						                 		<c:if test="${entidad.type == Constants.TEXT}">
 								    				<option value="<%=Constants.TEXT%>" selected>Texto</option>
 								    				<option value="<%=Constants.NUMBER%>">Número</option>
 													<option value="<%=Constants.DATE%>">Fecha</option>
+													<option value="<%=Constants.DATE_TIME%>" >Fecha y hora</option>
 								  				</c:if>        								    
 								  				<c:if test="${entidad.type == Constants.NUMBER}">
 								    				<option value="<%=Constants.TEXT%>">Texto</option>
 								    				<option value="<%=Constants.NUMBER%>" selected>Número</option>
 													<option value="<%=Constants.DATE%>">Fecha</option>
+													<option value="<%=Constants.DATE_TIME%>" >Fecha y hora</option>
 								  				</c:if>
 										    	<c:if test="${entidad.type == Constants.DATE}">
 								    				<option value="<%=Constants.TEXT%>">Texto</option>
 								    				<option value="<%=Constants.NUMBER%>">Número</option>
 													<option value="<%=Constants.DATE%>" selected>Fecha</option>
+													<option value="<%=Constants.DATE_TIME%>" >Fecha y hora</option>
+								  				</c:if>
+								  				<c:if test="${entidad.type == Constants.DATE_TIME}">
+								    				<option value="<%=Constants.TEXT%>">Texto</option>
+								    				<option value="<%=Constants.NUMBER%>">Número</option>
+													<option value="<%=Constants.DATE%>">Fecha</option>
+													<option value="<%=Constants.DATE_TIME%>" selected>Fecha y hora</option>
 								  				</c:if>
 											</select>						
 					                	</div>                           

@@ -87,5 +87,10 @@ public class StartVariables
 		public static String latWGS84_field="latitud";
 		public static String lonWGS84_field="longitud";
 		public static String geometry_field="hasGeometry";
+		
+		//Por defecto asignamos el separador ,
+		public static Character separator_csv =',';
+		//Por defecto asignamos el valor del comodin para generar separación con tabuladores.
+		public static Character separator_comodin_tab ='*';
 	
 }

@@ -7,19 +7,6 @@
 <%@ page session="true"%>
 <%@ page isELIgnored="false" %> 
 
-<%@include file="../modal_include.jsp"%>
-
-<script>
-var textoModal_1 =  "1 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-				 	"1 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-				 	"1 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
-var textoModal_2 =  "2 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-				 	"2 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-				 	"2 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
-var textoModal_3 =  "3 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\fichero. <br>"+
-				 	"3 Se permite incluir las anotaciones del tipo <b>FECHA</b> y <b>HORA</b> para concatenar al nombre del fichero. <br>" +
-				 	"3 Ejemplo: <b>D:\\temp\\dir\\fichero_FECHA_HORA</b> ";
-</script>
 
 	<c:choose>
 	  <c:when test="${param.type eq  'add'}">
@@ -60,18 +47,32 @@ var textoModal_3 =  "3 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\f
           </div>            
           <fieldset>
           	<div class="form-row">
-              	<div class="form-group col-md-3">
-	              <label class="control-label" for="code">Identificador *</label>
-	              <input type="text" class="form-control" required="true" id="id" name="id" value="${object.id}"
+              	<div class="form-group col-md-3">	             
+	              <div class="row">
+	            	  <div class="col-md-8">
+	            	  	 <label class="control-label" for="code">Identificador *</label>
+	            	  </div>
+	            	  <div class="col-md-4">
+	            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(identificador);"></div>
+	            	  </div>
+	           	  </div>
+	              <input type="text" class="form-control" required="true" id="code" name="code" value="${object.code}"
 	              	data-parsley-trigger="change"
 					data-parsley-minlength="2" 
-					data-parsley-maxlength="50"
+					data-parsley-maxlength="20"
 					data-parsley-required="true">
 	              	<span class="hint d-none"></span>
 	        	</div>
-	        	<div class="form-group col-md-8">
-                	<div class="col-sm-12 col">
-                  		<label class="control-label" for="summary">URL</label>
+	        	<div class="form-group col-md-9">
+                	<div class="col-sm-12 col">                  		
+                  		<div class="row">
+			            	  <div class="col-md-10">
+			            	  	 <label class="control-label" for="summary">URL *</label>
+			            	  </div>
+			            	  <div class="col-md-2">
+			            	  	<div class="icon icon-informacion pointer" align="right" onclick="activarModal(prefixURL);"></div>
+			            	  </div>
+			           	</div>
                			<input type="text" class="form-control" required="true" id="url" name="url" value="${object.url}"
               				data-parsley-trigger="change"
 							data-parsley-minlength="2" 
@@ -79,13 +80,7 @@ var textoModal_3 =  "3 Separador del path es <b>\\</b> Ejemplo: D:\\temp\\dir\\f
 							data-parsley-required="true"				
           			    >						
                 	</div>                           
-              	</div>
-              	<div class="form-group col-md-1">
-					<div class="col-sm-1 col">
-						<label class="control-label">Ayuda</label>
-						<div class="icon icon-informacion" align="center" onclick="activarModal(textoModal_1);"></div>
-					</div>
-				</div>
+              	</div>              	
 	        </div>   
 	       
           </fieldset>      
