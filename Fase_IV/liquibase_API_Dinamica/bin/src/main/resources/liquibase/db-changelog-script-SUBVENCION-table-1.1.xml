@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    
+    <changeSet author="Localidata" id="table-subvencion">
+        <createTable tableName="subvencion">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_subvencion" type="VARCHAR(50)"/>
+            <column name="nombre" type="VARCHAR(400)"/>
+            <column name="area_id" type="VARCHAR(50)"/>
+            <column name="area_nombre" type="VARCHAR(200)"/>
+            <column name="municipio_id" type="INT"/>
+            <column name="municipio_nombre" type="VARCHAR(200)"/>            
+            <column name="adjudicatario_id" type="VARCHAR(50)"/>
+            <column name="adjudicatario_nombre" type="VARCHAR(200)"/>    
+            <column name="entidad_financiadora_id" type="VARCHAR(50)"/>
+            <column name="entidad_financiadora_nombre" type="VARCHAR(200)"/>
+            <column name="importe" type="DECIMAL(12, 2)"/>
+            <column name="fecha_adjudicacion" type="DATETIME"/>
+            <column name="linea_financiacion" type="VARCHAR(200)"/>
+            <column name="url" type="VARCHAR(400)"/>
+            <column name="tipo_instrumento" type="VARCHAR(100)"/>
+            <column name="aplicacion_presupuestaria" type="VARCHAR(100)"/>   
+        </createTable>        
+    </changeSet>
+    
+    <changeSet author="Localidata" id="PK-table-subvencion">
+        <addPrimaryKey columnNames="id" constraintName="pk_subvencion" tableName="subvencion"/>        
+    </changeSet>
+    
+    <changeSet id="SUBVENCION-tag-1.1" author="Localidata">
+    	<tagDatabase tag="1.1" />
+  	</changeSet> 
+</databaseChangeLog>

@@ -1,0 +1,131 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <changeSet author="Localidata" id="table-semantic_field">
+		<createTable tableName="semantic_field">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="field" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="predicate" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="object_reference" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="object_type" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="object_uri" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<rollback>
+            <dropTable tableName="semantic_field"/>            
+		</rollback>
+	</changeSet>
+	<changeSet author="Localidata" id="table-semantic_prefix">
+		<createTable tableName="semantic_prefix">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<rollback>
+            <dropTable tableName="semantic_prefix"/>            
+		</rollback>
+	</changeSet>
+	<changeSet author="Localidata" id="table-semantic_rel_prefix">
+		<createTable tableName="semantic_rel_prefix">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prefix" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<rollback>
+            <dropTable tableName="semantic_rel_prefix"/>            
+		</rollback>
+	</changeSet>
+	<changeSet author="Localidata" id="table-semantic_rml">
+		<createTable tableName="semantic_rml">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rml" type="LONGTEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+		<rollback>
+            <dropTable tableName="semantic_rml"/>            
+		</rollback>
+	</changeSet>
+		
+	<changeSet author="Localidata" id="PK-table-semantic_field">
+        <addPrimaryKey columnNames="id" constraintName="pk_semantic_field" tableName="semantic_field"/>
+    </changeSet>		
+	
+	<changeSet author="Localidata" id="PK-table-semantic_prefix">
+        <addPrimaryKey columnNames="id" constraintName="pk_semantic_prefix" tableName="semantic_prefix"/>
+    </changeSet>
+    <changeSet author="Localidata" id="PK-table-semantic_rel_prefix">
+        <addPrimaryKey columnNames="id" constraintName="pk_semantic_rel_prefix" tableName="semantic_rel_prefix"/>
+    </changeSet>
+    <changeSet author="Localidata" id="PK-table-semantic_rml">
+        <addPrimaryKey columnNames="id" constraintName="pk_semantic_rml" tableName="semantic_rml"/>
+    </changeSet>
+	
+	
+	<changeSet author="Localidata" id="index-prefix-semantic_rel_prefix">
+        <createIndex indexName="prefix" tableName="semantic_rel_prefix">
+            <column name="prefix"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Localidata" id="index-query-semantic_field">
+        <createIndex indexName="query" tableName="semantic_field">
+            <column name="query"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Localidata" id="index-query-semantic_rel_prefix">
+        <createIndex indexName="query" tableName="semantic_rel_prefix">
+            <column name="query"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Localidata" id="index-query-semantic_rml">
+        <createIndex indexName="query" tableName="semantic_rml">
+            <column name="query"/>
+        </createIndex>
+    </changeSet>
+	
+	<changeSet author="Localidata" id="FK-query-semantic_field">
+        <addForeignKeyConstraint baseColumnNames="query" baseTableName="semantic_field" constraintName="semantic_field_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="query"/>
+    </changeSet>
+    <changeSet author="Localidata" id="FK-query-semantic_rel_prefix">
+        <addForeignKeyConstraint baseColumnNames="query" baseTableName="semantic_rel_prefix" constraintName="semantic_rel_prefix_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="query"/>
+    </changeSet>
+    <changeSet author="Localidata" id="FK-prefix-semantic_rel_prefix">
+        <addForeignKeyConstraint baseColumnNames="prefix" baseTableName="semantic_rel_prefix" constraintName="semantic_rel_prefix_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="semantic_prefix"/>
+    </changeSet>
+    <changeSet author="Localidata" id="FK-query-semantic_rml">
+        <addForeignKeyConstraint baseColumnNames="query" baseTableName="semantic_rml" constraintName="semantic_rml_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="query"/>
+    </changeSet>
+	
+	
+	
+</databaseChangeLog>	

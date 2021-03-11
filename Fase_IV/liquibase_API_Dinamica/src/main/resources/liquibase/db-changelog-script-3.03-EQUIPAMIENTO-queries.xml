@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Localidata" id="queries">
+        <insert tableName="query">
+            <column name="code" value="equipamiento-xy"/>
+            <column name="texto" value="SELECT equipamiento.id ,equipamiento.title ,equipamiento.description ,equipamiento.tipo_equipamiento as tipoEquipamiento ,equipamiento.municipio_id as municipioId ,equipamiento.municipio_title as municipioTitle ,equipamiento.provincia_id as provinciaId ,equipamiento.autonomia_id as autonomiaId ,equipamiento.pais_id as paisId ,equipamiento.street_address as streetAddress ,equipamiento.postal_code as postalCode ,equipamiento.barrio_id as barrioId ,equipamiento.distrito_id as distritoId ,equipamiento.email ,equipamiento.telephone ,equipamiento.url ,equipamiento.opening_hours as openingHours ,equipamiento.x_etrs89 AS xETRS89 ,equipamiento.y_etrs89 AS yETRS89 FROM equipamiento WHERE equipamiento.tipo_equipamiento LIKE 'equipamiento municipal'"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="Listado de equipamientos"/>
+            <column name="tags" value="equipamientos"/>
+            <column name="definition"/>
+        </insert>        
+        <rollback/>        	      
+    </changeSet>
+	
+	<changeSet id="DATA-CORE-tag-3.3" author="Localidata">
+    	<tagDatabase tag="3.03" />
+  	</changeSet>  
+   
+</databaseChangeLog>

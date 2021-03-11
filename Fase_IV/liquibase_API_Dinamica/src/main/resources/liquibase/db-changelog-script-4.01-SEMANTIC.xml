@@ -1,0 +1,1106 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+   <changeSet author="Localidata" id="dropNull">
+		<dropNotNullConstraint tableName="semantic_field" columnName="object_type" columnDataType="varchar(50)"/>
+		<rollback>
+            <addNotNullConstraint 
+				tableName="semantic_field"
+				columnName="object_type"
+				columnDataType="varchar(50)"
+            />             
+       </rollback> 
+   </changeSet>
+   
+   <changeSet author="Localidata" id="remove-double-quotes">
+    <sql dbms="mysql">UPDATE subvencion SET title = REPLACE(title, '"', '\'') WHERE title LIKE '%"%'</sql> 
+	<rollback/>
+	</changeSet>
+	
+	<changeSet author="Localidata" id="remove-double-quotes-ms">
+	<sql dbms="mssql">UPDATE ${database.defaultSchemaName}.subvencion SET title = REPLACE(title, '"', '''') WHERE title LIKE '%"%'</sql>
+	<rollback/>
+	</changeSet>
+ 
+
+	<changeSet author="Localidata" id="columns-blanknodes"> 
+		<addColumn tableName="semantic_field" >
+			<column name="blank_node_type" 
+				afterColumn="object_uri"				
+				type="varchar(50)">  
+				<constraints nullable="true" /> 
+			</column>				
+			<column name="blank_node_id" 
+				afterColumn="blank_node_type"				
+				type="varchar(100)">  
+				<constraints nullable="true" />  
+			</column>	
+			<column name="blank_property_id" 
+				afterColumn="blank_node_id"				
+				type="varchar(100)">  
+				<constraints nullable="true" />  
+			</column>
+			<column name="object_reference_type" 
+				afterColumn="object_reference"				
+				type="varchar(20)">  
+				<constraints nullable="true" />  
+			</column>
+		</addColumn>
+		<rollback>
+			<dropColumn  
+				columnName="blank_node_type"
+				tableName="semantic_field">    
+			</dropColumn>  
+			<dropColumn  
+				columnName="blank_node_id"
+				tableName="semantic_field">    
+			</dropColumn>  
+			<dropColumn  
+				columnName="blank_property_id"
+				tableName="semantic_field">    
+			</dropColumn>
+			<dropColumn  
+				columnName="object_reference_type"
+				tableName="semantic_field">    
+			</dropColumn>
+		</rollback>	
+	</changeSet>
+	
+	<changeSet author="Localidata" id="pre_semantic_id_size">
+	
+		<dropPrimaryKey 
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+			
+			
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rel_prefix"  
+            tableName="semantic_rel_prefix"/>  
+			
+			
+		<dropForeignKeyConstraint  
+			baseTableName="semantic_rel_prefix"  
+            constraintName="semantic_rel_prefix_ibfk_2"/>  
+	
+		<dropIndex indexName="prefix"            
+            tableName="semantic_rel_prefix"/>  	
+			
+			
+		<dropPrimaryKey 
+            constraintName="pk_semantic_prefix"  
+            tableName="semantic_prefix"/> 
+			
+			
+			
+		<dropPrimaryKey 
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/> 
+	
+	
+	
+	
+		<rollback>
+		
+			<!--
+			<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_field"  
+				tableName="semantic_field"/>  
+				-->
+				
+			<addNotNullConstraint 
+				columnDataType="varchar(50)"  
+				columnName="id"  
+				defaultNullValue=""  
+				tableName="semantic_prefix" /> 
+				
+			<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_rel_prefix"  
+				tableName="semantic_rel_prefix"/>
+			
+			<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_prefix"  
+				tableName="semantic_prefix"/>  
+		
+			<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_rml"  
+				tableName="semantic_rml"/>  
+		
+		
+			<addForeignKeyConstraint 
+				baseColumnNames="prefix" 
+				baseTableName="semantic_rel_prefix" 
+				constraintName="semantic_rel_prefix_ibfk_2" 
+				referencedColumnNames="id" 
+				referencedTableName="semantic_prefix"/>
+				
+				
+			<createIndex 
+				indexName="prefix"            
+				tableName="semantic_rel_prefix"             
+				unique="false"> 
+				<column descending="true" name="prefix"/> 
+			</createIndex>  
+			
+			
+			
+				
+				
+			
+		
+		</rollback>	
+	</changeSet>
+	
+	<changeSet author="Localidata" id="semantic_id_size">
+	
+	
+		<delete tableName="semantic_prefix"/>  
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_field"/>
+			
+					
+		<modifyDataType  
+				columnName="prefix"  
+				newDataType="INT"  				 
+				tableName="semantic_rel_prefix"/>	
+		
+					 
+				
+		<modifyDataType  
+				columnName="id"  
+				newDataType="INT"  				 
+				tableName="semantic_prefix"/> 
+	
+
+
+					
+		
+				
+				
+		 <addColumn tableName="semantic_prefix" >
+				<column name="code" 
+					afterColumn="id"    
+					valueComputed="id"        
+					type="VARCHAR(50)">  
+					<constraints nullable="false" /> 
+				</column> 
+			</addColumn>	
+			
+			
+				
+			
+		
+	
+       
+				
+				
+				
+		
+				
+				
+		
+			
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_rel_prefix"/>
+
+		  
+				
+		
+	
+		<modifyDataType
+			columnName="id"
+			newDataType="varchar(20) NOT NULL"
+			tableName="semantic_rml"/>
+			
+		
+		
+		        <delete tableName="semantic_prefix"/>  
+    
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="1"/>
+            <column name="code" value="dcterms"/>
+            <column name="url" value="http://purl.org/dc/terms/"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="2"/>
+            <column name="code" value="esadm"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="3"/>
+            <column name="code" value="espresup"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/hacienda/presupuesto#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="4"/>
+            <column name="code" value="essubv"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/subvencion#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="5"/>
+            <column name="code" value="org"/>
+            <column name="url" value="http://www.w3.org/ns/org#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="6"/>
+            <column name="code" value="owl"/>
+            <column name="url" value="http://www.w3.org/2002/07/owl#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="7"/>
+            <column name="code" value="rdf"/>
+            <column name="url" value="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        </insert>
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="8"/>
+            <column name="code" value="xsd"/>
+            <column name="url" value="http://www.w3.org/2001/XMLSchema#"/>
+        </insert>
+            
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="9"/>
+            <column name="code" value="schema"/>
+            <column name="url" value="http://schema.org/"/>
+        </insert>
+        
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="10"/>
+            <column name="code" value="geo"/>
+            <column name="url" value="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+        </insert>
+        
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="11"/>
+            <column name="code" value="esequip"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/equipamiento-municipal#"/>
+        </insert>
+        
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="12"/>
+            <column name="code" value="escjr"/>
+            <column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/callejero#"/>
+        </insert>
+        
+        <insert tableName="semantic_prefix">
+            <column name="id" valueNumeric="13"/>
+            <column name="code" value="geo_core"/>
+            <column name="url" value="http://datos.ign.es/def/geo_core#"/>
+        </insert>
+
+		<rollback>
+		
+			<delete tableName="semantic_prefix"/> 
+			
+			
+			
+			<dropColumn  
+				columnName="code"
+				tableName="semantic_prefix">    
+			</dropColumn>  
+			
+			<modifyDataType  
+				columnName="id"  
+				newDataType="VARCHAR(50)"  				 
+				tableName="semantic_prefix"/>  
+		
+			<modifyDataType  
+					columnName="prefix"  
+					newDataType="varchar(50) NOT NULL"  				 
+					tableName="semantic_rel_prefix"/>
+		
+			<modifyDataType
+				columnName="id"
+				newDataType="varchar(50) NOT NULL"
+				tableName="semantic_field"/>
+				
+			
+			<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_field"  
+				tableName="semantic_field"/>  
+				
+				
+			
+				
+			<modifyDataType
+				columnName="id"
+				newDataType="varchar(50) NOT NULL"
+				tableName="semantic_rel_prefix"/>
+
+			
+		
+			<modifyDataType
+				columnName="id"
+				newDataType="varchar(50) NOT NULL"
+				tableName="semantic_rml"/>
+				
+				
+			
+				
+				
+			 
+	
+			<insert tableName="semantic_prefix">
+				<column name="id" value="dcterms"/>
+				<column name="url" value="http://purl.org/dc/terms/"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="esadm"/>
+				<column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="espresup"/>
+				<column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/hacienda/presupuesto#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="essubv"/>
+				<column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/sector-publico/subvencion#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="org"/>
+				<column name="url" value="http://www.w3.org/ns/org#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="owl"/>
+				<column name="url" value="http://www.w3.org/2002/07/owl#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="rdf"/>
+				<column name="url" value="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+			</insert>
+			<insert tableName="semantic_prefix">
+				<column name="id" value="xsd"/>
+				<column name="url" value="http://www.w3.org/2001/XMLSchema#"/>
+			</insert>
+				
+			<insert tableName="semantic_prefix">
+				<column name="id" value="schema"/>
+				<column name="url" value="http://schema.org/"/>
+			</insert>
+			
+			<insert tableName="semantic_prefix">
+				<column name="id" value="geo"/>
+				<column name="url" value="http://www.w3.org/2003/01/geo/wgs84_pos#"/>
+			</insert>
+			
+			<insert tableName="semantic_prefix">
+				<column name="id" value="esequip"/>
+				<column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/equipamiento-municipal#"/>
+			</insert>
+			
+			<insert tableName="semantic_prefix">
+				<column name="id" value="escjr"/>
+				<column name="url" value="http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/callejero#"/>
+			</insert>
+			
+			<insert tableName="semantic_prefix">
+				<column name="id" value="geo_core"/>
+				<column name="url" value="http://datos.ign.es/def/geo_core#"/>
+			</insert>
+			
+		
+
+		</rollback>
+			
+	</changeSet>
+	
+
+	
+	<changeSet author="Localidata" id="post_semantic_id_size">
+	
+		<addNotNullConstraint 
+            columnDataType="int"  
+            columnName="id"  
+            defaultNullValue=""  
+            tableName="semantic_prefix" /> 
+
+		<addNotNullConstraint 
+            columnDataType="int"  
+            columnName="prefix"  
+            defaultNullValue=""  
+            tableName="semantic_rel_prefix"/>  
+			
+			
+		
+	
+	
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_field"  
+            tableName="semantic_field"/>  
+			
+			
+		<addPrimaryKey  
+				columnNames="id"  
+				constraintName="pk_semantic_prefix"  
+				tableName="semantic_prefix"/>  
+				
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="pk_semantic_rml"  
+            tableName="semantic_rml"/>  
+	
+	
+		<addPrimaryKey  
+			columnNames="id"  
+			constraintName="pk_semantic_rel_prefix"  
+			tableName="semantic_rel_prefix"/>  
+			
+		<addUniqueConstraint             
+				columnNames="code"  
+				constraintName="unique_code_index_prefix"  
+				deferrable="true"               
+				tableName="semantic_prefix"             
+            />  
+			
+			
+		<addForeignKeyConstraint 
+			baseColumnNames="prefix" 
+			baseTableName="semantic_rel_prefix" 
+			constraintName="semantic_rel_prefix_ibfk_2" 
+			referencedColumnNames="id" 
+			referencedTableName="semantic_prefix"/>
+			
+	
+		<rollback>
+		
+		
+			<dropForeignKeyConstraint  
+				baseTableName="semantic_rel_prefix"  
+				constraintName="semantic_rel_prefix_ibfk_2"/> 
+		
+			 <dropPrimaryKey 
+				constraintName="pk_semantic_field"  
+				tableName="semantic_field"/> 
+				
+			<dropPrimaryKey 
+				constraintName="pk_semantic_rml"  
+				tableName="semantic_rml"/> 
+				
+				
+			<dropPrimaryKey 
+				constraintName="pk_semantic_rel_prefix"  
+				tableName="semantic_rel_prefix"/>  
+				
+			<dropPrimaryKey 
+				constraintName="pk_semantic_prefix"  
+				tableName="semantic_prefix"/>
+			
+		
+			<dropNotNullConstraint  
+				columnDataType="int"  
+				columnName="prefix"  
+				tableName="semantic_rel_prefix"/>  
+			
+			<dropNotNullConstraint  
+				columnDataType="int"  
+				columnName="id"  
+				tableName="semantic_prefix"/>  
+				
+			<dropUniqueConstraint  catalogName="cat"  
+				constraintName="unique_code_index_prefix"  
+				tableName="semantic_prefix"  
+				/>  
+				
+			
+			
+		
+		</rollback>	
+	</changeSet>
+	
+	<changeSet author="Localidata" id="add_id_query_mysql" dbms="mysql">
+	
+	        <addColumn tableName="query" >
+				<column name="idtemp" 
+					afterColumn="code"    
+					valueComputed="RAND()*(1000+1)+RAND()*(1000+1)"        
+					type="INT">  
+					<constraints nullable="true" /> 
+				</column> 
+			</addColumn>			
+		
+		<rollback/>
+			
+	</changeSet>
+	
+	<changeSet author="Localidata" id="add_id_query_sqlserver" dbms="mssql">
+	
+		<addColumn tableName="query" >
+			<column name="idtemp" 
+				afterColumn="code"
+				type="INT"
+				autoIncrement="true">  
+				<constraints nullable="true" /> 
+			</column>
+		</addColumn>
+		
+	<rollback/>
+			
+	</changeSet>
+	
+	<changeSet author="Localidata" id="add_id_query_2">	
+		<addColumn tableName="query" >
+			<column name="id" 
+				afterColumn="code"
+				type="INT"
+				valueComputed="idtemp">  
+				<constraints nullable="true" /> 
+			</column>				
+		</addColumn>
+		
+		<dropColumn
+				columnName="idtemp"
+				tableName="query"/>
+	
+		
+		<addNotNullConstraint  
+            columnDataType="int"  
+            columnName="id"  
+            constraintName="query-id-notnull"  
+            tableName="query"  
+            />  
+		
+		<dropForeignKeyConstraint  
+            baseTableName="param"  
+            constraintName="param_ibfk_1"/>  
+			
+		<dropForeignKeyConstraint  
+            baseTableName="semantic_rml"  
+            constraintName="semantic_rml_ibfk_1"/>  
+			
+		<dropForeignKeyConstraint  
+            baseTableName="semantic_rel_prefix"  
+            constraintName="semantic_rel_prefix_ibfk_1"/>  
+
+		<dropForeignKeyConstraint  
+            baseTableName="semantic_field"  
+            constraintName="semantic_field_ibfk_1"/>  			
+		
+		<dropPrimaryKey 
+            constraintName="query-pk"  
+			tableName="query"/>  
+			
+		<addPrimaryKey  
+            columnNames="id"  
+            constraintName="query-pk"  
+            tableName="query"/>		
+	
+		<addUniqueConstraint             
+            columnNames="code"  
+            constraintName="unique_code_index"  
+            deferrable="true"               
+            tableName="query"             
+            />  			
+			
+		<addForeignKeyConstraint 
+			baseColumnNames="query_code" 
+			baseTableName="param" 
+			constraintName="param_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/>			
+			
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_field" 
+			constraintName="semantic_field_ibfk_1"
+			referencedColumnNames="code" 
+			referencedTableName="query"/>  
+   
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_rel_prefix" 
+			constraintName="semantic_rel_prefix_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/> 
+  
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_rml" 
+			constraintName="semantic_rml_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/>
+  			
+			
+		<rollback>
+		
+			<dropForeignKeyConstraint  
+				baseTableName="param"  
+				constraintName="param_ibfk_1"/>  
+				
+			<dropForeignKeyConstraint  
+				baseTableName="semantic_rml"  
+				constraintName="semantic_rml_ibfk_1"/>  
+				
+			<dropForeignKeyConstraint  
+				baseTableName="semantic_rel_prefix"  
+				constraintName="semantic_rel_prefix_ibfk_1"/>  
+
+			<dropForeignKeyConstraint  
+				baseTableName="semantic_field"  
+				constraintName="semantic_field_ibfk_1"/>  	
+			
+		
+			<dropUniqueConstraint 
+				constraintName="unique_code_index"          
+				tableName="query"             
+            /> 
+			
+			<dropPrimaryKey 
+				constraintName="query-pk"  
+				tableName="query"/> 
+
+			<addPrimaryKey  
+				columnNames="code"  
+				constraintName="query-pk"  
+				tableName="query"/>		
+				
+			<dropColumn
+				columnName="id"
+				tableName="query"/>
+		
+		
+			<addForeignKeyConstraint 
+			baseColumnNames="query_code" 
+			baseTableName="param" 
+			constraintName="param_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/>			
+			
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_field" 
+			constraintName="semantic_field_ibfk_1"
+			referencedColumnNames="code" 
+			referencedTableName="query"/>  
+   
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_rel_prefix" 
+			constraintName="semantic_rel_prefix_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/> 
+  
+        <addForeignKeyConstraint 
+			baseColumnNames="query" 
+			baseTableName="semantic_rml" 
+			constraintName="semantic_rml_ibfk_1" 
+			referencedColumnNames="code" 
+			referencedTableName="query"/>
+				
+		</rollback>	
+	</changeSet>
+	
+	
+	
+	
+	<changeSet author="Localidata" id="ejemplo-query-geo-y-rdf">	
+		<insert tableName="query">
+            <column name="code" value="equipamiento-busqueda-geo"/>
+            <column name="id" valueNumeric="4007"/>
+            <column name="texto" value="&#13;&#10;    select&#13;&#10;        id,&#13;&#10;        title,&#13;&#10;        municipioId,&#13;&#10;        xETRS89,&#13;&#10;        yETRS89,&#13;&#10;        distance       &#13;&#10;    from&#13;&#10;        (    select&#13;&#10;            id,&#13;&#10;            title,&#13;&#10;            municipio_id as municipioId,&#13;&#10;            x_etrs89 as xETRS89,&#13;&#10;            y_etrs89 as yETRS89,&#13;&#10;            SQRT((x_etrs89-xEtrs89P)*(x_etrs89-xEtrs89P)+(y_etrs89-yEtrs89P)*(y_etrs89-yEtrs89P)) as distance               &#13;&#10;        from&#13;&#10;            equipamiento  ) as consultaGeo         &#13;&#10;    where&#13;&#10;        distance&lt;=metersP         &#13;&#10;    order by&#13;&#10;        distance asc"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="Búsqueda geografica a partir de un punto (x e y) y un radio de búsqueda"/>
+            <column name="tags" value=""/>
+            <column name="definition" value="Equipamiento-busqueda-geo"/>
+        </insert>
+		
+		 <insert tableName="param">
+            <column name="id" valueNumeric="51"/>
+            <column name="query_code" value="equipamiento-busqueda-geo"/>
+            <column name="name" value="xEtrs89P"/>
+            <column name="type" value="text"/>
+            <column name="description" value="Coordenada X del punto (en formato ETRS89)"/>
+            <column name="example" value="446175.61012"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="52"/>
+            <column name="query_code" value="equipamiento-busqueda-geo"/>
+            <column name="name" value="yEtrs89P"/>
+            <column name="type" value="text"/>
+            <column name="description" value="Coordenada Y del punto (en formato ETRS89)"/>
+            <column name="example" value="4487376.65943"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="53"/>
+            <column name="query_code" value="equipamiento-busqueda-geo"/>
+            <column name="name" value="metersP"/>
+            <column name="type" value="text"/>
+            <column name="description" value="Radio de búsqueda en metros"/>
+            <column name="example" value="500"/>
+        </insert>
+		
+		<delete tableName="query">  
+				<where>code='equipamiento-xy'</where>  
+		</delete> 
+		
+		<insert tableName="query">
+            <column name="code" value="equipamiento-xy"/>
+            <column name="id" valueNumeric="1271"/>
+            <column name="texto" value="&#13;&#10;    SELECT&#13;&#10;        equipamiento.id ,&#13;&#10;        equipamiento.title ,&#13;&#10;        equipamiento.description ,&#13;&#10;        equipamiento.tipo_equipamiento as tipoEquipamiento ,&#13;&#10;        equipamiento.municipio_id as municipioId ,&#13;&#10;        equipamiento.municipio_title as municipioTitle ,&#13;&#10;        equipamiento.provincia_id as provinciaId ,&#13;&#10;        equipamiento.autonomia_id as autonomiaId ,&#13;&#10;        equipamiento.pais_id as paisId ,&#13;&#10;        equipamiento.street_address as streetAddress ,&#13;&#10;        equipamiento.postal_code as postalCode ,&#13;&#10;        equipamiento.barrio_id as barrioId ,&#13;&#10;        equipamiento.distrito_id as distritoId ,&#13;&#10;        equipamiento.email ,&#13;&#10;        equipamiento.telephone ,&#13;&#10;        equipamiento.url ,&#13;&#10;        equipamiento.opening_hours as openingHours ,&#13;&#10;        equipamiento.x_etrs89 AS xETRS89 ,&#13;&#10;        equipamiento.y_etrs89 AS yETRS89 &#13;&#10;    FROM&#13;&#10;        equipamiento &#13;&#10;    WHERE&#13;&#10;        equipamiento.tipo_equipamiento LIKE 'equipamiento municipal'"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="Listado de equipamientos"/>
+            <column name="tags" value="equipamientos"/>
+            <column name="definition"/>
+        </insert>
+		
+		
+		
+		
+		<!-- RDF --> 		
+
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000001726"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="id"/>
+            <column name="predicate" value="dcterms:identifier"/>
+            <column name="object_reference" value="id"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000016295"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="title"/>
+            <column name="predicate" value="dcterms:title"/>
+            <column name="object_reference" value="title"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000024436"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="description"/>
+            <column name="predicate" value="schema:description"/>
+            <column name="object_reference" value="description"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000036231"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="tipoEquipamiento"/>
+            <column name="predicate" value="esequip:tipoEquipamiento"/>
+            <column name="object_reference" value="tipoEquipamiento"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000041385"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="municipioId"/>
+            <column name="predicate" value="esadm:municipio"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/municipio/{municipioId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000052230"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="provinciaId"/>
+            <column name="predicate" value="esadm:provincia"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/provincia/{provinciaId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000061901"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="autonomiaId"/>
+            <column name="predicate" value="esadm:autonomia"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/autonomia/{autonomiaId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000077784"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="paisId"/>
+            <column name="predicate" value="esadm:pais"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/pais/{paisId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000087818"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="barrioId"/>
+            <column name="predicate" value="esadm:barrio"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/barrio/{barrioId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000091597"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="distritoId"/>
+            <column name="predicate" value="esadm:distrito"/>
+            <column name="object_reference" value="https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/distrito/{distritoId}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="url"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000101591"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="email"/>
+            <column name="predicate" value="schema:email"/>
+            <column name="object_reference" value="email"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000113661"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="telephone"/>
+            <column name="predicate" value="schema:telephone"/>
+            <column name="object_reference" value="telephone"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000128110"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="url"/>
+            <column name="predicate" value="schema:url"/>
+            <column name="object_reference" value="url"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="{url}"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000133035"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="openingHours"/>
+            <column name="predicate" value="schema:openingHours"/>
+            <column name="object_reference" value="openingHours"/>
+            <column name="object_reference_type"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000147244"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="xETRS89"/>
+            <column name="predicate" value="geo_core:xETRS89"/>
+            <column name="object_reference" value="xETRS89"/>
+            <column name="object_reference_type" value="xsd:decimal"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000155874"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="yETRS89"/>
+            <column name="predicate" value="geo_core:yETRS89"/>
+            <column name="object_reference" value="yETRS89"/>
+            <column name="object_reference_type" value="xsd:decimal"/>
+            <column name="object_type" value="simple"/>
+            <column name="object_uri" valueBoolean="false"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+        <insert tableName="semantic_field">
+            <column name="id" value="020300000000165457"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="field" value="type"/>
+            <column name="predicate" value="esequip:Equipamiento"/>
+            <column name="object_reference" value="http://localhost:8080/dynamicAPI/API/query/equipamiento-xy/{id}"/>
+            <column name="object_reference_type"/>
+            <column name="object_type"/>
+            <column name="object_uri" valueBoolean="true"/>
+            <column name="blank_node_type"/>
+            <column name="blank_node_id"/>
+            <column name="blank_property_id"/>
+        </insert>
+   
+    
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000004340"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="1"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000011016"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="2"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000022606"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="12"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000037567"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="11"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000047189"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="10"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000056297"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="13"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000069380"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="7"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000072712"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="9"/>
+        </insert>
+        <insert tableName="semantic_rel_prefix">
+            <column name="id" value="020100000000089410"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="prefix" value="8"/>
+        </insert>
+ 
+        <insert tableName="semantic_rml">
+            <column name="id" value="020300000000174329"/>
+            <column name="query" value="equipamiento-xy"/>
+            <column name="rml" value="@prefix rr: &lt;http://www.w3.org/ns/r2rml#&gt; .&#13;&#10;@prefix ex: &lt;http://example.com/&gt; .&#13;&#10;@prefix rml: &lt;http://semweb.mmlab.be/ns/rml#&gt; .&#13;&#10;@prefix ql: &lt;http://semweb.mmlab.be/ns/ql#&gt; .&#13;&#10;@base &lt;http://example.com/base/&gt; .&#13;&#10;@prefix dcterms:   &lt;http://purl.org/dc/terms/&gt; .&#13;&#10;@prefix esadm:   &lt;http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#&gt; .&#13;&#10;@prefix escjr:   &lt;http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/callejero#&gt; .&#13;&#10;@prefix esequip:   &lt;http://vocab.linkeddata.es/datosabiertos/def/urbanismo-infraestructuras/equipamiento-municipal#&gt; .&#13;&#10;@prefix geo:   &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .&#13;&#10;@prefix geo_core:   &lt;http://datos.ign.es/def/geo_core#&gt; .&#13;&#10;@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#13;&#10;@prefix schema:   &lt;http://schema.org/&gt; .&#13;&#10;@prefix xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .&#13;&#10;&#13;&#10;&lt;#TriplesMap1&gt; a rr:TriplesMap;&#13;&#10;&#13;&#10;rml:logicalSource [&#13;&#10;  rml:source &quot;nombreDinamico.csv&quot;;&#13;&#10;  rml:referenceFormulation ql:CSV&#13;&#10;  ];&#13;&#10;&#13;&#10;rr:subjectMap [&#13;&#10; rr:template &quot;http://localhost:8080/dynamicAPI/API/query/equipamiento-xy/{id}&quot;;&#13;&#10;rr:class esequip:Equipamiento&#13;&#10;];&#13;&#10;&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate dcterms:identifier ;&#13;&#10;rr:objectMap [ rml:reference &quot;id&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate dcterms:title ;&#13;&#10;rr:objectMap [ rml:reference &quot;title&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate schema:description ;&#13;&#10;rr:objectMap [ rml:reference &quot;description&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esequip:tipoEquipamiento ;&#13;&#10;rr:objectMap [ rml:reference &quot;tipoEquipamiento&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:municipio ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/municipio/{municipioId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:provincia ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/provincia/{provinciaId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:autonomia ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/autonomia/{autonomiaId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:pais ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/pais/{paisId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:barrio ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/barrio/{barrioId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate esadm:distrito ;&#13;&#10;rr:objectMap [ rr:template &quot;https://alzir.dia.fi.upm.es/OpenCitiesAPI/territorio/distrito/{distritoId}&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate schema:email ;&#13;&#10;rr:objectMap [ rml:reference &quot;email&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate schema:telephone ;&#13;&#10;rr:objectMap [ rml:reference &quot;telephone&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate schema:url ;&#13;&#10;rr:objectMap [ rr:template &quot;url&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate schema:openingHours ;&#13;&#10;rr:objectMap [ rml:reference &quot;openingHours&quot; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate geo_core:xETRS89 ;&#13;&#10;rr:objectMap [ rml:reference &quot;xETRS89&quot;; rr:datatype xsd:decimal; ]&#13;&#10; ];&#13;&#10;rr:predicateObjectMap [&#13;&#10;rr:predicate geo_core:yETRS89 ;&#13;&#10;rr:objectMap [ rml:reference &quot;yETRS89&quot;; rr:datatype xsd:decimal; ]&#13;&#10; ].&#13;&#10;"/>
+        </insert>
+		
+		<rollback>
+			<delete tableName="semantic_rml"/>  
+			
+			<delete tableName="semantic_rel_prefix"/>  
+			
+			<delete tableName="semantic_field"/>  		
+		
+			<delete tableName="param">  
+				<where>query_code='equipamiento-busqueda-geo'</where>  
+			</delete> 
+			<delete tableName="query">  
+				<where>code='equipamiento-busqueda-geo'</where>  
+			</delete> 
+						
+		
+		
+		</rollback>
+	</changeSet>
+	
+	
+	<changeSet  author="Localidata" id="swagger-pk">
+		<addPrimaryKey              
+            columnNames="code"  
+            constraintName="swagger-pk"
+            tableName="swagger_definition"  
+            /> 
+		<rollback>
+			<dropPrimaryKey constraintName="swagger-pk"              
+            tableName="swagger_definition"/>
+		</rollback>
+	</changeSet>
+	
+	
+	<changeSet author="liquibase-docs" id="update-example">
+		<update tableName="query">
+			<column name="tags" value="Subvenciones"/>
+			<where>code='subvencion-distinct'</where>
+		</update>
+		<update tableName="query">
+			<column name="tags" value="Subvenciones"/>
+			<where>code='subvencion'</where>
+		</update>
+		<update tableName="query">
+			<column name="tags" value="Subvenciones"/>
+			<where>code='subvencion-groupby'</where>
+		</update>
+		<update tableName="query">
+			<column name="tags" value="Equipamientos"/>
+			<where>code='equipamiento-xy'</where>
+		</update>
+		<update tableName="query">
+			<column name="tags" value="Equipamientos"/>
+			<where>code='equipamiento-busqueda-geo'</where>
+		</update>
+		
+		
+		
+		<rollback/>
+	</changeSet>
+
+
+	
+			
+	
+	
+	
+	<changeSet id="DATA-CORE-tag-4.01" author="Localidata">
+    	<tagDatabase tag="4.01" />
+  	</changeSet>  
+	
+</databaseChangeLog>	

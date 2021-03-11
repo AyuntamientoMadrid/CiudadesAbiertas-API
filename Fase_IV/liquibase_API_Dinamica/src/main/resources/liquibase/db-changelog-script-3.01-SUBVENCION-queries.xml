@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Localidata" id="queries">        
+        <insert tableName="query">
+            <column name="code" value="subvencion"/>
+            <column name="texto" value="&#13;&#10;    SELECT&#13;&#10;        id        ,&#13;&#10;        title        ,&#13;&#10;        area_id as areaId        ,&#13;&#10;        area_title as areaTitle        ,&#13;&#10;        municipio_id as municipioId        ,&#13;&#10;        municipio_title as municipioTitle        ,&#13;&#10;        adjudicatario_id as adjudicatarioId        ,&#13;&#10;        adjudicatario_title as adjudicatarioTitle        ,&#13;&#10;        entidad_financiadora_id as entidadFinanciadoraId        ,&#13;&#10;        entidad_financiadora_title as entidadFinanciadoraTitle        ,&#13;&#10;        importe        ,&#13;&#10;        fecha_adjudicacion as fechaAdjudicacion        ,&#13;&#10;        linea_financiacion as lineaFinanciacion        ,&#13;&#10;        bases_reguladoras as basesReguladoras        ,&#13;&#10;        tipo_instrumento as tipoInstrumento        ,&#13;&#10;        aplicacion_presupuestaria as aplicacionPresupuestaria          ,&#13;&#10;			nominativa as nominativa		,&#13;&#10;  		tipo_procedimiento as tipoProcedimiento 		&#13;&#10;	  FROM&#13;&#10;        subvencion"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="subvenciones"/>
+            <column name="tags" value="subvenciones"/>
+            <column name="definition"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="subvencion-distinct"/>
+            <column name="texto" value="&#13;&#10;    select&#13;&#10;        distinct field &#13;&#10;    from&#13;&#10;        (  SELECT&#13;&#10;            id        ,&#13;&#10;            title        ,&#13;&#10;            area_id as areaId        ,&#13;&#10;            area_title as areaTitle        ,&#13;&#10;            municipio_id as municipioId        ,&#13;&#10;            municipio_title as municipioTitle        ,&#13;&#10;            adjudicatario_id as adjudicatarioId        ,&#13;&#10;            adjudicatario_title as adjudicatarioTitle        ,&#13;&#10;            entidad_financiadora_id as entidadFinanciadoraId        ,&#13;&#10;            entidad_financiadora_title as entidadFinanciadoraTitle        ,&#13;&#10;            importe        ,&#13;&#10;            fecha_adjudicacion as fechaAdjudicacion        ,&#13;&#10;            linea_financiacion as lineaFinanciacion        ,&#13;&#10;            bases_reguladoras as basesReguladoras        ,&#13;&#10;            tipo_instrumento as tipoInstrumento        ,&#13;&#10;            aplicacion_presupuestaria as aplicacionPresupuestaria    	,&#13;&#10;			nominativa as nominativa		,&#13;&#10;  		tipo_procedimiento as tipoProcedimiento 		&#13;&#10;        FROM&#13;&#10;            subvencion) as consultaDistinct"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="Distinct subvencion"/>
+            <column name="tags" value="distinct subvencion"/>
+            <column name="definition"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="subvencion-groupby"/>
+            <column name="texto" value="&#13;&#10;    Select&#13;&#10;        fieldsP                                                 &#13;&#10;    from&#13;&#10;        (SELECT&#13;&#10;            id        ,&#13;&#10;            title        ,&#13;&#10;            area_id as areaId        ,&#13;&#10;            area_title as areaTitle        ,&#13;&#10;            municipio_id as municipioId        ,&#13;&#10;            municipio_title as municipioTitle        ,&#13;&#10;            adjudicatario_id as adjudicatarioId        ,&#13;&#10;            adjudicatario_title as adjudicatarioTitle        ,&#13;&#10;            entidad_financiadora_id as entidadFinanciadoraId        ,&#13;&#10;            entidad_financiadora_title as entidadFinanciadoraTitle        ,&#13;&#10;            importe        ,&#13;&#10;            fecha_adjudicacion as fechaAdjudicacion        ,&#13;&#10;            linea_financiacion as lineaFinanciacion        ,&#13;&#10;            bases_reguladoras as basesReguladoras        ,&#13;&#10;            tipo_instrumento as tipoInstrumento        ,&#13;&#10;            aplicacion_presupuestaria as aplicacionPresupuestaria           ,&#13;&#10;			nominativa as nominativa		,&#13;&#10;  		tipo_procedimiento as tipoProcedimiento 		&#13;&#10;        FROM&#13;&#10;            subvencion) as consultaGroupBy                                        &#13;&#10;    where&#13;&#10;        whereP                                                  &#13;&#10;    group by&#13;&#10;        groupP                                                  &#13;&#10;    having&#13;&#10;        havingP                       "/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="group by subvencion"/>
+            <column name="tags" value="Subvencion"/>
+            <column name="definition"/>
+        </insert>
+        <insert tableName="query">
+            <column name="code" value="test"/>
+            <column name="texto" value="&#13;&#10;    select&#13;&#10;        alfa,&#13;&#10;        bravo,&#13;&#10;        charlie,&#13;&#10;        delta,&#13;&#10;        echo,&#13;&#10;        foxtrot,&#13;&#10;        golf,&#13;&#10;        hotel,&#13;&#10;        india,&#13;&#10;        juliet,&#13;&#10;        november,&#13;&#10;        oscar,&#13;&#10;        papa,&#13;&#10;        quebec,&#13;&#10;        romeo,&#13;&#10;        tango,&#13;&#10;        uniform,&#13;&#10;        victor,&#13;&#10;        whiskey      &#13;&#10;    from&#13;&#10;        test_table"/>
+            <column name="database_con" value="default"/>
+            <column name="summary" value="test"/>
+            <column name="tags" value="test"/>
+            <column name="definition"/>
+        </insert>    
+		<rollback/>
+    </changeSet>
+    <changeSet author="Localidata" id="params">                               
+        <insert tableName="param">
+            <column name="id" valueNumeric="2"/>
+            <column name="query_code" value="subvencion-distinct"/>
+            <column name="name" value="field"/>
+            <column name="type" value="text"/>
+            <column name="description" value="campo para realizar el distinct"/>
+            <column name="example" value="areaTitle"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="44"/>
+            <column name="query_code" value="subvencion-groupby"/>
+            <column name="name" value="fieldsP"/>
+            <column name="type" value="text"/>
+            <column name="description" value="fields"/>
+            <column name="example" value="title,count(id) as contador"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="45"/>
+            <column name="query_code" value="subvencion-groupby"/>
+            <column name="name" value="whereP"/>
+            <column name="type" value="text"/>
+            <column name="description" value="where"/>
+            <column name="example" value="importe&gt;100"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="46"/>
+            <column name="query_code" value="subvencion-groupby"/>
+            <column name="name" value="groupP"/>
+            <column name="type" value="text"/>
+            <column name="description" value="group"/>
+            <column name="example" value="title"/>
+        </insert>
+        <insert tableName="param">
+            <column name="id" valueNumeric="47"/>
+            <column name="query_code" value="subvencion-groupby"/>
+            <column name="name" value="havingP"/>
+            <column name="type" value="text"/>
+            <column name="description" value="having"/>
+            <column name="example" value="count(id)&gt;10"/>
+        </insert>
+        <rollback/>        	      
+    </changeSet>
+    
+	<changeSet id="DATA-CORE-tag-3.1" author="Localidata">
+    	<tagDatabase tag="3.01" />
+  	</changeSet>  
+    
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+USE master
+GO
+DROP LOGIN heroes;
+DROP DATABASE heroes;
+CREATE DATABASE heroes COLLATE SQL_Latin1_General_CP1_CI_AS;
+CREATE LOGIN heroes WITH PASSWORD='Segunda2';
+
+
+USE heroes
+GO
+CREATE USER heroes FOR LOGIN heroes WITH DEFAULT_SCHEMA=dbo;
+ALTER LOGIN heroes WITH DEFAULT_DATABASE = heroes;
+
+GO
+EXEC sp_addrolemember 'db_ddladmin', 'heroes';
+EXEC sp_addrolemember 'db_datareader', 'heroes';
+EXEC sp_addrolemember 'db_datawriter', 'heroes';
+
+GRANT EXECUTE TO heroes WITH GRANT OPTION;

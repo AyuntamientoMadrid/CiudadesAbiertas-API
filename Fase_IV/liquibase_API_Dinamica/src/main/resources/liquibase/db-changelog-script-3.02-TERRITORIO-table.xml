@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    
+    <changeSet author="Localidata" id="table-territorioPais">
+        <createTable tableName="territorio_pais">
+            <column name="ikey" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="identifier" type="VARCHAR(400)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(400)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="geometry" type="LONGTEXT"/>
+        </createTable>
+         <rollback>
+            <dropTable tableName="territorio_pais"/>            
+       </rollback>      
+    </changeSet>
+    
+    <changeSet author="Localidata" id="PK-table-tPais">
+        <addPrimaryKey columnNames="ikey" constraintName="pk_pais" tableName="territorio_pais"/>
+		<rollback/>
+    </changeSet>
+	
+	<changeSet author="Localidata" id="Index-on-id-pais">
+        <createIndex indexName="index_id_pais" tableName="territorio_pais">
+            <column name="id"/>
+        </createIndex>
+		<rollback/>
+    </changeSet>
+    
+    
+	
+	
+</databaseChangeLog>

@@ -1,0 +1,63 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+	<changeSet author="Localidata" id="data-ciudad">
+        <insert tableName="ciudad">
+            <column name="id" value="coruña"/>
+            <column name="nombre" value="La Coruña"/>
+        </insert>
+        <insert tableName="ciudad">
+            <column name="id" value="madrid"/>
+            <column name="nombre" value="Madrid"/>
+        </insert>
+        <insert tableName="ciudad">
+            <column name="id" value="santiago"/>
+            <column name="nombre" value="Santiago de Compostela"/>
+        </insert>
+        <insert tableName="ciudad">
+            <column name="id" value="zaragoza"/>
+            <column name="nombre" value="Zaragoza"/>
+        </insert>
+         <rollback/> 
+    </changeSet>
+    
+      
+    <changeSet author="Localidata" id="data-user-roles">
+        <insert tableName="user_roles">
+            <column name="user_role_id" valueNumeric="2"/>
+            <column name="username" value="admin"/>
+            <column name="role" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_role_id" valueNumeric="1"/>
+            <column name="username" value="admin"/>
+            <column name="role" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_role_id" valueNumeric="3"/>
+            <column name="username" value="localidata"/>
+            <column name="role" value="ROLE_USER"/>
+        </insert>  
+         <rollback/>       
+    </changeSet>
+    
+    <changeSet author="Localidata" id="data-users">
+        <insert tableName="users">
+            <column name="username" value="admin"/>
+            <column name="password" value="$2a$10$8YBOCvb.UC0Lk40f2Gd2Uugxmk7QPeGSnT1oDRjxzuRrAVYNO62ke"/>
+            <column name="enabled" valueNumeric="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="localidata"/>
+            <column name="password" value="$2a$10$8YBOCvb.UC0Lk40f2Gd2Uugxmk7QPeGSnT1oDRjxzuRrAVYNO62ke"/>
+            <column name="enabled" valueNumeric="1"/>
+        </insert>
+         <rollback/> 
+    </changeSet>
+    
+    <changeSet id="DATA-CORE-tag-1.0" author="Localidata">
+    	<tagDatabase tag="1.0" />
+  	</changeSet>  
+</databaseChangeLog>
