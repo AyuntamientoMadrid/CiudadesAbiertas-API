@@ -1,0 +1,86 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Aquí se encuentran todas las llamadas definidas por el Ayuntamiento de Madrid, en el sistema API Dinámica",
+		"version": "0.1",
+		"title": "Ayuntamiento de Madrid - API Dinámica",
+		"termsOfService": "",
+		"contact": {
+			"email": "developer@localidata.com"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/dynamicAPI",
+	"schemes": [
+		"http"
+	],
+	"paths": {	
+		
+	},
+	"definitions": {		
+		"Result": {
+	      "type": "object",
+	      "properties": {
+	        "contentMD5": {
+	          "type": "string"
+	        },
+	        "first": {
+	          "type": "string"
+	        },
+	        "geographicCoordinates": {
+	          "type": "string"
+	        },
+	        "last": {
+	          "type": "string"
+	        },
+	        "next": {
+	          "type": "string"
+	        },
+	        "page": {
+	          "type": "integer",
+	          "format": "int32"
+	        },
+	        "pageRecords": {
+	          "type": "integer",
+	          "format": "int64"
+	        },
+	        "pageSize": {
+	          "type": "integer",
+	          "format": "int32"
+	        },
+	        "prev": {
+	          "type": "string"
+	        },
+	        "projectedCoordinates": {
+	          "type": "string"
+	        },
+	        "records": {
+	          "type": "array",
+	          "items": {
+	            "$ref": "#/definitions/DynamicCustom"
+	          }
+	        },
+	        "responseDate": {
+	          "type": "string",
+	          "format": "date-time"
+	        },
+	        "self": {
+	          "type": "string"
+	        },
+	        "status": {
+	          "type": "integer",
+	          "format": "int32"
+	        },
+	        "totalRecords": {
+	          "type": "integer",
+	          "format": "int64"
+	        }
+	      },
+	      "title": "Result"
+	    }
+	}
+}
