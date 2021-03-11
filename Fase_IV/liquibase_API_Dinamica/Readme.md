@@ -41,12 +41,14 @@ username=ciudadesAbiertas
 
 password=xxxxxx
 
-### Ejemplo de configuración para una base de Datos en SQL Server
-db.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-db.url=jdbc:sqlserver://localhost:1433;databaseName=ciudadesAbiertas
-db.user=ciudadesAbiertas
-db.password=Primera1
-db.schema=apiDinamica
+### Ejemplo de configuración para una base de Datos en Oracle
+driver=oracle.jdbc.OracleDriver
+
+url=jdbc:oracle:thin:@//localhost:1521/xe
+
+username=ciudadesAbiertas
+
+password=ciudadesAbiertas
 
 ### Nota
 En todos los ejemplos se usa <**ciudadesAbiertas**> no es necesario que se replique. Puede ser cualquier otro usuario y contraseña pero se debe configurar en los parámetros de acceso y existir en la BBDD.
