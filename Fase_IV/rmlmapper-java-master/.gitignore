@@ -1,0 +1,10 @@
+.idea
+target
+rmlmapper.iml
+.DS_Store
+.settings
+.vscode
+.attach_*
+ojdbc*.jar
+pom-oracle.xml
+dependency-reduced-pom.xml

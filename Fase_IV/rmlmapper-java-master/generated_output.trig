@@ -1,0 +1,11 @@
+@prefix ex: <http://example.com/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/12/Saturno> a foaf:Person;
+  ex:id "12";
+  foaf:name "Saturno"@en .
+
+<http://example.com/13/Deimos> a foaf:Person;
+  ex:id "13";
+  foaf:name "Deimos"@en .

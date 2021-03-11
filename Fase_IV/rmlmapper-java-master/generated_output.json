@@ -1,0 +1,21 @@
+[ {
+  "@id" : "http://example.com/12/Saturno",
+  "@type" : [ "http://xmlns.com/foaf/0.1/Person" ],
+  "http://example.com/id" : [ {
+    "@value" : "12"
+  } ],
+  "http://xmlns.com/foaf/0.1/name" : [ {
+    "@language" : "en",
+    "@value" : "Saturno"
+  } ]
+}, {
+  "@id" : "http://example.com/13/Deimos",
+  "@type" : [ "http://xmlns.com/foaf/0.1/Person" ],
+  "http://example.com/id" : [ {
+    "@value" : "13"
+  } ],
+  "http://xmlns.com/foaf/0.1/name" : [ {
+    "@language" : "en",
+    "@value" : "Deimos"
+  } ]
+} ]
