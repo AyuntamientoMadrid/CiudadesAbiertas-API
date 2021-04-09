@@ -26,14 +26,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.ciudadesabiertas.controller.CiudadesAbiertasController;
 import org.ciudadesabiertas.controller.GenericController;
-import org.ciudadesabiertas.dataset.model.Subvencion;
-import org.ciudadesabiertas.dataset.model.SubvencionBeneficiario;
+import org.ciudadesabiertas.dataset.model.SubvencionConvocatoria;
+import org.ciudadesabiertas.dataset.model.SubvencionConcesion;
 import org.ciudadesabiertas.dataset.model.SubvencionOrganization;
-import org.ciudadesabiertas.dataset.utils.SubvencionBeneficiarioSearch;
+import org.ciudadesabiertas.dataset.utils.SubvencionConcesionSearch;
 import org.ciudadesabiertas.dataset.utils.SubvencionConstants;
 import org.ciudadesabiertas.dataset.utils.SubvencionOrganizationResult;
 import org.ciudadesabiertas.dataset.utils.SubvencionOrganizationSearch;
-import org.ciudadesabiertas.dataset.utils.SubvencionSearch;
+import org.ciudadesabiertas.dataset.utils.SubvencionConvocatoriaSearch;
 import org.ciudadesabiertas.exception.DAOException;
 import org.ciudadesabiertas.service.DatasetService;
 import org.ciudadesabiertas.utils.Constants;
@@ -123,13 +123,13 @@ public class SubvencionOrganizationController extends GenericController implemen
 	protected DatasetService<SubvencionOrganization> service;
 	
 	@Autowired
-	protected DatasetService<Subvencion> subvencionService;	
+	protected DatasetService<SubvencionConvocatoria> subvencionService;	
 
 	@Autowired
-	protected DatasetService<SubvencionBeneficiario> beneficiarioService;
+	protected DatasetService<SubvencionConcesion> beneficiarioService;
 	
 	@SuppressWarnings("unchecked")
-	@ApiOperation(value = SwaggerConstants.BUSQUEDA_DISTINCT, notes = SwaggerConstants.DESCRIPCION_BUSQUEDA_DISTINCT, produces = SwaggerConstants.FORMATOS_CONSULTA_RESPONSE_NO_HTML_WITHOUT_GEO, authorizations = { @Authorization(value=Constants.APIKEY) })
+	@ApiOperation(value = SwaggerConstants.BUSQUEDA_DISTINCT, notes = SwaggerConstants.DESCRIPCION_BUSQUEDA_DISTINCT, produces = SwaggerConstants.FORMATOS_CONSULTA_RESPONSE_GROUPBY, authorizations = { @Authorization(value=Constants.APIKEY) })
 	@ApiResponses({
 	            @ApiResponse(code = 200, message = SwaggerConstants.RESULTADO_DE_BUSQUEDA_DISTINCT,  response=ObjectResult.class),
 	            @ApiResponse(code = 400, message = SwaggerConstants.PETICION_INCORRECTA,  response=ResultError.class),
@@ -447,18 +447,18 @@ public class SubvencionOrganizationController extends GenericController implemen
 		try
 		{		
 			//1 FK Subvencion
-			SubvencionSearch subvencionSearch=new SubvencionSearch();
+			SubvencionConvocatoriaSearch subvencionSearch=new SubvencionConvocatoriaSearch();
 			subvencionSearch.setOrganizationId(id);
-			long rowcount = subvencionService.rowcount(getKey(), Subvencion.class, subvencionSearch);
+			long rowcount = subvencionService.rowcount(getKey(), SubvencionConvocatoria.class, subvencionSearch);
 			if (rowcount>0)			
 			{
 				errors.add("The organization '"+id+"' is used in "+rowcount+" Subvencion");		
 			}
 			
 			//2 FK Beneficiario
-			SubvencionBeneficiarioSearch beneficiarioSearch=new SubvencionBeneficiarioSearch();
-			beneficiarioSearch.setTieneBeneficiario(id);
-			rowcount = beneficiarioService.rowcount(getKey(), SubvencionBeneficiario.class, beneficiarioSearch);
+			SubvencionConcesionSearch beneficiarioSearch=new SubvencionConcesionSearch();
+			beneficiarioSearch.setConvocatoria(id);
+			rowcount = beneficiarioService.rowcount(getKey(), SubvencionConcesion.class, beneficiarioSearch);
 			if (rowcount>0)			
 			{
 				errors.add("The organization '"+id+"' is used in "+ rowcount+" Beneficiario");		

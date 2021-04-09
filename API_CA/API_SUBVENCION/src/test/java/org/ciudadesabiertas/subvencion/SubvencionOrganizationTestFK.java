@@ -72,7 +72,7 @@ public class SubvencionOrganizationTestFK {
     	}
     	else
     	{   
-	    	String id ="02534817X";
+	    	String id ="A05003369";
 	    	    	
 	        this.mockMvc.perform(MockMvcRequestBuilders.delete(SubvencionOrganizationController.ADD+"/"+id)
 	        		.contentType(MediaType.APPLICATION_JSON))	            

@@ -1155,12 +1155,20 @@ public class Util
         	  							  coordinateTransformed.add(new BigDecimal(transformCoordinates[1]).setScale(Constants.NUM_DECIMALS_XY, BigDecimal.ROUND_HALF_UP));	
         	  							  
         	  							  vectorActualTransformed.add(coordinateTransformed);
-        	  							}
+        	  							  }
     	  							  }
     	  							}							
     	  							coordinatesTransformed.add(vectorActualTransformed);							
     	  						  }
-    	  						  geometry.put("coordinates", coordinatesTransformed);
+    	  						  String type=(String) geometry.get("type");
+    	  						  if (type!=null && type.toLowerCase().equals("multipolygon"))
+    	  						  {
+    	  							JSONArray intermedio=new JSONArray();
+    	  							intermedio.add(coordinatesTransformed);
+    	  							geometry.put("coordinates", intermedio);
+    	  						  }else {    	  						  
+    	  							geometry.put("coordinates", coordinatesTransformed);
+    	  						  }
     	  						  actualFeature.put("geometry",geometry);
     	  						  						  
     	  						  geomodel.setGeometry(actualFeature.toString());
@@ -1861,6 +1869,47 @@ public class Util
 		}
 		
 		return semantic;
+	}
+	
+	public static boolean isCsvPetition(HttpServletRequest request)
+	{	
+		boolean isCSV=false;
+		String red=Util.getFullURL(request);
+		
+		URL aURL = null;
+		try
+		{
+			aURL = new URL(red);
+		} 
+		catch (MalformedURLException e1)
+		{
+			log.error("Error generating URL from request",e1);
+			return isCSV;
+		}
+		
+		String acceptHeader=request.getHeader("ACCEPT");		
+		if ((aURL.getPath().contains(".")==false)&&(Util.validValue(acceptHeader)==false))
+		{	
+			return isCSV;
+		}
+		else if ((aURL.getPath().contains(".")==false)&&(Util.validValue(acceptHeader)==true)&&(acceptHeader.equals("*/*")==false))
+		{					
+			
+			if (acceptHeader.contains(Constants.MEDIA_TYPE_CSV))
+			{
+				isCSV=true;
+			}								
+		}
+		else if (aURL.getPath().contains("."))
+		{
+			String ext=getExtensionUri(aURL.getPath());
+			if (ext.contains("csv"))
+			{
+				isCSV=true;
+			}					
+		}
+		
+		return isCSV;
 	}
 	
 	public static boolean isTraficoIntegration() {
