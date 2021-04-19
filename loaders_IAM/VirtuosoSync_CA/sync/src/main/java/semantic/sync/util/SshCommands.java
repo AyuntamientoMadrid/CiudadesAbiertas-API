@@ -232,7 +232,7 @@ public class SshCommands {
 	
 				executionResponse(channel, in);
 			
-				log.info("Command: " + logCommand + " finished");
+				log.info("Command finished");
 				
 				channel.disconnect();
 				
