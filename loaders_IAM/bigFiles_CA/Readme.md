@@ -77,6 +77,7 @@ puntoWifi=false
 puntoInteresTuristico=false
 subvencion=false
 tramite=true
+...
 ```
 
 ### logback.xml

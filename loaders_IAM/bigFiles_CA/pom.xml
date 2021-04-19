@@ -61,6 +61,19 @@
 			<version>${oracleDriverVersion}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
+
 		<!-- SQL Server -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
@@ -92,29 +105,43 @@
 
 		<!-- End JAVA 11 -->
 
-		
+
 
 
 		<!-- Dependencias de conjuntos de datos -->
-		 
-		
+
+
 		<dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
+		<!-- SUBVENCION CON CAMPOS PRIORITARIOS -->
+		<!-- <dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.subvencion</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-PRIORITY_FIELDS</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>jcl-over-slf4j</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
+		
+		<!-- SUBVENCION CON LA AMPLIACION -->
+		 <dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.subvencion</artifactId>
+			<version>2.0-Three_Tables</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> 
 
 		<dependency>
 			<groupId>API_CA</groupId>
@@ -283,7 +310,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.dsd</artifactId>
@@ -295,7 +322,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.padron</artifactId>
@@ -307,7 +334,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>API_CA</groupId>
 			<artifactId>org.ciudadesabiertas.territorio</artifactId>
@@ -319,8 +346,127 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.agendamunicipal</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.contratos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.bicicletapublica</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.convenio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.presupuesto</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.trafico</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.contaminacionacustica</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.bus</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.empleo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		
 		
+		<dependency>
+			<groupId>API_CA</groupId>
+			<artifactId>org.ciudadesabiertas.deuda</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>jcl-over-slf4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 	</dependencies>
 
@@ -330,7 +476,13 @@
 			<id>datanucleous</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</repository>
+		<!-- <repository>
+			<id>UPM_ALZIR</id>
+			<url>https://alzir.dia.fi.upm.es/repo</url>
+		</repository> -->
 	</repositories>
+
+
 
 	<build>
 		<plugins>
@@ -362,7 +514,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>org.ciudadesabiertas.bigFilesGenerator.Main</Main-Class>
+										<Main-Class>org.ciudadesabiertas.bigFilesGenerator.MainBigFiles</Main-Class>
 									</manifestEntries>
 								</transformer>
 
@@ -392,7 +544,7 @@
 				<targetPath>${project.build.directory}</targetPath><!-- to -->
 				<includes><!-- what -->
 					<include>config.properties</include>
-					<include>hibernate.properties</include>					
+					<include>hibernate.properties</include>
 					<include>logback.xml</include>
 				</includes>
 			</resource>
