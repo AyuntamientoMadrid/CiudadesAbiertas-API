@@ -1109,8 +1109,5 @@ public class UtilBigFiles
 	  return text;
 	}
 
-	public static void main(String[] args) {
-	  InputStream response=UtilBigFiles.readURL("https://contrataciondelestado.es/sindicacion/sindicacion_1044/PlataformasAgregadasSinMenores.atom");
-	  System.out.println(inputStreamToString(response));
-	}
+	
 }

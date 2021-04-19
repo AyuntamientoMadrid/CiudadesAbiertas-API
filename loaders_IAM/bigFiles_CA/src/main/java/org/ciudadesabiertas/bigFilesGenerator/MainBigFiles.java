@@ -1058,7 +1058,7 @@ public class MainBigFiles {
 
 						UtilBigFiles.readAndWriteURL(address, filename);
 
-						UtilBigFiles.sleep(500);
+						UtilBigFiles.sleep(1000);
 					}
 					if (formatoRDF) {
 						String dynamicURL = datasetURL.get(entry.getKey()).replace(METAVARIABLE_ID, id)

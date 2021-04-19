@@ -25,6 +25,8 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"n
 
 curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"barrioId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
 
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"contactPointTelephone", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
 
 
 #Eliminar core (Desde directorio home)
