@@ -15,10 +15,19 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"n
 
 curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"contactPointFaxNumber", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
 
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"organizationId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"shortName", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"municipioId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"distritoId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
+
+curl -X POST -H 'Content-type:application/json' --data-binary '{"add-field": {"name":"barrioId", "type":"text_general", "multiValued":false, "stored":true}}' http://localhost:8983/solr/ciudadesAbiertas/schema
 
 
 
-#Eliminar core
+#Eliminar core (Desde directorio home)
 sudo su - solr -c "/opt/solr/bin/solr delete -c ciudadesAbiertas"
 
 

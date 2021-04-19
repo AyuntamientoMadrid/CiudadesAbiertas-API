@@ -69,7 +69,13 @@ public class Util
 		datasetList.add(Constants.APARCAMIENTO );
 		datasetList.add(Constants.ALOJAMIENTO );
 		datasetList.add(Constants.AGENDA_CULTURAL );
-		datasetList.add(Constants.SUBVENCION );
+		
+		datasetList.add(Constants.SUBVENCION_V1 );
+		datasetList.add(Constants.SUBVENCION_CONVOCATORIA );
+		datasetList.add(Constants.SUBVENCION_CONCESION );
+		datasetList.add(Constants.SUBVENCION_ORGANIZACION );
+		
+			
 		datasetList.add(Constants.CALIDAD_AIRE_SENSOR );
 		datasetList.add(Constants.DSD);
 		datasetList.add(Constants.DSD_DIMENSION);
@@ -80,6 +86,9 @@ public class Util
 		datasetList.add(Constants.PADRON_CUBO_INDICADORES);
 		datasetList.add(Constants.PADRON_CUBO_NACIONALIDAD);
 		datasetList.add(Constants.PADRON_CUBO_PROCEDENCIA);
+		datasetList.add(Constants.PADRON_CUBO_EDAD_GRUPO_QUINQUENAL);
+		datasetList.add(Constants.PADRON_CUBO_PAIS_NACIMIENTO);
+		datasetList.add(Constants.PADRON_CUBO_PROCEDENCIA);
 		datasetList.add(Constants.TERRITORIO_PAIS);
 		datasetList.add(Constants.TERRITORIO_AUTONOMIA);
 		datasetList.add(Constants.TERRITORIO_PROVINCIA);
@@ -87,9 +96,105 @@ public class Util
 		datasetList.add(Constants.TERRITORIO_DISTRITO);
 		datasetList.add(Constants.TERRITORIO_BARRIO);
 		datasetList.add(Constants.TERRITORIO_SECCION);
-
+		datasetList.add(Constants.AGENDA_MUNICIPAL_EVENTO);
+		datasetList.add(Constants.AGENDA_MUNICIPAL_DOCUMENTO);
+		datasetList.add(Constants.AGENDA_MUNICIPAL_ROL_EVENTO);
+		datasetList.add(Constants.CONTRATOS_AWARD);
+		datasetList.add(Constants.CONTRATOS_ITEM);
+		datasetList.add(Constants.CONTRATOS_LOT);
+		datasetList.add(Constants.CONTRATOS_LOT_REL_ITEM);
+		datasetList.add(Constants.CONTRATOS_ORGANIZATION);
+		datasetList.add(Constants.CONTRATOS_PROCESS);
+		datasetList.add(Constants.CONTRATOS_TENDER);
+		datasetList.add(Constants.CONTRATOS_TENDER_REL_ITEM);
 		
-		relacionDatasetURL.put(Constants.SUBVENCION, Constants.SUBVENCION_URI);
+		datasetList.add(Constants.BICICLETA_PUBLICA_ANCLAJE);
+		datasetList.add(Constants.BICICLETA_PUBLICA_BICICLETA);
+		datasetList.add(Constants.BICICLETA_PUBLICA_ESTACION);
+		datasetList.add(Constants.BICICLETA_PUBLICA_OBSERVACION);
+		datasetList.add(Constants.BICICLETA_PUBLICA_PUNTOPASO);
+		datasetList.add(Constants.BICICLETA_PUBLICA_TRAYECTO);
+		datasetList.add(Constants.BICICLETA_PUBLICA_USUARIO);
+		//Convenios
+		datasetList.add(Constants.CONVENIO);
+		datasetList.add(Constants.CONVENIO_DOCUMENTO);
+		datasetList.add(Constants.CONVENIO_SUSCRIPCION_ENTIDAD);
+		datasetList.add(Constants.CONVENIO_ORGANIZATION);
+		datasetList.add(Constants.CONVENIO_FIRMANTE_AYTO);
+		datasetList.add(Constants.CONVENIO_FIRMANTE_ENTIDAD);
+		
+		datasetList.add(Constants.PRESUPUESTO);
+		datasetList.add(Constants.PRESUPUESTOLIQUIDACION);
+		datasetList.add(Constants.PRESUPUESTOGASTO);
+		datasetList.add(Constants.PRESUPUESTOINGRESO);
+		datasetList.add(Constants.EJECUCIONGASTO);
+		datasetList.add(Constants.EJECICIONINGRESO);
+		
+		datasetList.add(Constants.TRAFICODISPOSITIVOMEDICION);
+		datasetList.add(Constants.TRAFICOEQUIPO);
+		datasetList.add(Constants.TRAFICOINCIDENCIA);
+		datasetList.add(Constants.TRAFICOOBSERVACION);
+		datasetList.add(Constants.TRAFICOOBSERVACIONDISPOSTIVO);
+		datasetList.add(Constants.TRAFICOPROPERINTERVAL);
+		datasetList.add(Constants.TRAFICOPROPIEDADMEDICION);
+		datasetList.add(Constants.TRAFICOTRAMO);
+		datasetList.add(Constants.TRAFICOTRAMOVIA);
+		
+		
+		datasetList.add(Constants.CONTACUSTICAESTACIONMEDIDA);
+		datasetList.add(Constants.CONTACUSTICAOBSERVACION);
+		datasetList.add(Constants.CONTACUSTICAPROPIEDAD);	
+		
+		
+		datasetList.add(Constants.BUSAUTHORITY);
+		datasetList.add(Constants.BUSDAYTYPE);
+		datasetList.add(Constants.BUSDAYTYPEASSIGNMENT);
+		datasetList.add(Constants.BUSHEADWAYINTERVAL);
+		datasetList.add(Constants.BUSHEADWAYJOURNEYGROUP);
+		datasetList.add(Constants.BUSINCIDENCIA);
+		datasetList.add(Constants.BUSJOURNEYPATTERN);
+		datasetList.add(Constants.BUSLINEA);
+		datasetList.add(Constants.BUSOPERATOR);
+		datasetList.add(Constants.BUSPARADA);
+		datasetList.add(Constants.BUSPOINTONROUTE);
+		datasetList.add(Constants.BUSREALTIMEPASSINGTIME);
+		datasetList.add(Constants.BUSRELLINEAINCIDENCIA);
+		datasetList.add(Constants.BUSROUTE);	
+		datasetList.add(Constants.BUSSCHEDULEDSTOPPOINT);	
+		datasetList.add(Constants.BUSSERVICECALENDAR);	
+		datasetList.add(Constants.BUSSTOPPOINTINJOURNEYPATTERN);	
+		datasetList.add(Constants.BUSVEHICLEJOURNEY);	
+		
+		
+		datasetList.add(Constants.BOLETIN_OFICIAL);	
+		datasetList.add(Constants.CONVOCATIRA_EMPLEO_PUBLICO);	
+		datasetList.add(Constants.OFERTA_EMPLEO_PUBLICO);	
+		datasetList.add(Constants.PLAZA_POR_TURNO);	
+		datasetList.add(Constants.REL_BOLETIN_CONVOCA);	
+		datasetList.add(Constants.REL_OFERTA_CONVOCA);	
+		
+		
+		datasetList.add(Constants.DEUDA_COMERCIAL_INFORME_MOROSIDAD_TRIMESTRAL);	
+		datasetList.add(Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL);	
+		datasetList.add(Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL_GLOBAL);	
+		datasetList.add(Constants.DEUDA_COMERCIAL_PROPER_INTERVAL);	
+		datasetList.add(Constants.DEUDA_FINANCIERA_AMORTIZACION);	
+		datasetList.add(Constants.DEUDA_FINANCIERA_ANUAL);	
+		datasetList.add(Constants.DEUDA_FINANCIERA_CAPITAL_VIVO);
+		datasetList.add(Constants.DEUDA_FINANCIERA_CARGA);
+		datasetList.add(Constants.DEUDA_FINANCIERA_EMISION);
+		datasetList.add(Constants.DEUDA_FINANCIERA_INSTRUMENTO_FINANCIACION);
+		datasetList.add(Constants.DEUDA_FINANCIERA_PRESTAMO);
+		datasetList.add(Constants.DEUDA_FINANCIERA_REL_PRESTAMO_ENTIDAD);
+		datasetList.add(Constants.DEUDA_ORGANIZACION);	
+		
+				
+		relacionDatasetURL.put(Constants.SUBVENCION_V1, Constants.SUBVENCION_URI_V1);
+		relacionDatasetURL.put(Constants.SUBVENCION_CONVOCATORIA, Constants.SUBVENCION_CONVOCATORIA_URI);
+		relacionDatasetURL.put(Constants.SUBVENCION_CONCESION, Constants.SUBVENCION_CONCESION_URI);
+		relacionDatasetURL.put(Constants.SUBVENCION_ORGANIZACION, Constants.SUBVENCION_ORGANIZACION_URI);		
+		
+		
 		relacionDatasetURL.put(Constants.AGENDA_CULTURAL, Constants.AGENDA_URI);
 		relacionDatasetURL.put(Constants.ALOJAMIENTO, Constants.ALOJAMIENTO_URI);		
 		relacionDatasetURL.put(Constants.APARCAMIENTO, Constants.APARCAMIENTO_URI);		
@@ -120,6 +225,8 @@ public class Util
 		relacionDatasetURL.put(Constants.PADRON_CUBO_INDICADORES, Constants.PADRON_CUBO_INDICADORES_URI);
 		relacionDatasetURL.put(Constants.PADRON_CUBO_NACIONALIDAD, Constants.PADRON_CUBO_NACIONALIDAD_URI);
 		relacionDatasetURL.put(Constants.PADRON_CUBO_PROCEDENCIA, Constants.PADRON_CUBO_PROCEDENCIA_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_EDAD_GRUPO_QUINQUENAL, Constants.PADRON_CUBO_EDAD_GRUPO_QUINQUENAL_URI);
+		relacionDatasetURL.put(Constants.PADRON_CUBO_PAIS_NACIMIENTO, Constants.PADRON_CUBO_PAIS_NACIMIENTO_URI);
 		relacionDatasetURL.put(Constants.TERRITORIO_PAIS, Constants.TERRITORIO_PAIS_URI);
 		relacionDatasetURL.put(Constants.TERRITORIO_AUTONOMIA, Constants.TERRITORIO_AUTONOMIA_URI);
 		relacionDatasetURL.put(Constants.TERRITORIO_PROVINCIA, Constants.TERRITORIO_PROVINCIA_URI);
@@ -127,10 +234,96 @@ public class Util
 		relacionDatasetURL.put(Constants.TERRITORIO_DISTRITO, Constants.TERRITORIO_DISTRITO_URI);
 		relacionDatasetURL.put(Constants.TERRITORIO_BARRIO, Constants.TERRITORIO_BARRIO_URI);
 		relacionDatasetURL.put(Constants.TERRITORIO_SECCION, Constants.TERRITORIO_SECCION_URI);
+		relacionDatasetURL.put(Constants.AGENDA_MUNICIPAL_EVENTO, Constants.AGENDA_MUNICIPAL_EVENTO_URI);
+		relacionDatasetURL.put(Constants.AGENDA_MUNICIPAL_DOCUMENTO, Constants.AGENDA_MUNICIPAL_DOCUMENTO_URI);
+		relacionDatasetURL.put(Constants.AGENDA_MUNICIPAL_ROL_EVENTO, Constants.AGENDA_MUNICIPAL_ROL_EVENTO_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_AWARD, Constants.CONTRATOS_AWARD_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_ITEM, Constants.CONTRATOS_ITEM_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_LOT, Constants.CONTRATOS_LOT_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_LOT_REL_ITEM, Constants.CONTRATOS_LOT_REL_ITEM_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_ORGANIZATION, Constants.CONTRATOS_ORGANIZATION_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_PROCESS, Constants.CONTRATOS_PROCESS_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_TENDER, Constants.CONTRATOS_TENDER_URI);
+		relacionDatasetURL.put(Constants.CONTRATOS_TENDER_REL_ITEM, Constants.CONTRATOS_TENDER_REL_ITEM_URI);
 		
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_ANCLAJE, Constants.BICICLETA_PUBLICA_ANCLAJE_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_BICICLETA, Constants.BICICLETA_PUBLICA_BICICLETA_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_ESTACION, Constants.BICICLETA_PUBLICA_ESTACION_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_OBSERVACION, Constants.BICICLETA_PUBLICA_OBSERVACION_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_PUNTOPASO, Constants.BICICLETA_PUBLICA_PUNTOPASO_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_TRAYECTO, Constants.BICICLETA_PUBLICA_TRAYECTO_URI);
+		relacionDatasetURL.put(Constants.BICICLETA_PUBLICA_USUARIO, Constants.BICICLETA_PUBLICA_USUARIO_URI);
 		
+		//Convenios
+		relacionDatasetURL.put(Constants.CONVENIO,Constants.CONVENIO_URI);
+		relacionDatasetURL.put(Constants.CONVENIO_DOCUMENTO,Constants.CONVENIO_DOCUMENTO_URI);
+		relacionDatasetURL.put(Constants.CONVENIO_SUSCRIPCION_ENTIDAD,Constants.CONVENIO_SUSCRIPCION_ENTIDAD_URI);
+		relacionDatasetURL.put(Constants.CONVENIO_ORGANIZATION,Constants.CONVENIO_ORGANIZATION_URI);
+		relacionDatasetURL.put(Constants.CONVENIO_FIRMANTE_AYTO,Constants.CONVENIO_FIRMANTE_AYTO_URI);
+		relacionDatasetURL.put(Constants.CONVENIO_FIRMANTE_ENTIDAD,Constants.CONVENIO_FIRMANTE_ENTIDAD_URI);
 		
-	
+		relacionDatasetURL.put(Constants.PRESUPUESTO,Constants.PRESUPUESTO_URI);
+		relacionDatasetURL.put(Constants.PRESUPUESTOLIQUIDACION,Constants.PRESUPUESTOLIQUIDACION_URI);
+		relacionDatasetURL.put(Constants.PRESUPUESTOGASTO,Constants.PRESUPUESTOGASTO_URI);
+		relacionDatasetURL.put(Constants.PRESUPUESTOINGRESO,Constants.PRESUPUESTOINGRESO_URI);
+		relacionDatasetURL.put(Constants.EJECUCIONGASTO,Constants.EJECUCIONGASTO_URI);
+		relacionDatasetURL.put(Constants.EJECICIONINGRESO,Constants.EJECICIONINGRESO_URI);
+		
+		relacionDatasetURL.put(Constants.TRAFICODISPOSITIVOMEDICION,Constants.TRAFICODISPOSITIVOMEDICION_URI);
+		relacionDatasetURL.put(Constants.TRAFICOEQUIPO,Constants.TRAFICOEQUIPO_URI);
+		relacionDatasetURL.put(Constants.TRAFICOINCIDENCIA,Constants.TRAFICOINCIDENCIA_URI);
+		relacionDatasetURL.put(Constants.TRAFICOOBSERVACION,Constants.TRAFICOOBSERVACION_URI);
+		relacionDatasetURL.put(Constants.TRAFICOOBSERVACIONDISPOSTIVO,Constants.TRAFICOOBSERVACIONDISPOSTIVO_URI);
+		relacionDatasetURL.put(Constants.TRAFICOPROPERINTERVAL,Constants.TRAFICOPROPERINTERVAL_URI);
+		relacionDatasetURL.put(Constants.TRAFICOPROPIEDADMEDICION,Constants.TRAFICOPROPIEDADMEDICION_URI);
+		relacionDatasetURL.put(Constants.TRAFICOTRAMO,Constants.TRAFICOTRAMO_URI);
+		relacionDatasetURL.put(Constants.TRAFICOTRAMOVIA,Constants.TRAFICOTRAMOVIA_URI);
+		
+		relacionDatasetURL.put(Constants.CONTACUSTICAESTACIONMEDIDA,Constants.CONTACUSTICAESTACIONMEDIDA_URI);
+		relacionDatasetURL.put(Constants.CONTACUSTICAOBSERVACION,Constants.CONTACUSTICAOBSERVACION_URI);
+		relacionDatasetURL.put(Constants.CONTACUSTICAPROPIEDAD,Constants.CONTACUSTICAPROPIEDAD_URI);	
+
+		
+		relacionDatasetURL.put(Constants.BUSAUTHORITY,Constants.BUSAUTHORITY_URI);
+		relacionDatasetURL.put(Constants.BUSDAYTYPE,Constants.BUSDAYTYPE_URI);
+		relacionDatasetURL.put(Constants.BUSDAYTYPEASSIGNMENT,Constants.BUSDAYTYPEASSIGNMENT_URI);
+		relacionDatasetURL.put(Constants.BUSHEADWAYINTERVAL,Constants.BUSHEADWAYINTERVAL_URI);
+		relacionDatasetURL.put(Constants.BUSHEADWAYJOURNEYGROUP,Constants.BUSHEADWAYJOURNEYGROUP_URI);
+		relacionDatasetURL.put(Constants.BUSINCIDENCIA,Constants.BUSINCIDENCIA_URI);
+		relacionDatasetURL.put(Constants.BUSJOURNEYPATTERN,Constants.BUSJOURNEYPATTERN_URI);
+		relacionDatasetURL.put(Constants.BUSLINEA,Constants.BUSLINEA_URI);
+		relacionDatasetURL.put(Constants.BUSOPERATOR,Constants.BUSOPERATOR_URI);
+		relacionDatasetURL.put(Constants.BUSPARADA,Constants.BUSPARADA_URI);
+		relacionDatasetURL.put(Constants.BUSPOINTONROUTE,Constants.BUSPOINTONROUTE_URI);
+		relacionDatasetURL.put(Constants.BUSREALTIMEPASSINGTIME,Constants.BUSREALTIMEPASSINGTIME_URI);
+		relacionDatasetURL.put(Constants.BUSRELLINEAINCIDENCIA,Constants.BUSRELLINEAINCIDENCIA_URI);
+		relacionDatasetURL.put(Constants.BUSROUTE,Constants.BUSROUTE_URI);	
+		relacionDatasetURL.put(Constants.BUSSCHEDULEDSTOPPOINT,Constants.BUSSCHEDULEDSTOPPOINT_URI);	
+		relacionDatasetURL.put(Constants.BUSSERVICECALENDAR,Constants.BUSSERVICECALENDAR_URI);	
+		relacionDatasetURL.put(Constants.BUSSTOPPOINTINJOURNEYPATTERN,Constants.BUSSTOPPOINTINJOURNEYPATTERN_URI);	
+		relacionDatasetURL.put(Constants.BUSVEHICLEJOURNEY,Constants.BUSVEHICLEJOURNEY_URI);	
+		
+		relacionDatasetURL.put(Constants.BOLETIN_OFICIAL,Constants.BOLETIN_OFICIAL_URI);	
+		relacionDatasetURL.put(Constants.CONVOCATIRA_EMPLEO_PUBLICO,Constants.CONVOCATIRA_EMPLEO_PUBLICO_URI);	
+		relacionDatasetURL.put(Constants.OFERTA_EMPLEO_PUBLICO,Constants.OFERTA_EMPLEO_PUBLICO_URI);	
+		relacionDatasetURL.put(Constants.PLAZA_POR_TURNO,Constants.PLAZA_POR_TURNO_URI);	
+		relacionDatasetURL.put(Constants.REL_BOLETIN_CONVOCA,Constants.REL_BOLETIN_CONVOCA_URI);	
+		relacionDatasetURL.put(Constants.REL_OFERTA_CONVOCA,Constants.REL_OFERTA_CONVOCA_URI);	
+		
+		relacionDatasetURL.put(Constants.DEUDA_COMERCIAL_INFORME_MOROSIDAD_TRIMESTRAL,Constants.DEUDA_COMERCIAL_INFORME_MOROSIDAD_TRIMESTRAL_URI);	
+		relacionDatasetURL.put(Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL,Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL_URI);
+		relacionDatasetURL.put(Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL_GLOBAL,Constants.DEUDA_COMERCIAL_INFORME_PMP_MENSUAL_GLOBAL_URI);
+		relacionDatasetURL.put(Constants.DEUDA_COMERCIAL_PROPER_INTERVAL,Constants.DEUDA_COMERCIAL_PROPER_INTERVAL_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_AMORTIZACION,Constants.DEUDA_FINANCIERA_AMORTIZACION_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_ANUAL,Constants.DEUDA_FINANCIERA_ANUAL_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_CAPITAL_VIVO,Constants.DEUDA_FINANCIERA_CAPITAL_VIVO_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_CARGA,Constants.DEUDA_FINANCIERA_CARGA_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_EMISION,Constants.DEUDA_FINANCIERA_EMISION_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_INSTRUMENTO_FINANCIACION,Constants.DEUDA_FINANCIERA_INSTRUMENTO_FINANCIACION_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_PRESTAMO,Constants.DEUDA_FINANCIERA_PRESTAMO_URI);
+		relacionDatasetURL.put(Constants.DEUDA_FINANCIERA_REL_PRESTAMO_ENTIDAD,Constants.DEUDA_FINANCIERA_REL_PRESTAMO_ENTIDAD_URI);
+		relacionDatasetURL.put(Constants.DEUDA_ORGANIZACION,Constants.DEUDA_ORGANIZACION_URI);
+		
 	}
 	
 	
@@ -370,8 +563,6 @@ public class Util
 	public static Datasets readDatasetsToImport(Properties prop) throws Exception
 	{
 		Datasets datasets = new Datasets();
-		
-		
 		
 		for (String name:datasetList)
 		{

@@ -2,6 +2,9 @@ package org.ciudadesabiertas.solrLoader;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -15,11 +18,13 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Main
+public class MainSolLoader
 {
-	private static final Logger log = LoggerFactory.getLogger(Main.class);
+	private static final Logger log = LoggerFactory.getLogger(MainSolLoader.class);
 
 	private static JSONParser parser = new JSONParser();
+	
+
 
 	public static void main(String[] args) throws Exception
 	{
@@ -92,6 +97,8 @@ public class Main
 					String datasetName=child.getName().replace(".json", "");
 					String URL=apiBaseURI+Util.urlForDataset(datasetName);
 					
+
+					
 					log.info("Dataset: "+datasetName);
 					
 					client.setDatasetName(datasetName);
@@ -107,7 +114,21 @@ public class Main
 					log.info(add.toString());
 				}
 			}
+			
+			log.info("URIS to check en API:");
+			List<String> lines = new ArrayList<String>();
+			for (String key:client.checkURIsMap.keySet())
+			{
+				lines.add("echo '"+client.checkURIsMap.get(key)+ "'");
+				lines.add("VAR=\"`curl -IL "+client.checkURIsMap.get(key)+ " 2>&1 | grep status`\"");
+				lines.add("echo $VAR");
+			}
+			FileUtils.writeLines(new File("urisToCheck.sh"), lines);
+			
 
+			
+			
+			
 		} 
 		
 		
@@ -117,6 +138,10 @@ public class Main
 	private static ArrayList<File> generateFilesToLoad(Datasets datasets, File[] directoryListing)
 	{
 		ArrayList<File> filesToLoad = new ArrayList<File>();
+		if (directoryListing==null)
+		{
+		  return filesToLoad;
+		}
 		for (File child : directoryListing)
 		{
 			String name = child.getName();
