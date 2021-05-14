@@ -226,6 +226,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
     prop.put(Constants.DB_HIBERNATE_FORMAT_SQL, env.getProperty(Constants.DB_HIBERNATE_FORMAT_SQL));
     prop.put(Constants.DB_HIBERNATE_SHOW_SQL, env.getProperty(Constants.DB_HIBERNATE_SHOW_SQL));
     prop.put(Constants.DB_HIBERNATE_DIALECT, env.getProperty(Constants.DB_HIBERNATE_DIALECT));
+    prop.put(Constants.HIBERNATE_DIALECT,  env.getProperty(Constants.DB_HIBERNATE_DIALECT));
     prop.put(Constants.DB_HIBERNATE_USE_SQL_COMMENTS, env.getProperty(Constants.DB_HIBERNATE_USE_SQL_COMMENTS));
     return prop;
   }

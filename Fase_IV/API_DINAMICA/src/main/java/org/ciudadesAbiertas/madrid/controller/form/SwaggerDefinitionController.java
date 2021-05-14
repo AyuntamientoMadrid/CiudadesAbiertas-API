@@ -57,7 +57,7 @@ public class SwaggerDefinitionController
   public static final String OPERACION_EDICION = "EDICION";
 
   private static final String PATH = "/swaggerDef";
-  private static final String PARAM_ID = "{id}";
+  private static final String PARAM_ID = "{id:.+}";
 
   public static final String LIST = PATH;
   public static final String RECORD = PATH + "/" + PARAM_ID;

@@ -131,7 +131,7 @@ Una vez se está en la ficha de la consulta se hará clic en el botón editar
 
 ### Eliminar consulta SQL 
 
-En el listado de consultas SQL se hará clic en la de las consultas, para acceder a la ficha de la consulta.
+En el listado de consultas SQL se hará clic en una de ellas, para acceder a su ficha.
 
 Una vez se está en la ficha de la consulta se hará clic en el botón 'Eliminar'
 
@@ -203,4 +203,80 @@ En este módulo se configuran las consultas SQL que previamente están dadas de 
 
 ### Prefijos
 
-### Definiciones
+En este submodulo se pueden gestionar los prefijos que se utilizan en el componente de definiciones semánticas.
+
+Un prefijo se compone de una URI y una abreviatura de la misma.
+
+Ejemplos:
+
+http://www.w3.org/1999/02/22-rdf-syntax-ns# - rdf
+http://schema.org/ - schema
+
+A continuación se describen las diferentes operaciones de este submódulo.
+
+#### Listado de prefijos
+Esta es pantalla inicial del submódulo, aquí aparecen los diferentes prefijos dados de alta.
+
+![Listado de prefijos](./img/prefijosListado.PNG)
+
+#### Acceso a la ficha de un prefijo
+En el listado de definiciones de prefijos se hará clic en cualquiera de ellos, para acceder a la ficha de la definición de Swagger.
+
+![Ficha de un prefijo](./img/prefijosFicha.PNG)
+
+#### Edición de un prefijo
+
+En la ficha de un prefijo se hará clic al enlace 'Editar'
+
+![Editar prefijo](./img/prefijosEdicion.PNG)
+
+Sólo se podrán modificiar en caso de que no se estén utilizando.
+
+#### Alta de un prefijo
+
+En el listado de prefijos se hará clic en el enlace 'Añadir'
+
+![Nuevo prefijo](./img/prefijosAdd.PNG)
+
+#### Borrado de un prefijo
+
+En el listado de prefijos se hará clic en uno de los prefijos, para acceder a la ficha del seleccionado.
+
+Una vez se está en la ficha se hará clic en el botón 'Eliminar'.
+
+![Eliminar prefijo ](./img/prefijosBorrar.PNG)
+
+Se hará clic en el botón borrar, aparecerá en pantalla 'elemento borrado'
+
+Sólo se podrán eliminar aquellos prefijos que no se estén utilizando.
+
+### Definiciones Semánticas
+
+Pantalla inicial del submódulo, aquí aparecen las diferentes deficiones para generar RDF sobre las consultas dadas de alta.
+
+![Listado de definiciones](./img/definicionesListado.PNG)
+
+#### Acceso a la ficha de una definición
+En el listado de definiciones se hará clic en cualquiera de ellas, para acceder a la ficha de la definición.
+
+Las definiciones se componen de tres partes.
+
+1) La Consulta seleccionada y los prefijos que se utilizan:
+
+![Consulta y prefijos](./img/definicionesFicha1.PNG)
+
+2) URI de cada elemento y URI del Tipo de cada elemento
+
+![Consulta y prefijos](./img/definicionesFicha2.PNG)
+
+3) Las relaciones entre cada campo de la consulta y las tripletas en las que se va a transformar en RDF.
+
+En la siguiente imagen, se puede ver la relación de un campo 'id'.
+
+![Relacion de ejemplo, primer campo](./img/definicionesFicha3.PNG)
+
+#### Edición de una definición
+
+
+
+

@@ -155,6 +155,7 @@ public class Constants
 	public static final String DB_MIN_IDLE="db.minIdle";
 	public static final String DB_VALIDATION_QUERY="db.validationQuery";
 	public static final String DB_HIBERNATE_DIALECT="db.hibernate.dialect";	
+	public static final String HIBERNATE_DIALECT="hibernate.dialect";	
 	public static final String DB_HIBERNATE_SHOW_SQL="hibernate.show_sql";
 	public static final String DB_HIBERNATE_FORMAT_SQL="hibernate.format_sql";
 	public static final String DB_HIBERNATE_USE_SQL_COMMENTS="hibernate.use_sql_comments";

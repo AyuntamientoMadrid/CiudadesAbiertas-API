@@ -167,6 +167,7 @@ public class DifferentSQLforDatabases {
 	
 	/*Funcion que recibe un conjunto de condiciones (where, having) y devuelve una array agrupando los likes
 	 * Ejemplo:  name like 'solid snake' and age>23 -> [name, like, solid snake, and, age, >, 23]*/
+	/*
 	private static ArrayList<String> likesControl(String where)
 	{
 		String[] splitted=where.split(" ");
@@ -208,6 +209,7 @@ public class DifferentSQLforDatabases {
 		}
 		return firstLoop;
 	}
+	*/
 		
 	/* Metodo que sustituye los campos de la select que esten dentro de la funcion lower por
 	 * la funcion translate (para borrar acentos y ñ) de cada bbdd y además pasa a mayusculas

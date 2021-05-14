@@ -86,7 +86,7 @@ public class QueryController {
     
   
     private static final String PATH = "/query";
-    private static final String PARAM_ID = "{id}";
+    private static final String PARAM_ID = "{id:.+}";
  
 
     public static final String LIST = PATH;

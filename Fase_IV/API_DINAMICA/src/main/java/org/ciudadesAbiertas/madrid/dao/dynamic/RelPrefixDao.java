@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRelPrefix;
+import org.ciudadesAbiertas.madrid.utils.StartVariables;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.ciudadesAbiertas.madrid.utils.Util;
 
 @Repository
 public class RelPrefixDao {
@@ -74,11 +76,18 @@ public class RelPrefixDao {
 	public List<String> getQueriesWithPrefix(String prefix) {
 		
 		List<String> result = new ArrayList<String>();
-
-		String queryText="SELECT semantic_rel_prefix.query "
-				+ "FROM semantic_prefix , semantic_rel_prefix "
-				+ "WHERE semantic_prefix.id=semantic_rel_prefix.prefix "
-				+ "		and semantic_prefix.code like :prefix ";
+		
+		String schema="";
+		if (Util.validValue(StartVariables.db_schema))
+		{
+			schema=StartVariables.db_schema+".";
+		}
+		
+		
+		String queryText="SELECT "+schema+"semantic_rel_prefix.query "
+				+ "FROM "+schema+"semantic_prefix , "+schema+"semantic_rel_prefix "
+				+ "WHERE "+schema+"semantic_prefix.id="+schema+"semantic_rel_prefix.prefix "
+				+ "		and "+schema+"semantic_prefix.code like :prefix ";
 		
 		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(queryText);

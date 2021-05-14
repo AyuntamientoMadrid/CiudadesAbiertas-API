@@ -88,6 +88,8 @@ public class MultipleSessionFactory {
 			hibernateProperties.put(Constants.DB_HIBERNATE_FORMAT_SQL, multipleDataSource.getFormat_sql().get(key));
 			hibernateProperties.put(Constants.DB_HIBERNATE_SHOW_SQL, multipleDataSource.getShow_sql().get(key));
 			hibernateProperties.put(Constants.DB_HIBERNATE_DIALECT, multipleDataSource.getDialects().get(key));
+			hibernateProperties.put(Constants.HIBERNATE_DIALECT, multipleDataSource.getDialects().get(key));
+			
 			
 			String defaultSchema=multipleDataSource.getDefaultSchema().get(key);
 			if (defaultSchema!=null)
@@ -95,7 +97,7 @@ public class MultipleSessionFactory {
 				log.info("defaultSchema: "+defaultSchema);
 				hibernateProperties.put(Constants.DB_HIBERNATE_DEFAULT_SCHEMA, defaultSchema);
 			}
-			
+						
 			if (multipleDataSource.getDataSources().get(key)!=null) {				
 				
 				builder = new LocalSessionFactoryBuilder(multipleDataSource.getDataSources().get(key));
@@ -113,7 +115,7 @@ public class MultipleSessionFactory {
 				builders.put(key,builder);			
 				factories.put(key,builder.buildSessionFactory());
 			}catch (Exception e) {
-				log.error("[MultipleSessionFactory] [ERROR] [key:"+key+"] ["+e.getMessage()+"]");
+				log.error("[MultipleSessionFactory] [ERROR] [key:"+key+"] ["+e.getMessage()+"]",e);
 				if (builders.containsKey(key)) {
 					builders.remove(key);
 					log.info("[MultipleSessionFactory] [remove]  [builders] [key:"+key+"]");
