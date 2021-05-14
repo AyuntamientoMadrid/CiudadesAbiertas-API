@@ -14,7 +14,8 @@
   <!-- DESCARGA MASIVA-->
   <include file="liquibase/db-changelog-script-2.0-DYNAMIC_SQL-table.xml"/>
   <include file="liquibase/db-changelog-script-2.0-DYNAMIC_SQL-data.xml"/>
-  
+  <!-- Campo detail-->
+  <include file="liquibase/db-changelog-script-2.1-DYNAMIC_SQL-table.xml"/>
   
    
 </databaseChangeLog>

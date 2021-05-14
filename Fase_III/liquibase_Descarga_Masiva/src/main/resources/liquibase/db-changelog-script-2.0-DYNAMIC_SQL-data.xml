@@ -112,5 +112,10 @@
     <changeSet author="Localidata" id="FK_Query_Conf">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="query_conf" constraintName="query_conf_ibfk_1" referencedColumnNames="code" referencedTableName="query"/>
     </changeSet>	
+	
+	
+	<changeSet id="DATA-CORE-tag-2.0" author="Localidata">
+    	<tagDatabase tag="2.0" />
+  	</changeSet>  
     
 </databaseChangeLog>	

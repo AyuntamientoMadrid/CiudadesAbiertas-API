@@ -1,0 +1,30 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+ 
+  
+ 
+  <changeSet author="Localidata" id="column-detail-task">
+		<addColumn
+			tableName="task" >
+			<column name="detail" type="VARCHAR(4000)"/>
+		</addColumn>  	
+		<rollback>
+			<dropColumn  
+				columnName="detail" 
+				tableName="task">
+			</dropColumn>  
+		</rollback>
+	</changeSet>
+	
+	
+    
+    
+	<changeSet id="DATA-CORE-tag-2.1" author="Localidata">
+    	<tagDatabase tag="2.1" />
+  	</changeSet>  
+	
+	
+</databaseChangeLog>	
