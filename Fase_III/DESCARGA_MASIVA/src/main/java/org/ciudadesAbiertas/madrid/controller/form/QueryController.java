@@ -390,7 +390,7 @@ public class QueryController {
 	    Commons.auditoria(MODULO, OPERACION_ALTA, estadoOperacion);
 	    
 	    //Validar query	    
-	    String errores = processService.query(entidad, queryConf);	   
+	    String errores = processService.query(entidad, queryConf, null);	   
 	    
 		if (Util.validValue(errores)) {
 		  return edit(entidad.getCode(), errores);
@@ -491,11 +491,11 @@ public class QueryController {
     }
 
     private void setDatabaseSelected(ModelAndView model, QueryD entidad) {
-	if (entidad.getDatabase().equals(Constants.DEFAULT_DATABASE)) {
-	    model.addObject("databaseSelected", Constants.BASE_DE_DATOS_POR_DEFECTO);
-	} else {
-	    model.addObject("databaseSelected", entidad.getDatabase());
-	}
+		if (entidad.getDatabase().equals(Constants.DEFAULT_DATABASE)) {
+		    model.addObject("databaseSelected", Constants.BASE_DE_DATOS_POR_DEFECTO);
+		} else {
+		    model.addObject("databaseSelected", entidad.getDatabase());
+		}
     }
 
     @RequestMapping(value = UPDATE, method = RequestMethod.POST)
@@ -557,7 +557,7 @@ public class QueryController {
 	    Commons.auditoria(MODULO, OPERACION_EDICION, estadoOperacion);
 	    
 	    //Validando query
-	    String errores = processService.query(queryForm, queryConf);  
+	    String errores = processService.query(queryForm, queryConf,null);  
 	    
 		if (Util.validValue(errores)) {
 		  return edit(id, errores);

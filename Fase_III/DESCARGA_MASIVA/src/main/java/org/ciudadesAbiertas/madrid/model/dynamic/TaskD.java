@@ -26,6 +26,7 @@ public class TaskD implements java.io.Serializable {
 	private String mode;
 	private Date start;
 	private Date finish;
+	private String detail;
 
 	public TaskD() {
 		super();
@@ -34,6 +35,7 @@ public class TaskD implements java.io.Serializable {
 		this.query = "";
 		this.start = null;
 		this.finish = null;
+		this.detail = "";
 	}
 	
 	
@@ -54,6 +56,7 @@ public class TaskD implements java.io.Serializable {
 		this.query = TaskD.query;
 		this.start = TaskD.start;
 		this.finish = TaskD.finish;
+		this.detail=TaskD.detail;
 	}
 	
 
@@ -119,6 +122,20 @@ public class TaskD implements java.io.Serializable {
 
 	public void setMode(String mode) {
 		this.mode = mode;
+	}
+
+
+	
+	
+	@Column(name = "detail", nullable = true, length = 4000)
+	public String getDetail() {
+		return detail;
+	}
+
+
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 

@@ -28,6 +28,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service("ProcessService")
 public class ProcessService {
 
+private static final String JUMP_DETAIL = "<br/>";
+
+private static final String TAB_DETAIL = "&nbsp;&nbsp;&nbsp;&nbsp;";
+
 private static final Logger log = LoggerFactory.getLogger(ProcessService.class);
 
 @Autowired
@@ -39,12 +43,23 @@ private DynamicDaoMultipleDatabase dynamicDaoMultipleDatabase;
 SimpleDateFormat fileDateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
 
 @Transactional(readOnly = true)
-public String query(QueryD query, QueryConfD conf) {
-
+public String query(QueryD query, QueryConfD conf, StringBuilder taskDetail) {
+		
   boolean removeOriginalFile = true;
 
   String database = query.getDatabase();
   String queryText = query.getTexto();
+  
+	/*
+	Consulta "Nombre" ejecutada: OK
+	Guardo en CSV   
+	    X ficheros: OK
+	Guardo en XML
+	    X ficheros: OK    
+	Guardo en JSON
+	    X ficheros:OK
+	    */
+
 
   boolean errors = false;
   String errorMessage = null;
@@ -65,10 +80,24 @@ public String query(QueryD query, QueryConfD conf) {
 	if (Util.validValue(cause)) {
 	  errorMessage = "[database:" + database + "] [causa:" + cause + "]";
 	}
+	
 
+//	String bigErrorMessage="<br/>Traza del error:<br/>";
+//	StackTraceElement[] stackTrace = e.getStackTrace();
+//	for (StackTraceElement trace:stackTrace)
+//	{
+//		bigErrorMessage+=TAB_DETAIL+trace.toString()+JUMP_DETAIL;
+//	}
+
+	taskAppend(taskDetail,"Consulta '"+query.getCode()+"' ejecutada con errores:"+JUMP_DETAIL);
+	taskAppend(taskDetail,TAB_DETAIL+errorMessage);
+	//taskAppend(taskDetail,TAB_DETAIL+bigErrorMessage);
+	
 	return errorMessage;
   }
 
+  taskAppend(taskDetail,"Consulta '"+query.getCode()+"' ejecutada correctamente."+JUMP_DETAIL);
+  
   int size = results.size();
   log.info("Results: " + size);
   List<Integer> listPaginations = new ArrayList<Integer>();
@@ -95,24 +124,46 @@ public String query(QueryD query, QueryConfD conf) {
 
   List<String> generatedFiles = new ArrayList<String>();
 
+  if (listPaginations.size()>0)
+	  taskAppend(taskDetail,"Generación de "+listPaginations.size()+" ficheros CSV: " );
+  else
+	  taskAppend(taskDetail,"Generación de fichero CSV: ");
+  
   log.info("generating files (CSV)...");
   // No generamos errores para esta petición
   String errorCSV = generateCsvFiles(conf, results, listPaginations, generatedFiles);
   if (errorCSV != null && !"".equals(errorCSV)) {
 	log.error("[query] " + errorCSV);
+	 taskAppend(taskDetail,"Error"+JUMP_DETAIL);
+	 taskAppend(taskDetail,TAB_DETAIL+errorCSV+JUMP_DETAIL);
+  }else {
+	  taskAppend(taskDetail,"OK"+JUMP_DETAIL); 
   }
 
+  
+  if (listPaginations.size()>0)
+	  taskAppend(taskDetail,"Generación de "+listPaginations.size()+" ficheros JSON y "+listPaginations.size()+" ficheros XML: " );
+  else
+	  taskAppend(taskDetail,"Generación de ficheros JSON y XML: ");
+  
   log.info("generating files (JSON y XML)...");
   // No generamos errores para esta petición
   String errorJsonXml = generateJsonXmlFiles(conf, results, listPaginations, generatedFiles);
   if (errorJsonXml != null && !"".equals(errorJsonXml)) {
 	log.error("[query] " + errorJsonXml);
+	 taskAppend(taskDetail,"Error"+JUMP_DETAIL);
+	 taskAppend(taskDetail,TAB_DETAIL+errorJsonXml+JUMP_DETAIL);
+  }else {
+	  taskAppend(taskDetail,"OK"+JUMP_DETAIL); 
   }
 
   log.info("files generated: " + generatedFiles.size());
 
   if ((conf.getZip() == true) && (generatedFiles.size() > 0)) {
 	log.info("zipping " + generatedFiles.size() + " files");
+	
+	taskAppend(taskDetail,"Compresion de ficheros: " );	
+	
 	for (String file : generatedFiles) {
 	  int extensionPosition = file.lastIndexOf(".");
 	  String extension = file.substring(extensionPosition + 1);
@@ -124,13 +175,19 @@ public String query(QueryD query, QueryConfD conf) {
 	  if (conf.getOverwrite() == false) {
 		errorMessage = renameOldFile(conf, filePath);
 		if (errorMessage != null && !"".equals(errorMessage)) {
+			
+		  taskAppend(taskDetail,"Error"+JUMP_DETAIL);
+	      taskAppend(taskDetail,TAB_DETAIL+errorMessage+JUMP_DETAIL);
+			
 		  errors = true;
 		  return errorMessage;
 		}
 	  }
 	  Util.zipFile(file, filePath, removeOriginalFile);
 	}
+	taskAppend(taskDetail,"OK"+JUMP_DETAIL); 
   }
+ 
 
   if (generatedFiles.size() == 0) {
 	errorMessage = "\n\n" + errorCSV + "\n\n";
@@ -390,6 +447,15 @@ private void addContentToFile(File filePath, String data, boolean append) {
   } catch (IOException e) {
 	log.error("Error writting data in file", e);
   }
+}
+
+
+private void taskAppend(StringBuilder builder, String textToAdd)
+{
+	if (builder!=null)
+	{
+		builder.append(textToAdd);
+	}
 }
 
 }

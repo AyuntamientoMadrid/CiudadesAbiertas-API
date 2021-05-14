@@ -284,7 +284,7 @@
 			    <table class="table-striped">
 			        <thead id="thead">
 			            <tr>
-			                <th data-sortable="true">
+           	                <th data-sortable="true">
 			                	<c:choose>
 							        <c:when test="${sortField eq 'query' && sortOrder eq 'desc'}">			            
 							           <a id="thead1" href="${orderPage}+query">Consulta <i class="icon-arrow-full-down"></i></a>
@@ -350,15 +350,19 @@
 							  </c:choose>
 			                </th>			                
 			            </tr>
+			           
 			        </thead>
 			        <tbody>			        
 			        	<c:forEach var="entidad" items="${list}" varStatus="loop">			        	
-				        	<tr>
-				        	<td data-label="consulta">${entidad.taskD.query}</td>
-				            <td data-label="estado">${entidad.taskD.status}</td>
-				            <td data-label="fechaInicio"><fmt:formatDate type = "both" value = "${entidad.taskD.start}" /></td>
-				            <td data-label="fechaFin"><fmt:formatDate type = "both" value = "${entidad.taskD.finish}" /></td>
-				            <td data-label="modo">${entidad.taskD.mode}</td>
+				        	<tr onclick="javascript:controlCapa('${entidad.taskD.id}')" style="cursor:pointer">
+				        		<td data-label="consulta">${entidad.taskD.query}</td>
+				           	 	<td data-label="estado">${entidad.taskD.status}</td>
+				            	<td data-label="fechaInicio"><fmt:formatDate type = "both" value = "${entidad.taskD.start}" /></td>
+				            	<td data-label="fechaFin"><fmt:formatDate type = "both" value = "${entidad.taskD.finish}" /></td>
+				            	<td data-label="modo">${entidad.taskD.mode}</td>
+							</tr>
+							<tr id="filaDetalle${entidad.taskD.id}" style="display:none">
+								<td colspan="5"><span>${entidad.taskD.detail}</span></td>
 							</tr>					
 						</c:forEach>
 					</tbody>			        
@@ -404,11 +408,27 @@
     	data-finishDate="${finishDateSearch}"
     	data-finishTime="${finishTimeSearch}"
     	src="<c:url value="/resources/js/task/task.js"/>" ></script>
+    	
+    <script>
+    	function controlCapa(divId)
+    	{
+    		console.log(divId);
+    		var selectorC="#filaDetalle"+divId;
+    		if ($(selectorC).is(':visible'))
+    		{
+    			$(selectorC).hide();
+    		}else{
+    			$(selectorC).show();
+    		}
+    	}
+    
+    </script>
 
 	<style>
 	.custom-select__arrow {	
 		margin-right: 20px;
 	}	
 	</style>
+	
 </body>
 </html>

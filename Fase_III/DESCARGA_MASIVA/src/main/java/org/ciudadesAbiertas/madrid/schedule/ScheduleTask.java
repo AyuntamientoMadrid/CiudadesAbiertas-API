@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
 
 @Component
 public class ScheduleTask {
-    private static final Logger log = LoggerFactory.getLogger(ScheduleTask.class);
+    private static final int DETAIL_MAX_LENGTH = 4000;
+
+	private static final Logger log = LoggerFactory.getLogger(ScheduleTask.class);
 
     @Autowired
     private Environment env;
@@ -113,104 +115,118 @@ public class ScheduleTask {
 
     }
 
-    // Metodo que busca posibles procesos en ejecución que se hayan quedado en ese estado debido a errores
-    private void searchAndCleanRunning() {
-	TaskD taskSearch = new TaskD();
-	taskSearch.setStatus(TaskD.RUNNING);
-	try {
-	    List<TaskD> runningList = taskService.list(-1, -1, "", taskSearch);
+	// Metodo que busca posibles procesos en ejecución que se hayan quedado en ese
+	// estado debido a errores
+	private void searchAndCleanRunning() {
+		TaskD taskSearch = new TaskD();
+		taskSearch.setStatus(TaskD.RUNNING);
+		try {
+			List<TaskD> runningList = taskService.list(-1, -1, "", taskSearch);
 
-	    for (Iterator<TaskD> iterator = runningList.iterator(); iterator.hasNext();) {
-		TaskD runningTask = (TaskD) iterator.next();
-		// Si no esta dentro hay que pasar el estado a error
-		if (TaskUtils.checkCode(runningTask.getId()) == false) {
-		    log.info("Zombie task founded: "+ runningTask.getId());
-		    runningTask.setStatus(TaskD.ERROR);
-		    runningTask.setFinish(new Date());
-		    taskService.update(runningTask);
-		    log.info("Zombie task finished");
+			for (Iterator<TaskD> iterator = runningList.iterator(); iterator.hasNext();) {
+				TaskD runningTask = (TaskD) iterator.next();
+				// Si no esta dentro hay que pasar el estado a error
+				if (TaskUtils.checkCode(runningTask.getId()) == false) {
+					log.info("Zombie task founded: " + runningTask.getId());
+					runningTask.setStatus(TaskD.ERROR);
+					runningTask.setFinish(new Date());
+					taskService.update(runningTask);
+					log.info("Zombie task finished");
+				}
+			}
+		} catch (Exception e) {
+			log.error("Error searching zombie tasks", e);
 		}
-	    }
-	} catch (Exception e) {
-	    log.error("Error searching zombie tasks", e);
 	}
-    }
 
-    public void listado(String code, TaskD task, String who) {
-	log.info("[listado]" + code);
-	List<String> errorMessage = new ArrayList<String>();
-	StringBuffer buffer = new StringBuffer();
-	if (TaskUtils.addCode(code)) {
-	    QueryD query = queryService.record(code);
-	    QueryConfD configuration = null;
+	public void listado(String code, TaskD task, String who) {
 
-	    if (query == null) {
-		log.error("Consulta inexistente: " + query);
-		task.setStatus(TaskD.ERROR);
-		try {
-		    taskService.add(task);
-		} catch (Exception e) {
-		    log.error("Error adding task", e);
-		    errorMessage.add("Error adding task: "+e.getMessage());
-		}
-		TaskUtils.finishCode(code);
-	    } else {
-		boolean errors = false;
-		try {
-		    task = taskService.add(task);
-		} catch (Exception e) {
-		    log.error("Error adding task", e);
-		    TaskUtils.finishCode(code);
-		    errorMessage.add("Error adding task: "+e.getMessage());
-		    return;
-		}
-		try {
-		    configuration = queryConfService.record(query.getCode());
-		} catch (Exception e) {
-		    log.error("Error reading configuration", e);
-		    errorMessage.add("Error reading configuration: "+e.getMessage());
-		    errors = true;
-		}
+		log.info("[listado]" + code);
+		StringBuilder taskDetail = new StringBuilder();
 
-		if (errors == false) {
-		    String errores = processService.query(query, configuration);
-		    if (errores!=null && !"".equals(errores)) {
-		    	errorMessage.add(errores);
-		    	errors=true;
-		    }
-		}
-		// task = taskService.record(task.getId());
-		task.setFinish(new Date());
-		if (errors) {
-		    task.setStatus(TaskD.ERROR);
-		    buffer.append(LiteralConstants.TEXTO_ERROR_MAIL);
-		    buffer.append(StringUtils.LF);
-		    for (String errores: errorMessage) {
-		    	buffer.append(errores);
-			    buffer.append(StringUtils.LF);
-		    }
-		    buffer.append(LiteralConstants.TEXTO_SALUDOS_MAIL);
-		    emailService.sendSimpleMessage(StartVariables.mailTo, StartVariables.mailPrefix + " " + code + " Error" + " " + who, buffer.toString(), StartVariables.mailFrom);
+		System.out.println(taskDetail.toString());
+		List<String> errorMessage = new ArrayList<String>();
+		StringBuffer buffer = new StringBuffer();
+		if (TaskUtils.addCode(code)) {
+			QueryD query = queryService.record(code);
+			QueryConfD configuration = null;
+
+			if (query == null) {
+				log.error("Consulta inexistente: " + query);
+				task.setStatus(TaskD.ERROR);
+				try {
+					taskService.add(task);
+				} catch (Exception e) {
+					log.error("Error adding task", e);
+					errorMessage.add("Error adding task: " + e.getMessage());
+				}
+				TaskUtils.finishCode(code);
+			} else {
+				boolean errors = false;
+				try {
+					task = taskService.add(task);
+				} catch (Exception e) {
+					log.error("Error adding task", e);
+					TaskUtils.finishCode(code);
+					errorMessage.add("Error adding task: " + e.getMessage());
+					return;
+				}
+				try {
+					configuration = queryConfService.record(query.getCode());
+				} catch (Exception e) {
+					log.error("Error reading configuration", e);
+					errorMessage.add("Error reading configuration: " + e.getMessage());
+					errors = true;
+				}
+
+				if (errors == false) {
+					String errores = processService.query(query, configuration, taskDetail);
+					if (errores != null && !"".equals(errores)) {
+						errorMessage.add(errores);
+						errors = true;
+					}
+				}
+				// task = taskService.record(task.getId());
+				task.setFinish(new Date());
+				if (taskDetail.length()>DETAIL_MAX_LENGTH)
+				{
+					taskDetail.setLength(DETAIL_MAX_LENGTH);
+				}
+				task.setDetail(taskDetail.toString());
+				if (errors) {
+					task.setStatus(TaskD.ERROR);
+					buffer.append(LiteralConstants.TEXTO_ERROR_MAIL);
+					buffer.append(StringUtils.LF);
+					for (String errores : errorMessage) {
+						buffer.append(errores);
+						buffer.append(StringUtils.LF);
+					}
+					buffer.append(LiteralConstants.TEXTO_SALUDOS_MAIL);
+					emailService.sendSimpleMessage(StartVariables.mailTo,
+							StartVariables.mailPrefix + " " + code + " Error" + " " + who, buffer.toString(),
+							StartVariables.mailFrom);
+				} else {
+					task.setStatus(TaskD.FINALIZADA);
+					buffer.append(LiteralConstants.TEXTO_NO_ERROR_MAIL);
+					buffer.append(StringUtils.LF);
+					buffer.append(LiteralConstants.TEXTO_SALUDOS_MAIL);
+					emailService.sendSimpleMessage(StartVariables.mailTo,
+							StartVariables.mailPrefix + " " + code + " OK" + " " + who, buffer.toString(),
+							StartVariables.mailFrom);
+				}
+
+				try {
+					taskService.update(task);
+				} catch (Exception e) {
+					log.error("Error updating task", e);
+				}
+
+				TaskUtils.finishCode(code);
+			}
 		} else {
-		    task.setStatus(TaskD.FINALIZADA);
-		    buffer.append(LiteralConstants.TEXTO_NO_ERROR_MAIL);
-		    buffer.append(StringUtils.LF);
-		    buffer.append(LiteralConstants.TEXTO_SALUDOS_MAIL);
-		    emailService.sendSimpleMessage(StartVariables.mailTo, StartVariables.mailPrefix + " " + code + " OK" + " " + who, buffer.toString(), StartVariables.mailFrom);
+			task.setStatus(TaskD.RUNNING);
 		}
 
-		try {
-		    taskService.update(task);
-		} catch (Exception e) {
-		    log.error("Error updating task", e);
-		}
-
-		TaskUtils.finishCode(code);
-	    }
-	} else {
-	    task.setStatus(TaskD.RUNNING);
 	}
-
-    }
 
 }
