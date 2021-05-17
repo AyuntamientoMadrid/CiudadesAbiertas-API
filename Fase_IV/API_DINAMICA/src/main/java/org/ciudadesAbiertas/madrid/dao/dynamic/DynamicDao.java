@@ -55,11 +55,6 @@ public class DynamicDao {
 				log.error("Error parsing query",e1);
 			}
 		}
-
-		
-		
-		
-		
 		
 		NativeQuery sqlquery = sessionFactory.getCurrentSession().createSQLQuery(query);
 		sqlquery.setFirstResult(page * pageSize);
@@ -67,12 +62,9 @@ public class DynamicDao {
 		sqlquery.setResultTransformer(Util.transformadorCamposSqlOrdenados);
 		
 		try {
-
 			result = sqlquery.list();
-
 		} catch (Exception e) {
-			log.error("Error throwing query", e);
-			
+			log.error("Error throwing query", e);			
 		}
 
 		return result;

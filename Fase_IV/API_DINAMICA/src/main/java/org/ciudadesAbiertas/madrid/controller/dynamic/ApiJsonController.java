@@ -221,21 +221,19 @@ public class ApiJsonController {
 					definitiveDefinitions.put(swagerDef.getCode(), queryJ);
 				}
 			}
-
-			
-			JSONObject defaultResultJSON = Util.stringToJSONObject(Constants.defaultResult);
-			definitiveDefinitions.put("defaultResult", defaultResultJSON);
-			
-			JSONObject finalJSONObj;
-			try {
-				finalJSONObj = (JSONObject) parser.parse(finalJSON);
-				finalJSONObj.remove("definitions");
-				finalJSONObj.put("definitions", definitiveDefinitions);
-				finalJSON = finalJSONObj.toJSONString();
-			} catch (ParseException e) {
-				log.error("Error adding definitions in the final JSON", e);
-			}
-
+		}
+		
+		JSONObject defaultResultJSON = Util.stringToJSONObject(Constants.defaultResult);
+		definitiveDefinitions.put("defaultResult", defaultResultJSON);
+		
+		JSONObject finalJSONObj;
+		try {
+			finalJSONObj = (JSONObject) parser.parse(finalJSON);
+			finalJSONObj.remove("definitions");
+			finalJSONObj.put("definitions", definitiveDefinitions);
+			finalJSON = finalJSONObj.toJSONString();
+		} catch (ParseException e) {
+			log.error("Error adding definitions in the final JSON", e);
 		}
 
 		return finalJSON;
@@ -281,7 +279,7 @@ public class ApiJsonController {
 		produces.add(Constants.mimeXML);
 		produces.add(Constants.mimeCSV);
 
-		if (model.size()>1)
+		if (model!=null && model.size()>1)
 		{
 			if ((model.containsKey(Constants.XETRS89) && model.containsKey(Constants.YETRS89))
 					|| model.containsKey(Constants.hasGeometry)) {
@@ -381,8 +379,8 @@ public class ApiJsonController {
 			parameters.add(tempParam);
 		}
 
-		if (model.containsKey(StartVariables.geometry_field) || (model.containsKey(StartVariables.xETRS89_field)
-				&& model.containsKey(StartVariables.yETRS89_field))) {
+		if ((model!=null) && ( model.containsKey(StartVariables.geometry_field) || (model.containsKey(StartVariables.xETRS89_field)
+				&& model.containsKey(StartVariables.yETRS89_field)))) {
 
 			JSONObject srId = new JSONObject();
 			srId.put("name", "srId");
@@ -403,20 +401,23 @@ public class ApiJsonController {
 		}
 
 		// Añadimos los parametros del modelo
-		for (Map.Entry<String, String> param : model.entrySet()) {
-
-			JSONObject tempParam = new JSONObject();
-			tempParam.put("name", param.getKey());
-			tempParam.put("in", "query");
-			tempParam.put("required", false);
-
-			if ((descriptionMap != null) && (descriptionMap.get(param.getKey()) != null)) {
-				tempParam.put("description", descriptionMap.get(param.getKey()));
+		if (model!=null)
+		{
+			for (Map.Entry<String, String> param : model.entrySet()) {
+	
+				JSONObject tempParam = new JSONObject();
+				tempParam.put("name", param.getKey());
+				tempParam.put("in", "query");
+				tempParam.put("required", false);
+	
+				if ((descriptionMap != null) && (descriptionMap.get(param.getKey()) != null)) {
+					tempParam.put("description", descriptionMap.get(param.getKey()));
+				}
+	
+				tempParam.put("type", Util.convertJavaTypesToSwaggerTypes(param.getValue()));
+	
+				parameters.add(tempParam);
 			}
-
-			tempParam.put("type", Util.convertJavaTypesToSwaggerTypes(param.getValue()));
-
-			parameters.add(tempParam);
 		}
 
 		String[] tagSplited = query.getTags().split(",");

@@ -88,7 +88,7 @@ public class MultipleSessionFactory {
 			hibernateProperties.put(Constants.DB_HIBERNATE_FORMAT_SQL, multipleDataSource.getFormat_sql().get(key));
 			hibernateProperties.put(Constants.DB_HIBERNATE_SHOW_SQL, multipleDataSource.getShow_sql().get(key));
 			hibernateProperties.put(Constants.DB_HIBERNATE_DIALECT, multipleDataSource.getDialects().get(key));
-			hibernateProperties.put(Constants.HIBERNATE_DIALECT, multipleDataSource.getDialects().get(key));
+			//hibernateProperties.put(Constants.HIBERNATE_DIALECT, multipleDataSource.getDialects().get(key));
 			
 			
 			String defaultSchema=multipleDataSource.getDefaultSchema().get(key);
