@@ -323,9 +323,10 @@ API_CA/API_DEUDA/.classpath
 API_CA/Doc/er/
 API_CA/API_EMPLEO/src/test/resources/config.properties
 API_CA/API_DEUDA/src/test/resources/config.properties
-
 API_CA/API_DEUDA/target/
 loaders_IAM/bigFiles_CA/htmlOutput/
 loaders_IAM/bigFiles_CA/extras/rdf/
 loaders_IAM/bigFiles_CA/extras/json/
 Fase_IV/API_DINAMICA/bin/
+API_CA/utils/configFile/
+
