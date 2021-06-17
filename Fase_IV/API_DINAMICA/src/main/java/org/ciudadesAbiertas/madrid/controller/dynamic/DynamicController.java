@@ -1,10 +1,7 @@
 package org.ciudadesAbiertas.madrid.controller.dynamic;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -23,12 +20,10 @@ import org.ciudadesAbiertas.madrid.model.Estadistica;
 import org.ciudadesAbiertas.madrid.model.dynamic.ParamD;
 import org.ciudadesAbiertas.madrid.model.dynamic.QueryD;
 import org.ciudadesAbiertas.madrid.model.dynamic.SemanticPrefix;
-import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRelPrefix;
 import org.ciudadesAbiertas.madrid.model.dynamic.SemanticRml;
 import org.ciudadesAbiertas.madrid.service.EstadisticaService;
 import org.ciudadesAbiertas.madrid.service.dynamic.DynamicService;
 import org.ciudadesAbiertas.madrid.service.dynamic.ParamService;
-import org.ciudadesAbiertas.madrid.service.dynamic.PrefixRelService;
 import org.ciudadesAbiertas.madrid.service.dynamic.PrefixService;
 import org.ciudadesAbiertas.madrid.service.dynamic.QueryService;
 import org.ciudadesAbiertas.madrid.service.dynamic.SemanticRmlService;
@@ -38,13 +33,9 @@ import org.ciudadesAbiertas.madrid.utils.LikeNoAccents;
 import org.ciudadesAbiertas.madrid.utils.RSQLUtil;
 import org.ciudadesAbiertas.madrid.utils.Result;
 import org.ciudadesAbiertas.madrid.utils.StartVariables;
-import org.ciudadesAbiertas.madrid.utils.StringToDateConverter;
 import org.ciudadesAbiertas.madrid.utils.TableNameReplacer;
 import org.ciudadesAbiertas.madrid.utils.Util;
 import org.ciudadesAbiertas.madrid.utils.constants.Constants;
-import org.ciudadesAbiertas.madrid.utils.converters.CSVConverter;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,10 +49,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
-import net.sf.jsqlparser.JSQLParserException;
 
 
 
@@ -101,8 +88,6 @@ public class DynamicController implements IDynamicController{
 	@Autowired
 	private SemanticRmlService semanticRmlService;
 	
-	@Autowired
-	private PrefixRelService prefixRelService;
 	
 	@Autowired
 	private PrefixService prefixService;
@@ -257,14 +242,14 @@ public class DynamicController implements IDynamicController{
 	}
 	
 	
-	@SuppressWarnings("unused")
+	
 	private Result listado(HttpServletRequest request, String code, String page, String pageSize,
 			String sort, String srId, String rsqlQ, String id) throws TooManyRequestException, InternalErrorException, BadRequestException {
 		
 		return listado(request, code, page, pageSize, sort, srId, rsqlQ, null, id);
 	}
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings({ "unused", "rawtypes" })
 	private Result listado(HttpServletRequest request, String code, String page, String pageSize,
 			String sort, String srId, String rsqlQ, Character csvSeparator, String idParam) throws TooManyRequestException, InternalErrorException, BadRequestException {
 
@@ -369,7 +354,7 @@ public class DynamicController implements IDynamicController{
 					
 					String requestParamValue = requestParameters.get(param.getName());
 					
-					if (param.getName().contentEquals("fieldsP"))
+					if (param.getName().contentEquals(Constants.FIELDS_P))
 					{				
 						requestParamValue = addAliasToParamFieldP(Util.decodeURL(requestParamValue));
 					}

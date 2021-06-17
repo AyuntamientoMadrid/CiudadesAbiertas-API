@@ -144,6 +144,28 @@ protected void writeInternal(L l, HttpOutputMessage outputMessage) throws IOExce
 		if (map.containsKey(StartVariables.geometry_field)) {
 		  anotherSeparator = true;
 		}
+		Set<String> keySet = map.keySet();
+		for (String key:keySet)
+		{
+		  if (map.get(key)==null)
+		  {
+			if (map.get(key) instanceof String)
+			  {
+				String value=(String) map.get(key);
+				if (Util.validValue(value)==false)
+				{
+					map.put(key,"");
+				}
+			  } 
+		  }else {
+			  if (map.get(key) instanceof String) {
+				  String value=(String) map.get(key);
+				  map.put(key,Util.limpiarTextosRDF(value));
+			  }
+		   }
+		    
+		}
+		
 		recordsTranslated.add(map);
 	  } else {
 		LinkedHashMap mapObject=(LinkedHashMap) next;
@@ -160,7 +182,12 @@ protected void writeInternal(L l, HttpOutputMessage outputMessage) throws IOExce
 				  mapObject.put(key,"");
 				}
 			  } 
-		  }
+		  }else {
+				if (mapObject.get(key) instanceof String) {
+					String value = (String) mapObject.get(key);
+					mapObject.put(key, Util.limpiarTextosRDF(value));
+				}
+			}
 		    
 		}
 		

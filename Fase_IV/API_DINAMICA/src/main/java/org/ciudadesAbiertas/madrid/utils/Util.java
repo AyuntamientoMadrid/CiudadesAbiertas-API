@@ -1815,6 +1815,18 @@ public class Util
 		}
 	}
 	
+	public static String limpiarTextosRDF(String obj) {
+		String [] malFormat = {"\"","\'","\\\""};
+		String [] bienFormat = {"'","'","'"};
+			
+		String result =obj;
+		for (int i=0; i < malFormat.length; i++) {
+			result=obj.replace(malFormat[i], bienFormat[i]);
+		}
+		return result;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -1830,6 +1842,10 @@ public class Util
 		 otherSymbols.setDecimalSeparator('.');		 
 		 DecimalFormat df = new DecimalFormat("#.######", otherSymbols);
 		
-		 System.out.print(decimalFormatterCSV(d));
+		 System.out.println(decimalFormatterCSV(d));
+		 
+		 String valor = " cositas qiue pasan \\\"ACTIVAR CARABANCHEL\\\" a que si";
+		 String valorlimpio = Util.limpiarTextosRDF(valor);
+		 System.out.println(valorlimpio);
 	}
 }
