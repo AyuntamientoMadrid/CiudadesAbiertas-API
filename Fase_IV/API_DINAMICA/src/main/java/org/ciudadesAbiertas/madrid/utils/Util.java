@@ -1815,14 +1815,16 @@ public class Util
 		}
 	}
 	
+	
 	public static String limpiarTextosRDF(String obj) {
 		String [] malFormat = {"\"","\'","\\\""};
 		String [] bienFormat = {"'","'","'"};
 			
 		String result =obj;
 		for (int i=0; i < malFormat.length; i++) {
-			result=obj.replace(malFormat[i], bienFormat[i]);
+			result=obj.replaceAll(malFormat[i], bienFormat[i]);	
 		}
+		//log.info("[limpiarTextosRDF] [in:"+obj+"] [out:"+result+"]");
 		return result;
 	}
 	
@@ -1844,7 +1846,7 @@ public class Util
 		
 		 System.out.println(decimalFormatterCSV(d));
 		 
-		 String valor = " cositas qiue pasan \\\"ACTIVAR CARABANCHEL\\\" a que si";
+		 String valor = " cositas qiue pasan \"ACTIVAR CARABANCHEL\" a que si";
 		 String valorlimpio = Util.limpiarTextosRDF(valor);
 		 System.out.println(valorlimpio);
 	}
