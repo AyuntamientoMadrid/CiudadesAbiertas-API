@@ -258,5 +258,6 @@ Ejemplo url: https://alzir.dia.fi.upm.es/dynamicAPI/API/query/subvencion.csv?csv
  - Juan Carlos Ballesteros (Localidata)
  - Carlos Martínez de la Casa (Localidata)
 
-
+## build Number: 20
+Correción de incidencia para el rdf por datos con \" en el texto. Se cambia por '
 
