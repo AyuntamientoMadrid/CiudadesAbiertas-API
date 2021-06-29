@@ -1,0 +1,4 @@
+Ficheros:
+
+	- madrid2018_mayo_2021.zip: bbdd sqlite con los contratos cargados desde 1 de enero de 2018 hasta 31 de Mayo de 2021
+		(party.identification=P2807900B,P7807907F,P2800086G,P2800065A,P2800062H,P2800031C)

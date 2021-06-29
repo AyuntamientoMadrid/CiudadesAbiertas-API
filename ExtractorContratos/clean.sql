@@ -1,0 +1,8 @@
+delete from contratos_tender_rel_item
+delete from contratos_process
+delete from contratos_lot_rel_item
+delete from contratos_lot
+delete from contratos_tender
+delete from contratos_item
+delete from contratos_award
+delete from contratos_organization

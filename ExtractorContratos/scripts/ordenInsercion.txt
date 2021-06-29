@@ -1,0 +1,29 @@
+orden de  inserción
+===================
+
+1	contratos_organization
+2	contratos_award
+3	contratos_item
+4	contratos_tender
+5	contratos_lot
+6	contratos_lot_rel_item
+7	contratos_process
+8	contratos_tender_rel_item
+
+
+borrado
+===================
+delete from contratos_tender_rel_item;
+delete from contratos_process;
+delete from contratos_lot_rel_item;
+delete from contratos_lot;
+delete from contratos_tender;
+delete from contratos_item;
+delete from contratos_award;
+delete from contratos_organization;
+
+
+
+
+
+
